@@ -3,18 +3,32 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		727C145F78D60CBE2D20FEF0 /* Pods_Alexandria_AlexandriaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B572DFBE6E0992CECECB422E /* Pods_Alexandria_AlexandriaUITests.framework */; };
 		81C670D22497BB7100B32676 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C670D12497BB7100B32676 /* AppDelegate.swift */; };
 		81C670D42497BB7100B32676 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C670D32497BB7100B32676 /* SceneDelegate.swift */; };
-		81C670D62497BB7100B32676 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C670D52497BB7100B32676 /* ViewController.swift */; };
+		81C670D62497BB7100B32676 /* MyShelvesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C670D52497BB7100B32676 /* MyShelvesViewController.swift */; };
 		81C670D92497BB7100B32676 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81C670D72497BB7100B32676 /* Main.storyboard */; };
 		81C670DB2497BB7600B32676 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81C670DA2497BB7600B32676 /* Assets.xcassets */; };
 		81C670DE2497BB7600B32676 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81C670DC2497BB7600B32676 /* LaunchScreen.storyboard */; };
 		81C670E92497BB7600B32676 /* AlexandriaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C670E82497BB7600B32676 /* AlexandriaTests.swift */; };
 		81C670F42497BB7600B32676 /* AlexandriaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C670F32497BB7600B32676 /* AlexandriaUITests.swift */; };
+		81C671032497BDBD00B32676 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 81C671022497BDBD00B32676 /* Realm */; };
+		81C671052497BDBD00B32676 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 81C671042497BDBD00B32676 /* RealmSwift */; };
+		81C671102499361C00B32676 /* MyVaultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C6710F2499361C00B32676 /* MyVaultsViewController.swift */; };
+		81C671122499365000B32676 /* MetricsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C671112499365000B32676 /* MetricsViewController.swift */; };
+		81C671142499367200B32676 /* MyTeamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C671132499367200B32676 /* MyTeamsViewController.swift */; };
+		81C67116249936A300B32676 /* RegisterLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C67115249936A300B32676 /* RegisterLoginViewController.swift */; };
+		81C67118249936CD00B32676 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C67117249936CD00B32676 /* RegisterViewController.swift */; };
+		81C6711A249936FA00B32676 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C67119249936FA00B32676 /* LoginViewController.swift */; };
+		81C6711C2499373500B32676 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C6711B2499373500B32676 /* MyProfileViewController.swift */; };
+		81F750C9249980020018DF71 /* Righteous-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 81F750C8249980020018DF71 /* Righteous-Regular.ttf */; };
+		81F750CB249AFE790018DF71 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F750CA249AFE790018DF71 /* SettingsViewController.swift */; };
+		D320C22B554EA993AA2639AE /* Pods_AlexandriaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A82B6B06F589AB60609B841 /* Pods_AlexandriaTests.framework */; };
+		E9341CB11852CB2CC99D553E /* Pods_Alexandria.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEB06A4F4E99124CFE273C98 /* Pods_Alexandria.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,10 +49,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A82B6B06F589AB60609B841 /* Pods_AlexandriaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlexandriaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		260328704970FA6A32394656 /* Pods-AlexandriaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlexandriaTests.debug.xcconfig"; path = "Target Support Files/Pods-AlexandriaTests/Pods-AlexandriaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		70AF4C99E9126B66330ED29E /* Pods-Alexandria-AlexandriaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alexandria-AlexandriaUITests.debug.xcconfig"; path = "Target Support Files/Pods-Alexandria-AlexandriaUITests/Pods-Alexandria-AlexandriaUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		81C670CE2497BB7100B32676 /* Alexandria.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alexandria.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C670D12497BB7100B32676 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81C670D32497BB7100B32676 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		81C670D52497BB7100B32676 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		81C670D52497BB7100B32676 /* MyShelvesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShelvesViewController.swift; sourceTree = "<group>"; };
 		81C670D82497BB7100B32676 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		81C670DA2497BB7600B32676 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		81C670DD2497BB7600B32676 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +66,22 @@
 		81C670EF2497BB7600B32676 /* AlexandriaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlexandriaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C670F32497BB7600B32676 /* AlexandriaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlexandriaUITests.swift; sourceTree = "<group>"; };
 		81C670F52497BB7600B32676 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81C6710E2497D0C700B32676 /* Alexandria.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Alexandria.entitlements; sourceTree = "<group>"; };
+		81C6710F2499361C00B32676 /* MyVaultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVaultsViewController.swift; sourceTree = "<group>"; };
+		81C671112499365000B32676 /* MetricsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricsViewController.swift; sourceTree = "<group>"; };
+		81C671132499367200B32676 /* MyTeamsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTeamsViewController.swift; sourceTree = "<group>"; };
+		81C67115249936A300B32676 /* RegisterLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterLoginViewController.swift; sourceTree = "<group>"; };
+		81C67117249936CD00B32676 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		81C67119249936FA00B32676 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		81C6711B2499373500B32676 /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
+		81F750C8249980020018DF71 /* Righteous-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Righteous-Regular.ttf"; sourceTree = "<group>"; };
+		81F750CA249AFE790018DF71 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		820B1FFEF539BD498C602FEE /* Pods-Alexandria-AlexandriaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alexandria-AlexandriaUITests.release.xcconfig"; path = "Target Support Files/Pods-Alexandria-AlexandriaUITests/Pods-Alexandria-AlexandriaUITests.release.xcconfig"; sourceTree = "<group>"; };
+		ABE32B38628FBEC67C166EDE /* Pods-AlexandriaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlexandriaTests.release.xcconfig"; path = "Target Support Files/Pods-AlexandriaTests/Pods-AlexandriaTests.release.xcconfig"; sourceTree = "<group>"; };
+		B1508565DC432DCBB3BFAF81 /* Pods-Alexandria.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alexandria.debug.xcconfig"; path = "Target Support Files/Pods-Alexandria/Pods-Alexandria.debug.xcconfig"; sourceTree = "<group>"; };
+		B572DFBE6E0992CECECB422E /* Pods_Alexandria_AlexandriaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Alexandria_AlexandriaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEB06A4F4E99124CFE273C98 /* Pods_Alexandria.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Alexandria.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D04BA13C3211C9E35B91901C /* Pods-Alexandria.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alexandria.release.xcconfig"; path = "Target Support Files/Pods-Alexandria/Pods-Alexandria.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +89,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81C671052497BDBD00B32676 /* RealmSwift in Frameworks */,
+				81C671032497BDBD00B32676 /* Realm in Frameworks */,
+				E9341CB11852CB2CC99D553E /* Pods_Alexandria.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D320C22B554EA993AA2639AE /* Pods_AlexandriaTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,19 +107,41 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				727C145F78D60CBE2D20FEF0 /* Pods_Alexandria_AlexandriaUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		47364B8CE76E99A23ED433D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BEB06A4F4E99124CFE273C98 /* Pods_Alexandria.framework */,
+				B572DFBE6E0992CECECB422E /* Pods_Alexandria_AlexandriaUITests.framework */,
+				0A82B6B06F589AB60609B841 /* Pods_AlexandriaTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		811BB16E249940400074F36E /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				81F750C8249980020018DF71 /* Righteous-Regular.ttf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
 		81C670C52497BB7100B32676 = {
 			isa = PBXGroup;
 			children = (
 				81C670D02497BB7100B32676 /* Alexandria */,
+				811BB16E249940400074F36E /* fonts */,
 				81C670E72497BB7600B32676 /* AlexandriaTests */,
 				81C670F22497BB7600B32676 /* AlexandriaUITests */,
 				81C670CF2497BB7100B32676 /* Products */,
+				C44F30F292E6A3BE349C476B /* Pods */,
+				47364B8CE76E99A23ED433D9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,12 +158,11 @@
 		81C670D02497BB7100B32676 /* Alexandria */ = {
 			isa = PBXGroup;
 			children = (
-				81C670D12497BB7100B32676 /* AppDelegate.swift */,
-				81C670D32497BB7100B32676 /* SceneDelegate.swift */,
-				81C670D52497BB7100B32676 /* ViewController.swift */,
-				81C670D72497BB7100B32676 /* Main.storyboard */,
+				81C6710E2497D0C700B32676 /* Alexandria.entitlements */,
+				81C671082497CDE700B32676 /* Controllers */,
+				81C671072497CDE000B32676 /* Views */,
+				81C671062497CDD800B32676 /* Models */,
 				81C670DA2497BB7600B32676 /* Assets.xcassets */,
-				81C670DC2497BB7600B32676 /* LaunchScreen.storyboard */,
 				81C670DF2497BB7600B32676 /* Info.plist */,
 			);
 			path = Alexandria;
@@ -128,6 +186,101 @@
 			path = AlexandriaUITests;
 			sourceTree = "<group>";
 		};
+		81C671062497CDD800B32676 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				81C6710D2497CEC700B32676 /* Local Model */,
+				81C6710C2497CEC000B32676 /* Web Model */,
+				81C6710A2497CE3300B32676 /* Data Model */,
+				81C671092497CE2900B32676 /* Delegates */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		81C671072497CDE000B32676 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				81C670D72497BB7100B32676 /* Main.storyboard */,
+				81C670DC2497BB7600B32676 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		81C671082497CDE700B32676 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				81F750CD249AFED60018DF71 /* Main Tab Bar */,
+				81F750CC249AFE9A0018DF71 /* Profile Icon */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		81C671092497CE2900B32676 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				81C670D12497BB7100B32676 /* AppDelegate.swift */,
+				81C670D32497BB7100B32676 /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		81C6710A2497CE3300B32676 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		81C6710C2497CEC000B32676 /* Web Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Web Model";
+			sourceTree = "<group>";
+		};
+		81C6710D2497CEC700B32676 /* Local Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Local Model";
+			sourceTree = "<group>";
+		};
+		81F750CC249AFE9A0018DF71 /* Profile Icon */ = {
+			isa = PBXGroup;
+			children = (
+				81C67115249936A300B32676 /* RegisterLoginViewController.swift */,
+				81C67117249936CD00B32676 /* RegisterViewController.swift */,
+				81C67119249936FA00B32676 /* LoginViewController.swift */,
+				81F750CA249AFE790018DF71 /* SettingsViewController.swift */,
+				81C6711B2499373500B32676 /* MyProfileViewController.swift */,
+			);
+			path = "Profile Icon";
+			sourceTree = "<group>";
+		};
+		81F750CD249AFED60018DF71 /* Main Tab Bar */ = {
+			isa = PBXGroup;
+			children = (
+				81C670D52497BB7100B32676 /* MyShelvesViewController.swift */,
+				81C6710F2499361C00B32676 /* MyVaultsViewController.swift */,
+				81C671112499365000B32676 /* MetricsViewController.swift */,
+				81C671132499367200B32676 /* MyTeamsViewController.swift */,
+			);
+			path = "Main Tab Bar";
+			sourceTree = "<group>";
+		};
+		C44F30F292E6A3BE349C476B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B1508565DC432DCBB3BFAF81 /* Pods-Alexandria.debug.xcconfig */,
+				D04BA13C3211C9E35B91901C /* Pods-Alexandria.release.xcconfig */,
+				70AF4C99E9126B66330ED29E /* Pods-Alexandria-AlexandriaUITests.debug.xcconfig */,
+				820B1FFEF539BD498C602FEE /* Pods-Alexandria-AlexandriaUITests.release.xcconfig */,
+				260328704970FA6A32394656 /* Pods-AlexandriaTests.debug.xcconfig */,
+				ABE32B38628FBEC67C166EDE /* Pods-AlexandriaTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,15 +288,21 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 81C670F82497BB7600B32676 /* Build configuration list for PBXNativeTarget "Alexandria" */;
 			buildPhases = (
+				109EA95433DDDFEA7A199BBB /* [CP] Check Pods Manifest.lock */,
 				81C670CA2497BB7100B32676 /* Sources */,
 				81C670CB2497BB7100B32676 /* Frameworks */,
 				81C670CC2497BB7100B32676 /* Resources */,
+				C346B313CEE9F0705595D032 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Alexandria;
+			packageProductDependencies = (
+				81C671022497BDBD00B32676 /* Realm */,
+				81C671042497BDBD00B32676 /* RealmSwift */,
+			);
 			productName = Alexandria;
 			productReference = 81C670CE2497BB7100B32676 /* Alexandria.app */;
 			productType = "com.apple.product-type.application";
@@ -152,6 +311,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 81C670FB2497BB7600B32676 /* Build configuration list for PBXNativeTarget "AlexandriaTests" */;
 			buildPhases = (
+				6757F032311A4F703F2ECE61 /* [CP] Check Pods Manifest.lock */,
 				81C670E02497BB7600B32676 /* Sources */,
 				81C670E12497BB7600B32676 /* Frameworks */,
 				81C670E22497BB7600B32676 /* Resources */,
@@ -170,9 +330,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 81C670FE2497BB7600B32676 /* Build configuration list for PBXNativeTarget "AlexandriaUITests" */;
 			buildPhases = (
+				3C3DD567DE03EBA0BC99D89A /* [CP] Check Pods Manifest.lock */,
 				81C670EB2497BB7600B32676 /* Sources */,
 				81C670EC2497BB7600B32676 /* Frameworks */,
 				81C670ED2497BB7600B32676 /* Resources */,
+				80CE26E7BF45EC2FF2EFF7F8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -216,6 +378,9 @@
 				Base,
 			);
 			mainGroup = 81C670C52497BB7100B32676;
+			packageReferences = (
+				81C671012497BDBD00B32676 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+			);
 			productRefGroup = 81C670CF2497BB7100B32676 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -234,6 +399,7 @@
 			files = (
 				81C670DE2497BB7600B32676 /* LaunchScreen.storyboard in Resources */,
 				81C670DB2497BB7600B32676 /* Assets.xcassets in Resources */,
+				81F750C9249980020018DF71 /* Righteous-Regular.ttf in Resources */,
 				81C670D92497BB7100B32676 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,13 +420,124 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		109EA95433DDDFEA7A199BBB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Alexandria-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3C3DD567DE03EBA0BC99D89A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Alexandria-AlexandriaUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6757F032311A4F703F2ECE61 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AlexandriaTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		80CE26E7BF45EC2FF2EFF7F8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Alexandria-AlexandriaUITests/Pods-Alexandria-AlexandriaUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Alexandria-AlexandriaUITests/Pods-Alexandria-AlexandriaUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Alexandria-AlexandriaUITests/Pods-Alexandria-AlexandriaUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C346B313CEE9F0705595D032 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Alexandria/Pods-Alexandria-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Alexandria/Pods-Alexandria-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Alexandria/Pods-Alexandria-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		81C670CA2497BB7100B32676 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81C670D62497BB7100B32676 /* ViewController.swift in Sources */,
+				81C6711A249936FA00B32676 /* LoginViewController.swift in Sources */,
+				81C671122499365000B32676 /* MetricsViewController.swift in Sources */,
+				81F750CB249AFE790018DF71 /* SettingsViewController.swift in Sources */,
+				81C6711C2499373500B32676 /* MyProfileViewController.swift in Sources */,
+				81C670D62497BB7100B32676 /* MyShelvesViewController.swift in Sources */,
+				81C67116249936A300B32676 /* RegisterLoginViewController.swift in Sources */,
+				81C671102499361C00B32676 /* MyVaultsViewController.swift in Sources */,
+				81C671142499367200B32676 /* MyTeamsViewController.swift in Sources */,
 				81C670D22497BB7100B32676 /* AppDelegate.swift in Sources */,
+				81C67118249936CD00B32676 /* RegisterViewController.swift in Sources */,
 				81C670D42497BB7100B32676 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,8 +709,10 @@
 		};
 		81C670F92497BB7600B32676 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B1508565DC432DCBB3BFAF81 /* Pods-Alexandria.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Alexandria/Alexandria.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U9D3L3WWWY;
 				INFOPLIST_FILE = Alexandria/Info.plist;
@@ -441,8 +720,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.bitfrost.Alexandria;
+				PRODUCT_BUNDLE_IDENTIFIER = app.bitfrost.alexandria.education;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -450,8 +730,10 @@
 		};
 		81C670FA2497BB7600B32676 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D04BA13C3211C9E35B91901C /* Pods-Alexandria.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Alexandria/Alexandria.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U9D3L3WWWY;
 				INFOPLIST_FILE = Alexandria/Info.plist;
@@ -459,8 +741,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.bitfrost.Alexandria;
+				PRODUCT_BUNDLE_IDENTIFIER = app.bitfrost.alexandria.education;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -468,6 +751,7 @@
 		};
 		81C670FC2497BB7600B32676 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 260328704970FA6A32394656 /* Pods-AlexandriaTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -490,6 +774,7 @@
 		};
 		81C670FD2497BB7600B32676 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ABE32B38628FBEC67C166EDE /* Pods-AlexandriaTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -512,6 +797,7 @@
 		};
 		81C670FF2497BB7600B32676 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 70AF4C99E9126B66330ED29E /* Pods-Alexandria-AlexandriaUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -532,6 +818,7 @@
 		};
 		81C671002497BB7600B32676 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 820B1FFEF539BD498C602FEE /* Pods-Alexandria-AlexandriaUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -590,6 +877,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		81C671012497BDBD00B32676 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		81C671022497BDBD00B32676 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 81C671012497BDBD00B32676 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		81C671042497BDBD00B32676 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 81C671012497BDBD00B32676 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 81C670C62497BB7100B32676 /* Project object */;
 }

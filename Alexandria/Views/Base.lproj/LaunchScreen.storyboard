@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gPf-DL-bkN">
+                                <rect key="frame" x="31" y="556" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="dDR-tp-2Hc">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OJW-uh-meS">
+                                <rect key="frame" x="0.0" y="625" width="414" height="271"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alexandria_logo" translatesAutoresizingMaskIntoConstraints="NO" id="b6L-Jh-NCO">
+                                        <rect key="frame" x="-1312" y="17" width="3038" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="1Ne-0F-znO"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WELLCOME TO" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cia-8G-Rti">
+                                        <rect key="frame" x="133" y="151" width="148" height="19"/>
+                                        <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="19"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ALEXANDRIA" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DxL-QE-vIb">
+                                        <rect key="frame" x="59" y="179" width="296.5" height="46"/>
+                                        <fontDescription key="fontDescription" name="Georgia-Bold" family="Georgia" pointSize="40"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.25882352939999997" green="0.12941176469999999" blue="0.043137254899999998" alpha="0.82154323630136983" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="DxL-QE-vIb" firstAttribute="top" secondItem="b6L-Jh-NCO" secondAttribute="bottom" constant="34" id="Dc9-lY-gI7"/>
+                                    <constraint firstItem="cia-8G-Rti" firstAttribute="top" secondItem="b6L-Jh-NCO" secondAttribute="bottom" constant="6" id="USs-TQ-HEC"/>
+                                    <constraint firstItem="b6L-Jh-NCO" firstAttribute="centerX" secondItem="OJW-uh-meS" secondAttribute="centerX" id="ZrH-8H-PyF"/>
+                                    <constraint firstItem="DxL-QE-vIb" firstAttribute="centerX" secondItem="OJW-uh-meS" secondAttribute="centerX" id="lHV-4G-tTm"/>
+                                    <constraint firstItem="b6L-Jh-NCO" firstAttribute="top" secondItem="OJW-uh-meS" secondAttribute="top" constant="17" id="nng-gX-xLp"/>
+                                    <constraint firstItem="cia-8G-Rti" firstAttribute="centerX" secondItem="OJW-uh-meS" secondAttribute="centerX" id="yIH-TE-6ZS"/>
+                                    <constraint firstAttribute="height" constant="271" id="yrB-n3-Bev"/>
+                                    <constraint firstAttribute="bottom" secondItem="DxL-QE-vIb" secondAttribute="bottom" constant="46" id="zve-Oj-D8E"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="dDR-tp-2Hc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3Tg-mc-pbl"/>
+                            <constraint firstItem="OJW-uh-meS" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="90n-6u-mmZ"/>
+                            <constraint firstItem="OJW-uh-meS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="FeH-fR-WKf"/>
+                            <constraint firstItem="dDR-tp-2Hc" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="GNd-pG-4nJ"/>
+                            <constraint firstAttribute="bottom" secondItem="dDR-tp-2Hc" secondAttribute="bottom" id="K6G-mm-AXe"/>
+                            <constraint firstItem="dDR-tp-2Hc" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="RqG-Xg-zHn"/>
+                            <constraint firstAttribute="bottom" secondItem="OJW-uh-meS" secondAttribute="bottom" id="V5C-DO-gOW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52.173913043478265" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="alexandria_logo" width="3038" height="3144"/>
+        <image name="launchScreen" width="2456" height="1634"/>
+    </resources>
+</document>
