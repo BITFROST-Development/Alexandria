@@ -73,13 +73,11 @@ struct TermDec: Codable,Equatable{
 
 struct StoredFileDec: Codable, Equatable{
     
-    var birthName: String?
     var name: String?
     var data: Data?
     var contentType: String?
     
-    init (_ birth: String,_ label: String,_ file: Data,_ type: String) {
-        birthName = birth
+    init (_ label: String,_ file: Data,_ type: String) {
         name = label
         data = file
         contentType = type

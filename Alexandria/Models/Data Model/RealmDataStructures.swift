@@ -328,8 +328,7 @@ class Shelf: Object{
             for kindex in 0..<(rhs?[index].books?.count ?? 0){
                 
                 lhs?[index].books.append(StoredFile())
-                
-                lhs![index].books[kindex] ^ rhs![index].books![kindex]
+                lhs?[index].books[kindex].initialize(rhs![index].books![kindex].name!, rhs![index].books![kindex].data!, rhs![index].books![kindex].contentType!)
             
             }
         }
@@ -347,7 +346,7 @@ class Vault: Object{
         }
         
         for index in 0..<(rhs.terms?.count ?? 0){
-            if !Term.equals(lhs.terms[index], rhs.terms?[index]){
+            if !Term.equals(lhs.terms[index], rhs.terms![index]){
                 return false
             }
         }
@@ -355,18 +354,22 @@ class Vault: Object{
         return true
     }
     
-    static func equals(lhs: RealmSwift.List<Adventure>?, rhs: [AdventureDec]?) -> Bool{
+    static func equals(lhs: RealmSwift.List<Vault>?, rhs: [VaultDec]?) -> Bool{
         
         if lhs?.count != rhs?.count{
             return false
         } else {
             for index in 0..<(rhs?.count ?? 0){
-                if lhs?[index].restaurant != rhs?[index].restaurant || lhs?[index].classification != rhs?[index].classification || lhs?[index].dateVisited != rhs?[index].dateVisited || lhs?[index].myThoughts != rhs?[index].myThoughts{
+                if lhs?[index].birthName != rhs?[index].birthName || lhs?[index].name != rhs?[index].name{
                     return false
                 } else {
-                    for memory in 0..<lhs![index].memories.count{
-                        if  !StoredFile.equals(lhs: lhs![index].memories[memory], rhs: rhs![index].memories![memory]){
-                            return false
+                    if lhs?[index].terms.count != rhs?[index].terms?.count{
+                        return false
+                    } else {
+                        for kindex in 0..<(rhs![index].terms?.count ?? 0){
+                            if !Term.equals(lhs![index].terms[kindex], rhs![index].terms![kindex]){
+                                return false
+                            }
                         }
                     }
                 }
@@ -375,29 +378,33 @@ class Vault: Object{
         }
     }
     
-    static func ^ (lhs: Adventure, rhs: AdventureDec){
-        lhs.restaurant = rhs.restaurant
-        lhs.classification = rhs.classification
-        lhs.dateVisited = rhs.dateVisited
-        lhs.myThoughts = rhs.myThoughts
-        for index in 0..<(rhs.memories?.count ?? 0){
-            lhs.memories.append(StoredFile())
-            lhs.memories[index] ^ rhs.memories![index]
+    static func ^ (lhs: Vault, rhs: VaultDec){
+        lhs.birthName = rhs.birthName
+        lhs.name = rhs.name
+        
+        lhs.terms.removeAll()
+        
+        for index in 0..<(rhs.terms?.count ?? 0){
+            lhs.terms.append(Term())
+            lhs.terms[index] ^ rhs.terms![index]
         }
     }
     
-    static func assign (_ rhs: RealmSwift.List<Adventure>?, _ lhs: [AdventureDec]?){
-        rhs?.removeAll()
-        
+    static func assign (_ lhs: RealmSwift.List<Vault>?, _ rhs: [VaultDec]?){
         for index in 0..<(lhs?.count ?? 0){
-            rhs?[index].restaurant = lhs?[index].restaurant
-            rhs?[index].classification = lhs?[index].classification
-            rhs?[index].dateVisited = lhs?[index].dateVisited
-            rhs?[index].myThoughts = lhs?[index].myThoughts
+            lhs![index].terms.removeAll()
+        }
+        
+        lhs?.removeAll()
+        
+        for index in 0..<(rhs?.count ?? 0){
+            lhs?.append(Vault())
+            lhs![index].birthName = rhs![index].birthName
+            lhs![index].name = rhs![index].name
             
-            for memory in 0..<(lhs?[index].memories?.count ?? 0){
-                rhs?[index].memories.append(StoredFile())
-                rhs?[index].memories[memory].initialize(lhs![index].memories![memory].birthName!, lhs![index].memories![memory].name!, lhs![index].memories![memory].data!, lhs![index].memories![memory].contentType!)
+            for kindex in 0..<(rhs![index].terms?.count ?? 0){
+                lhs?[index].terms.append(Term())
+                lhs![index].terms[kindex] ^ rhs![index].terms![kindex]
             }
         }
     }
@@ -407,24 +414,36 @@ class Term: Object{
     @objc dynamic var type: String?
     @objc dynamic var content: String?
     @objc dynamic var location: String?
+    
+    static func equals(_ lhs: Term,_ rhs: TermDec) -> Bool{
+        if lhs.type != rhs.type || lhs.content != rhs.content || lhs.location != rhs.location {
+            return false
+        }
+        return true
+    }
+    
+    static func ^ (_ lhs: Term,_ rhs: TermDec){
+        lhs.type = rhs.type
+        lhs.content = rhs.content
+        lhs.location = rhs.location
+    }
+    
 }
 
 class StoredFile: Object{
     
-    @objc dynamic var birthName: String?
     @objc dynamic var name: String?
     @objc dynamic var data: Data?
     @objc dynamic var contentType: String?
     
-    func initialize (_ birth: String,_ label: String,_ file: Data,_ type: String) {
-        birthName = birth
+    func initialize (_ label: String,_ file: Data,_ type: String) {
         name = label
         data = file
         contentType = type
     }
     
     static func equals (lhs: StoredFile, rhs: StoredFileDec) -> Bool{
-        if lhs.birthName != rhs.birthName || lhs.name != rhs.name || lhs.data != rhs.data || lhs.contentType != rhs.contentType {
+        if lhs.name != rhs.name || lhs.data != rhs.data || lhs.contentType != rhs.contentType {
             return false
         }
         
@@ -432,7 +451,6 @@ class StoredFile: Object{
     }
     
     static func ^ (lhs: StoredFile, rhs: StoredFileDec){
-        lhs.birthName = rhs.birthName
         lhs.name = rhs.name
         lhs.data = rhs.data
         lhs.contentType = rhs.contentType
