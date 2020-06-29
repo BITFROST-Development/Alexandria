@@ -8,19 +8,11 @@
 
 import UIKit
 
-class MyTeamsViewController: UIViewController {
+class MyTeamsViewController: AuthenticationSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-    }
-
-    @IBAction func ProfileButton(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "toRegisterLogin", sender: self)
-    }
-    
-    @IBAction func ToSettings(_ sender: Any) {
-        performSegue(withIdentifier: "toSettings", sender: self)
     }
 
 }

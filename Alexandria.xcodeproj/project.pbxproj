@@ -25,6 +25,16 @@
 		81C67118249936CD00B32676 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C67117249936CD00B32676 /* RegisterViewController.swift */; };
 		81C6711A249936FA00B32676 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C67119249936FA00B32676 /* LoginViewController.swift */; };
 		81C6711C2499373500B32676 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C6711B2499373500B32676 /* MyProfileViewController.swift */; };
+		81F417D824A26371005193F9 /* TabBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F417D724A26371005193F9 /* TabBarDelegate.swift */; };
+		81F417DA24A2C0DA005193F9 /* AuthenticationSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F417D924A2C0DA005193F9 /* AuthenticationSource.swift */; };
+		81F417E124A2F32D005193F9 /* MyProfileLogoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F417DF24A2F32D005193F9 /* MyProfileLogoCell.swift */; };
+		81F417E224A2F32D005193F9 /* MyProfileLogoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81F417E024A2F32D005193F9 /* MyProfileLogoCell.xib */; };
+		81F417E524A2F34C005193F9 /* MyProfileNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F417E324A2F34C005193F9 /* MyProfileNameCell.swift */; };
+		81F417E624A2F34C005193F9 /* MyProfileNameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81F417E424A2F34C005193F9 /* MyProfileNameCell.xib */; };
+		81F417E924A2F370005193F9 /* MyProfileContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F417E724A2F370005193F9 /* MyProfileContentCell.swift */; };
+		81F417EA24A2F370005193F9 /* MyProfileContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81F417E824A2F370005193F9 /* MyProfileContentCell.xib */; };
+		81F417F024A2F947005193F9 /* MyProfileLogoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F417EE24A2F947005193F9 /* MyProfileLogoutCell.swift */; };
+		81F417F124A2F947005193F9 /* MyProfileLogoutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81F417EF24A2F947005193F9 /* MyProfileLogoutCell.xib */; };
 		81F750C9249980020018DF71 /* Righteous-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 81F750C8249980020018DF71 /* Righteous-Regular.ttf */; };
 		81F750CB249AFE790018DF71 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F750CA249AFE790018DF71 /* SettingsViewController.swift */; };
 		81F750D1249B27CA0018DF71 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F750D0249B27CA0018DF71 /* RequestManager.swift */; };
@@ -34,6 +44,7 @@
 		81F750D9249BD9A60018DF71 /* CloudUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F750D8249BD9A60018DF71 /* CloudUser.swift */; };
 		81F750DB249BD9F20018DF71 /* UnloggedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F750DA249BD9F20018DF71 /* UnloggedUser.swift */; };
 		81F750DD249BDA680018DF71 /* RealmDataStructures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F750DC249BDA680018DF71 /* RealmDataStructures.swift */; };
+		81F9EE8224A04F5400931575 /* NewUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F9EE8124A04F5400931575 /* NewUserManager.swift */; };
 		D320C22B554EA993AA2639AE /* Pods_AlexandriaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A82B6B06F589AB60609B841 /* Pods_AlexandriaTests.framework */; };
 		E9341CB11852CB2CC99D553E /* Pods_Alexandria.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEB06A4F4E99124CFE273C98 /* Pods_Alexandria.framework */; };
 /* End PBXBuildFile section */
@@ -81,6 +92,16 @@
 		81C67117249936CD00B32676 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		81C67119249936FA00B32676 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		81C6711B2499373500B32676 /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
+		81F417D724A26371005193F9 /* TabBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarDelegate.swift; sourceTree = "<group>"; };
+		81F417D924A2C0DA005193F9 /* AuthenticationSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationSource.swift; sourceTree = "<group>"; };
+		81F417DF24A2F32D005193F9 /* MyProfileLogoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileLogoCell.swift; sourceTree = "<group>"; };
+		81F417E024A2F32D005193F9 /* MyProfileLogoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProfileLogoCell.xib; sourceTree = "<group>"; };
+		81F417E324A2F34C005193F9 /* MyProfileNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileNameCell.swift; sourceTree = "<group>"; };
+		81F417E424A2F34C005193F9 /* MyProfileNameCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProfileNameCell.xib; sourceTree = "<group>"; };
+		81F417E724A2F370005193F9 /* MyProfileContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileContentCell.swift; sourceTree = "<group>"; };
+		81F417E824A2F370005193F9 /* MyProfileContentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProfileContentCell.xib; sourceTree = "<group>"; };
+		81F417EE24A2F947005193F9 /* MyProfileLogoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileLogoutCell.swift; sourceTree = "<group>"; };
+		81F417EF24A2F947005193F9 /* MyProfileLogoutCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProfileLogoutCell.xib; sourceTree = "<group>"; };
 		81F750C8249980020018DF71 /* Righteous-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Righteous-Regular.ttf"; sourceTree = "<group>"; };
 		81F750CA249AFE790018DF71 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		81F750D0249B27CA0018DF71 /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
@@ -90,6 +111,7 @@
 		81F750D8249BD9A60018DF71 /* CloudUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudUser.swift; sourceTree = "<group>"; };
 		81F750DA249BD9F20018DF71 /* UnloggedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnloggedUser.swift; sourceTree = "<group>"; };
 		81F750DC249BDA680018DF71 /* RealmDataStructures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDataStructures.swift; sourceTree = "<group>"; };
+		81F9EE8124A04F5400931575 /* NewUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserManager.swift; sourceTree = "<group>"; };
 		820B1FFEF539BD498C602FEE /* Pods-Alexandria-AlexandriaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alexandria-AlexandriaUITests.release.xcconfig"; path = "Target Support Files/Pods-Alexandria-AlexandriaUITests/Pods-Alexandria-AlexandriaUITests.release.xcconfig"; sourceTree = "<group>"; };
 		ABE32B38628FBEC67C166EDE /* Pods-AlexandriaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlexandriaTests.release.xcconfig"; path = "Target Support Files/Pods-AlexandriaTests/Pods-AlexandriaTests.release.xcconfig"; sourceTree = "<group>"; };
 		B1508565DC432DCBB3BFAF81 /* Pods-Alexandria.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alexandria.debug.xcconfig"; path = "Target Support Files/Pods-Alexandria/Pods-Alexandria.debug.xcconfig"; sourceTree = "<group>"; };
@@ -224,7 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				81F750CD249AFED60018DF71 /* Main Tab Bar */,
-				81F750CC249AFE9A0018DF71 /* Profile Icon */,
+				81F9EE8024A04E5500931575 /* Navigation Bar */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -234,6 +256,7 @@
 			children = (
 				81C670D12497BB7100B32676 /* AppDelegate.swift */,
 				81C670D32497BB7100B32676 /* SceneDelegate.swift */,
+				81F417D724A26371005193F9 /* TabBarDelegate.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -255,6 +278,7 @@
 				81F750D0249B27CA0018DF71 /* RequestManager.swift */,
 				81F750D2249B27EB0018DF71 /* UserData.swift */,
 				81F750D4249B293D0018DF71 /* Socket.swift */,
+				81F9EE8124A04F5400931575 /* NewUserManager.swift */,
 			);
 			path = "Web Model";
 			sourceTree = "<group>";
@@ -262,8 +286,25 @@
 		81C6710D2497CEC700B32676 /* Local Model */ = {
 			isa = PBXGroup;
 			children = (
+				81F417D924A2C0DA005193F9 /* AuthenticationSource.swift */,
+				81F417ED24A2F3A3005193F9 /* My Profile */,
 			);
 			path = "Local Model";
+			sourceTree = "<group>";
+		};
+		81F417ED24A2F3A3005193F9 /* My Profile */ = {
+			isa = PBXGroup;
+			children = (
+				81F417DF24A2F32D005193F9 /* MyProfileLogoCell.swift */,
+				81F417E024A2F32D005193F9 /* MyProfileLogoCell.xib */,
+				81F417E324A2F34C005193F9 /* MyProfileNameCell.swift */,
+				81F417E424A2F34C005193F9 /* MyProfileNameCell.xib */,
+				81F417E724A2F370005193F9 /* MyProfileContentCell.swift */,
+				81F417E824A2F370005193F9 /* MyProfileContentCell.xib */,
+				81F417EE24A2F947005193F9 /* MyProfileLogoutCell.swift */,
+				81F417EF24A2F947005193F9 /* MyProfileLogoutCell.xib */,
+			);
+			path = "My Profile";
 			sourceTree = "<group>";
 		};
 		81F750CC249AFE9A0018DF71 /* Profile Icon */ = {
@@ -272,7 +313,6 @@
 				81C67115249936A300B32676 /* RegisterLoginViewController.swift */,
 				81C67117249936CD00B32676 /* RegisterViewController.swift */,
 				81C67119249936FA00B32676 /* LoginViewController.swift */,
-				81F750CA249AFE790018DF71 /* SettingsViewController.swift */,
 				81C6711B2499373500B32676 /* MyProfileViewController.swift */,
 			);
 			path = "Profile Icon";
@@ -287,6 +327,15 @@
 				81C671132499367200B32676 /* MyTeamsViewController.swift */,
 			);
 			path = "Main Tab Bar";
+			sourceTree = "<group>";
+		};
+		81F9EE8024A04E5500931575 /* Navigation Bar */ = {
+			isa = PBXGroup;
+			children = (
+				81F750CA249AFE790018DF71 /* SettingsViewController.swift */,
+				81F750CC249AFE9A0018DF71 /* Profile Icon */,
+			);
+			path = "Navigation Bar";
 			sourceTree = "<group>";
 		};
 		C44F30F292E6A3BE349C476B /* Pods */ = {
@@ -418,9 +467,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81F417E624A2F34C005193F9 /* MyProfileNameCell.xib in Resources */,
+				81F417F124A2F947005193F9 /* MyProfileLogoutCell.xib in Resources */,
 				81C670DE2497BB7600B32676 /* LaunchScreen.storyboard in Resources */,
 				81C670DB2497BB7600B32676 /* Assets.xcassets in Resources */,
 				81F750C9249980020018DF71 /* Righteous-Regular.ttf in Resources */,
+				81F417E224A2F32D005193F9 /* MyProfileLogoCell.xib in Resources */,
+				81F417EA24A2F370005193F9 /* MyProfileContentCell.xib in Resources */,
 				81C670D92497BB7100B32676 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -549,9 +602,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81F417DA24A2C0DA005193F9 /* AuthenticationSource.swift in Sources */,
+				81F9EE8224A04F5400931575 /* NewUserManager.swift in Sources */,
 				81F750D9249BD9A60018DF71 /* CloudUser.swift in Sources */,
+				81F417D824A26371005193F9 /* TabBarDelegate.swift in Sources */,
 				81F750D3249B27EB0018DF71 /* UserData.swift in Sources */,
+				81F417F024A2F947005193F9 /* MyProfileLogoutCell.swift in Sources */,
 				81F750DB249BD9F20018DF71 /* UnloggedUser.swift in Sources */,
+				81F417E124A2F32D005193F9 /* MyProfileLogoCell.swift in Sources */,
 				81C6711A249936FA00B32676 /* LoginViewController.swift in Sources */,
 				81C671122499365000B32676 /* MetricsViewController.swift in Sources */,
 				81F750D7249BD8F00018DF71 /* Team.swift in Sources */,
@@ -563,10 +621,12 @@
 				81C67116249936A300B32676 /* RegisterLoginViewController.swift in Sources */,
 				81F750D5249B293D0018DF71 /* Socket.swift in Sources */,
 				81C671102499361C00B32676 /* MyVaultsViewController.swift in Sources */,
+				81F417E524A2F34C005193F9 /* MyProfileNameCell.swift in Sources */,
 				81C671142499367200B32676 /* MyTeamsViewController.swift in Sources */,
 				81C670D22497BB7100B32676 /* AppDelegate.swift in Sources */,
 				81C67118249936CD00B32676 /* RegisterViewController.swift in Sources */,
 				81C670D42497BB7100B32676 /* SceneDelegate.swift in Sources */,
+				81F417E924A2F370005193F9 /* MyProfileContentCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

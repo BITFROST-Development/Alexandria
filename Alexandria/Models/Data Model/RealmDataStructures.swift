@@ -60,7 +60,7 @@ class AlexandriaData: Object, RealmOptionalType{
             }
             
             for kindex in 0..<(rhs.shelves![index].books?.count ?? 0){
-                lhs.shelves[index].books.append(StoredFile())
+                lhs.shelves[index].books.append(Book())
                 lhs.shelves[index].books[kindex] ^ rhs.shelves![index].books![kindex]
             }
         }
@@ -119,7 +119,7 @@ class AlexandriaData: Object, RealmOptionalType{
                     return false
                 } else {
                     for kindex in 0..<(decodedAlexandria.shelves![index].books?.count ?? 0){
-                        if !StoredFile.equals(lhs: localAlexandria.shelves[index].books[kindex], rhs: decodedAlexandria.shelves![index].books![kindex]){
+                        if !Book.equals(lhs: localAlexandria.shelves[index].books[kindex], rhs: decodedAlexandria.shelves![index].books![kindex]){
                             return false
                         }
                     }
@@ -252,7 +252,7 @@ class Shelf: Object{
     
     @objc dynamic var birthName: String?
     @objc dynamic var name: String?
-    var books = RealmSwift.List<StoredFile>()
+    var books = RealmSwift.List<Book>()
     
     static func equals(lhs: RealmSwift.List<Shelf>?, rhs: [ShelfDec]?)->Bool{
         if rhs?.count != lhs?.count{
@@ -266,7 +266,7 @@ class Shelf: Object{
                     }
                     
                     for kindex in 0..<(lhs?[index].books.count ?? 0){
-                        if !StoredFile.equals(lhs: lhs![index].books[kindex], rhs: rhs![index].books![kindex]){
+                        if !Book.equals(lhs: lhs![index].books[kindex], rhs: rhs![index].books![kindex]){
                             return false
                         }
                     }
@@ -285,7 +285,7 @@ class Shelf: Object{
                     return false
                 } else {
                     for index in 0..<(lhs?.books.count ?? 0) {
-                        if !StoredFile.equals(lhs: (lhs!.books[index]), rhs: (rhs?.books?[index])!){
+                        if !Book.equals(lhs: (lhs!.books[index]), rhs: (rhs?.books?[index])!){
                             return false
                         }
                     }
@@ -302,7 +302,7 @@ class Shelf: Object{
         lhs.books.removeAll()
         
         for index in 0..<(rhs.books?.count ?? 0){
-            lhs.books.append(StoredFile())
+            lhs.books.append(Book())
             lhs.books[index] ^ rhs.books![index]
         }
     }
@@ -327,8 +327,8 @@ class Shelf: Object{
             
             for kindex in 0..<(rhs?[index].books?.count ?? 0){
                 
-                lhs?[index].books.append(StoredFile())
-                lhs?[index].books[kindex].initialize(rhs![index].books![kindex].name!, rhs![index].books![kindex].data!, rhs![index].books![kindex].contentType!)
+                lhs?[index].books.append(Book())
+                lhs?[index].books[kindex].initialize(rhs![index].books![kindex].id, rhs![index].books![kindex].title, rhs![index].books![kindex].author, rhs![index].books![kindex].year, rhs![index].books![kindex].thumbnail)
             
             }
         }
@@ -454,6 +454,41 @@ class StoredFile: Object{
         lhs.name = rhs.name
         lhs.data = rhs.data
         lhs.contentType = rhs.contentType
+    }
+}
+
+class Book: Object {
+    @objc dynamic var id: String?
+    @objc dynamic var title: String?
+    @objc dynamic var author: String?
+    @objc dynamic var year: String?
+    @objc dynamic var thumbnail: StoredFile?
+    
+    func initialize (_ bookID: String?,_ bookTitle: String?,_ bookAuthor: String?,_ bookYear: String?,_ bookThumbnail: StoredFileDec?) {
+        id = bookID
+        title = bookTitle
+        author = bookAuthor
+        year = bookYear
+        thumbnail = StoredFile()
+        if bookThumbnail != nil {
+            thumbnail?.initialize(bookThumbnail!.name!, bookThumbnail!.data!, bookThumbnail!.contentType!)
+        }
+    }
+    
+    static func equals (lhs: Book, rhs: BookDec) -> Bool{
+        if lhs.id != rhs.id || lhs.title != rhs.title || lhs.author != rhs.author || lhs.year != rhs.year || !StoredFile.equals(lhs: lhs.thumbnail!, rhs: rhs.thumbnail!){
+            return false
+        }
+        
+        return true
+    }
+    
+    static func ^ (lhs: Book, rhs: BookDec){
+        lhs.id = rhs.id
+        lhs.title = rhs.title
+        lhs.author = rhs.author
+        lhs.year = rhs.year
+        lhs.thumbnail! ^ rhs.thumbnail!
     }
 }
 

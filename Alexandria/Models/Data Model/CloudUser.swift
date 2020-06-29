@@ -18,7 +18,7 @@ class CloudUser: Object {
     @objc dynamic var subscriptionStatus: String = ""
     var daysLeftOnSubscription = RealmOptional<Int>()
     var teamIDs = RealmSwift.List<Double?>()
-    @objc dynamic var alexandriaData = AlexandriaData()
+    @objc dynamic var alexandriaData:AlexandriaData? = AlexandriaData()
     @objc dynamic var gigantic: GiganticData?
 }
 

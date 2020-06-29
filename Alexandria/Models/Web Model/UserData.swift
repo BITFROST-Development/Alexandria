@@ -56,7 +56,7 @@ struct TrophyDec: Codable, Equatable{
 struct ShelfDec: Codable, Equatable{
     var birthName: String?
     var name: String?
-    var books: [StoredFileDec]?
+    var books: [BookDec]?
 }
 
 struct VaultDec: Codable, Equatable{
@@ -82,6 +82,14 @@ struct StoredFileDec: Codable, Equatable{
         data = file
         contentType = type
     }
+}
+
+struct BookDec: Codable, Equatable{
+    var id: String?
+    var title: String?
+    var author: String?
+    var year: String?
+    var thumbnail: StoredFileDec?
 }
 
 struct GiganticDataDec: Codable{

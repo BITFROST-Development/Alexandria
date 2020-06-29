@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 class UnloggedUser: Object {
-    @objc dynamic var alexandriaData = AlexandriaData()
+    @objc dynamic var alexandriaData:AlexandriaData? = AlexandriaData()
 }
 
 class UnloggedUserObject{
