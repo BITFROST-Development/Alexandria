@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17132" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17105"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,7 +20,7 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gPf-DL-bkN">
                                 <rect key="frame" x="31" y="556" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="dDR-tp-2Hc">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -27,7 +29,7 @@
                                 <rect key="frame" x="0.0" y="625" width="414" height="271"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alexandria_logo" translatesAutoresizingMaskIntoConstraints="NO" id="b6L-Jh-NCO">
-                                        <rect key="frame" x="-1312" y="17" width="3038" height="128"/>
+                                        <rect key="frame" x="-522" y="17" width="1458" height="128"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="128" id="1Ne-0F-znO"/>
                                         </constraints>
@@ -45,7 +47,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.25882352939999997" green="0.12941176469999999" blue="0.043137254899999998" alpha="0.82154323630136983" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.91764705879999997" green="0.56862745100000001" blue="0.12941176469999999" alpha="0.75700984589041098" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="DxL-QE-vIb" firstAttribute="top" secondItem="b6L-Jh-NCO" secondAttribute="bottom" constant="34" id="Dc9-lY-gI7"/>
                                     <constraint firstItem="cia-8G-Rti" firstAttribute="top" secondItem="b6L-Jh-NCO" secondAttribute="bottom" constant="6" id="USs-TQ-HEC"/>
@@ -58,7 +60,8 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="dDR-tp-2Hc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3Tg-mc-pbl"/>
                             <constraint firstItem="OJW-uh-meS" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="90n-6u-mmZ"/>
@@ -68,7 +71,6 @@
                             <constraint firstItem="dDR-tp-2Hc" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="RqG-Xg-zHn"/>
                             <constraint firstAttribute="bottom" secondItem="OJW-uh-meS" secondAttribute="bottom" id="V5C-DO-gOW"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -77,7 +79,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="alexandria_logo" width="3038" height="3144"/>
+        <image name="alexandria_logo" width="1458" height="1510"/>
         <image name="launchScreen" width="2456" height="1634"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

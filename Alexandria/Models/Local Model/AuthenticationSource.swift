@@ -34,6 +34,7 @@ class AuthenticationSource: UIViewController {
             persistLog = true
             loggedIn = true
             RegisterLoginViewController.loggedIn = true
+            Socket.sharedInstance.establishConnection()
         }
         else if offlineUser.count == 0{
             persistLog = true
