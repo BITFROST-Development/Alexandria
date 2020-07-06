@@ -14,6 +14,7 @@
 		811A409A24B1A8C60056A395 /* ShelvesListTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 811A409824B1A8C60056A395 /* ShelvesListTitleCell.xib */; };
 		811A409D24B1ABDE0056A395 /* MyShelvesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811A409C24B1ABDE0056A395 /* MyShelvesManager.swift */; };
 		811A409F24B302F00056A395 /* MyShelvesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811A409E24B302EF0056A395 /* MyShelvesTableView.swift */; };
+		811A40A124B3AC850056A395 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 811A40A024B3AC850056A395 /* GoogleService-Info.plist */; };
 		81C670D22497BB7100B32676 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C670D12497BB7100B32676 /* AppDelegate.swift */; };
 		81C670D42497BB7100B32676 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C670D32497BB7100B32676 /* SceneDelegate.swift */; };
 		81C670D62497BB7100B32676 /* MyShelvesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C670D52497BB7100B32676 /* MyShelvesViewController.swift */; };
@@ -83,6 +84,7 @@
 		811A409824B1A8C60056A395 /* ShelvesListTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShelvesListTitleCell.xib; sourceTree = "<group>"; };
 		811A409C24B1ABDE0056A395 /* MyShelvesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShelvesManager.swift; sourceTree = "<group>"; };
 		811A409E24B302EF0056A395 /* MyShelvesTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShelvesTableView.swift; sourceTree = "<group>"; };
+		811A40A024B3AC850056A395 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		81C670CE2497BB7100B32676 /* Alexandria.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alexandria.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C670D12497BB7100B32676 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81C670D32497BB7100B32676 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				81C671062497CDD800B32676 /* Models */,
 				81C670DA2497BB7600B32676 /* Assets.xcassets */,
 				81C670DF2497BB7600B32676 /* Info.plist */,
+				811A40A024B3AC850056A395 /* GoogleService-Info.plist */,
 			);
 			path = Alexandria;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				81C670CB2497BB7100B32676 /* Frameworks */,
 				81C670CC2497BB7100B32676 /* Resources */,
 				C346B313CEE9F0705595D032 /* [CP] Embed Pods Frameworks */,
+				FCA069B1ACA52C69B005901D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -450,6 +454,7 @@
 				81C670EC2497BB7600B32676 /* Frameworks */,
 				81C670ED2497BB7600B32676 /* Resources */,
 				80CE26E7BF45EC2FF2EFF7F8 /* [CP] Embed Pods Frameworks */,
+				1FCEA1190A07CABD882834E3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -517,6 +522,7 @@
 				81F628FE24ABCC0600137473 /* AddItemCell.xib in Resources */,
 				811A409A24B1A8C60056A395 /* ShelvesListTitleCell.xib in Resources */,
 				81F417F124A2F947005193F9 /* MyProfileLogoutCell.xib in Resources */,
+				811A40A124B3AC850056A395 /* GoogleService-Info.plist in Resources */,
 				81C670DE2497BB7600B32676 /* LaunchScreen.storyboard in Resources */,
 				81C670DB2497BB7600B32676 /* Assets.xcassets in Resources */,
 				81F750C9249980020018DF71 /* Righteous-Regular.ttf in Resources */,
@@ -563,6 +569,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1FCEA1190A07CABD882834E3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Alexandria-AlexandriaUITests/Pods-Alexandria-AlexandriaUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Alexandria-AlexandriaUITests/Pods-Alexandria-AlexandriaUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Alexandria-AlexandriaUITests/Pods-Alexandria-AlexandriaUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3C3DD567DE03EBA0BC99D89A /* [CP] Check Pods Manifest.lock */ = {
@@ -641,6 +664,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Alexandria/Pods-Alexandria-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FCA069B1ACA52C69B005901D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Alexandria/Pods-Alexandria-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Alexandria/Pods-Alexandria-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Alexandria/Pods-Alexandria-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

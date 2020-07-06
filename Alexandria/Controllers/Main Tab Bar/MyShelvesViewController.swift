@@ -14,6 +14,8 @@ class MyShelvesViewController: AuthenticationSource {
     var shelvesListIsPresent = false
     let manager = MyShelvesManager()
     let sem = DispatchSemaphore.init(value: 0)
+    var swipeToDismiss: UIPanGestureRecognizer!
+    var swipeToPresent: UIScreenEdgePanGestureRecognizer!
     @IBOutlet weak var shelfName: UIButton!
     @IBOutlet weak var shelfCollectionView: UICollectionView!
     @IBOutlet weak var addNewElementTableView: UITableView!
@@ -29,7 +31,9 @@ class MyShelvesViewController: AuthenticationSource {
         prepareAddItemTableView()
         prepareShelvesLists()
         shelvesList.controller = self
-        let swipeToDismiss = UIPanGestureRecognizer(target: shelvesList, action: #selector(shelvesList.swipeDismiss(_:)))
+        swipeToPresent = UIScreenEdgePanGestureRecognizer(target: shelvesList, action: #selector(shelvesList.swipePresent(_:)))
+        swipeToPresent.edges = .left
+        swipeToDismiss = UIPanGestureRecognizer(target: shelvesList, action: #selector(shelvesList.swipeDismiss(_:)))
         let dismissControll = UITapGestureRecognizer(target: self, action: #selector(dismissView))
         dismissControll.numberOfTapsRequired = 1
         dismissControll.numberOfTouchesRequired = 1
@@ -37,7 +41,9 @@ class MyShelvesViewController: AuthenticationSource {
         manager.loggedIn = loggedIn
         self.view.addGestureRecognizer(dismissControll)
         swipeToDismiss.delegate = shelvesList
+        swipeToPresent.delegate = shelvesList
         shelvesList.addGestureRecognizer(swipeToDismiss)
+        self.view.addGestureRecognizer(swipeToPresent)
     }
     
     @IBAction func addNewElement(_ sender: UIBarButtonItem) {
