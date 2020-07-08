@@ -8,18 +8,24 @@
 
 import UIKit
 import RealmSwift
+import GoogleSignIn
+import GoogleAPIClientForREST
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
+    
+    var realm: Realm!
+    static var socketShouldAct = true
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         print(Realm.Configuration.defaultConfiguration.fileURL)
         
+        GIDSignIn.sharedInstance()?.clientID = "708789073204-oqgdmmnsmsiqltfjttdlllsh33t06oba.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance()?.delegate = self
+        GIDSignIn.sharedInstance()?.scopes = [kGTLRAuthScopeDrive]
         do{
-            let realm = try Realm()
+            realm = try Realm()
         }catch{
             print("Error initialising new realm, \(error)")
         }
@@ -41,11 +47,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        Socket.sharedInstance.establishConnection()
+        if AppDelegate.socketShouldAct{
+            Socket.sharedInstance.establishConnection()
+        }
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        Socket.sharedInstance.closeConnection()
+        if AppDelegate.socketShouldAct{
+            Socket.sharedInstance.closeConnection()
+        }
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+      return GIDSignIn.sharedInstance().handle(url)
     }
 
 }

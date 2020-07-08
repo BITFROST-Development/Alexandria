@@ -60,7 +60,7 @@ class MyProfileViewController: UIViewController {
 
 extension MyProfileViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return 8
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -71,23 +71,26 @@ extension MyProfileViewController: UITableViewDataSource{
             let cell = tableView.dequeueReusableCell(withIdentifier: "nameCell", for: indexPath) as! MyProfileNameCell
             cell.name.text = "\(currentUser!.name) \(currentUser!.lastname)"
             return cell
-        } else if indexPath.row < 6 {
+        } else if indexPath.row < 7 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "contentCell", for: indexPath) as! MyProfileContentCell
             switch indexPath.row {
                 case 2:
                     cell.field.text = "Username:"
                     cell.content.text = currentUser!.username
                 case 3:
+                    cell.field.text = "Drive Account:"
+                    cell.content.text = currentUser!.googleAccountEmail
+                case 4:
                     cell.field.text = "Subscription:"
                     cell.content.text = currentUser!.subscription
-                case 4:
+                case 5:
                     cell.field.text = "Subscription Status:"
                     if currentUser!.subscriptionStatus == "1"{
                         cell.content.text = "Active"
                     } else {
                         cell.content.text = "Not Active"
                     }
-                case 5:
+                case 6:
                     cell.field.text = "Days Left:"
                     if currentUser!.daysLeftOnSubscription.value == nil{
                         cell.content.text = "Infinite"

@@ -17,6 +17,8 @@ struct UserData: Codable{
     let subscription: String?
     let daysLeftOnSubscription: Int?
     let subscriptionStatus: String?
+    let googleAccountEmail: String?
+    let googleToken: String?
     let teamIDs: [Double]?
     let alexandria: AlexandriaDataDec?
     let gigantic: GiganticDataDec?

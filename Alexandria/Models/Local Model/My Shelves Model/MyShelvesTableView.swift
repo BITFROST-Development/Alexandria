@@ -13,14 +13,6 @@ class MyShelvesTableView: UITableView {
     var controller: MyShelvesViewController?
     var swipingTable = false
     
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-    
     @objc func swipeDismiss(_ gesture: UIPanGestureRecognizer){
         if !swipingTable && gesture.direction?.isHorizontal != nil && gesture.direction!.isHorizontal {
             swipingTable = true
@@ -33,6 +25,12 @@ class MyShelvesTableView: UITableView {
                 self.layer.frame.origin.x = transition.x
                 if gesture.state == .ended{
                     if transition.x < (0 - self.layer.frame.width / 2) || gesture.velocity(in: controller?.view).x < 0 - 1000 {
+                        UIView.animate(withDuration: 0.3, animations: {
+                            self.layer.frame.origin.x = 0 - self.layer.frame.width
+                            self.controller?.opacityFilter.alpha = 0.0
+                        })
+                        controller?.shelvesListIsPresent = false
+                    } else if UIDevice.current.userInterfaceIdiom == .phone && (transition.x < (0 - self.layer.frame.width / 4) || gesture.velocity(in: controller?.view).x < 0 - 1000) {
                         UIView.animate(withDuration: 0.3, animations: {
                             self.layer.frame.origin.x = 0 - self.layer.frame.width
                             self.controller?.opacityFilter.alpha = 0.0
@@ -73,7 +71,14 @@ class MyShelvesTableView: UITableView {
                             self.controller?.opacityFilter.alpha = 1.0
                         })
                         controller?.shelvesListIsPresent = true
-                    } else {
+                    }
+                    else if UIDevice.current.userInterfaceIdiom == .phone && (transition.x > (0 + self.layer.frame.width / 4) || gesture.velocity(in: controller?.view).x > 1000){
+                        UIView.animate(withDuration: 0.3, animations: {
+                            self.layer.frame.origin.x = 0.0
+                            self.controller?.opacityFilter.alpha = 1.0
+                        })
+                        controller?.shelvesListIsPresent = true
+                    } else{
                         UIView.animate(withDuration: 0.3, animations: {
                             self.layer.frame.origin.x = 0 - self.layer.frame.width
                         })
@@ -96,7 +101,6 @@ class MyShelvesTableView: UITableView {
 
 extension MyShelvesTableView: UIGestureRecognizerDelegate{
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive event: UIEvent) -> Bool {
-        print("recongnized")
         return true
     }
     

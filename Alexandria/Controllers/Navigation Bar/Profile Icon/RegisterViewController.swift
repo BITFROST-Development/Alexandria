@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleSignIn
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
     
@@ -66,16 +67,26 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
             self.present(alert, animated: true)
         }else if let username = usernameField.text, let password = passwordField.text, let name = nameField.text, let lastName = lastNameField.text, let email = emailField.text{
-            if let user = registerRequest.registerUser(username: username, password: password, name: name, last: lastName, email: email){
-                
-                NewUserManager.createNewCloudUser(username: user)
-                
-                updatePrevious()
-                sem.wait()
-                self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
-                
+            GIDSignIn.sharedInstance()?.presentingViewController = self
+            signInGoogle()
+            sem.wait()
+            if AuthenticationSource.googleSuccess {
+                if let user = registerRequest.registerUser(username: username, password: password, name: name, last: lastName, email: email, gmail: (GIDSignIn.sharedInstance()?.currentUser.profile.email)!){
+                    
+                    NewUserManager.registerNewCloudUser(username: user)
+                    sem.signal()
+                    
+                    updatePrevious()
+                    sem.wait()
+                    self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+                    
+                } else {
+                    let alert = UIAlertController(title: "Error Registering", message: "A user with the given username already registered. Try with another username.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                }
             } else {
-                let alert = UIAlertController(title: "Error Registering", message: "A user with the given username already registered. Try with another username.", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Error Registering", message: "Your Google Sign In failed try again.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
                 self.present(alert, animated: true)
             }
@@ -140,5 +151,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         dismiss(animated: true, completion: nil)
     }
     
+    func signInGoogle(){
+        GIDSignIn.sharedInstance()?.signIn()
+        sem.signal()
+    }
 }
+
+
 

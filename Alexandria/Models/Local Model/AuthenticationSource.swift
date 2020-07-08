@@ -11,6 +11,7 @@ import RealmSwift
 
 class AuthenticationSource: UIViewController {
     
+    static var googleSuccess = false
     let realm = try! Realm()
     var loggedIn = false
     var registerLogin: RegisterLoginViewController? = nil

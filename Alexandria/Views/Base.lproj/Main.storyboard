@@ -789,7 +789,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Log me in">
-                                    <color key="titleColor" red="0.92145824430000001" green="0.92163830999999996" blue="0.92145693299999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="logMeIn:" destination="drR-6k-hDu" eventType="touchUpInside" id="8Q1-j2-ijU"/>

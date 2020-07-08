@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import GoogleSignIn
 
 class LoginViewController: UIViewController {
     
@@ -21,7 +22,6 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
     }
     
     func updatePrevious(){
@@ -45,6 +45,10 @@ class LoginViewController: UIViewController {
                 NewUserManager.createNewCloudUser(username: incommingUser)
                 
                 updatePrevious()
+                GIDSignIn.sharedInstance()?.presentingViewController = self
+                GIDSignIn.sharedInstance()?.loginHint = incommingUser.googleAccountEmail
+                googleSignIn()
+                sem.signal()
                 sem.wait()
                 self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
                 
@@ -66,5 +70,10 @@ class LoginViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 
+    func googleSignIn(){
+        GIDSignIn.sharedInstance()?.signIn()
+        sem.signal()
+    }
+    
 }
  

@@ -27,15 +27,16 @@ class RequestManager{
         return returnData
     }
     
-    func registerUser(username: String, password: String, name: String, last: String, email: String) -> UserData?{
+    func registerUser(username: String, password: String, name: String, last: String, email: String, gmail: String) -> UserData?{
         
         let pass = formatString(message: password)
         let user = formatString(message: username)
         let firstName = formatString(message: name)
         let lastName = formatString(message: last)
         let mail = formatString(message: email)
+        let googleMail = formatString(message: gmail)
         
-        let urlstring = "\(bitfrosturl)&x=true&u=\(user)&p=\(pass)&r=\(firstName)&n=\(lastName)&q=\(mail)"
+        let urlstring = "\(bitfrosturl)&x=true&u=\(user)&p=\(pass)&r=\(firstName)&n=\(lastName)&q=\(mail)&j=\(googleMail)"
         
         let returnData = performRequest(urlString: urlstring)
         socket.establishConnection()
@@ -46,6 +47,7 @@ class RequestManager{
     
     func logOut() {
         socket.closeConnection()
+        Socket.sharedInstance.socket.leaveNamespace()
     }
     
     func checkForUsername(username: String) -> Bool {

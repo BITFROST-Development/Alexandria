@@ -16,6 +16,8 @@ class CloudUser: Object {
     @objc dynamic var email: String = ""
     @objc dynamic var subscription: String = ""
     @objc dynamic var subscriptionStatus: String = ""
+    @objc dynamic var googleAccountEmail: String = ""
+    @objc dynamic var googleToken: String = ""
     var daysLeftOnSubscription = RealmOptional<Int>()
     var teamIDs = RealmSwift.List<Double?>()
     @objc dynamic var alexandriaData:AlexandriaData? = AlexandriaData()

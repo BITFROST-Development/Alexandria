@@ -15,6 +15,7 @@
 		811A409D24B1ABDE0056A395 /* MyShelvesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811A409C24B1ABDE0056A395 /* MyShelvesManager.swift */; };
 		811A409F24B302F00056A395 /* MyShelvesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811A409E24B302EF0056A395 /* MyShelvesTableView.swift */; };
 		811A40A124B3AC850056A395 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 811A40A024B3AC850056A395 /* GoogleService-Info.plist */; };
+		811A40A324B4E7A40056A395 /* RegisterUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811A40A224B4E7A40056A395 /* RegisterUserManager.swift */; };
 		81C670D22497BB7100B32676 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C670D12497BB7100B32676 /* AppDelegate.swift */; };
 		81C670D42497BB7100B32676 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C670D32497BB7100B32676 /* SceneDelegate.swift */; };
 		81C670D62497BB7100B32676 /* MyShelvesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C670D52497BB7100B32676 /* MyShelvesViewController.swift */; };
@@ -85,6 +86,7 @@
 		811A409C24B1ABDE0056A395 /* MyShelvesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShelvesManager.swift; sourceTree = "<group>"; };
 		811A409E24B302EF0056A395 /* MyShelvesTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShelvesTableView.swift; sourceTree = "<group>"; };
 		811A40A024B3AC850056A395 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		811A40A224B4E7A40056A395 /* RegisterUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserManager.swift; sourceTree = "<group>"; };
 		81C670CE2497BB7100B32676 /* Alexandria.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alexandria.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C670D12497BB7100B32676 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81C670D32497BB7100B32676 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 				81F750D2249B27EB0018DF71 /* UserData.swift */,
 				81F750D4249B293D0018DF71 /* Socket.swift */,
 				81F9EE8124A04F5400931575 /* NewUserManager.swift */,
+				811A40A224B4E7A40056A395 /* RegisterUserManager.swift */,
 			);
 			path = "Web Model";
 			sourceTree = "<group>";
@@ -711,6 +714,7 @@
 				811A409F24B302F00056A395 /* MyShelvesTableView.swift in Sources */,
 				81C67116249936A300B32676 /* RegisterLoginViewController.swift in Sources */,
 				81F750D5249B293D0018DF71 /* Socket.swift in Sources */,
+				811A40A324B4E7A40056A395 /* RegisterUserManager.swift in Sources */,
 				811A409D24B1ABDE0056A395 /* MyShelvesManager.swift in Sources */,
 				81C671102499361C00B32676 /* MyVaultsViewController.swift in Sources */,
 				81F417E524A2F34C005193F9 /* MyProfileNameCell.swift in Sources */,
