@@ -8,9 +8,10 @@
 
 import UIKit
 import RealmSwift
+import MobileCoreServices
 
 class MyShelvesManager: UIActivity {
-    let realm = try! Realm()
+    let realm = try! Realm(configuration: AppDelegate.realmConfig)
     var viewController: MyShelvesViewController?
     var loggedIn = false
 }
@@ -57,6 +58,29 @@ extension MyShelvesManager: UITableViewDataSource{
     
 }
 
+extension MyShelvesViewController: UIDocumentPickerDelegate{
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        var books: URL!
+        guard let selectedUrl = urls.first else {
+            return
+        }
+        let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        if FileManager.default.fileExists(atPath: dir.path + "/Books"){
+            books = URL(fileURLWithPath: dir.absoluteString + "/Books")
+        } else {
+            books = dir.appendingPathComponent("Books", isDirectory: true)
+        }
+        let sandboxFileUrl = books.appendingPathComponent(selectedUrl.lastPathComponent)
+        if FileManager.default.fileExists(atPath: sandboxFileUrl.path){
+            
+        } else {
+            originalBookURL = selectedUrl
+            newBookURL = sandboxFileUrl
+            performSegue(withIdentifier: "toAddNewFileView", sender: self)
+        }
+    }
+}
+
 extension MyShelvesViewController {
     func prepareAddItemTableView() {
         addNewElementTableView.alpha = 0.0
@@ -64,8 +88,8 @@ extension MyShelvesViewController {
         addNewElementTableView.dataSource = self
         addNewElementTableView.register(UINib(nibName: "AddItemCell", bundle: nil), forCellReuseIdentifier: "addItemCell")
         addNewElementTableView.layer.cornerRadius = 5
-        addNewElementTableView.layer.borderWidth = 1
-        addNewElementTableView.layer.borderColor = CGColor(srgbRed: 234/255, green: 145/255, blue: 33/255, alpha: 1)
+//        addNewElementTableView.layer.borderWidth = 1
+//        addNewElementTableView.layer.borderColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 1)
     }
     
     func prepareShelvesLists() {
@@ -73,5 +97,31 @@ extension MyShelvesViewController {
         shelvesList.dataSource = manager
         shelvesList.register(UINib(nibName: "ShelfListCell", bundle: nil), forCellReuseIdentifier: ShelfListCell.identifier)
         shelvesList.register(UINib(nibName: "ShelvesListTitleCell", bundle: nil), forCellReuseIdentifier: ShelvesListTitleCell.identifier)
+    }
+    
+    func addNewFileView() {
+        let documentPicker = UIDocumentPickerViewController(documentTypes: [kUTTypePDF as String], in: .import)
+        documentPicker.delegate = self
+        documentPicker.allowsMultipleSelection = false
+        UIView.animate(withDuration: 0.3, animations: {
+            self.addNewElementTableView.alpha = 0.0
+            self.opacityFilter.alpha = 0.0
+        })
+        addNewElementViewIsPresent = false
+        present(documentPicker, animated: true, completion: nil)
+    }
+    
+    func addNewShelfView() {
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if segue.identifier == "toAddNewFileView"{
+            var presentedView = segue.destination as! AddNewFileViewController
+            presentedView.loggedIn = self.loggedIn
+            presentedView.originalBookURL = self.originalBookURL
+            presentedView.newBookURL = self.newBookURL
+        }
     }
 }

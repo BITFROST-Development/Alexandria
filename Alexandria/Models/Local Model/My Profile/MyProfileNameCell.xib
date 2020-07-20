@@ -23,7 +23,7 @@
                             <constraint firstAttribute="height" constant="36" id="maz-5s-2Mu"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                        <color key="textColor" red="0.37647058820000001" green="0.21960784310000001" blue="0.074509803920000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>

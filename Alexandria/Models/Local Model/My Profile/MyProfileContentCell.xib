@@ -23,7 +23,7 @@
                         <color key="textColor" red="0.91764705879999997" green="0.56862745100000001" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWp-zG-hau">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MWp-zG-hau">
                         <rect key="frame" x="268" y="26.5" width="70.5" height="24"/>
                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -41,6 +41,7 @@
                     <constraint firstItem="Dyv-Pq-pH5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="0tz-DN-dM0"/>
                     <constraint firstItem="ZyP-UT-oss" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="49J-2j-Ndr"/>
                     <constraint firstItem="MWp-zG-hau" firstAttribute="trailing" secondItem="Dyv-Pq-pH5" secondAttribute="leading" constant="282" id="ZMZ-2G-oAP"/>
+                    <constraint firstItem="MWp-zG-hau" firstAttribute="width" relation="lessThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.3" id="kbj-kk-QZK"/>
                     <constraint firstItem="MWp-zG-hau" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="nYf-jn-QpT"/>
                     <constraint firstItem="ZyP-UT-oss" firstAttribute="trailing" secondItem="MWp-zG-hau" secondAttribute="trailing" id="oIr-Ig-LaJ"/>
                     <constraint firstItem="ZyP-UT-oss" firstAttribute="leading" secondItem="Dyv-Pq-pH5" secondAttribute="leading" id="wFj-2Y-RzP"/>

@@ -18,7 +18,6 @@ struct UserData: Codable{
     let daysLeftOnSubscription: Int?
     let subscriptionStatus: String?
     let googleAccountEmail: String?
-    let googleToken: String?
     let teamIDs: [Double]?
     let alexandria: AlexandriaDataDec?
     let gigantic: GiganticDataDec?
@@ -27,13 +26,15 @@ struct UserData: Codable{
 struct AlexandriaDataDec: Codable{
     
     static func == (lhs: AlexandriaDataDec, rhs: AlexandriaDataDec) -> Bool {
-        if lhs.goals == rhs.goals && lhs.trophies == rhs.trophies && lhs.vaults == rhs.vaults && lhs.shelves == rhs.shelves{
+        if lhs.rootFolderID == rhs.rootFolderID && lhs.goals == rhs.goals && lhs.trophies == rhs.trophies && lhs.vaults == rhs.vaults && lhs.shelves == rhs.shelves{
             return true
         }
         
         return false
     }
     
+    var rootFolderID: String?
+    var booksFolderID: String?
     var goals: [GoalDec]?
     var trophies: [TrophyDec]?
     var vaults: [VaultDec]?
@@ -62,6 +63,7 @@ struct ShelfDec: Codable, Equatable{
 }
 
 struct VaultDec: Codable, Equatable{
+    var vaultFolderID: String?
     var birthName: String?
     var name: String?
     var terms: [TermDec]?
@@ -97,7 +99,4 @@ struct BookDec: Codable, Equatable{
 struct GiganticDataDec: Codable{
     var avatar: StoredFileDec?
 }
-
-
-extension List:RealmOptionalType{}
 

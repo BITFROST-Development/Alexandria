@@ -8,11 +8,12 @@
 
 import Foundation
 import RealmSwift
-import GoogleSignIn
+import GTMAppAuth
+import GAppAuth
 
 class NewUserManager{
     
-    static let realm = try! Realm()
+    static let realm = try! Realm(configuration: AppDelegate.realmConfig)
     
     static func createNewCloudUser(username: UserData) {
         let logedUser = CloudUser()
@@ -24,13 +25,12 @@ class NewUserManager{
         logedUser.subscriptionStatus = username.subscriptionStatus!
         logedUser.daysLeftOnSubscription.value = username.daysLeftOnSubscription
         logedUser.googleAccountEmail = username.googleAccountEmail!
-        logedUser.googleToken = username.googleToken!
         for index in 0 ..< (username.teamIDs?.count ?? 0){
             logedUser.teamIDs[index] = username.teamIDs![0]
             
         }
         
-        if username.alexandria != nil{
+        if username.alexandria != nil {
             logedUser.alexandriaData! ^ username.alexandria!
         }
         
@@ -95,7 +95,7 @@ class NewUserManager{
         }
     }
     
-    static func registerNewCloudUser(username: UserData) {
+    static func registerNewCloudUser(username: UserData) -> CloudUser{
         let logedUser = CloudUser()
         logedUser.name = username.name!
         logedUser.lastname = username.lastName!
@@ -104,11 +104,9 @@ class NewUserManager{
         logedUser.subscription = username.subscription!
         logedUser.subscriptionStatus = username.subscriptionStatus!
         logedUser.daysLeftOnSubscription.value = username.daysLeftOnSubscription
-        logedUser.googleAccountEmail = (GIDSignIn.sharedInstance()?.currentUser.profile.email)!
-        logedUser.googleToken = (GIDSignIn.sharedInstance()?.currentUser.authentication.accessToken)!
+        logedUser.googleAccountEmail = (GoogleSignIn.sharedInstance().email)!
         for index in 0 ..< (username.teamIDs?.count ?? 0){
             logedUser.teamIDs[index] = username.teamIDs![0]
-            
         }
         
         if username.alexandria != nil{
@@ -174,6 +172,8 @@ class NewUserManager{
         }catch {
             print(error)
         }
+        
+        return logedUser
     }
     
 }

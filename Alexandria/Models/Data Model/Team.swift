@@ -25,7 +25,7 @@ class TeamMessage: Object {
 }
 
 class TeamObject{
-    let realm = try! Realm()
+    let realm = try! Realm(configuration: AppDelegate.realmConfig)
     var teamWrap: Results<Team>!
     var team: Team?
     init(){

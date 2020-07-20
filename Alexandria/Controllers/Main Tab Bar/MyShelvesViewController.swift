@@ -12,6 +12,8 @@ class MyShelvesViewController: AuthenticationSource {
     
     var addNewElementViewIsPresent = false
     var shelvesListIsPresent = false
+    var originalBookURL: URL!
+    var newBookURL: URL!
     let manager = MyShelvesManager()
     let sem = DispatchSemaphore.init(value: 0)
     var swipeToDismiss: UIPanGestureRecognizer!
@@ -122,11 +124,16 @@ extension MyShelvesViewController: UITableViewDataSource{
             cell.itemName.setImage(UIImage(systemName: "doc.on.doc.fill"), for: .normal)
             cell.itemName.imageEdgeInsets.left = 20
             cell.itemName.titleEdgeInsets.left = 30
+            cell.controller = self
+            cell.backgroundColor = UIColor(cgColor: CGColor(srgbRed: 254/255, green: 224/255, blue: 162/255, alpha: 1))
             return cell
         } else {
             let cell = addNewElementTableView.dequeueReusableCell(withIdentifier: "addItemCell", for: indexPath) as! AddItemCell
             cell.itemName.setTitle("Add new shelf", for: .normal)
             cell.itemName.setImage(UIImage(systemName: "rectangle.stack.fill.badge.plus"), for: .normal)
+            cell.controller = self
+            cell.backgroundColor = UIColor(cgColor: CGColor(srgbRed: 254/255, green: 224/255, blue: 162/255, alpha: 1))
+            cell.separatorView.backgroundColor = .clear
             return cell
         }
     }

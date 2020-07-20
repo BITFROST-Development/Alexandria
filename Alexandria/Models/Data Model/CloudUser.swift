@@ -17,7 +17,6 @@ class CloudUser: Object {
     @objc dynamic var subscription: String = ""
     @objc dynamic var subscriptionStatus: String = ""
     @objc dynamic var googleAccountEmail: String = ""
-    @objc dynamic var googleToken: String = ""
     var daysLeftOnSubscription = RealmOptional<Int>()
     var teamIDs = RealmSwift.List<Double?>()
     @objc dynamic var alexandriaData:AlexandriaData? = AlexandriaData()
@@ -25,7 +24,7 @@ class CloudUser: Object {
 }
 
 class CloudUserObject{
-    let realm = try! Realm()
+    let realm = try! Realm(configuration: AppDelegate.realmConfig)
     var currentUserWrap: Results<CloudUser>!
     var currentUser: CloudUser?
     init(){

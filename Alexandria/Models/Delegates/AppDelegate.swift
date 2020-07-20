@@ -8,7 +8,8 @@
 
 import UIKit
 import RealmSwift
-import GoogleSignIn
+import GTMAppAuth
+import GAppAuth
 import GoogleAPIClientForREST
 
 @UIApplicationMain
@@ -16,16 +17,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var realm: Realm!
     static var socketShouldAct = true
+    static var realmConfig: Realm.Configuration!
+    static var source = "logIn"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        var config = Realm.Configuration()
+        config.fileURL = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).first?.appendingPathComponent("bundle.realm")
+        Realm.Configuration.defaultConfiguration = config
+        AppDelegate.realmConfig = config
         print(Realm.Configuration.defaultConfiguration.fileURL)
         
-        GIDSignIn.sharedInstance()?.clientID = "708789073204-oqgdmmnsmsiqltfjttdlllsh33t06oba.apps.googleusercontent.com"
-        GIDSignIn.sharedInstance()?.delegate = self
-        GIDSignIn.sharedInstance()?.scopes = [kGTLRAuthScopeDrive]
+        GoogleSignIn.sharedInstance().scopes = [kGTLRAuthScopeDrive, OIDScopeEmail]
+        GoogleSignIn.sharedInstance().restoreSignIn()
+        GoogleSignIn.sharedInstance().delegate = self
+//        GAppAuth.shared.appendAuthorizationRealm(OIDScopeEmail)
+//        GAppAuth.shared.appendAuthorizationRealm(kGTLRAuthScopeDrive)
+        
+//        GIDSignIn.sharedInstance()?.clientID = "708789073204-oqgdmmnsmsiqltfjttdlllsh33t06oba.apps.googleusercontent.com"
+//        GIDSignIn.sharedInstance()?.delegate = self
+//        GIDSignIn.sharedInstance()?.scopes = [kGTLRAuthScopeDrive]
         do{
-            realm = try Realm()
+            realm = try Realm(configuration: config)
         }catch{
             print("Error initialising new realm, \(error)")
         }
@@ -59,7 +73,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-      return GIDSignIn.sharedInstance().handle(url)
+        if GAppAuth.shared.continueAuthorization(with: url, callback: nil) {
+            return true
+        }
+        
+        return false
     }
 
 }

@@ -11,11 +11,11 @@ import SocketIO
 
 class Socket {
     
-    static let sharedInstance = Socket()
     
-    let manager = SocketManager(socketURL: URL(string: "https://api.bitfrost.app")!, config: [.log(true), .compress])
     
+    let manager = SocketManager(socketURL: URL(string: "https://api.bitfrost.app")!, config: [.log(false), .compress])
     var socket:SocketIOClient!
+    static let sharedInstance = Socket()
     
     public init() {
         socket = manager.defaultSocket
@@ -23,20 +23,20 @@ class Socket {
     
     func establishConnection() {
         socket.connect()
+        AppDelegate.socketShouldAct = true
     }
     
     func closeConnection() {
+        Socket.sharedInstance.manager.disconnect()
+        socket.removeAllHandlers()
         socket.disconnect()
+        AppDelegate.socketShouldAct = false
     }
     
     func connectWithUsername(username: String){
         socket.on("connection"){ (data, ack) -> Void in
             self.socket.emit("join", ["username": username, "source": "\(username)merenda"])
         }
-        
-//        socket.on("merendaUpdate"){ (data, ack) -> Void in
-//            UpdateManager.receiveMerenda(data: data)
-//        }
     }
     
 }

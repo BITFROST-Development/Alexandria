@@ -7,10 +7,14 @@
 //
 
 import UIKit
-import GoogleSignIn
+import GTMAppAuth
+import GAppAuth
+import RealmSwift
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
-    
+    static var toGoogle = true
+    static var sharedInstance: RegisterViewController!
+    let realm = try! Realm(configuration: AppDelegate.realmConfig)
     let sem = DispatchSemaphore.init(value: 0)
     var presenter: RegisterLoginViewController?
     @IBOutlet weak var nameField: UITextField!
@@ -25,6 +29,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        RegisterViewController.sharedInstance = self
         usernameField.delegate = self
         nameField.delegate = self
         lastNameField.delegate = self
@@ -51,51 +56,73 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func login(_ sender: Any) {
+        AppDelegate.source = "logIn"
         dismiss(animated: true, completion: {RegisterLoginViewController.redirect("register", self.presenter!)})
-            
     }
     
     @IBAction func registerUser(_ sender: Any) {
         let registerRequest = RequestManager()
-        
-        if !agreedToTerms{
-            let alert = UIAlertController(title: "You didn't accept the terms of service!", message: "You need to accept the terms if you want to register", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
-            self.present(alert, animated: true)
-        }else if passwordField.text != verifiedField.text{
-            let alert = UIAlertController(title: "Error Registering", message: "Your passwords do not match, make sure to enter the same password on the password and verify password fields", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
-            self.present(alert, animated: true)
-        }else if let username = usernameField.text, let password = passwordField.text, let name = nameField.text, let lastName = lastNameField.text, let email = emailField.text{
-            GIDSignIn.sharedInstance()?.presentingViewController = self
-            signInGoogle()
-            sem.wait()
-            if AuthenticationSource.googleSuccess {
-                if let user = registerRequest.registerUser(username: username, password: password, name: name, last: lastName, email: email, gmail: (GIDSignIn.sharedInstance()?.currentUser.profile.email)!){
-                    
-                    NewUserManager.registerNewCloudUser(username: user)
-                    sem.signal()
-                    
-                    updatePrevious()
-                    sem.wait()
-                    self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
-                    
-                } else {
-                    let alert = UIAlertController(title: "Error Registering", message: "A user with the given username already registered. Try with another username.", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
-                    self.present(alert, animated: true)
-                }
-            } else {
-                let alert = UIAlertController(title: "Error Registering", message: "Your Google Sign In failed try again.", preferredStyle: .alert)
+        if RegisterViewController.toGoogle{
+            if !agreedToTerms{
+                let alert = UIAlertController(title: "You didn't accept the terms of service!", message: "You need to accept the terms if you want to register", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            }else if passwordField.text != verifiedField.text{
+                let alert = UIAlertController(title: "Error Registering", message: "Your passwords do not match, make sure to enter the same password on the password and verify password fields", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            } else if let _ = usernameField.text, let _ = passwordField.text, let _ = nameField.text, let _ = lastNameField.text, let _ = emailField.text{
+                signInGoogle()
+            }
+            else{
+                let alert = UIAlertController(title: "Error Registering", message: "You must fill all the fields", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
                 self.present(alert, animated: true)
             }
+        } else {
+            if let user = registerRequest.registerUser(username: usernameField.text!, password: passwordField.text!, name: nameField.text!, last: lastNameField.text!, email: emailField.text!, gmail: (GoogleSignIn.sharedInstance().email)!){
+                
+                let newCloudUser = NewUserManager.registerNewCloudUser(username: user)
+                sem.signal()
+                var alexandriaFolderID = ""
+                var rootFolderID = ""
+                var booksFolderID = ""
+                createFolderForClient(parent: "root", name: "Alexandria"){ folderID in
+                    alexandriaFolderID = folderID
+                    self.createFolderForClient(parent: alexandriaFolderID, name: self.usernameField.text!){ rootFolder in
+                        rootFolderID = rootFolder
+                        self.createFolderForClient(parent: rootFolderID, name: "Books") { booksFolder in
+                            booksFolderID = booksFolder
+                            do{
+                                try self.realm.write(){
+                                    newCloudUser.alexandriaData?.rootFolderID = rootFolderID
+                                    newCloudUser.alexandriaData?.booksFolderID = booksFolderID
+                                }
+                            } catch {
+                                print("create folder failed")
+                            }
+                        }
+                    }
+                }
+                updatePrevious()
+                sem.wait()
+                RegisterViewController.toGoogle = true
+                self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+                
+            } else {
+                let alert = UIAlertController(title: "Error Registering", message: "A user with the given username already registered. Try with another username.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+                self.present(alert, animated: true)
+                RegisterViewController.toGoogle = true
+            }
         }
-        else{
-            let alert = UIAlertController(title: "Error Registering", message: "You must fill all the fields", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
-            self.present(alert, animated: true)
-        }
+    }
+    
+    func googleFailed() {
+        let alert = UIAlertController(title: "Error Registering", message: "Your Google Sign In failed try again.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+        self.present(alert, animated: true)
+        RegisterViewController.toGoogle = true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -149,11 +176,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func dismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-    }
-    
-    func signInGoogle(){
-        GIDSignIn.sharedInstance()?.signIn()
-        sem.signal()
     }
 }
 

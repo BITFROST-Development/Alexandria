@@ -36,6 +36,8 @@ class RequestManager{
         let mail = formatString(message: email)
         let googleMail = formatString(message: gmail)
         
+//        print("\(pass)    \(user)    \(firstName)    \(lastName)    \(mail)    \(googleMail)")
+        
         let urlstring = "\(bitfrosturl)&x=true&u=\(user)&p=\(pass)&r=\(firstName)&n=\(lastName)&q=\(mail)&j=\(googleMail)"
         
         let returnData = performRequest(urlString: urlstring)
@@ -48,6 +50,7 @@ class RequestManager{
     func logOut() {
         socket.closeConnection()
         Socket.sharedInstance.socket.leaveNamespace()
+        deleteAllCookies()
     }
     
     func checkForUsername(username: String) -> Bool {
@@ -73,7 +76,27 @@ class RequestManager{
                     print(error!)
                     return
                 }
-                if let safeData = data{
+//                print(data?.base64EncodedString())
+//                print(response as? HTTPURLResponse)
+//                print((response as? HTTPURLResponse)?.allHeaderFields as? [String: String])
+                if let safeData = data, let httpResponse = response as? HTTPURLResponse, let fields = httpResponse.allHeaderFields as? [String: String]{
+                    let cookies = HTTPCookie.cookies(withResponseHeaderFields: fields, for: url)
+                    HTTPCookieStorage.shared.setCookies(cookies, for: url, mainDocumentURL: nil)
+                    for cookie in cookies{
+                        var cookieProperties = [HTTPCookiePropertyKey: Any]()
+                        cookieProperties[.name] = cookie.name
+                        cookieProperties[.value] = cookie.value
+                        cookieProperties[.domain] = cookie.domain
+                        cookieProperties[.path] = cookie.path
+                        cookieProperties[.version] = cookie.version
+                        cookieProperties[.expires] = Date().addingTimeInterval(31536000)
+
+                        let newCookie = HTTPCookie(properties: cookieProperties)
+                        HTTPCookieStorage.shared.setCookie(newCookie!)
+                        
+                        print("name: \(cookie.name) value: \(cookie.value)")
+                    }
+                    print(safeData)
                     self.result = self.parseJSON(userData: safeData)
                     self.sem.signal()
                 }
@@ -99,6 +122,17 @@ class RequestManager{
         }catch{
             print(error)
             return nil
+        }
+    }
+    
+    func deleteAllCookies() {
+        
+        let cookieStorage = HTTPCookieStorage.shared
+        let cookies = cookieStorage.cookies!
+        print("Cookies.count: \(cookies.count)")
+        for cookie in cookies {
+            print("name: \(cookie.name) value: \(cookie.value)")
+            HTTPCookieStorage.shared.deleteCookie(cookie)
         }
     }
     

@@ -23,7 +23,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="dDR-tp-2Hc">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="-1" width="414" height="897"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OJW-uh-meS">
                                 <rect key="frame" x="0.0" y="625" width="414" height="271"/>
@@ -68,7 +68,7 @@
                             <constraint firstItem="OJW-uh-meS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="FeH-fR-WKf"/>
                             <constraint firstItem="dDR-tp-2Hc" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="GNd-pG-4nJ"/>
                             <constraint firstAttribute="bottom" secondItem="dDR-tp-2Hc" secondAttribute="bottom" id="K6G-mm-AXe"/>
-                            <constraint firstItem="dDR-tp-2Hc" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="RqG-Xg-zHn"/>
+                            <constraint firstItem="dDR-tp-2Hc" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" constant="-1" id="RqG-Xg-zHn"/>
                             <constraint firstAttribute="bottom" secondItem="OJW-uh-meS" secondAttribute="bottom" id="V5C-DO-gOW"/>
                         </constraints>
                     </view>

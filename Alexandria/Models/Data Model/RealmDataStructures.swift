@@ -12,7 +12,7 @@ import RealmSwift
 class AlexandriaData: Object, RealmOptionalType{
     
     static func == (lhs: AlexandriaData, rhs: AlexandriaData) -> Bool {
-        if lhs.goals == rhs.goals && lhs.trophies == rhs.trophies && lhs.shelves == rhs.shelves && lhs.vaults == rhs.vaults{
+        if lhs.rootFolderID == rhs.rootFolderID && lhs.booksFolderID == rhs.booksFolderID && lhs.goals == rhs.goals && lhs.trophies == rhs.trophies && lhs.shelves == rhs.shelves && lhs.vaults == rhs.vaults{
             return true
         }
         
@@ -20,6 +20,9 @@ class AlexandriaData: Object, RealmOptionalType{
     }
     
     static func ^ (lhs: AlexandriaData, rhs: AlexandriaDataDec){
+        
+        lhs.rootFolderID = rhs.rootFolderID
+        lhs.booksFolderID = rhs.booksFolderID
         
         if lhs.goals.count != 0 {
             lhs.goals.removeAll()
@@ -87,7 +90,9 @@ class AlexandriaData: Object, RealmOptionalType{
     }
     
     static func equals(_ localAlexandria: AlexandriaData, _ decodedAlexandria: AlexandriaDataDec) -> Bool {
-        if localAlexandria.goals.count != decodedAlexandria.goals?.count {
+        if localAlexandria.rootFolderID != decodedAlexandria.rootFolderID || localAlexandria.booksFolderID != decodedAlexandria.booksFolderID{
+            return false
+        } else if localAlexandria.goals.count != decodedAlexandria.goals?.count {
             return false
         } else if localAlexandria.trophies.count != decodedAlexandria.trophies?.count {
             return false
@@ -139,6 +144,8 @@ class AlexandriaData: Object, RealmOptionalType{
         
     }
     
+    @objc dynamic var rootFolderID: String?
+    @objc dynamic var booksFolderID: String?
     var goals = RealmSwift.List<Goal>()
     var trophies = RealmSwift.List<Trophy>()
     var shelves = RealmSwift.List<Shelf>()
@@ -336,12 +343,13 @@ class Shelf: Object{
 }
 
 class Vault: Object{
+    @objc dynamic var vaultFolderID: String?
     @objc dynamic var birthName: String?
     @objc dynamic var name: String?
     var terms = RealmSwift.List<Term>()
     
     static func equals(_ lhs: Vault, _ rhs: VaultDec) -> Bool{
-        if lhs.birthName != rhs.birthName || lhs.name != rhs.name{
+        if lhs.vaultFolderID != rhs.vaultFolderID || lhs.birthName != rhs.birthName || lhs.name != rhs.name{
             return false
         }
         
@@ -360,7 +368,7 @@ class Vault: Object{
             return false
         } else {
             for index in 0..<(rhs?.count ?? 0){
-                if lhs?[index].birthName != rhs?[index].birthName || lhs?[index].name != rhs?[index].name{
+                if lhs?[index].vaultFolderID != rhs?[index].vaultFolderID || lhs?[index].birthName != rhs?[index].birthName || lhs?[index].name != rhs?[index].name{
                     return false
                 } else {
                     if lhs?[index].terms.count != rhs?[index].terms?.count{
@@ -381,7 +389,7 @@ class Vault: Object{
     static func ^ (lhs: Vault, rhs: VaultDec){
         lhs.birthName = rhs.birthName
         lhs.name = rhs.name
-        
+        lhs.vaultFolderID = rhs.vaultFolderID
         lhs.terms.removeAll()
         
         for index in 0..<(rhs.terms?.count ?? 0){
@@ -401,7 +409,7 @@ class Vault: Object{
             lhs?.append(Vault())
             lhs![index].birthName = rhs![index].birthName
             lhs![index].name = rhs![index].name
-            
+            lhs![index].vaultFolderID = rhs![index].vaultFolderID
             for kindex in 0..<(rhs![index].terms?.count ?? 0){
                 lhs?[index].terms.append(Term())
                 lhs![index].terms[kindex] ^ rhs![index].terms![kindex]
@@ -459,6 +467,7 @@ class StoredFile: Object{
 
 class Book: Object {
     @objc dynamic var id: String?
+    @objc dynamic var localAddress: String? = nil
     @objc dynamic var title: String?
     @objc dynamic var author: String?
     @objc dynamic var year: String?

@@ -8,11 +8,13 @@
 
 import UIKit
 import RealmSwift
+import GTMAppAuth
+import GAppAuth
 
 class AuthenticationSource: UIViewController {
     
     static var googleSuccess = false
-    let realm = try! Realm()
+    let realm = try! Realm(configuration: AppDelegate.realmConfig)
     var loggedIn = false
     var registerLogin: RegisterLoginViewController? = nil
     var myProfile: MyProfileViewController? = nil
@@ -30,11 +32,11 @@ class AuthenticationSource: UIViewController {
         
         cloudUser = realm.objects(CloudUser.self)
         offlineUser = realm.objects(UnloggedUser.self)
-        
         if cloudUser.count != 0 {
             persistLog = true
             loggedIn = true
             RegisterLoginViewController.loggedIn = true
+            GoogleSignIn.sharedInstance().restoreSignIn()
             Socket.sharedInstance.establishConnection()
         }
         else if offlineUser.count == 0{
@@ -76,16 +78,15 @@ class AuthenticationSource: UIViewController {
     }
     
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if segue.identifier == "toRegisterLogin" {
-            
+            print("")
             registerLogin = segue.destination as? RegisterLoginViewController
         
         } else if segue.identifier == "toMyProfile" {
             
             myProfile = segue.destination as? MyProfileViewController
-            
             myProfile!.currentUser = cloudUser[0]
         
         }

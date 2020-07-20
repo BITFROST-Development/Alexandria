@@ -18,10 +18,12 @@ class RegisterLoginViewController: UIViewController {
     }
     
     @IBAction func toRegister(_ sender: Any) {
+        AppDelegate.source = "register"
         performSegue(withIdentifier: "toRegister", sender: self)
     }
     
     @IBAction func toLogin(_ sender: Any) {
+        AppDelegate.source = "logIn"
         performSegue(withIdentifier: "toLogin", sender: self)
     }
     

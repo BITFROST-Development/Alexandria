@@ -14,7 +14,7 @@ class UnloggedUser: Object {
 }
 
 class UnloggedUserObject{
-    let realm = try! Realm()
+    let realm = try! Realm(configuration: AppDelegate.realmConfig)
     var currentUserWrap: Results<UnloggedUser>!
     var currentUser: UnloggedUser?
     init(){

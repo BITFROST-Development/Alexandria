@@ -8,6 +8,8 @@
 
 import UIKit
 import RealmSwift
+import GTMAppAuth
+import GAppAuth
 
 class MyProfileViewController: UIViewController {
     
@@ -27,13 +29,22 @@ class MyProfileViewController: UIViewController {
     }
     
     func logoutPressed(){
-        let realm = try! Realm()
+        let realm = try! Realm(configuration: AppDelegate.realmConfig)
         let sem = DispatchSemaphore.init(value: 0)
         let logoutRequest = RequestManager()
         let unloggedUser = UnloggedUser()
         let cloudUser = realm.objects(CloudUser.self)[0]
-        
         unloggedUser.alexandriaData = cloudUser.alexandriaData
+        let booksToKeep = RealmSwift.List<Book>()
+        for index in 0..<cloudUser.alexandriaData!.shelves.count {
+            for book in cloudUser.alexandriaData!.shelves[index].books {
+                if book.id == nil {
+                    booksToKeep.append(book)
+                }
+            }
+            unloggedUser.alexandriaData?.shelves[index].books = booksToKeep
+            booksToKeep.removeAll()
+        }
         do{
             try realm.write(){
                 realm.add(unloggedUser)
@@ -48,6 +59,7 @@ class MyProfileViewController: UIViewController {
         
         sem.wait()
         logoutRequest.logOut()
+        GoogleSignIn.sharedInstance().signOut()
         RegisterLoginViewController.loggedIn = false
         self.dismiss(animated: true, completion: nil)
     }

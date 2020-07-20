@@ -8,11 +8,12 @@
 
 import UIKit
 import RealmSwift
-import GoogleSignIn
+import GTMAppAuth
+import GAppAuth
 
 class LoginViewController: UIViewController {
     
-    let realm = try! Realm()
+    let realm = try! Realm(configuration: AppDelegate.realmConfig)
     var presenter: RegisterLoginViewController?
     var unloggedUser:Results<UnloggedUser>?
     let sem = DispatchSemaphore.init(value: 0)
@@ -30,6 +31,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signUp(_ sender: Any) {
+        AppDelegate.source = "register"
         dismiss(animated: true, completion: {RegisterLoginViewController.redirect("login", self.presenter!)})
             
     }
@@ -45,8 +47,8 @@ class LoginViewController: UIViewController {
                 NewUserManager.createNewCloudUser(username: incommingUser)
                 
                 updatePrevious()
-                GIDSignIn.sharedInstance()?.presentingViewController = self
-                GIDSignIn.sharedInstance()?.loginHint = incommingUser.googleAccountEmail
+                GoogleSignIn.sharedInstance().presentingViewController = self
+                GoogleSignIn.sharedInstance().hint = incommingUser.googleAccountEmail
                 googleSignIn()
                 sem.signal()
                 sem.wait()
@@ -71,8 +73,10 @@ class LoginViewController: UIViewController {
     }
 
     func googleSignIn(){
-        GIDSignIn.sharedInstance()?.signIn()
-        sem.signal()
+        GoogleSignIn.sharedInstance().signIn()
+        while AuthenticationSource.googleSuccess != true {
+            print("waiting for authentication")
+        }
     }
     
 }

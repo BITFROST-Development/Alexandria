@@ -1,20 +1,22 @@
 //
-//  AddItemCell.swift
+//  AddFileShelfPickerTrigger.swift
 //  Alexandria
 //
-//  Created by Waynar Bocangel on 6/30/20.
+//  Created by Waynar Bocangel on 7/14/20.
 //  Copyright © 2020 BITFROST. All rights reserved.
 //
 
 import UIKit
 
-class AddItemCell: UITableViewCell {
+class AddFileShelfPickerTrigger: UITableViewCell {
 
-    @IBOutlet weak var itemName: UIButton!
+    static var idetifier = "addFileShelfName"
+    @IBOutlet weak var shelfName: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+//        print(self.layer.frame.height)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
