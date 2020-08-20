@@ -65,7 +65,6 @@ class GoogleUser {
                             self.accessToken = token?.accessToken
                             self.refreshToken = token?.refreshToken
                             self.email = authorization?.userEmail
-                            self.setFetchAuthorizer(authorization!.fetcherService!)
                             self.delegate.signedIn(didSignInFor: self, withError: nil)
                         }
                     }
@@ -78,6 +77,7 @@ class GoogleUser {
     
     func restoreSignIn(){
         GAppAuth.shared.retrieveExistingAuthorizationState()
+        GoogleDriveTools.service.authorizer = GAppAuth.shared.getCurrentAuthorization()
     }
     
     func signOut(){

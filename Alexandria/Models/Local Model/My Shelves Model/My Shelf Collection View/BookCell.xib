@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17140" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17115"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="bookCell" translatesAutoresizingMaskIntoConstraints="NO" id="gTV-IL-0wX" customClass="BookCell" customModule="Alexandria" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="191" height="270"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="191" height="270"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ce-xs-Vad">
+                        <rect key="frame" x="73.5" y="215" width="44" height="21.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="bAS-6i-QBu"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wch-IX-Jzp">
+                        <rect key="frame" x="119.5" y="215" width="17" height="22"/>
+                        <color key="tintColor" red="0.91764705879999997" green="0.56862745100000001" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <state key="normal">
+                            <imageReference key="image" image="chevron.down.circle" catalog="system" symbolScale="small"/>
+                        </state>
+                        <connections>
+                            <action selector="displayOptions:" destination="gTV-IL-0wX" eventType="touchUpInside" id="ASY-AU-bg5"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebG-jN-SLw">
+                        <rect key="frame" x="79" y="241.5" width="33" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="3Jg-K0-ZLK"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="kHh-3F-gcc"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.91764705879999997" green="0.56862745100000001" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="qwp-qF-2Ok">
+                        <rect key="frame" x="21" y="20" width="149" height="185"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VAo-c6-q5T">
+                                <rect key="frame" x="1.5" y="1" width="145.5" height="182"/>
+                                <size key="titleShadowOffset" width="3" height="3"/>
+                                <state key="normal" image="launchScreen">
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="openBook:" destination="gTV-IL-0wX" eventType="touchUpInside" id="ntJ-VQ-pxQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.29999999999999999" alpha="0.080000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="5Aa-AB-aV8"/>
+                            <constraint firstAttribute="trailing" secondItem="VAo-c6-q5T" secondAttribute="trailing" constant="1.8" id="5B4-hI-OFJ"/>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="185" id="5Bu-Oh-eBc"/>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="162" id="B04-1l-e1R"/>
+                            <constraint firstItem="VAo-c6-q5T" firstAttribute="leading" secondItem="qwp-qF-2Ok" secondAttribute="leading" constant="1.3999999999999999" id="Gh7-rZ-9Qc"/>
+                            <constraint firstAttribute="bottom" secondItem="VAo-c6-q5T" secondAttribute="bottom" constant="2" id="Lfg-lQ-zyd"/>
+                            <constraint firstItem="VAo-c6-q5T" firstAttribute="top" secondItem="qwp-qF-2Ok" secondAttribute="top" constant="1" id="dGu-rz-CZL"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="185" id="hH0-h8-rEe"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="Wch-IX-Jzp" firstAttribute="leading" secondItem="8ce-xs-Vad" secondAttribute="trailing" constant="2" id="36K-fv-cH4"/>
+                <constraint firstItem="qwp-qF-2Ok" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="21" id="8eb-Yw-JCJ"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ebG-jN-SLw" secondAttribute="bottom" constant="5" id="8ti-4C-z4a"/>
+                <constraint firstItem="ebG-jN-SLw" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="9yK-g6-qgG"/>
+                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="qwp-qF-2Ok" secondAttribute="trailing" constant="65" id="Qj5-QR-aUy"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qwp-qF-2Ok" secondAttribute="trailing" constant="20" id="Qwr-Wm-Wx8"/>
+                <constraint firstItem="qwp-qF-2Ok" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="S4E-bQ-w0W"/>
+                <constraint firstItem="Wch-IX-Jzp" firstAttribute="baseline" secondItem="8ce-xs-Vad" secondAttribute="firstBaseline" id="UuQ-Hv-SC7"/>
+                <constraint firstItem="qwp-qF-2Ok" firstAttribute="centerX" secondItem="8ce-xs-Vad" secondAttribute="centerX" id="V9X-O6-91P"/>
+                <constraint firstItem="ebG-jN-SLw" firstAttribute="top" secondItem="8ce-xs-Vad" secondAttribute="bottom" constant="5" id="blR-GL-gvV"/>
+                <constraint firstItem="8ce-xs-Vad" firstAttribute="top" secondItem="qwp-qF-2Ok" secondAttribute="bottom" constant="10" id="e1r-e4-i6D"/>
+                <constraint firstAttribute="width" constant="180" id="hfP-yr-sGx"/>
+                <constraint firstItem="qwp-qF-2Ok" firstAttribute="leading" relation="lessThanOrEqual" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="66" id="hwI-lm-6kd"/>
+                <constraint firstAttribute="height" constant="260" id="ilq-lb-NZ9"/>
+                <constraint firstItem="8ce-xs-Vad" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="n4W-tQ-GRS"/>
+            </constraints>
+            <size key="customSize" width="235" height="270"/>
+            <connections>
+                <outlet property="backgroundColorView" destination="qwp-qF-2Ok" id="MfO-BI-OEk"/>
+                <outlet property="bookDescription" destination="ebG-jN-SLw" id="a4C-V4-8Kw"/>
+                <outlet property="bookTitle" destination="8ce-xs-Vad" id="0lr-Xr-EwE"/>
+                <outlet property="thumbnailImage" destination="VAo-c6-q5T" id="LyJ-FY-S4I"/>
+            </connections>
+            <point key="canvasLocation" x="183.33333333333334" y="220.98214285714286"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="chevron.down.circle" catalog="system" width="128" height="121"/>
+        <image name="launchScreen" width="2456" height="1634"/>
+    </resources>
+</document>

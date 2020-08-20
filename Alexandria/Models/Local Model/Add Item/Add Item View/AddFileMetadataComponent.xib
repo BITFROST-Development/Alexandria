@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17132" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17140" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17105"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17115"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -48,7 +48,7 @@
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                 </subviews>
-                <color key="backgroundColor" red="0.99607843139999996" green="0.87843137250000003" blue="0.63529411759999999" alpha="0.25719713179999998" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" red="0.99607843139999996" green="0.87581699346666664" blue="0.6352941176000001" alpha="0.25719713179999998" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="oh0-Yc-EAp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="65" id="59l-6C-sz8"/>
                     <constraint firstAttribute="trailing" secondItem="0cV-Ap-pjy" secondAttribute="trailing" constant="65" id="6bY-Z3-hGn"/>

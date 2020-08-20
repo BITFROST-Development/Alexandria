@@ -18,30 +18,33 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Field" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dyv-Pq-pH5">
-                        <rect key="frame" x="56.5" y="26.5" width="42" height="24"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <rect key="frame" x="27.5" y="25.5" width="45.5" height="26.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
                         <color key="textColor" red="0.91764705879999997" green="0.56862745100000001" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MWp-zG-hau">
-                        <rect key="frame" x="268" y="26.5" width="70.5" height="24"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <rect key="frame" x="291" y="25.5" width="76.5" height="26.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="150" id="Rxg-XB-3Zj"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZyP-UT-oss">
-                        <rect key="frame" x="56.5" y="76" width="282" height="1"/>
+                        <rect key="frame" x="27.5" y="76" width="340" height="1"/>
                         <color key="backgroundColor" red="0.78522866960000004" green="0.67061346769999997" blue="0.55195200440000003" alpha="0.2732502140410959" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="hNA-w5-UBP"/>
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" red="0.99607843139999996" green="0.97066300979999998" blue="0.9198321666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="Dyv-Pq-pH5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="0tz-DN-dM0"/>
                     <constraint firstItem="ZyP-UT-oss" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="49J-2j-Ndr"/>
-                    <constraint firstItem="MWp-zG-hau" firstAttribute="trailing" secondItem="Dyv-Pq-pH5" secondAttribute="leading" constant="282" id="ZMZ-2G-oAP"/>
-                    <constraint firstItem="MWp-zG-hau" firstAttribute="width" relation="lessThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.3" id="kbj-kk-QZK"/>
+                    <constraint firstItem="MWp-zG-hau" firstAttribute="trailing" secondItem="Dyv-Pq-pH5" secondAttribute="leading" constant="340" id="ZMZ-2G-oAP"/>
                     <constraint firstItem="MWp-zG-hau" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="nYf-jn-QpT"/>
                     <constraint firstItem="ZyP-UT-oss" firstAttribute="trailing" secondItem="MWp-zG-hau" secondAttribute="trailing" id="oIr-Ig-LaJ"/>
                     <constraint firstItem="ZyP-UT-oss" firstAttribute="leading" secondItem="Dyv-Pq-pH5" secondAttribute="leading" id="wFj-2Y-RzP"/>

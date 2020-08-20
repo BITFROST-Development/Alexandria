@@ -37,17 +37,21 @@ class AuthenticationSource: UIViewController {
             loggedIn = true
             RegisterLoginViewController.loggedIn = true
             GoogleSignIn.sharedInstance().restoreSignIn()
-            Socket.sharedInstance.establishConnection()
+            let socket = Socket.sharedInstance
+            socket.connectWithUsername(username: cloudUser[0].username)
+            socket.establishConnection()
         }
         else if offlineUser.count == 0{
             persistLog = true
             loggedIn = false
             
             let newUnloggedUser = UnloggedUser()
+            let newBookHash = BookToListMap()
             
             do {
                 try realm.write(){
                     realm.add(newUnloggedUser)
+                    realm.add(newBookHash)
                 }
             } catch {
                 print(error)
@@ -56,8 +60,6 @@ class AuthenticationSource: UIViewController {
     }
     
     @IBAction func profileButton(_ sender: UIBarButtonItem) {
-        
-        loggedIn = RegisterLoginViewController.loggedIn
         
         if !loggedIn {
             
@@ -77,16 +79,14 @@ class AuthenticationSource: UIViewController {
         performSegue(withIdentifier: "toSettings", sender: self)
     }
     
-    
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toRegisterLogin" {
             print("")
             registerLogin = segue.destination as? RegisterLoginViewController
-        
+            registerLogin?.controller = self
         } else if segue.identifier == "toMyProfile" {
-            
             myProfile = segue.destination as? MyProfileViewController
+            myProfile?.controller = self
             myProfile!.currentUser = cloudUser[0]
         
         }

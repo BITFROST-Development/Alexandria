@@ -11,10 +11,16 @@ import UIKit
 class RegisterLoginViewController: UIViewController {
     
     static var loggedIn = false
+    var controller: AuthenticationSource!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        GoogleSignIn.sharedInstance().delegate = AppDelegate.sharedInstance!
     }
     
     @IBAction func toRegister(_ sender: Any) {
@@ -35,8 +41,13 @@ class RegisterLoginViewController: UIViewController {
         }
     }
     
-    static func updateUser(){
-        loggedIn = true
+    func updateUser(){
+        RegisterLoginViewController.loggedIn = true
+        controller.loggedIn = true
+        if let myShelves = controller as? MyShelvesViewController {
+            myShelves.shelfCollectionView.reloadData()
+            myShelves.shelvesList.reloadData()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

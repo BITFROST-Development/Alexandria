@@ -11,7 +11,7 @@ import UIKit
 class AddFileViewTitle: UITableViewCell {
     
     static var identifier = "addFileViewTitle"
-    static var controller: AddNewFileViewController!
+    static var controller: BookChangerDelegate!
     @IBOutlet weak var fileTitle: FileTitle!
     @IBOutlet weak var clearButton: UIButton!
     
@@ -20,7 +20,6 @@ class AddFileViewTitle: UITableViewCell {
         // Initialization code
         fileTitle.sizeToFit()
         fileTitle.delegate = self
-//        print(self.layer.frame.height)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -57,6 +56,17 @@ extension AddFileViewTitle: UITextFieldDelegate{
         }
         return true
     }
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        if textField.text != nil {
+            AddFileViewTitle.controller.finalFileName = textField.text!
+            print(AddFileViewTitle.controller.finalFileName)
+        } else {
+            AddFileViewTitle.controller.finalFileName = ""
+            print(AddFileViewTitle.controller.finalFileName)
+        }
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
     }

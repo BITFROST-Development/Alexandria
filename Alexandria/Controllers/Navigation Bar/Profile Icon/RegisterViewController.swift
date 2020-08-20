@@ -16,7 +16,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     static var sharedInstance: RegisterViewController!
     let realm = try! Realm(configuration: AppDelegate.realmConfig)
     let sem = DispatchSemaphore.init(value: 0)
-    var presenter: RegisterLoginViewController?
+    var presenter: RegisterLoginViewController!
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
@@ -39,7 +39,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
     
     func updatePrevious(){
-        RegisterLoginViewController.updateUser()
+        presenter.updateUser()
         sem.signal()
     }
 
@@ -82,7 +82,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         } else {
             if let user = registerRequest.registerUser(username: usernameField.text!, password: passwordField.text!, name: nameField.text!, last: lastNameField.text!, email: emailField.text!, gmail: (GoogleSignIn.sharedInstance().email)!){
                 
-                let newCloudUser = NewUserManager.registerNewCloudUser(username: user)
+                let newCloudUser = NewUserManager.registerNewCloudUser(username: user, presenterView: self)
                 sem.signal()
                 var alexandriaFolderID = ""
                 var rootFolderID = ""
@@ -97,7 +97,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                                 try self.realm.write(){
                                     newCloudUser.alexandriaData?.rootFolderID = rootFolderID
                                     newCloudUser.alexandriaData?.booksFolderID = booksFolderID
+                                    Socket.sharedInstance.updateAlexandriaCloud(username: newCloudUser.username, alexandriaInfo: AlexandriaDataDec(from: newCloudUser))
                                 }
+                                
                             } catch {
                                 print("create folder failed")
                             }
@@ -107,7 +109,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                 updatePrevious()
                 sem.wait()
                 RegisterViewController.toGoogle = true
-                self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+                self.presenter.controller.dismiss(animated: true, completion: nil)
                 
             } else {
                 let alert = UIAlertController(title: "Error Registering", message: "A user with the given username already registered. Try with another username.", preferredStyle: .alert)
@@ -160,17 +162,18 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
     
     func checkUser(userText: String, registerRequest: RequestManager, textField: UITextField) {
-        
-        if !registerRequest.checkForUsername(username: userText){
-            DispatchQueue.main.async {
-                textField.resignFirstResponder()
-                let alert = UIAlertController(title: "Error Registering", message: "A user with the given username already registered. Try with another username.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
-                self.present(alert, animated: true)
+        if userText != ""{
+            if !registerRequest.checkForUsername(username: userText){
+                DispatchQueue.main.async {
+                    textField.resignFirstResponder()
+                    let alert = UIAlertController(title: "Error Registering", message: "A user with the given username already registered. Try with another username.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                }
             }
-        }
-        DispatchQueue.main.async {
-            self.usernameIndicator.stopAnimating()
+            DispatchQueue.main.async {
+                self.usernameIndicator.stopAnimating()
+            }
         }
     }
     

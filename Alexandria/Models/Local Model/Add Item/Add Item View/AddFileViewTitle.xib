@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="342" height="123"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="117" placeholderIntrinsicHeight="55" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="Test" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8rE-se-ujW" customClass="FileTitle" customModule="Alexandria" customModuleProvider="target">
+                    <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" placeholderIntrinsicWidth="117" placeholderIntrinsicHeight="55" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="Test" textAlignment="center" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8rE-se-ujW" customClass="FileTitle" customModule="Alexandria" customModuleProvider="target">
                         <rect key="frame" x="112.5" y="35" width="117" height="53"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="26"/>
                         <textInputTraits key="textInputTraits" returnKeyType="done"/>

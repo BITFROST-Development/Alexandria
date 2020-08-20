@@ -10,42 +10,60 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="shelvesListTitleCell" rowHeight="95" id="KGk-i7-Jjw" customClass="ShelvesListTitleCell" customModule="Alexandria" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="95"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="shelvesListTitleCell" rowHeight="122" id="KGk-i7-Jjw" customClass="ShelvesListTitleCell" customModule="Alexandria" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="597" height="122"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="95"/>
+                <rect key="frame" x="0.0" y="0.0" width="597" height="122"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Shelves" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRK-hE-zgJ">
-                        <rect key="frame" x="16" y="30" width="288" height="55"/>
+                        <rect key="frame" x="20" y="30" width="148.5" height="82"/>
                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                         <color key="textColor" red="0.91764705879999997" green="0.56862745100000001" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowtriangle.right.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pKq-BC-geR">
-                        <rect key="frame" x="171" y="50.5" width="20" height="19"/>
-                        <color key="tintColor" red="0.91764705879999997" green="0.56862745100000001" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ecg-Qd-iwY">
+                        <rect key="frame" x="535" y="36.5" width="42" height="33"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="UdJ-7N-XQG"/>
-                            <constraint firstAttribute="width" constant="20" id="yhx-1x-6hw"/>
+                            <constraint firstAttribute="width" constant="42" id="U11-eN-vdQ"/>
                         </constraints>
-                    </imageView>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <state key="normal" title="Back">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <connections>
+                            <action selector="dismissDoneButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Gpq-eg-jiV"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xO1-3S-yTq">
+                        <rect key="frame" x="493" y="36.5" width="31" height="33"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                        <state key="normal" title="Edit">
+                            <color key="titleColor" red="0.91764705879999997" green="0.56862745100000001" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="goIntoEditMode:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="FBq-ZW-2Fa"/>
+                        </connections>
+                    </button>
                 </subviews>
+                <color key="backgroundColor" red="0.99607843139999996" green="0.97066300979999998" blue="0.9198321666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="yRK-hE-zgJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="8Is-HH-yXr"/>
-                    <constraint firstAttribute="trailing" secondItem="yRK-hE-zgJ" secondAttribute="trailing" constant="16" id="Egj-1d-RYU"/>
+                    <constraint firstItem="xO1-3S-yTq" firstAttribute="firstBaseline" secondItem="yRK-hE-zgJ" secondAttribute="firstBaseline" id="ADl-Yj-SPM"/>
+                    <constraint firstItem="ecg-Qd-iwY" firstAttribute="firstBaseline" secondItem="yRK-hE-zgJ" secondAttribute="firstBaseline" id="Hwf-v2-iU7"/>
                     <constraint firstAttribute="bottom" secondItem="yRK-hE-zgJ" secondAttribute="bottom" constant="10" id="Klp-FN-Ozd"/>
-                    <constraint firstItem="pKq-BC-geR" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="12.5" id="d9h-1v-mrZ"/>
-                    <constraint firstItem="pKq-BC-geR" firstAttribute="leading" secondItem="yRK-hE-zgJ" secondAttribute="trailing" constant="-133" id="gb0-vl-Xzg"/>
-                    <constraint firstItem="yRK-hE-zgJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ldI-7W-hCB"/>
+                    <constraint firstItem="ecg-Qd-iwY" firstAttribute="leading" secondItem="xO1-3S-yTq" secondAttribute="trailing" constant="11" id="fcE-Bl-i2n"/>
+                    <constraint firstItem="yRK-hE-zgJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="ldI-7W-hCB"/>
+                    <constraint firstAttribute="trailing" secondItem="ecg-Qd-iwY" secondAttribute="trailing" constant="20" id="w5S-NE-FYZ"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <point key="canvasLocation" x="128.98550724637681" y="170.42410714285714"/>
+            <connections>
+                <outlet property="backDoneButton" destination="ecg-Qd-iwY" id="xIE-fv-SR6"/>
+                <outlet property="editButton" destination="xO1-3S-yTq" id="X2d-b8-P6B"/>
+            </connections>
+            <point key="canvasLocation" x="329.71014492753625" y="179.46428571428569"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="arrowtriangle.right.circle.fill" catalog="system" width="128" height="121"/>
-    </resources>
 </document>

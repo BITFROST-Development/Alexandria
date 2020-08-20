@@ -12,7 +12,7 @@ import SocketIO
 class RequestManager{
     
     let socket = Socket.sharedInstance
-    let bitfrosturl = "https://api.bitfrost.app/?a=940845649127513"
+    let bitfrosturl = "http://192.168.0.15:8080/?a=940845649127513"
     var result:UserData? = nil
     let sem = DispatchSemaphore.init(value: 0)
     
@@ -22,8 +22,8 @@ class RequestManager{
         let user = formatString(message: username)
         let urlstring = "\(bitfrosturl)&h=true&u=\(user)&p=\(pass)"
         let returnData = performRequest(urlString: urlstring)
-        socket.establishConnection()
         socket.connectWithUsername(username: username)
+        socket.establishConnection()
         return returnData
     }
     
@@ -41,8 +41,8 @@ class RequestManager{
         let urlstring = "\(bitfrosturl)&x=true&u=\(user)&p=\(pass)&r=\(firstName)&n=\(lastName)&q=\(mail)&j=\(googleMail)"
         
         let returnData = performRequest(urlString: urlstring)
-        socket.establishConnection()
         socket.connectWithUsername(username: username)
+        socket.establishConnection()
         return returnData
         
     }
@@ -98,8 +98,9 @@ class RequestManager{
                     }
                     print(safeData)
                     self.result = self.parseJSON(userData: safeData)
-                    self.sem.signal()
+                    
                 }
+                self.sem.signal()
             }
             
             task.resume()

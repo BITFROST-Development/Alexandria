@@ -27,12 +27,60 @@ class MyShelvesTableView: UITableView {
                     if transition.x < (0 - self.layer.frame.width / 2) || gesture.velocity(in: controller?.view).x < 0 - 1000 {
                         UIView.animate(withDuration: 0.3, animations: {
                             self.layer.frame.origin.x = 0 - self.layer.frame.width
+                            self.controller?.shelvesList.beginUpdates()
+                            let cells = self.controller?.shelvesList.visibleCells
+                            for index in 0..<cells!.count{
+                                if index > 1{
+                                    let cell = cells![index] as! ShelfListCell
+                                    UIView.animate(withDuration: 0.3, animations: {
+                                        cell.moreButton.layer.frame.origin.x = cell.layer.frame.width
+                                        cell.deleteButton.layer.frame.origin.x = cell.layer.frame.width
+                                    })
+                                    UIView.animate(withDuration: 0.3, animations: {
+                                        cell.widthConstraint.constant = cell.layer.frame.width - 32
+                                        cell.layoutIfNeeded()
+                                    })
+                                } else if index == 0 {
+                                    let cell = cells![index] as! ShelvesListTitleCell
+                                    UIView.animate(withDuration: 0.2, animations: {
+                                        cell.editButton.alpha = 1.0
+                                    })
+                                    cell.backDoneButton.setTitle("Back", for: .normal)
+                                    cell.backDoneButton.tintColor = .black
+                                    cell.isEditMode = false
+                                }
+                            }
+                            self.controller?.shelvesList.endUpdates()
                             self.controller?.opacityFilter.alpha = 0.0
                         })
                         controller?.shelvesListIsPresent = false
                     } else if UIDevice.current.userInterfaceIdiom == .phone && (transition.x < (0 - self.layer.frame.width / 4) || gesture.velocity(in: controller?.view).x < 0 - 1000) {
                         UIView.animate(withDuration: 0.3, animations: {
                             self.layer.frame.origin.x = 0 - self.layer.frame.width
+                            self.controller?.shelvesList.beginUpdates()
+                            let cells = self.controller?.shelvesList.visibleCells
+                            for index in 0..<cells!.count{
+                                if index > 1{
+                                    let cell = cells![index] as! ShelfListCell
+                                    UIView.animate(withDuration: 0.3, animations: {
+                                        cell.moreButton.layer.frame.origin.x = cell.layer.frame.width
+                                        cell.deleteButton.layer.frame.origin.x = cell.layer.frame.width
+                                    })
+                                    UIView.animate(withDuration: 0.3, animations: {
+                                        cell.widthConstraint.constant = cell.layer.frame.width - 32
+                                        cell.layoutIfNeeded()
+                                    })
+                                } else if index == 0 {
+                                    let cell = cells![index] as! ShelvesListTitleCell
+                                    UIView.animate(withDuration: 0.2, animations: {
+                                        cell.editButton.alpha = 1.0
+                                    })
+                                    cell.backDoneButton.setTitle("Back", for: .normal)
+                                    cell.backDoneButton.tintColor = .black
+                                    cell.isEditMode = false
+                                }
+                            }
+                            self.controller?.shelvesList.endUpdates()
                             self.controller?.opacityFilter.alpha = 0.0
                         })
                         controller?.shelvesListIsPresent = false
@@ -71,6 +119,18 @@ class MyShelvesTableView: UITableView {
                             self.controller?.opacityFilter.alpha = 1.0
                         })
                         controller?.shelvesListIsPresent = true
+                        if controller?.addNewElementViewIsPresent ?? false {
+                            UIView.animate(withDuration: 0.3, animations: {
+                                self.controller?.addNewElementTableView.alpha = 0.0
+                            })
+                            controller?.addNewElementViewIsPresent = false
+                        }
+                        if controller?.shelfPrepreferencesIsPresent ?? false{
+                            UIView.animate(withDuration: 0.3, animations: {
+                                self.controller?.shelfPrePreferencesTableView.alpha = 0.0
+                            })
+                            controller?.shelfPrepreferencesIsPresent = false
+                        }
                     }
                     else if UIDevice.current.userInterfaceIdiom == .phone && (transition.x > (0 + self.layer.frame.width / 4) || gesture.velocity(in: controller?.view).x > 1000){
                         UIView.animate(withDuration: 0.3, animations: {
@@ -78,6 +138,18 @@ class MyShelvesTableView: UITableView {
                             self.controller?.opacityFilter.alpha = 1.0
                         })
                         controller?.shelvesListIsPresent = true
+                        if controller?.addNewElementViewIsPresent ?? false {
+                            UIView.animate(withDuration: 0.3, animations: {
+                                self.controller?.addNewElementTableView.alpha = 0.0
+                            })
+                            controller?.addNewElementViewIsPresent = false
+                        }
+                        if controller?.shelfPrepreferencesIsPresent ?? false{
+                            UIView.animate(withDuration: 0.3, animations: {
+                                self.controller?.shelfPrePreferencesTableView.alpha = 0.0
+                            })
+                            controller?.shelfPrepreferencesIsPresent = false
+                        }
                     } else{
                         UIView.animate(withDuration: 0.3, animations: {
                             self.layer.frame.origin.x = 0 - self.layer.frame.width

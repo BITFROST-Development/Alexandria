@@ -18,11 +18,11 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RAo-XN-qfN">
-                        <rect key="frame" x="25" y="96" width="282" height="56"/>
+                        <rect key="frame" x="-4" y="96" width="340" height="56"/>
                         <color key="backgroundColor" red="0.91764705879999997" green="0.56862745100000001" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="56" id="Zuo-kW-TXH"/>
-                            <constraint firstAttribute="width" constant="282" id="rAH-aa-1kV"/>
+                            <constraint firstAttribute="width" constant="340" id="rAH-aa-1kV"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                         <state key="normal" title="Log Out">
@@ -33,10 +33,12 @@
                         </connections>
                     </button>
                 </subviews>
+                <color key="backgroundColor" red="0.99607843139999996" green="0.97066300979999998" blue="0.9198321666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="RAo-XN-qfN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="96" id="Y97-QE-AF1"/>
                     <constraint firstItem="RAo-XN-qfN" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="mGz-7p-9rs"/>
                     <constraint firstItem="RAo-XN-qfN" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="oih-HQ-3hu"/>
+                    <constraint firstAttribute="bottom" secondItem="RAo-XN-qfN" secondAttribute="bottom" constant="20" id="uSn-CL-BdY"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

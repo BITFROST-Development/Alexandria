@@ -11,6 +11,9 @@ import UIKit
 class AddFileMetadataComponent: UITableViewCell {
 
     static var identifier = "addFileMetadataComponent"
+    
+    var controller: BookChangerDelegate!
+    
     @IBOutlet weak var metadataName: UILabel!
     @IBOutlet weak var metadataContent: UITextField!
     @IBOutlet weak var cleatButton: UIButton!
@@ -45,6 +48,13 @@ extension AddFileMetadataComponent: UITextFieldDelegate {
             metadataContent.layer.frame.origin.x = metadataContent.layer.frame.minX - 13
             cleatButton.alpha = 1.0
             return true
+        }
+    }
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        if metadataName.text == "Author" {
+            controller.author = textField.text ?? ""
+        } else {
+            controller.year = textField.text ?? ""
         }
     }
 }

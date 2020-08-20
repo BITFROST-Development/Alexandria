@@ -12,7 +12,7 @@ import GTMAppAuth
 import GAppAuth
 
 class MyProfileViewController: UIViewController {
-    
+    var controller: AuthenticationSource!
     var currentUser: CloudUser?
     @IBOutlet weak var tableView: UITableView!
     
@@ -28,40 +28,102 @@ class MyProfileViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Socket.sharedInstance.delegate = self
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if let myShelves = controller as? MyShelvesViewController{
+            myShelves.refreshView()
+        } else if let myVaults = controller as? MyVaultsViewController{
+            myVaults.refreshView()
+        } else if let metrics = controller as? MetricsViewController{
+            metrics.refreshView()
+        } else if let myTeams = controller as? MyTeamsViewController{
+            myTeams.refreshView()
+        }
+    }
+    
     func logoutPressed(){
         let realm = try! Realm(configuration: AppDelegate.realmConfig)
-        let sem = DispatchSemaphore.init(value: 0)
         let logoutRequest = RequestManager()
         let unloggedUser = UnloggedUser()
         let cloudUser = realm.objects(CloudUser.self)[0]
-        unloggedUser.alexandriaData = cloudUser.alexandriaData
-        let booksToKeep = RealmSwift.List<Book>()
-        for index in 0..<cloudUser.alexandriaData!.shelves.count {
-            for book in cloudUser.alexandriaData!.shelves[index].books {
-                if book.id == nil {
-                    booksToKeep.append(book)
+        let overalAlert = UIAlertController(title: "Keep Data", message: "You're loggin out of Alexandria, and some of your data comes from your account, would you like to keep your data on your phone or delete all cloud data", preferredStyle: .alert)
+        overalAlert.addAction(UIAlertAction(title: "Keep Data", style: .cancel, handler: {_ in
+            do{
+                try realm.write(){
+                    let hashMap = realm.objects(BookToListMap.self)
+                    for book in 0..<cloudUser.alexandriaData!.cloudBooks.count{
+                        cloudUser.alexandriaData!.cloudBooks[book].cloudVar.value = false
+                        let shelves = hashMap[1].keys[book].values
+                        for shelf in shelves {
+                            shelf.value?.books[shelf.indexInShelf.value!] = Double(cloudUser.alexandriaData!.localBooks.count)
+                            shelf.value?.oppositeBooks.removeAll()
+                            hashMap[0].append(key: Double(cloudUser.alexandriaData!.localBooks.count), value: shelf.value!, isCloud: true)
+                        }
+                        cloudUser.alexandriaData!.localBooks.append(cloudUser.alexandriaData!.cloudBooks[book])
+                    }
+                    cloudUser.alexandriaData!.cloudBooks.removeAll()
+                    for shelf in cloudUser.alexandriaData!.shelves{
+                        shelf.cloudVar.value = false
+                        cloudUser.alexandriaData!.localShelves.append(shelf)
+                    }
+                    cloudUser.alexandriaData!.shelves.removeAll()
+                    unloggedUser.alexandriaData = cloudUser.alexandriaData
+                    realm.add(unloggedUser)
+                    realm.delete(hashMap[1])
+                    realm.delete(cloudUser)
+                    logoutRequest.logOut()
+                    GoogleSignIn.sharedInstance().signOut()
+                    RegisterLoginViewController.loggedIn = false
+                    self.controller.loggedIn = false
+                    self.dismiss(animated: true, completion: nil)
                 }
+            } catch {
+                let alert = UIAlertController(title: "Error Loging Out", message: "We weren't able to log you out. Close the application and try again!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+                self.present(alert, animated: true)
             }
-            unloggedUser.alexandriaData?.shelves[index].books = booksToKeep
-            booksToKeep.removeAll()
-        }
-        do{
-            try realm.write(){
-                realm.add(unloggedUser)
-                realm.delete(cloudUser)
-                sem.signal()
+        }))
+        overalAlert.addAction(UIAlertAction(title: "Delete Data", style: .destructive, handler: {_ in
+            do{
+                try realm.write(){
+                    let hashMap = realm.objects(BookToListMap.self)
+                    for shelf in cloudUser.alexandriaData!.localShelves{
+                        shelf.oppositeBooks.removeAll()
+                    }
+                    for book in cloudUser.alexandriaData!.cloudBooks{
+                        book.deleteInformation()
+                        realm.delete(book.thumbnail!)
+                        realm.delete(book)
+                    }
+                    cloudUser.alexandriaData?.cloudBooks.removeAll()
+                    for shelf in cloudUser.alexandriaData!.shelves{
+                        realm.delete(shelf)
+                    }
+                    cloudUser.alexandriaData?.shelves.removeAll()
+                    unloggedUser.alexandriaData = cloudUser.alexandriaData
+                    realm.add(unloggedUser)
+                    realm.delete(hashMap[1])
+                    realm.delete(cloudUser)
+                    logoutRequest.logOut()
+                    GoogleSignIn.sharedInstance().signOut()
+                    RegisterLoginViewController.loggedIn = false
+                    self.controller.loggedIn = false
+                    self.dismiss(animated: true, completion: nil)
+                }
+            } catch {
+                let alert = UIAlertController(title: "Error Loging Out", message: "We weren't able to log you out. Close the application and try again!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+                self.present(alert, animated: true)
             }
-        } catch {
-            let alert = UIAlertController(title: "Error Loging Out", message: "We weren't able to log you out. Close the application and try again!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
-            self.present(alert, animated: true)
-        }
+        }))
         
-        sem.wait()
-        logoutRequest.logOut()
-        GoogleSignIn.sharedInstance().signOut()
-        RegisterLoginViewController.loggedIn = false
-        self.dismiss(animated: true, completion: nil)
+        present(overalAlert, animated: true)
+        
     }
     
     @IBAction func dismiss(_ sender: Any) {
@@ -121,7 +183,20 @@ extension MyProfileViewController: UITableViewDataSource{
             return cell
         }
     }
-    
-    
+}
+
+extension MyProfileViewController: SocketDelegate{
+    func refreshView() {
+        tableView.reloadData()
+        if let myShelves = controller as? MyShelvesViewController{
+            myShelves.refreshView()
+        } else if let myVaults = controller as? MyVaultsViewController{
+            myVaults.refreshView()
+        } else if let metrics = controller as? MetricsViewController{
+            metrics.refreshView()
+        } else if let myTeams = controller as? MyTeamsViewController{
+            myTeams.refreshView()
+        }
+    }
 }
 

@@ -15,6 +15,15 @@ class MyVaultsViewController: AuthenticationSource {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Socket.sharedInstance.delegate = self
+    }
+}
 
+extension MyVaultsViewController: SocketDelegate{
+    func refreshView() {
+        
+    }
 }
 

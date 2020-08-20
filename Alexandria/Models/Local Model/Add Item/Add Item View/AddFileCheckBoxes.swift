@@ -12,7 +12,7 @@ class AddFileCheckBoxes: UITableViewCell {
 
     static var identifier = "addFileCheckBoxes"
     var isChecked = false
-    var controller: AddNewFileViewController!
+    var controller: BookChangerDelegate!
     var loggedIn = true
     @IBOutlet weak var optionName: UILabel!
     @IBOutlet weak var recommendedLabel: UILabel!
@@ -46,17 +46,56 @@ class AddFileCheckBoxes: UITableViewCell {
                     controller.fileShouldBeMoved = true
                 }
             } else {
-                UIView.animate(withDuration: 0.1, animations: {
-                    self.checkCircle.tintColor = .lightGray
-                })
-                UIView.transition(with: checkCircle.imageView!, duration: 0.3, options: .transitionCrossDissolve, animations: {
-                    self.checkCircle.setImage(UIImage(systemName: "circle"), for: .normal)
-                }, completion: nil)
-                isChecked = false
                 if optionName.text == "Store in Google Drive"{
-                    controller.toDrive = false
+                    if controller.updating {
+                        let alert = UIAlertController(title: "Removing Cloud File", message: "You're currently removing the cloud copy of this file!", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                        alert.addAction(UIAlertAction(title: "Continue", style: .destructive, handler: {_ in
+                            UIView.animate(withDuration: 0.1, animations: {
+                                self.checkCircle.tintColor = .lightGray
+                            })
+                            UIView.transition(with: self.checkCircle.imageView!, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                                self.checkCircle.setImage(UIImage(systemName: "circle"), for: .normal)
+                            }, completion: nil)
+                            self.controller.toDrive = false
+                            self.isChecked = false
+                        }))
+                        (controller as! BookPreferences).present(alert, animated: true)
+                    } else {
+                        UIView.animate(withDuration: 0.1, animations: {
+                            self.checkCircle.tintColor = .lightGray
+                        })
+                        UIView.transition(with: checkCircle.imageView!, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                            self.checkCircle.setImage(UIImage(systemName: "circle"), for: .normal)
+                        }, completion: nil)
+                        isChecked = false
+                        controller.toDrive = false
+                    }
                 } else {
-                    controller.fileShouldBeMoved = false
+                    if controller.updating {
+                        let alert = UIAlertController(title: "Removing Local File", message: "You're currently removing the local copy of this file!", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                        alert.addAction(UIAlertAction(title: "Continue", style: .destructive, handler: {_ in
+                            UIView.animate(withDuration: 0.1, animations: {
+                                self.checkCircle.tintColor = .lightGray
+                            })
+                            UIView.transition(with: self.checkCircle.imageView!, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                                self.checkCircle.setImage(UIImage(systemName: "circle"), for: .normal)
+                            }, completion: nil)
+                            self.controller.fileShouldBeMoved = false
+                            self.isChecked = false
+                        }))
+                        (controller as! BookPreferences).present(alert, animated: true)
+                    } else {
+                        UIView.animate(withDuration: 0.1, animations: {
+                            self.checkCircle.tintColor = .lightGray
+                        })
+                        UIView.transition(with: checkCircle.imageView!, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                            self.checkCircle.setImage(UIImage(systemName: "circle"), for: .normal)
+                        }, completion: nil)
+                        isChecked = false
+                        controller.fileShouldBeMoved = false
+                    }
                 }
             }
         }

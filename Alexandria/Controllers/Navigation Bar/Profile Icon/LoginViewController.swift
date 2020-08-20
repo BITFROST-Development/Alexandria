@@ -13,9 +13,13 @@ import GAppAuth
 
 class LoginViewController: UIViewController {
     
+    static var sharedInstance: LoginViewController!
+    
     let realm = try! Realm(configuration: AppDelegate.realmConfig)
-    var presenter: RegisterLoginViewController?
+    var presenter: RegisterLoginViewController!
     var unloggedUser:Results<UnloggedUser>?
+    var toGoogle = true
+    var toSaveUser: UserData!
     let sem = DispatchSemaphore.init(value: 0)
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -23,10 +27,11 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        LoginViewController.sharedInstance = self
     }
     
     func updatePrevious(){
-        RegisterLoginViewController.updateUser()
+        presenter.updateUser()
         sem.signal()
     }
     
@@ -39,31 +44,31 @@ class LoginViewController: UIViewController {
     @IBAction func logMeIn(_ sender: Any) {
         
         let request = RequestManager()
-        
-        if let user = username.text, let pass = password.text{
-            
-            if let incommingUser = request.loginUser(username: user, password: pass){
+        if toGoogle {
+            if let user = username.text, let pass = password.text{
                 
-                NewUserManager.createNewCloudUser(username: incommingUser)
-                
-                updatePrevious()
-                GoogleSignIn.sharedInstance().presentingViewController = self
-                GoogleSignIn.sharedInstance().hint = incommingUser.googleAccountEmail
-                googleSignIn()
-                sem.signal()
-                sem.wait()
-                self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+                if let incommingUser = request.loginUser(username: user, password: pass){
+                    toSaveUser = incommingUser
+                    GoogleSignIn.sharedInstance().presentingViewController = self
+                    GoogleSignIn.sharedInstance().hint = incommingUser.googleAccountEmail
+                    googleSignIn()
+                } else {
+                    let alert = UIAlertController(title: "Error Loging In", message: "Wrong username or password", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                }
                 
             } else {
-                let alert = UIAlertController(title: "Error Loging In", message: "Wrong username or password", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Error Loging In", message: "You must fill all the fields", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
                 self.present(alert, animated: true)
             }
-            
         } else {
-            let alert = UIAlertController(title: "Error Loging In", message: "You must fill all the fields", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
-            self.present(alert, animated: true)
+            NewUserManager.createNewCloudUser(username: toSaveUser, presenterView: self) {
+                self.updatePrevious()
+                self.sem.wait()
+                self.presenter.controller.dismiss(animated: true, completion: nil)
+            }
         }
         
     }
@@ -74,9 +79,6 @@ class LoginViewController: UIViewController {
 
     func googleSignIn(){
         GoogleSignIn.sharedInstance().signIn()
-        while AuthenticationSource.googleSuccess != true {
-            print("waiting for authentication")
-        }
     }
     
 }

@@ -15,13 +15,19 @@ import GoogleAPIClientForREST
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    var realm: Realm!
+    static var realm: Realm!
     static var socketShouldAct = true
     static var realmConfig: Realm.Configuration!
     static var source = "logIn"
+    static var sharedInstance: AppDelegate!
+    
+    var restrictRotation:UIInterfaceOrientationMask = .portrait
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        GoogleSignIn.sharedInstance().delegate = self
+        GoogleSignIn.sharedInstance().restoreSignIn()
+        AppDelegate.sharedInstance = self
         
         var config = Realm.Configuration()
         config.fileURL = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).first?.appendingPathComponent("bundle.realm")
@@ -30,19 +36,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(Realm.Configuration.defaultConfiguration.fileURL)
         
         GoogleSignIn.sharedInstance().scopes = [kGTLRAuthScopeDrive, OIDScopeEmail]
-        GoogleSignIn.sharedInstance().restoreSignIn()
-        GoogleSignIn.sharedInstance().delegate = self
-//        GAppAuth.shared.appendAuthorizationRealm(OIDScopeEmail)
-//        GAppAuth.shared.appendAuthorizationRealm(kGTLRAuthScopeDrive)
-        
-//        GIDSignIn.sharedInstance()?.clientID = "708789073204-oqgdmmnsmsiqltfjttdlllsh33t06oba.apps.googleusercontent.com"
-//        GIDSignIn.sharedInstance()?.delegate = self
-//        GIDSignIn.sharedInstance()?.scopes = [kGTLRAuthScopeDrive]
+       
         do{
-            realm = try Realm(configuration: config)
+            AppDelegate.realm = try Realm(configuration: config)
         }catch{
             print("Error initialising new realm, \(error)")
         }
+        
         return true
     }
 
@@ -79,6 +79,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return false
     }
+    
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        
+        if UIDevice.current.userInterfaceIdiom == .phone{
+            restrictRotation = .portrait
+        } else {
+            restrictRotation = .all
+        }
+        
+        return self.restrictRotation
+    }
 
+}
+
+extension AppDelegate: GoogleUserDelegate{
+    func signedIn(didSignInFor user: GoogleUser!, withError error: Error!) {
+        if let _ = error {
+            AuthenticationSource.googleSuccess = false
+            RegisterViewController.sharedInstance.googleFailed()
+            
+        } else {
+            if AppDelegate.source == "register" {
+                RegisterViewController.toGoogle = false
+                AuthenticationSource.googleSuccess = true
+                GoogleDriveTools.service.authorizer = user.authentication
+                RegisterViewController.sharedInstance.registerUser(self)
+            } else {
+                AuthenticationSource.googleSuccess = true
+                GoogleDriveTools.service.authorizer = user.authentication
+                LoginViewController.sharedInstance.toGoogle = false
+                LoginViewController.sharedInstance.logMeIn(self)
+            }
+        }
+    }
+    
+    func signedOut(didSignOutFor user: GoogleUser!, withError error: Error!) {
+        GoogleSignIn.removeInstance()
+    }
+    
 }
 

@@ -11,33 +11,30 @@ import PDFKit
 import RealmSwift
 import GoogleAPIClientForREST
 
-class AddNewFileViewController: UIViewController {
-    
+class AddNewFileViewController: UIViewController, BookChangerDelegate {
+    var updating = false
     var originalBookURL: URL!
+    var controller: MyShelvesViewController!
     var newBookURL: URL!
     var loggedIn: Bool!
     var fileShouldBeMoved = false
     var originalFileName: String {
-        let base = String(originalBookURL.lastPathComponent)
-        var lastPeriod = 0
-        var counter = 0
-        
-        for character in base {
-            if character == "." {
-                lastPeriod = counter
-            }
-            counter += 1
-        }
-        
-        return String(base.prefix(lastPeriod))
-    }
-    var finalTitle: String {
         get{
-            return originalFileName
-        } set {
+            let base = String(originalBookURL.lastPathComponent)
+            var lastPeriod = 0
+            var counter = 0
             
-        }
+            for character in base {
+                if character == "." {
+                    lastPeriod = counter
+                }
+                counter += 1
+            }
+            
+            return String(base.prefix(lastPeriod))
+        } set{}
     }
+    var finalFileName: String!
     var thumbnail: UIImage{
         do {
             let data = try Data(contentsOf: originalBookURL)
@@ -52,13 +49,24 @@ class AddNewFileViewController: UIViewController {
         }
         
     }
-    var author = ""
-    var year = ""
+    var thumbnailData: StoredFile!
+    var author: String! = ""
+    var year: String! = ""
     var metadataCount = 2
-    var shelfName = ["All my books"]
-    var toDrive = true
-    var shouldCopy = false
-    var doneCell:AddFileDone!
+    var isCloud: Bool{
+        if toDrive{
+            return true
+        } else {
+            for shelf in shelvesToAddress {
+                if shelf.cloudVar.value == true{
+                    return true
+                }
+            }
+        }
+        return false
+    }
+    var shelvesToAddress: [Shelf] = []
+    var toDrive = false
     var tableOriginalLoad = true
     @IBOutlet weak var tableView: UITableView!
     
@@ -67,6 +75,9 @@ class AddNewFileViewController: UIViewController {
         // Do any additional setup after loading the view.
         AddFileViewTitle.controller = self
         AddFileDone.controller = self
+        thumbnailData = StoredFile()
+        thumbnailData.data = thumbnail.jpegData(compressionQuality: 0.1)
+        print(thumbnailData!)
         tableView.register(UINib(nibName: "AddFileThumbnail", bundle: nil), forCellReuseIdentifier: AddFileThumbnail.identifier)
         tableView.register(UINib(nibName: "AddFileViewTitle", bundle: nil), forCellReuseIdentifier: AddFileViewTitle.identifier)
         tableView.register(UINib(nibName: "AddFileShelfPickerTrigger", bundle: nil), forCellReuseIdentifier: AddFileShelfPickerTrigger.idetifier)
@@ -75,68 +86,17 @@ class AddNewFileViewController: UIViewController {
         tableView.register(UINib(nibName: "AddFileDone", bundle: nil), forCellReuseIdentifier: AddFileDone.identifier)
         tableView.delegate = self
         tableView.dataSource = self
+        finalFileName = originalFileName
     }
     
-    func createFile() {
-        let realm = try! Realm(configuration: AppDelegate.realmConfig)
-        let newBook = Book()
-        newBook.title = finalTitle
-        newBook.author = author
-        newBook.year = year
-        newBook.thumbnail?.initialize("\(finalTitle) Thumbnail", thumbnail.jpegData(compressionQuality: 0.5)!, "image")
-        if fileShouldBeMoved{
-            do{
-                try FileManager.default.copyItem(at: originalBookURL, to: newBookURL)
-                newBook.localAddress = newBookURL.absoluteString
-            } catch {
-                let alert = UIAlertController(title: "Error Adding File", message: "There was an error adding \"\(finalTitle)\" to your shelves. Please try again.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
-                self.present(alert, animated: true)
-            }
-        } else {
-            newBook.localAddress = originalBookURL.absoluteString
-        }
-        if loggedIn {
-            let user = realm.objects(CloudUser.self)[0]
-            for shelf in user.alexandriaData!.shelves {
-                for name in shelfName{
-                    if shelf.name == name {
-                        do{
-                            try realm.write(){
-                                shelf.books.append(newBook)
-                            }
-                        } catch {
-                            
-                        }
-                    }
-                }
-            }
-            if toDrive {
-                GoogleDriveTools.uploadFileToDrive(name: newBook.title!, fileURL: URL(string: newBook.localAddress!)!, mimeType: "application/pdf", parent: user.alexandriaData!.booksFolderID!, service: GoogleDriveTools.service)
-            } else {
-                let alert = UIAlertController(title: "Cloud Alert", message: "If you don't share your files to Google Drive you will not be able to access them from other devices", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Continue", style: .destructive, handler: nil))
-                alert.addAction(UIAlertAction(title: "Add to Drive", style: .default){ action in
-                    GoogleDriveTools.uploadFileToDrive(name: newBook.title!, fileURL: URL(string: newBook.localAddress!)!, mimeType: "application/pdf", parent: user.alexandriaData!.rootFolderID!, service: GoogleDriveTools.service)
-                })
-                self.present(alert, animated: true)
-            }
-        } else {
-            let user = realm.objects(UnloggedUser.self)[0]
-            for shelf in user.alexandriaData!.shelves {
-                for name in shelfName{
-                    if shelf.name == name {
-                        do{
-                            try realm.write(){
-                                shelf.books.append(newBook)
-                            }
-                        } catch {
-                            
-                        }
-                    }
-                }
-            }
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Socket.sharedInstance.delegate = self
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        controller.refreshView()
     }
 }
 
@@ -171,12 +131,14 @@ extension AddNewFileViewController: UITableViewDataSource{
             return cell
         } else if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: AddFileViewTitle.identifier) as! AddFileViewTitle
-            cell.fileTitle.text = originalFileName
+            cell.fileTitle.text = finalFileName
             return cell
         } else if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: AddFileShelfPickerTrigger.idetifier) as! AddFileShelfPickerTrigger
-            if shelfName.count == 1 {
-                cell.shelfName.text = shelfName[0]
+            if shelvesToAddress.count == 0 {
+                cell.shelfName.text = "All my books"
+            } else if shelvesToAddress.count == 1{
+                cell.shelfName.text = shelvesToAddress[0].name
             } else {
                 cell.shelfName.text = "Multiple"
             }
@@ -189,7 +151,16 @@ extension AddNewFileViewController: UITableViewDataSource{
                 cell.checkCircle.setImage(UIImage(systemName: "circle.fill"), for: .normal)
                 cell.checkCircle.tintColor = UIColor(cgColor: CGColor(srgbRed: 234/255, green: 145/255, blue: 33/255, alpha: 1))
                 cell.recommendedLabel.text = "(NEEDED FOR CLOUD SYNC)"
+                toDrive = true
+                if isCloud && shelvesToAddress.count > 0{
+                    toDrive = true
+                    cell.optionName.alpha = 0.3
+                    cell.checkCircle.alpha = 0.3
+                    cell.recommendedLabel.alpha = 0.3
+                    cell.loggedIn = false
+                }
             } else {
+                toDrive = false
                 cell.loggedIn = loggedIn
                 cell.optionName.alpha = 0.3
                 cell.checkCircle.alpha = 0.3
@@ -199,12 +170,27 @@ extension AddNewFileViewController: UITableViewDataSource{
             return cell
         } else if indexPath.row == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "addFileCheckBoxes") as! AddFileCheckBoxes
-            cell.optionName.text = "Copy to App Folder"
+            cell.optionName.text = "Local Copy"
+            if !loggedIn {
+                cell.isChecked = true
+                cell.checkCircle.setImage(UIImage(systemName: "circle.fill"), for: .normal)
+                cell.checkCircle.tintColor = UIColor(cgColor: CGColor(srgbRed: 234/255, green: 145/255, blue: 33/255, alpha: 1))
+                cell.recommendedLabel.text = "(NEEDED FOR CLOUD SYNC)"
+                fileShouldBeMoved = true
+                if !isCloud && shelvesToAddress.count > 0{
+                    fileShouldBeMoved = true
+                    cell.optionName.alpha = 0.3
+                    cell.checkCircle.alpha = 0.3
+                    cell.recommendedLabel.alpha = 0.3
+                    cell.loggedIn = false
+                }
+            }
             cell.isChecked = false
             cell.controller = self
             return cell
         } else if indexPath.row == 5 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "addFileMetadataComponent") as! AddFileMetadataComponent
+            cell.controller = self
             cell.metadataName.text = "Author"
             cell.metadataContent.placeholder = "Name"
             if let title = PDFDocument(url: originalBookURL)?.documentAttributes![PDFDocumentAttribute.authorAttribute] as? String{
@@ -218,6 +204,7 @@ extension AddNewFileViewController: UITableViewDataSource{
             return cell
         } else if indexPath.row == 6 {
             let cell = tableView.dequeueReusableCell(withIdentifier: AddFileMetadataComponent.identifier) as! AddFileMetadataComponent
+            cell.controller = self
             cell.metadataName.text = "Year"
             cell.metadataContent.placeholder = "Date"
             if tableOriginalLoad {

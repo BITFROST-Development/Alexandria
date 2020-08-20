@@ -37,7 +37,6 @@ class AddFileDone: UITableViewCell {
     }
     
     @IBAction func saveFile(_ sender: Any) {
-        print(layer.frame.height)
         AddFileDone.controller.createFile()
     }
     
