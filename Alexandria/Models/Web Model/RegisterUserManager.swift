@@ -17,9 +17,6 @@ extension RegisterViewController {
     func signInGoogle(){
         GoogleSignIn.sharedInstance().presentingViewController = self
         GoogleSignIn.sharedInstance().signIn()
-//        while AuthenticationSource.googleSuccess != true {
-//            print("waiting for authentication")
-//        }
     }
     
     func findExistingFolder(parents: String, name: String, service: GTLRDriveService, user: GoogleUser, completion: @escaping(String?) -> Void ){

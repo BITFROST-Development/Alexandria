@@ -8,10 +8,12 @@
 
 import UIKit
 
-class AddFileShelfPickerTrigger: UITableViewCell {
+class AddFilePickerTrigger: UITableViewCell {
 
-    static var idetifier = "addFileShelfName"
+    static var identifier = "addFileShelfName"
+    
     @IBOutlet weak var shelfName: UILabel!
+    @IBOutlet weak var fieldTitle: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

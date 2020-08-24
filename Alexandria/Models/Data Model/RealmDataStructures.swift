@@ -17,6 +17,7 @@ class AlexandriaData: Object, RealmOptionalType{
     var shelves = RealmSwift.List<Shelf>()
     var localShelves = RealmSwift.List<Shelf>()
     var vaults = RealmSwift.List<Vault>()
+    var localVaults = RealmSwift.List<Vault>()
     var cloudBooks = RealmSwift.List<Book>()
     var localBooks = RealmSwift.List<Book>()
     
@@ -95,13 +96,13 @@ class AlexandriaData: Object, RealmOptionalType{
             lhs.vaults[index].birthName = rhs.vaults![index].birthName
             lhs.vaults[index].name = rhs.vaults![index].name
             
-            if lhs.vaults[index].terms.count != 0 {
-                lhs.vaults[index].terms.removeAll()
+            if lhs.vaults[index].sets.count != 0 {
+                lhs.vaults[index].sets.removeAll()
             }
             
-            for kindex in 0..<(rhs.vaults![index].terms?.count ?? 0){
-                lhs.vaults[index].terms.append(Term())
-                lhs.vaults[index].terms[kindex] ^ rhs.vaults![index].terms![kindex]
+            for kindex in 0..<(rhs.vaults![index].sets?.count ?? 0){
+                lhs.vaults[index].sets.append(TermSet())
+                lhs.vaults[index].sets[kindex] ^ rhs.vaults![index].sets![kindex]
             }
         }
     }
@@ -450,27 +451,33 @@ class Shelf: Object{
     }
 }
 
-class Vault: Object{
+class Vault: Object, VaultDisplayable{
     @objc dynamic var vaultFolderID: String?
     @objc dynamic var parentFolderID: String?
     var childrenFolderIDs = RealmSwift.List<String>()
+    var localChildrenFolderIDs = RealmSwift.List<String>()
+    var vaultPathComponents = RealmSwift.List<String>()
+    @objc dynamic var color: IconColor?
     @objc dynamic var birthName: String?
     @objc dynamic var name: String?
+    @objc dynamic var localAddress: String?
     var cloudVar = RealmOptional<Bool>()
-    var terms = RealmSwift.List<Term>()
+    var sets = RealmSwift.List<TermSet>()
+    var localSets = RealmSwift.List<TermSet>()
     var notes = RealmSwift.List<Note>()
+    var localNotes = RealmSwift.List<Note>()
     
     required init() {
         cloudVar.value = false
     }
     
     static func equals(_ lhs: Vault, _ rhs: VaultDec) -> Bool{
-        if lhs.parentFolderID != rhs.parentFolderID || lhs.childrenFolderIDs.count != rhs.childrenFolderIDs?.count || lhs.vaultFolderID != rhs.vaultFolderID || lhs.birthName != rhs.birthName || lhs.name != rhs.name || lhs.terms.count != rhs.terms?.count || lhs.notes.count != rhs.notes?.count{
+        if lhs.parentFolderID != rhs.parentFolderID || lhs.childrenFolderIDs.count != rhs.childrenFolderIDs?.count || lhs.vaultFolderID != rhs.vaultFolderID || lhs.birthName != rhs.birthName || lhs.name != rhs.name || lhs.sets.count != rhs.sets?.count || lhs.notes.count != rhs.notes?.count || IconColor.equals(lhs.color, rhs.color){
             return false
         }
         
-        for index in 0..<(rhs.terms?.count ?? 0){
-            if !Term.equals(lhs.terms[index], rhs.terms![index]){
+        for index in 0..<(rhs.sets?.count ?? 0){
+            if !TermSet.equals(lhs.sets[index], rhs.sets![index]){
                 return false
             }
         }
@@ -499,11 +506,11 @@ class Vault: Object{
                 if lhs?[index].parentFolderID != rhs?[index].parentFolderID || lhs?[index].vaultFolderID != rhs?[index].vaultFolderID || lhs?[index].birthName != rhs?[index].birthName || lhs?[index].name != rhs?[index].name{
                     return false
                 } else {
-                    if lhs?[index].terms.count != rhs?[index].terms?.count || lhs?[index].childrenFolderIDs.count != rhs?[index].childrenFolderIDs?.count || lhs?[index].notes.count != rhs?[index].notes?.count{
+                    if lhs?[index].sets.count != rhs?[index].sets?.count || lhs?[index].childrenFolderIDs.count != rhs?[index].childrenFolderIDs?.count || lhs?[index].notes.count != rhs?[index].notes?.count || IconColor.equals(lhs?[index].color, rhs?[index].color){
                         return false
                     } else {
-                        for kindex in 0..<(rhs![index].terms?.count ?? 0){
-                            if !Term.equals(lhs![index].terms[kindex], rhs![index].terms![kindex]){
+                        for kindex in 0..<(rhs![index].sets?.count ?? 0){
+                            if !TermSet.equals(lhs![index].sets[kindex], rhs![index].sets![kindex]){
                                 return false
                             }
                         }
@@ -531,24 +538,34 @@ class Vault: Object{
         lhs.name = rhs.name
         lhs.vaultFolderID = rhs.vaultFolderID
         lhs.cloudVar.value = true
-        lhs.terms.removeAll()
+        lhs.color! ^ rhs.color!
+        lhs.sets.removeAll()
         lhs.notes.removeAll()
         lhs.childrenFolderIDs.removeAll()
+        lhs.vaultPathComponents.removeAll()
         
-        for index in 0..<(rhs.terms?.count ?? 0){
-            lhs.terms.append(Term())
-            lhs.terms[index] ^ rhs.terms![index]
+        for index in 0..<(rhs.sets?.count ?? 0){
+            lhs.sets.append(TermSet())
+            lhs.sets[index] ^ rhs.sets![index]
         }
         
         for index in 0..<(rhs.notes?.count ?? 0){
             lhs.notes.append(Note())
             lhs.notes[index] ^ rhs.notes![index]
         }
+        
+        for index in 0..<(rhs.childrenFolderIDs?.count ?? 0){
+            lhs.childrenFolderIDs.append(rhs.childrenFolderIDs![index])
+        }
+        
+        for index in 0..<(rhs.vaultPathComponents?.count ?? 0){
+            lhs.vaultPathComponents.append(rhs.vaultPathComponents![index])
+        }
     }
     
     static func assign (_ lhs: RealmSwift.List<Vault>?, _ rhs: [VaultDec]?){
         for index in 0..<(lhs?.count ?? 0){
-            lhs![index].terms.removeAll()
+            lhs![index].sets.removeAll()
         }
         
         for index in 0..<(lhs?.count ?? 0){
@@ -559,6 +576,10 @@ class Vault: Object{
             lhs![index].childrenFolderIDs.removeAll()
         }
         
+        for index in 0..<(lhs?.count ?? 0){
+            lhs![index].vaultPathComponents.removeAll()
+        }
+        
         lhs?.removeAll()
         
         for index in 0..<(rhs?.count ?? 0){
@@ -567,9 +588,10 @@ class Vault: Object{
             lhs![index].name = rhs![index].name
             lhs![index].vaultFolderID = rhs![index].vaultFolderID
             lhs![index].cloudVar.value = true
-            for kindex in 0..<(rhs![index].terms?.count ?? 0){
-                lhs?[index].terms.append(Term())
-                lhs![index].terms[kindex] ^ rhs![index].terms![kindex]
+            lhs![index].color! ^ rhs![index].color!
+            for kindex in 0..<(rhs![index].sets?.count ?? 0){
+                lhs?[index].sets.append(TermSet())
+                lhs![index].sets[kindex] ^ rhs![index].sets![kindex]
             }
             
             for kindex in 0..<(rhs![index].notes?.count ?? 0){
@@ -580,18 +602,25 @@ class Vault: Object{
             for kindex in 0..<(rhs![index].childrenFolderIDs?.count ?? 0){
                 lhs?[index].childrenFolderIDs.append(rhs![index].childrenFolderIDs![kindex])
             }
+            
+            for kindex in 0..<(rhs![index].vaultPathComponents?.count ?? 0){
+                lhs?[index].vaultPathComponents.append(rhs![index].vaultPathComponents![kindex])
+            }
+            
         }
     }
 }
 
-class Note: Object{
+class Note: Object, VaultDisplayable{
     @objc dynamic var id: String?
-    @objc dynamic var title: String?
+    @objc dynamic var name: String?
     @objc dynamic var lastUpdated: Date?
+    @objc dynamic var localAddress: String? = nil
+    var cloudVar = RealmOptional<Bool>()
     @objc dynamic var thumbnail: StoredFile?
     
     static func != (lhs: Note, rhs: NoteDec) -> Bool{
-        if lhs.id != rhs.id || lhs.title != rhs.title || lhs.lastUpdated != rhs.lastUpdated || !StoredFile.equals(lhs: lhs.thumbnail!, rhs: rhs.thumbnail!){
+        if lhs.id != rhs.id || lhs.name != rhs.title || lhs.lastUpdated != rhs.lastUpdated || !StoredFile.equals(lhs: lhs.thumbnail!, rhs: rhs.thumbnail!){
             return true
         }
         return false
@@ -599,9 +628,57 @@ class Note: Object{
     
     static func ^ (lhs: Note, rhs: NoteDec){
         lhs.id = rhs.id
-        lhs.title = rhs.title
+        lhs.name = rhs.title
         lhs.lastUpdated = rhs.lastUpdated
         lhs.thumbnail = StoredFile(rhs.thumbnail)
+    }
+}
+
+class TermSet: Object, VaultDisplayable{
+    @objc dynamic var birthName: String?
+    @objc dynamic var name: String?
+    @objc dynamic var color: IconColor?
+    var cloudVar = RealmOptional<Bool>()
+    var terms = RealmSwift.List<Term>()
+    
+    static func equals (_ lhs: TermSet, _ rhs: TermSetDec) -> Bool {
+        if lhs.birthName != rhs.birthName || lhs.name != rhs.name || lhs.terms.count != rhs.terms?.count || !IconColor.equals(lhs.color, rhs.color){
+            return false
+        } else{
+            for index in 0..<(rhs.terms?.count ?? 0){
+                if !Term.equals(lhs.terms[index], rhs.terms![index]){
+                    return false
+                }
+            }
+            
+            return true
+        }
+    }
+    
+    static func ^ (_ lhs: TermSet, _ rhs: TermSetDec){
+        lhs.birthName = rhs.birthName
+        lhs.name = rhs.name
+        if rhs.color != nil {
+            if lhs.color != nil {
+                lhs.color! ^ rhs.color!
+            } else {
+                lhs.color = IconColor(from: rhs.color!)
+            }
+        } else if lhs.color != nil{
+            do {
+                try AppDelegate.realm.write({
+                    AppDelegate.realm.delete(lhs.color!)
+                })
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+        lhs.terms.removeAll()
+        
+        for index in 0..<(rhs.terms?.count ?? 0){
+            lhs.terms.append(Term())
+            lhs.terms[index] ^ rhs.terms![index]
+        }
     }
 }
 
@@ -617,12 +694,42 @@ class Term: Object{
         return true
     }
     
-    static func ^ (_ lhs: Term,_ rhs: TermDec){
+    static func ^ (_ lhs: Term, _ rhs: TermDec){
         lhs.type = rhs.type
         lhs.content = rhs.content
         lhs.location = rhs.location
     }
     
+}
+
+class IconColor: Object{
+    var red = RealmOptional<Double>()
+    var green = RealmOptional<Double>()
+    var blue = RealmOptional<Double>()
+    @objc dynamic var colorName: String?
+    
+    required init(){}
+    
+    required init(from cloud: IconColorDec) {
+        self.red.value = cloud.red
+        self.green.value = cloud.green
+        self.blue.value = cloud.blue
+        self.colorName = cloud.colorName
+    }
+    
+    static func equals (_ lhs: IconColor?, _ rhs: IconColorDec?) -> Bool{
+        if lhs?.red.value != rhs?.red || lhs?.green.value != rhs?.green || lhs?.blue.value != rhs?.blue || lhs?.colorName != rhs?.colorName{
+            return false
+        }
+        return true
+    }
+    
+    static func ^ (_ lhs: IconColor, _ rhs: IconColorDec) {
+        lhs.red.value = rhs.red
+        lhs.green.value = rhs.green
+        lhs.blue.value = rhs.blue
+        lhs.colorName = rhs.colorName
+    }
 }
 
 class Book: Object {

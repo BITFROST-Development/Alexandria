@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17140" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17115"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="myVaultsCollectionViewCell" translatesAutoresizingMaskIntoConstraints="NO" id="gTV-IL-0wX" customClass="MyVaultsCollectionViewCell" customModule="Alexandria" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="180" height="260"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="180" height="260"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vault Icon" translatesAutoresizingMaskIntoConstraints="NO" id="Vjn-X8-AaS">
+                        <rect key="frame" x="15" y="15" width="150" height="180"/>
+                        <color key="tintColor" red="0.91764705879999997" green="0.56862745100000001" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="150" id="5IT-TX-tCD"/>
+                            <constraint firstAttribute="height" constant="180" id="HeP-M5-DpH"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Q5-Vd-Ygf">
+                        <rect key="frame" x="15" y="15" width="150" height="180"/>
+                        <connections>
+                            <action selector="goTo:" destination="gTV-IL-0wX" eventType="touchUpInside" id="yM4-3X-7Zo"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vault Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzs-CL-RuR">
+                        <rect key="frame" x="52" y="215" width="76" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="77o-df-lmm">
+                        <rect key="frame" x="132.5" y="217" width="15" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="jii-r9-ScL"/>
+                            <constraint firstAttribute="width" constant="15" id="kYd-O0-362"/>
+                        </constraints>
+                        <color key="tintColor" red="0.91764705879999997" green="0.56862745100000001" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <state key="normal" image="chevron.down.circle" catalog="system"/>
+                        <connections>
+                            <action selector="itemPreferences:" destination="gTV-IL-0wX" eventType="touchUpInside" id="6vZ-21-jIf"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="Vjn-X8-AaS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="5oA-9b-ciS"/>
+                <constraint firstItem="77o-df-lmm" firstAttribute="leading" secondItem="zzs-CL-RuR" secondAttribute="trailing" constant="4.5" id="9Lm-7A-FX4"/>
+                <constraint firstAttribute="height" constant="260" id="AD3-fS-bPv"/>
+                <constraint firstItem="5Q5-Vd-Ygf" firstAttribute="width" secondItem="Vjn-X8-AaS" secondAttribute="width" id="BKg-U0-Y9q"/>
+                <constraint firstItem="5Q5-Vd-Ygf" firstAttribute="height" secondItem="Vjn-X8-AaS" secondAttribute="height" id="GTm-8B-lY3"/>
+                <constraint firstItem="Vjn-X8-AaS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="OMT-bO-KmE"/>
+                <constraint firstAttribute="width" constant="180" id="Ovj-iS-YOW"/>
+                <constraint firstItem="77o-df-lmm" firstAttribute="firstBaseline" secondItem="zzs-CL-RuR" secondAttribute="firstBaseline" constant="-2" id="QBy-10-gin"/>
+                <constraint firstItem="5Q5-Vd-Ygf" firstAttribute="centerX" secondItem="Vjn-X8-AaS" secondAttribute="centerX" id="efF-ob-EgL"/>
+                <constraint firstAttribute="trailing" secondItem="Vjn-X8-AaS" secondAttribute="trailing" constant="15" id="kZd-a5-Eoi"/>
+                <constraint firstItem="zzs-CL-RuR" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="sKn-s7-EDD"/>
+                <constraint firstItem="zzs-CL-RuR" firstAttribute="top" secondItem="Vjn-X8-AaS" secondAttribute="bottom" constant="20" id="sqP-JT-SrC"/>
+                <constraint firstItem="Vjn-X8-AaS" firstAttribute="bottom" secondItem="5Q5-Vd-Ygf" secondAttribute="bottom" id="xre-6e-XST"/>
+            </constraints>
+            <size key="customSize" width="179" height="261"/>
+            <connections>
+                <outlet property="vaultIcon" destination="Vjn-X8-AaS" id="cgT-c4-345"/>
+                <outlet property="vaultTitle" destination="zzs-CL-RuR" id="rb3-fM-9hw"/>
+            </connections>
+            <point key="canvasLocation" x="136.23188405797103" y="128.57142857142856"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="Vault Icon" width="503.5" height="497"/>
+        <image name="chevron.down.circle" catalog="system" width="128" height="121"/>
+    </resources>
+</document>

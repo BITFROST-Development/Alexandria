@@ -166,10 +166,12 @@ struct ShelfDec: Codable, Equatable{
 struct VaultDec: Codable, Equatable{
     var vaultFolderID: String?
     var parentFolderID: String?
+    var vaultPathComponents: [String]?
     var childrenFolderIDs: [String]?
+    var color: IconColorDec?
     var birthName: String?
     var name: String?
-    var terms: [TermDec]?
+    var sets: [TermSetDec]?
     var notes: [NoteDec]?
     
     init(){}
@@ -178,13 +180,18 @@ struct VaultDec: Codable, Equatable{
         vaultFolderID = storedVault.vaultFolderID
         birthName = storedVault.birthName
         name = storedVault.name
-        terms = []
-        for term in storedVault.terms{
-            terms?.append(TermDec(storedTerm: term))
+        color = IconColorDec(storedVault.color!)
+        sets = []
+        for set in storedVault.sets{
+            sets?.append(TermSetDec(storedSet: set))
         }
         notes = []
         for note in storedVault.notes{
             notes?.append(NoteDec(storedNote: note))
+        }
+        vaultPathComponents = []
+        for component in storedVault.vaultPathComponents{
+            vaultPathComponents?.append(component)
         }
     }
 }
@@ -199,13 +206,32 @@ struct NoteDec: Codable, Equatable{
     
     init(storedNote: Note){
         self.id = storedNote.id
-        self.title = storedNote.title
+        self.title = storedNote.name
         self.lastUpdated = storedNote.lastUpdated
         self.thumbnail = StoredFileDec(storedNote.thumbnail!.name!, storedNote.thumbnail!.data!, storedNote.thumbnail!.contentType!)
     }
 }
 
-struct TermDec: Codable,Equatable{
+struct TermSetDec: Codable, Equatable{
+    var birthName: String?
+    var name: String?
+    var color: IconColorDec?
+    var terms: [TermDec]?
+    
+    init() {}
+    
+    init(storedSet: TermSet){
+        birthName = storedSet.birthName
+        name = storedSet.name
+        terms = []
+        color = IconColorDec(storedSet.color!)
+        for term in storedSet.terms{
+            terms?.append(TermDec(storedTerm: term))
+        }
+    }
+}
+
+struct TermDec: Codable, Equatable{
     var type: String?
     var content: String?
     var location: String?
@@ -216,6 +242,22 @@ struct TermDec: Codable,Equatable{
         type = storedTerm.type
         content = storedTerm.content
         location = storedTerm.location
+    }
+}
+
+struct IconColorDec: Codable, Equatable{
+    var red: Double?
+    var green: Double?
+    var blue: Double?
+    var colorName: String?
+    
+    init(){}
+    
+    init(_ storedIcon: IconColor){
+        red = storedIcon.red.value
+        green = storedIcon.green.value
+        blue = storedIcon.blue.value
+        colorName = storedIcon.colorName
     }
 }
 

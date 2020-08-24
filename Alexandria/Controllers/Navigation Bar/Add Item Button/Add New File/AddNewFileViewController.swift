@@ -80,7 +80,7 @@ class AddNewFileViewController: UIViewController, BookChangerDelegate {
         print(thumbnailData!)
         tableView.register(UINib(nibName: "AddFileThumbnail", bundle: nil), forCellReuseIdentifier: AddFileThumbnail.identifier)
         tableView.register(UINib(nibName: "AddFileViewTitle", bundle: nil), forCellReuseIdentifier: AddFileViewTitle.identifier)
-        tableView.register(UINib(nibName: "AddFileShelfPickerTrigger", bundle: nil), forCellReuseIdentifier: AddFileShelfPickerTrigger.idetifier)
+        tableView.register(UINib(nibName: "AddFilePickerTrigger", bundle: nil), forCellReuseIdentifier: AddFilePickerTrigger.identifier)
         tableView.register(UINib(nibName: "AddFileCheckBoxes", bundle: nil), forCellReuseIdentifier: AddFileCheckBoxes.identifier)
         tableView.register(UINib(nibName: "AddFileMetadataComponent", bundle: nil), forCellReuseIdentifier: AddFileMetadataComponent.identifier)
         tableView.register(UINib(nibName: "AddFileDone", bundle: nil), forCellReuseIdentifier: AddFileDone.identifier)
@@ -134,7 +134,7 @@ extension AddNewFileViewController: UITableViewDataSource{
             cell.fileTitle.text = finalFileName
             return cell
         } else if indexPath.row == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: AddFileShelfPickerTrigger.idetifier) as! AddFileShelfPickerTrigger
+            let cell = tableView.dequeueReusableCell(withIdentifier: AddFilePickerTrigger.identifier) as! AddFilePickerTrigger
             if shelvesToAddress.count == 0 {
                 cell.shelfName.text = "All my books"
             } else if shelvesToAddress.count == 1{
@@ -146,9 +146,9 @@ extension AddNewFileViewController: UITableViewDataSource{
         } else if indexPath.row == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "addFileCheckBoxes") as! AddFileCheckBoxes
             cell.optionName.text = "Store in Google Drive"
-            if loggedIn {
+            if loggedIn && Socket.sharedInstance.socket.status == .connected{
                 cell.isChecked = true
-                cell.checkCircle.setImage(UIImage(systemName: "circle.fill"), for: .normal)
+                cell.checkCircle.setImage(UIImage(systemName: "smallcircle.circle.fill"), for: .normal)
                 cell.checkCircle.tintColor = UIColor(cgColor: CGColor(srgbRed: 234/255, green: 145/255, blue: 33/255, alpha: 1))
                 cell.recommendedLabel.text = "(NEEDED FOR CLOUD SYNC)"
                 toDrive = true
@@ -173,7 +173,7 @@ extension AddNewFileViewController: UITableViewDataSource{
             cell.optionName.text = "Local Copy"
             if !loggedIn {
                 cell.isChecked = true
-                cell.checkCircle.setImage(UIImage(systemName: "circle.fill"), for: .normal)
+                cell.checkCircle.setImage(UIImage(systemName: "smallcircle.circle.fill"), for: .normal)
                 cell.checkCircle.tintColor = UIColor(cgColor: CGColor(srgbRed: 234/255, green: 145/255, blue: 33/255, alpha: 1))
                 cell.recommendedLabel.text = "(NEEDED FOR CLOUD SYNC)"
                 fileShouldBeMoved = true

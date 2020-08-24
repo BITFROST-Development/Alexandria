@@ -16,6 +16,7 @@ class AddFileThumbnail: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 //        print(self.layer.frame.height)
+        fileThumbnail.image = fileThumbnail.image?.withRenderingMode(.alwaysTemplate)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

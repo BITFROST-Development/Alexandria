@@ -11,7 +11,7 @@ import UIKit
 class AddFileViewTitle: UITableViewCell {
     
     static var identifier = "addFileViewTitle"
-    static var controller: BookChangerDelegate!
+    static var controller: ItemChangerDelegate!
     @IBOutlet weak var fileTitle: FileTitle!
     @IBOutlet weak var clearButton: UIButton!
     

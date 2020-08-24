@@ -10,6 +10,8 @@ import UIKit
 
 class AddItemCell: UITableViewCell {
     
+    static var identifier = "addItemCell"
+    
     var controller: MyShelvesViewController!
     @IBOutlet weak var itemName: UIButton!
     @IBOutlet weak var separatorView: UIView!

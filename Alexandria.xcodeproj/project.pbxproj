@@ -11,6 +11,19 @@
 		81021C9724EF31FD00075B54 /* MyVaultsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81021C9524EF31FD00075B54 /* MyVaultsCollectionViewCell.swift */; };
 		81021C9824EF31FD00075B54 /* MyVaultsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81021C9624EF31FD00075B54 /* MyVaultsCollectionViewCell.xib */; };
 		81021C9A24EF39C400075B54 /* MyVaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81021C9924EF39C400075B54 /* MyVaultsManager.swift */; };
+		81021C9C24EF941100075B54 /* VaultDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81021C9B24EF941100075B54 /* VaultDisplayable.swift */; };
+		81021CA224F0DD8900075B54 /* AddItemVaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81021CA024F0DD8800075B54 /* AddItemVaultCell.swift */; };
+		81021CA324F0DFC500075B54 /* AddItemVaultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81021CA124F0DD8800075B54 /* AddItemVaultCell.xib */; };
+		81021CA724F1736D00075B54 /* NewVaultSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81021CA624F1736D00075B54 /* NewVaultSetViewController.swift */; };
+		81021CA924F173B700075B54 /* NewNotebookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81021CA824F173B700075B54 /* NewNotebookViewController.swift */; };
+		81021CAB24F17C3300075B54 /* ItemChangerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81021CAA24F17C3200075B54 /* ItemChangerDelegate.swift */; };
+		81021CAD24F180BD00075B54 /* NewVaultSetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81021CAC24F180BD00075B54 /* NewVaultSetManager.swift */; };
+		81021CB324F1899100075B54 /* NewVaultSetDone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81021CB124F1891A00075B54 /* NewVaultSetDone.swift */; };
+		81021CB424F1899500075B54 /* NewVaultSetDone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81021CB224F1891A00075B54 /* NewVaultSetDone.xib */; };
+		81021CB724F1CDCA00075B54 /* DefaultColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81021CB524F1CDCA00075B54 /* DefaultColorCell.swift */; };
+		81021CB824F1CDCA00075B54 /* DefaultColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81021CB624F1CDCA00075B54 /* DefaultColorCell.xib */; };
+		81021CBD24F1CE2D00075B54 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81021CBC24F1CE2D00075B54 /* ColorPickerViewController.swift */; };
+		81021CBF24F1CE5A00075B54 /* ColorPickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81021CBE24F1CE5A00075B54 /* ColorPickerManager.swift */; };
 		811A409524B1A8AA0056A395 /* ShelfListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811A409324B1A8AA0056A395 /* ShelfListCell.swift */; };
 		811A409624B1A8AA0056A395 /* ShelfListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 811A409424B1A8AA0056A395 /* ShelfListCell.xib */; };
 		811A409924B1A8C60056A395 /* ShelvesListTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811A409724B1A8C60056A395 /* ShelvesListTitleCell.swift */; };
@@ -25,8 +38,8 @@
 		811A40AE24BD21500056A395 /* AddFileThumbnail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 811A40AC24BD21500056A395 /* AddFileThumbnail.xib */; };
 		811A40B224BD61730056A395 /* AddFileViewTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811A40B024BD61730056A395 /* AddFileViewTitle.swift */; };
 		811A40B324BD61730056A395 /* AddFileViewTitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 811A40B124BD61730056A395 /* AddFileViewTitle.xib */; };
-		811A40B624BE6B440056A395 /* AddFileShelfPickerTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811A40B424BE6B440056A395 /* AddFileShelfPickerTrigger.swift */; };
-		811A40B724BE6B440056A395 /* AddFileShelfPickerTrigger.xib in Resources */ = {isa = PBXBuildFile; fileRef = 811A40B524BE6B440056A395 /* AddFileShelfPickerTrigger.xib */; };
+		811A40B624BE6B440056A395 /* AddFilePickerTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811A40B424BE6B440056A395 /* AddFilePickerTrigger.swift */; };
+		811A40B724BE6B440056A395 /* AddFilePickerTrigger.xib in Resources */ = {isa = PBXBuildFile; fileRef = 811A40B524BE6B440056A395 /* AddFilePickerTrigger.xib */; };
 		811A40BA24BEC73E0056A395 /* AddFileCheckBoxes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811A40B824BEC73E0056A395 /* AddFileCheckBoxes.swift */; };
 		811A40BB24BEC73E0056A395 /* AddFileCheckBoxes.xib in Resources */ = {isa = PBXBuildFile; fileRef = 811A40B924BEC73E0056A395 /* AddFileCheckBoxes.xib */; };
 		811E36E624D7EC28004126F1 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811E36E524D7EC28004126F1 /* LaunchViewController.swift */; };
@@ -142,6 +155,19 @@
 		81021C9524EF31FD00075B54 /* MyVaultsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVaultsCollectionViewCell.swift; sourceTree = "<group>"; };
 		81021C9624EF31FD00075B54 /* MyVaultsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyVaultsCollectionViewCell.xib; sourceTree = "<group>"; };
 		81021C9924EF39C400075B54 /* MyVaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVaultsManager.swift; sourceTree = "<group>"; };
+		81021C9B24EF941100075B54 /* VaultDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultDisplayable.swift; sourceTree = "<group>"; };
+		81021CA024F0DD8800075B54 /* AddItemVaultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemVaultCell.swift; sourceTree = "<group>"; };
+		81021CA124F0DD8800075B54 /* AddItemVaultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddItemVaultCell.xib; sourceTree = "<group>"; };
+		81021CA624F1736D00075B54 /* NewVaultSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVaultSetViewController.swift; sourceTree = "<group>"; };
+		81021CA824F173B700075B54 /* NewNotebookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNotebookViewController.swift; sourceTree = "<group>"; };
+		81021CAA24F17C3200075B54 /* ItemChangerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemChangerDelegate.swift; sourceTree = "<group>"; };
+		81021CAC24F180BD00075B54 /* NewVaultSetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVaultSetManager.swift; sourceTree = "<group>"; };
+		81021CB124F1891A00075B54 /* NewVaultSetDone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVaultSetDone.swift; sourceTree = "<group>"; };
+		81021CB224F1891A00075B54 /* NewVaultSetDone.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewVaultSetDone.xib; sourceTree = "<group>"; };
+		81021CB524F1CDCA00075B54 /* DefaultColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultColorCell.swift; sourceTree = "<group>"; };
+		81021CB624F1CDCA00075B54 /* DefaultColorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DefaultColorCell.xib; sourceTree = "<group>"; };
+		81021CBC24F1CE2D00075B54 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
+		81021CBE24F1CE5A00075B54 /* ColorPickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerManager.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		811A409324B1A8AA0056A395 /* ShelfListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfListCell.swift; sourceTree = "<group>"; };
 		811A409424B1A8AA0056A395 /* ShelfListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShelfListCell.xib; sourceTree = "<group>"; };
 		811A409724B1A8C60056A395 /* ShelvesListTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelvesListTitleCell.swift; sourceTree = "<group>"; };
@@ -156,8 +182,8 @@
 		811A40AC24BD21500056A395 /* AddFileThumbnail.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddFileThumbnail.xib; sourceTree = "<group>"; };
 		811A40B024BD61730056A395 /* AddFileViewTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFileViewTitle.swift; sourceTree = "<group>"; };
 		811A40B124BD61730056A395 /* AddFileViewTitle.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddFileViewTitle.xib; sourceTree = "<group>"; };
-		811A40B424BE6B440056A395 /* AddFileShelfPickerTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFileShelfPickerTrigger.swift; sourceTree = "<group>"; };
-		811A40B524BE6B440056A395 /* AddFileShelfPickerTrigger.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddFileShelfPickerTrigger.xib; sourceTree = "<group>"; };
+		811A40B424BE6B440056A395 /* AddFilePickerTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFilePickerTrigger.swift; sourceTree = "<group>"; };
+		811A40B524BE6B440056A395 /* AddFilePickerTrigger.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddFilePickerTrigger.xib; sourceTree = "<group>"; };
 		811A40B824BEC73E0056A395 /* AddFileCheckBoxes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFileCheckBoxes.swift; sourceTree = "<group>"; };
 		811A40B924BEC73E0056A395 /* AddFileCheckBoxes.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddFileCheckBoxes.xib; sourceTree = "<group>"; };
 		811E36E524D7EC28004126F1 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
@@ -316,7 +342,67 @@
 			path = "Vaults Collection View";
 			sourceTree = "<group>";
 		};
-		811A409224B1A8730056A395 /* Shelve List */ = {
+		81021C9D24F0DD8700075B54 /* Add Item Drop Down */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Add Item Drop Down";
+			sourceTree = "<group>";
+		};
+		81021CA424F0E20900075B54 /* Add New Vault or Set */ = {
+			isa = PBXGroup;
+			children = (
+				81021CA624F1736D00075B54 /* NewVaultSetViewController.swift */,
+				81021CBB24F1CE0700075B54 /* Color Picker */,
+			);
+			path = "Add New Vault or Set";
+			sourceTree = "<group>";
+		};
+		81021CA524F0E22100075B54 /* Add New Notebook */ = {
+			isa = PBXGroup;
+			children = (
+				81021CA824F173B700075B54 /* NewNotebookViewController.swift */,
+			);
+			path = "Add New Notebook";
+			sourceTree = "<group>";
+		};
+		81021CAE24F1886E00075B54 /* New Vault Set custom cells */ = {
+			isa = PBXGroup;
+			children = (
+				81021CB124F1891A00075B54 /* NewVaultSetDone.swift */,
+				81021CB224F1891A00075B54 /* NewVaultSetDone.xib */,
+				81021CB924F1CDE400075B54 /* Color Picker */,
+			);
+			path = "New Vault Set custom cells";
+			sourceTree = "<group>";
+		};
+		81021CB924F1CDE400075B54 /* Color Picker */ = {
+			isa = PBXGroup;
+			children = (
+				81021CBE24F1CE5A00075B54 /* ColorPickerManager.swift */,
+				81021CBA24F1CDF500075B54 /* Color Picker Cells */,
+			);
+			path = "Color Picker";
+			sourceTree = "<group>";
+		};
+		81021CBA24F1CDF500075B54 /* Color Picker Cells */ = {
+			isa = PBXGroup;
+			children = (
+				81021CB524F1CDCA00075B54 /* DefaultColorCell.swift */,
+				81021CB624F1CDCA00075B54 /* DefaultColorCell.xib */,
+			);
+			path = "Color Picker Cells";
+			sourceTree = "<group>";
+		};
+		81021CBB24F1CE0700075B54 /* Color Picker */ = {
+			isa = PBXGroup;
+			children = (
+				81021CBC24F1CE2D00075B54 /* ColorPickerViewController.swift */,
+			);
+			path = "Color Picker";
+			sourceTree = "<group>";
+		};
+		811A409224B1A8730056A395 /* Shelves List */ = {
 			isa = PBXGroup;
 			children = (
 				811A409324B1A8AA0056A395 /* ShelfListCell.swift */,
@@ -324,7 +410,7 @@
 				811A409724B1A8C60056A395 /* ShelvesListTitleCell.swift */,
 				811A409824B1A8C60056A395 /* ShelvesListTitleCell.xib */,
 			);
-			path = "Shelve List";
+			path = "Shelves List";
 			sourceTree = "<group>";
 		};
 		811A409B24B1AB980056A395 /* My Shelves Model */ = {
@@ -355,6 +441,8 @@
 		811A40A724BCFA9B0056A395 /* Add Item Button */ = {
 			isa = PBXGroup;
 			children = (
+				81021CA524F0E22100075B54 /* Add New Notebook */,
+				81021CA424F0E20900075B54 /* Add New Vault or Set */,
 				8137DF6524C3D75E00615218 /* Add New File */,
 				8137DF8724C8999000615218 /* Add New Shelf */,
 			);
@@ -366,6 +454,8 @@
 			children = (
 				81F628FB24ABCC0600137473 /* AddItemCell.swift */,
 				81F628FC24ABCC0600137473 /* AddItemCell.xib */,
+				81021CA024F0DD8800075B54 /* AddItemVaultCell.swift */,
+				81021CA124F0DD8800075B54 /* AddItemVaultCell.xib */,
 			);
 			path = "Add Item Drop Down";
 			sourceTree = "<group>";
@@ -377,8 +467,8 @@
 				811A40AC24BD21500056A395 /* AddFileThumbnail.xib */,
 				811A40B024BD61730056A395 /* AddFileViewTitle.swift */,
 				811A40B124BD61730056A395 /* AddFileViewTitle.xib */,
-				811A40B424BE6B440056A395 /* AddFileShelfPickerTrigger.swift */,
-				811A40B524BE6B440056A395 /* AddFileShelfPickerTrigger.xib */,
+				811A40B424BE6B440056A395 /* AddFilePickerTrigger.swift */,
+				811A40B524BE6B440056A395 /* AddFilePickerTrigger.xib */,
 				811A40B824BEC73E0056A395 /* AddFileCheckBoxes.swift */,
 				811A40B924BEC73E0056A395 /* AddFileCheckBoxes.xib */,
 				81D1D5C924BFE6A400EEDBFC /* AddFileMetadataComponent.swift */,
@@ -628,6 +718,8 @@
 				81C670D32497BB7100B32676 /* SceneDelegate.swift */,
 				81A5DC5224D4FBDE001AFD54 /* BookChangerDelegate.swift */,
 				8193317024EB0DC600E1A56E /* ShelfChangerDelegate.swift */,
+				81021C9B24EF941100075B54 /* VaultDisplayable.swift */,
+				81021CAA24F17C3200075B54 /* ItemChangerDelegate.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -664,7 +756,7 @@
 				81021C9324EF2CE400075B54 /* My Vaults Model */,
 				81F417ED24A2F3A3005193F9 /* My Profile */,
 				81F628FA24ABCBBF00137473 /* Add Item */,
-				811A409224B1A8730056A395 /* Shelve List */,
+				811A409224B1A8730056A395 /* Shelves List */,
 			);
 			path = "Local Model";
 			sourceTree = "<group>";
@@ -689,7 +781,10 @@
 			children = (
 				811E40B724CCEF3100E0753D /* AddNewFileManager.swift */,
 				8193316C24EAFC1500E1A56E /* AddNewShelfManager.swift */,
+				81021CAC24F180BD00075B54 /* NewVaultSetManager.swift */,
+				81021CAE24F1886E00075B54 /* New Vault Set custom cells */,
 				811A40AA24BD1C910056A395 /* Add Item Drop Down */,
+				81021C9D24F0DD8700075B54 /* Add Item Drop Down */,
 				811A40AF24BD60850056A395 /* Add Item View */,
 				8137DF7124C7C4D800615218 /* Add Shelf View */,
 			);
@@ -865,9 +960,11 @@
 				81F628FE24ABCC0600137473 /* AddItemCell.xib in Resources */,
 				8137DF8124C7CF3700615218 /* ShelfBookCollection.xib in Resources */,
 				811A409A24B1A8C60056A395 /* ShelvesListTitleCell.xib in Resources */,
+				81021CB424F1899500075B54 /* NewVaultSetDone.xib in Resources */,
 				811A40AE24BD21500056A395 /* AddFileThumbnail.xib in Resources */,
 				81021C9824EF31FD00075B54 /* MyVaultsCollectionViewCell.xib in Resources */,
-				811A40B724BE6B440056A395 /* AddFileShelfPickerTrigger.xib in Resources */,
+				81021CA324F0DFC500075B54 /* AddItemVaultCell.xib in Resources */,
+				811A40B724BE6B440056A395 /* AddFilePickerTrigger.xib in Resources */,
 				81D1D5CC24BFE6A400EEDBFC /* AddFileMetadataComponent.xib in Resources */,
 				81F417F124A2F947005193F9 /* MyProfileLogoutCell.xib in Resources */,
 				8137DF9624C8A28D00615218 /* ShelfCell.xib in Resources */,
@@ -883,6 +980,7 @@
 				81D1D5D024C00B8C00EEDBFC /* AddFileDone.xib in Resources */,
 				81F417E224A2F32D005193F9 /* MyProfileLogoCell.xib in Resources */,
 				81F417EA24A2F370005193F9 /* MyProfileContentCell.xib in Resources */,
+				81021CB824F1CDCA00075B54 /* DefaultColorCell.xib in Resources */,
 				8137DF7924C7C58200615218 /* ShelfBookPicker.xib in Resources */,
 				8137DF7024C6ADDA00615218 /* BookCell.xib in Resources */,
 				8137DF9224C8A1D300615218 /* CreateNewShelf.xib in Resources */,
@@ -1025,9 +1123,11 @@
 				8137DF8924C89C9100615218 /* ShelfListViewController.swift in Sources */,
 				8137DF7824C7C58200615218 /* ShelfBookPicker.swift in Sources */,
 				8193317A24EEF8D500E1A56E /* ShelfPrePreferencesCell.swift in Sources */,
+				81021CA924F173B700075B54 /* NewNotebookViewController.swift in Sources */,
 				8137DF6924C5241D00615218 /* GoogleUser.swift in Sources */,
 				81F750D9249BD9A60018DF71 /* CloudUser.swift in Sources */,
-				811A40B624BE6B440056A395 /* AddFileShelfPickerTrigger.swift in Sources */,
+				811A40B624BE6B440056A395 /* AddFilePickerTrigger.swift in Sources */,
+				81021CAD24F180BD00075B54 /* NewVaultSetManager.swift in Sources */,
 				811E40B824CCEF3100E0753D /* AddNewFileManager.swift in Sources */,
 				81F750D3249B27EB0018DF71 /* UserData.swift in Sources */,
 				8175B4F024CCE9A8002C7BB7 /* SocketDelegate.swift in Sources */,
@@ -1042,6 +1142,7 @@
 				811E36E624D7EC28004126F1 /* LaunchViewController.swift in Sources */,
 				8193316B24EAFAEE00E1A56E /* ShelfPreferencesManager.swift in Sources */,
 				81F750D7249BD8F00018DF71 /* Team.swift in Sources */,
+				81021CB324F1899100075B54 /* NewVaultSetDone.swift in Sources */,
 				8196A3B924DA39AD00321AC1 /* MyShelvesCollectionViewManager.swift in Sources */,
 				811A40B224BD61730056A395 /* AddFileViewTitle.swift in Sources */,
 				8193317624EEF64000E1A56E /* MyShelvesPreferencesManager.swift in Sources */,
@@ -1049,6 +1150,7 @@
 				811A409924B1A8C60056A395 /* ShelvesListTitleCell.swift in Sources */,
 				81A5DC5324D4FBDE001AFD54 /* BookChangerDelegate.swift in Sources */,
 				811A40A624B588340056A395 /* GoogleDriveTools.swift in Sources */,
+				81021CAB24F17C3300075B54 /* ItemChangerDelegate.swift in Sources */,
 				81F750CB249AFE790018DF71 /* SettingsViewController.swift in Sources */,
 				81D1D5CB24BFE6A400EEDBFC /* AddFileMetadataComponent.swift in Sources */,
 				811A40AD24BD21500056A395 /* AddFileThumbnail.swift in Sources */,
@@ -1064,9 +1166,13 @@
 				81C6711C2499373500B32676 /* MyProfileViewController.swift in Sources */,
 				8193316D24EAFC1500E1A56E /* AddNewShelfManager.swift in Sources */,
 				81C670D62497BB7100B32676 /* MyShelvesViewController.swift in Sources */,
+				81021CBF24F1CE5A00075B54 /* ColorPickerManager.swift in Sources */,
 				811A409F24B302F00056A395 /* MyShelvesTableView.swift in Sources */,
 				81C67116249936A300B32676 /* RegisterLoginViewController.swift in Sources */,
+				81021CB724F1CDCA00075B54 /* DefaultColorCell.swift in Sources */,
+				81021CA224F0DD8900075B54 /* AddItemVaultCell.swift in Sources */,
 				8137DF8D24C8A1B300615218 /* SectionTitle.swift in Sources */,
+				81021CA724F1736D00075B54 /* NewVaultSetViewController.swift in Sources */,
 				8137DF9524C8A28D00615218 /* ShelfCell.swift in Sources */,
 				81F750D5249B293D0018DF71 /* Socket.swift in Sources */,
 				81A5DC5024D4F3CE001AFD54 /* BookPreferencesDoneDelete.swift in Sources */,
@@ -1079,6 +1185,8 @@
 				81C671102499361C00B32676 /* MyVaultsViewController.swift in Sources */,
 				81F417E524A2F34C005193F9 /* MyProfileNameCell.swift in Sources */,
 				81C671142499367200B32676 /* MyTeamsViewController.swift in Sources */,
+				81021CBD24F1CE2D00075B54 /* ColorPickerViewController.swift in Sources */,
+				81021C9C24EF941100075B54 /* VaultDisplayable.swift in Sources */,
 				81021C9724EF31FD00075B54 /* MyVaultsCollectionViewCell.swift in Sources */,
 				81C670D22497BB7100B32676 /* AppDelegate.swift in Sources */,
 				81C67118249936CD00B32676 /* RegisterViewController.swift in Sources */,

@@ -47,7 +47,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         let check = sender as! UIButton
         
         if !agreedToTerms{
-            check.setImage(UIImage(systemName: "circle.fill"), for: .normal)
+            check.setImage(UIImage(systemName: "smallcircle.circle.fill"), for: .normal)
             agreedToTerms = true
         } else{
             check.setImage(UIImage(systemName: "circle"), for: .normal)

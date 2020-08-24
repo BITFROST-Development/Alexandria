@@ -177,13 +177,6 @@ class MyShelvesViewController: AuthenticationSource {
             })
             shelfPrepreferencesIsPresent = false
         }
-        
-        if addNewElementViewIsPresent{
-            UIView.animate(withDuration: 0.3, animations: {
-                self.addNewElementTableView.alpha = 0.0
-            })
-            addNewElementViewIsPresent = false
-        }
 
     }
     

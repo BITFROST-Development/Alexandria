@@ -236,7 +236,7 @@ class GoogleDriveTools {
             }
         }
     }
-    
+
     static func deleteFile(service: GTLRDriveService, id: String, local: Bool, completion: @escaping(Bool) -> Void){
         let file = GTLRDrive_File()
         file.identifier = id
@@ -276,5 +276,56 @@ class GoogleDriveTools {
             }
         }
     }
-
+    
+    static func findExistingFolder(parents: String, name: String, service: GTLRDriveService, user: GoogleUser, completion: @escaping(String?) -> Void ){
+        let query = GTLRDriveQuery_FilesList.query()
+        query.spaces = "drive"
+        query.corpora = "user"
+        
+        
+        let withName = "name = '\(name)'" // Case insensitive!
+        let foldersOnly = "mimeType = 'application/vnd.google-apps.folder'"
+        let parent = "'\(parents)' in parents"
+        let ownedByUser = "'\(user.email!)' in owners"
+        query.q = "\(withName) and \(foldersOnly) and \(ownedByUser) and \(parent)"
+        service.executeQuery(query) { (_, result, error) in
+            guard error == nil else {
+                fatalError(error!.localizedDescription)
+            }
+                                     
+            let folderList = result as! GTLRDrive_FileList
+            completion(folderList.files?.first?.identifier)
+        }
+    }
+    
+    static func createFolder(parent: String, name: String, service: GTLRService, completion: @escaping(String) -> Void ){
+        let seekedFolder = GTLRDrive_File()
+        seekedFolder.mimeType = "application/vnd.google-apps.folder"
+        seekedFolder.name = name
+        seekedFolder.parents = [parent]
+        
+        let query = GTLRDriveQuery_FilesCreate.query(withObject: seekedFolder, uploadParameters: nil)
+        service.executeQuery(query){ (_, file, error) in
+            guard error == nil
+            else {
+                fatalError(error!.localizedDescription)
+            }
+            
+            let folder = file as! GTLRDrive_File
+            completion(folder.identifier!)
+        }
+    }
+    
+    static func createFolderForClient(parent: String, name: String, completion: @escaping(String) -> Void){
+        findExistingFolder(parents: parent, name: name, service: GoogleDriveTools.service, user: GoogleSignIn.sharedInstance()) { folderID in
+            
+            if folderID == nil{
+                self.createFolder(parent: parent, name: name, service: GoogleDriveTools.service){ folder in
+                    completion(folder)
+                }
+            } else {
+                completion(folderID!)
+            }
+        }
+    }
 }

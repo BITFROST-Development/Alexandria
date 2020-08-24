@@ -37,7 +37,7 @@ class BookPreferences: UIViewController, BookChangerDelegate {
         BookPreferencesDoneDelete.controller = self
         tableView.register(UINib(nibName: "AddFileThumbnail", bundle: nil), forCellReuseIdentifier: AddFileThumbnail.identifier)
         tableView.register(UINib(nibName: "AddFileViewTitle", bundle: nil), forCellReuseIdentifier: AddFileViewTitle.identifier)
-        tableView.register(UINib(nibName: "AddFileShelfPickerTrigger", bundle: nil), forCellReuseIdentifier: AddFileShelfPickerTrigger.idetifier)
+        tableView.register(UINib(nibName: "AddFilePickerTrigger", bundle: nil), forCellReuseIdentifier: AddFilePickerTrigger.identifier)
         tableView.register(UINib(nibName: "AddFileCheckBoxes", bundle: nil), forCellReuseIdentifier: AddFileCheckBoxes.identifier)
         tableView.register(UINib(nibName: "AddFileMetadataComponent", bundle: nil), forCellReuseIdentifier: AddFileMetadataComponent.identifier)
         tableView.register(UINib(nibName: "BookPreferencesDoneDelete", bundle: nil), forCellReuseIdentifier: BookPreferencesDoneDelete.identifier)
@@ -111,7 +111,7 @@ extension BookPreferences: UITableViewDataSource{
             cell.fileTitle.text = originalFileName
             return cell
         } else if indexPath.row == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: AddFileShelfPickerTrigger.idetifier) as! AddFileShelfPickerTrigger
+            let cell = tableView.dequeueReusableCell(withIdentifier: AddFilePickerTrigger.identifier) as! AddFilePickerTrigger
             if shelvesToAddress.count == 0 {
                 cell.shelfName.text = "All my books"
             } else if shelvesToAddress.count == 1{
@@ -126,7 +126,7 @@ extension BookPreferences: UITableViewDataSource{
             if loggedIn {
                 if isCloud {
                     cell.isChecked = true
-                    cell.checkCircle.setImage(UIImage(systemName: "circle.fill"), for: .normal)
+                    cell.checkCircle.setImage(UIImage(systemName: "smallcircle.circle.fill"), for: .normal)
                     cell.checkCircle.tintColor = UIColor(cgColor: CGColor(srgbRed: 234/255, green: 145/255, blue: 33/255, alpha: 1))
                     cell.recommendedLabel.text = "(NEEDED FOR CLOUD SYNC)"
                     toDrive = true
@@ -152,7 +152,7 @@ extension BookPreferences: UITableViewDataSource{
             cell.optionName.text = "Local Copy"
             if fileShouldBeMoved || (isCloud && currentBook.localAddress != nil){
                 cell.isChecked = true
-                cell.checkCircle.setImage(UIImage(systemName: "circle.fill"), for: .normal)
+                cell.checkCircle.setImage(UIImage(systemName: "smallcircle.circle.fill"), for: .normal)
                 cell.checkCircle.tintColor = UIColor(cgColor: CGColor(srgbRed: 234/255, green: 145/255, blue: 33/255, alpha: 1))
             } else {
                 cell.isChecked = false
