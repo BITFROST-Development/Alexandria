@@ -12,7 +12,7 @@ class AddFilePickerTrigger: UITableViewCell {
 
     static var identifier = "addFileShelfName"
     
-    @IBOutlet weak var shelfName: UILabel!
+    @IBOutlet weak var fieldDescription: UILabel!
     @IBOutlet weak var fieldTitle: UILabel!
     
     override func awakeFromNib() {

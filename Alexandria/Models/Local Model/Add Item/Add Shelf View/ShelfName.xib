@@ -20,7 +20,7 @@
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8a5-y2-gYI">
                         <rect key="frame" x="454.5" y="86.5" width="16.5" height="22"/>
-                        <color key="tintColor" red="0.91764705879999997" green="0.56862745100000001" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.75294117650000003" green="0.20876580480000001" blue="0.16233775019999999" alpha="1" colorSpace="calibratedRGB"/>
                         <state key="normal">
                             <imageReference key="image" image="xmark.circle.fill" catalog="system" symbolScale="small"/>
                         </state>
@@ -43,7 +43,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <color key="backgroundColor" red="0.99607843139999996" green="0.97066300979999998" blue="0.9198321666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="clearButton" destination="8a5-y2-gYI" id="cbI-bo-xPA"/>
                 <outlet property="shelfName" destination="VUU-gB-hb3" id="mpO-r8-I2o"/>

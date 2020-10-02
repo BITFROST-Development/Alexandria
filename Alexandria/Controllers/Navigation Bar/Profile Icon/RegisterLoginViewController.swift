@@ -10,6 +10,10 @@ import UIKit
 
 class RegisterLoginViewController: UIViewController {
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     static var loggedIn = false
     var controller: AuthenticationSource!
     

@@ -12,6 +12,11 @@ import RealmSwift
 import GoogleAPIClientForREST
 
 class AddNewFileViewController: UIViewController, BookChangerDelegate {
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     var updating = false
     var originalBookURL: URL!
     var controller: MyShelvesViewController!
@@ -40,7 +45,7 @@ class AddNewFileViewController: UIViewController, BookChangerDelegate {
             let data = try Data(contentsOf: originalBookURL)
             let page = PDFDocument(data: data)?.page(at: 0)
             let pageSize = page?.bounds(for: .mediaBox)
-            let pdfScale = 240 / pageSize!.width
+            let pdfScale = 180 / pageSize!.width
             let scale = UIScreen.main.scale * pdfScale
             let screenSize = CGSize(width: pageSize!.width * scale, height: pageSize!.height * scale)
             return page!.thumbnail(of: screenSize, for: .mediaBox)
@@ -136,11 +141,11 @@ extension AddNewFileViewController: UITableViewDataSource{
         } else if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: AddFilePickerTrigger.identifier) as! AddFilePickerTrigger
             if shelvesToAddress.count == 0 {
-                cell.shelfName.text = "All my books"
+                cell.fieldDescription.text = "All my books"
             } else if shelvesToAddress.count == 1{
-                cell.shelfName.text = shelvesToAddress[0].name
+                cell.fieldDescription.text = shelvesToAddress[0].name
             } else {
-                cell.shelfName.text = "Multiple"
+                cell.fieldDescription.text = "Multiple"
             }
             return cell
         } else if indexPath.row == 3 {
@@ -149,7 +154,7 @@ extension AddNewFileViewController: UITableViewDataSource{
             if loggedIn && Socket.sharedInstance.socket.status == .connected{
                 cell.isChecked = true
                 cell.checkCircle.setImage(UIImage(systemName: "smallcircle.circle.fill"), for: .normal)
-                cell.checkCircle.tintColor = UIColor(cgColor: CGColor(srgbRed: 234/255, green: 145/255, blue: 33/255, alpha: 1))
+                cell.checkCircle.tintColor = UIColor(cgColor: CGColor(srgbRed: 192/255, green: 53/255, blue: 41/255, alpha: 1))
                 cell.recommendedLabel.text = "(NEEDED FOR CLOUD SYNC)"
                 toDrive = true
                 if isCloud && shelvesToAddress.count > 0{
@@ -174,7 +179,7 @@ extension AddNewFileViewController: UITableViewDataSource{
             if !loggedIn {
                 cell.isChecked = true
                 cell.checkCircle.setImage(UIImage(systemName: "smallcircle.circle.fill"), for: .normal)
-                cell.checkCircle.tintColor = UIColor(cgColor: CGColor(srgbRed: 234/255, green: 145/255, blue: 33/255, alpha: 1))
+                cell.checkCircle.tintColor = UIColor(cgColor: CGColor(srgbRed: 192/255, green: 53/255, blue: 41/255, alpha: 1))
                 cell.recommendedLabel.text = "(NEEDED FOR CLOUD SYNC)"
                 fileShouldBeMoved = true
                 if !isCloud && shelvesToAddress.count > 0{

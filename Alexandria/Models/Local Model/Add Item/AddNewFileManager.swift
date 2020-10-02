@@ -105,13 +105,13 @@ extension AddNewFileViewController {
         }
         if toDrive {
             if fileShouldBeMoved {
-                GoogleDriveTools.uploadFileToDrive(fileName: newBook.title!, bookTitle: newBook.title! ,fileURL: URL(fileURLWithPath: newBook.localAddress!), mimeType: "application/pdf", parent: alexandria.booksFolderID!, service: GoogleDriveTools.service){ should in
+                GoogleDriveTools.uploadBookToDrive(fileName: newBook.title!, bookTitle: newBook.title! ,fileURL: URL(fileURLWithPath: newBook.localAddress!), mimeType: "application/pdf", parent: alexandria.booksFolderID!, service: GoogleDriveTools.service){ should in
                     if should {
                         completion(realm.objects(CloudUser.self)[0])
                     }
                 }
             } else {
-                GoogleDriveTools.uploadFileToDrive(fileName: newBook.title!, bookTitle: newBook.title! ,fileURL: originalBookURL, mimeType: "application/pdf", parent: alexandria.booksFolderID!, service: GoogleDriveTools.service){ should in
+                GoogleDriveTools.uploadBookToDrive(fileName: newBook.title!, bookTitle: newBook.title! ,fileURL: originalBookURL, mimeType: "application/pdf", parent: alexandria.booksFolderID!, service: GoogleDriveTools.service){ should in
                     if should {
                         completion(realm.objects(CloudUser.self)[0])
                     }
@@ -123,7 +123,7 @@ extension AddNewFileViewController {
                 completion(nil)
             })
             alert.addAction(UIAlertAction(title: "Add to Drive", style: .default){ action in
-                GoogleDriveTools.uploadFileToDrive(fileName: newBook.title!, bookTitle: newBook.title! ,fileURL: URL(fileURLWithPath: newBook.localAddress!), mimeType: "application/pdf", parent: alexandria.rootFolderID!, service: GoogleDriveTools.service){ should in
+                GoogleDriveTools.uploadBookToDrive(fileName: newBook.title!, bookTitle: newBook.title! ,fileURL: URL(fileURLWithPath: newBook.localAddress!), mimeType: "application/pdf", parent: alexandria.rootFolderID!, service: GoogleDriveTools.service){ should in
                     if should{
                         completion(realm.objects(CloudUser.self)[0])
                     }

@@ -11,6 +11,10 @@ import RealmSwift
 
 class ShelfPreferences: UIViewController, ShelfChangerDelegate {
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     let realm = try! Realm(configuration: AppDelegate.realmConfig)
     var currentShelf: Shelf!
     var controller: MyShelvesViewController!

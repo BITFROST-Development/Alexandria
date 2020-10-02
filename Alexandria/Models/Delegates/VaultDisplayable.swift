@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import RealmSwift
 
 protocol VaultDisplayable {
     var name: String? {get set}
     
 }
+
+protocol VaultRelated: Object {}

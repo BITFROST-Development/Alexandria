@@ -9,7 +9,11 @@
 import UIKit
 
 class MyTeamsViewController: AuthenticationSource {
-
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

@@ -21,7 +21,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oh0-Yc-EAp">
                         <rect key="frame" x="65" y="15" width="47" height="14"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                        <color key="textColor" red="0.91764705879999997" green="0.56862745100000001" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="textColor" cyan="0.64500000000000002" magenta="0.0" yellow="0.0" black="0.0" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0cV-Ap-pjy">
@@ -30,7 +30,7 @@
                             <constraint firstAttribute="height" constant="10" id="LeS-DW-Au7"/>
                             <constraint firstAttribute="width" constant="10" id="NNe-v6-7mg"/>
                         </constraints>
-                        <color key="tintColor" red="0.91764705879999997" green="0.56862745100000001" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" cyan="0.080000000000000002" magenta="0.83999999999999997" yellow="0.90000000000000002" black="0.0" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
                         <state key="normal">
                             <imageReference key="image" image="xmark.circle.fill" catalog="system" symbolScale="small"/>
                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
@@ -48,7 +48,7 @@
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                 </subviews>
-                <color key="backgroundColor" red="0.99607843139999996" green="0.87581699346666664" blue="0.6352941176000001" alpha="0.25719713179999998" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="oh0-Yc-EAp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="65" id="59l-6C-sz8"/>
                     <constraint firstAttribute="trailing" secondItem="0cV-Ap-pjy" secondAttribute="trailing" constant="65" id="6bY-Z3-hGn"/>

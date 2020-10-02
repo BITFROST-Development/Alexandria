@@ -10,6 +10,10 @@ import UIKit
 
 class ColorPickerViewController: UIViewController {
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     var pickedColor: DisplayedColor!
     var pickedColorName: String!
     var currentCell: DefaultColorCell?

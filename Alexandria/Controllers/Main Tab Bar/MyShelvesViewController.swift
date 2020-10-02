@@ -10,6 +10,10 @@ import UIKit
 
 class MyShelvesViewController: AuthenticationSource {
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     var addNewElementViewIsPresent = false
     var shelvesListIsPresent = false
     var shelfPrepreferencesIsPresent = false
@@ -271,14 +275,15 @@ extension MyShelvesViewController: UITableViewDataSource{
             cell.itemName.imageEdgeInsets.left = 20
             cell.itemName.titleEdgeInsets.left = 30
             cell.controller = self
-            cell.backgroundColor = UIColor(cgColor: CGColor(srgbRed: 254/255, green: 224/255, blue: 162/255, alpha: 1))
+            cell.backgroundColor = UIColor(cgColor: CGColor(srgbRed: 206/255, green: 75/255, blue: 54/255, alpha: 1))
+            cell.separatorView.backgroundColor = .clear
             return cell
         } else {
             let cell = addNewElementTableView.dequeueReusableCell(withIdentifier: "addItemCell", for: indexPath) as! AddItemCell
             cell.itemName.setTitle("Add new shelf", for: .normal)
             cell.itemName.setImage(UIImage(systemName: "rectangle.stack.fill.badge.plus"), for: .normal)
             cell.controller = self
-            cell.backgroundColor = UIColor(cgColor: CGColor(srgbRed: 254/255, green: 224/255, blue: 162/255, alpha: 1))
+            cell.backgroundColor = UIColor(cgColor: CGColor(srgbRed: 56/255, green: 188/255, blue: 225/255, alpha: 1))
             cell.separatorView.backgroundColor = .clear
             return cell
         }
@@ -292,7 +297,6 @@ extension MyShelvesViewController: UIGestureRecognizerDelegate{
         if touch.view?.isDescendant(of: shelvesList) == true {
             return false
         }
-        
         return true
     }
 }

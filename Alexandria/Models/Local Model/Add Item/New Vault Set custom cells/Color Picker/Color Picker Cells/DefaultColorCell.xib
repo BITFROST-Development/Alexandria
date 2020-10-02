@@ -20,7 +20,7 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hOH-3D-foL">
                         <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
-                        <color key="backgroundColor" red="0.91764705879999997" green="0.56862745100000001" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.75294117650000003" green="0.20876580480000001" blue="0.16233775019999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="160" id="lte-vu-pJK"/>
                             <constraint firstAttribute="height" constant="160" id="x2V-Od-U6k"/>

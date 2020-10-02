@@ -44,12 +44,15 @@ extension MyShelvesPreferencesManager: UITableViewDataSource{
         if indexPath.row == 0 {
             cell.actionButton.setTitle("Edit Shelf", for: .normal)
             cell.actionButton.setImage(UIImage(systemName: "hammer.fill"), for: .normal)
+            cell.separatorView.alpha = 0
+            cell.backgroundColor = UIColor(cgColor: CGColor(srgbRed: 225/255, green: 173/255, blue: 169/255, alpha: 1))
         } else {
             cell.actionButton.setTitle("Delete Shelf", for: .normal)
             cell.actionButton.setImage(UIImage(systemName: "trash.fill"), for: .normal)
             cell.separatorView.alpha = 0.0
             cell.actionButton.imageEdgeInsets.left = 20
             cell.actionButton.titleEdgeInsets.left = 30
+            cell.backgroundColor = UIColor(cgColor: CGColor(srgbRed: 164/255, green: 204/255, blue: 218/255, alpha: 1))
         }
         return cell
     }

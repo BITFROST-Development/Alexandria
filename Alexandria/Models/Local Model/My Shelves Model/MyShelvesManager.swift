@@ -243,7 +243,9 @@ extension MyShelvesViewController {
             }
         } else if segue.identifier == "toEditingView" {
             let presentedView = segue.destination as! EditingViewController
+            presentedView.initialIndex = 0
             presentedView.currentBook = currentBook
+            presentedView.controller = self
         }
     }
 }

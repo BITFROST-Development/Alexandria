@@ -12,6 +12,11 @@ import GAppAuth
 import RealmSwift
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     static var toGoogle = true
     static var sharedInstance: RegisterViewController!
     let realm = try! Realm(configuration: AppDelegate.realmConfig)

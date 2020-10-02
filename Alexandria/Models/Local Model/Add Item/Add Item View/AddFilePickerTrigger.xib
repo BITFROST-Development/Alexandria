@@ -25,7 +25,7 @@
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="text.alignleft" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="u1N-Gt-3Wg">
                         <rect key="frame" x="65" y="16.5" width="21" height="20.5"/>
-                        <color key="tintColor" red="0.91764705879999997" green="0.56862745100000001" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" cyan="0.64500000000000002" magenta="0.0" yellow="0.0" black="0.0" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="23.5" id="41s-sz-yVF"/>
                             <constraint firstAttribute="width" constant="21" id="ehM-o0-xiM"/>
@@ -35,11 +35,11 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shelves" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ElD-tL-VQ2">
                         <rect key="frame" x="91" y="15" width="74" height="24"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                        <color key="textColor" red="0.91764705879999997" green="0.56862745100000001" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="textColor" cyan="0.64500000000000002" magenta="0.0" yellow="0.0" black="0.0" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <color key="backgroundColor" red="0.99607843139999996" green="0.87843137250000003" blue="0.63529411759999999" alpha="0.25719713179999998" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="JH6-Wb-7Lc" secondAttribute="trailing" constant="65" id="0pk-5P-VdK"/>
                     <constraint firstAttribute="bottom" secondItem="ElD-tL-VQ2" secondAttribute="bottom" constant="15" id="E5P-WO-jVv"/>
@@ -54,8 +54,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="fieldDescription" destination="JH6-Wb-7Lc" id="skD-QT-xzD"/>
                 <outlet property="fieldTitle" destination="ElD-tL-VQ2" id="rQp-jq-3YS"/>
-                <outlet property="shelfName" destination="JH6-Wb-7Lc" id="skD-QT-xzD"/>
             </connections>
             <point key="canvasLocation" x="128.98550724637681" y="155.69196428571428"/>
         </tableViewCell>

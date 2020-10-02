@@ -29,8 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GoogleSignIn.sharedInstance().restoreSignIn()
         AppDelegate.sharedInstance = self
         
+        UIApplication.shared.statusBarStyle = .lightContent
         var config = Realm.Configuration()
         config.fileURL = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).first?.appendingPathComponent("bundle.realm")
+        config.schemaVersion = 3
         Realm.Configuration.defaultConfiguration = config
         AppDelegate.realmConfig = config
         print(Realm.Configuration.defaultConfiguration.fileURL)

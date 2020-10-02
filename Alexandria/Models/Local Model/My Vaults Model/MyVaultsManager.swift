@@ -21,19 +21,22 @@ extension MyVaultsViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: AddItemVaultCell.identifier) as! AddItemVaultCell
         cell.controller = self
-        cell.backgroundColor = UIColor(cgColor: CGColor(srgbRed: 254/255, green: 224/255, blue: 162/255, alpha: 1))
+        cell.separatorView.alpha = 0.0
         if indexPath.row == 0{
+            cell.backgroundColor = UIColor(cgColor: CGColor(srgbRed: 224/255, green: 80/255, blue: 51/255, alpha: 1))
             cell.itemName.setImage(UIImage(systemName: "folder.fill.badge.plus"), for: .normal)
             cell.itemName.setTitle("Add Vault", for: .normal)
         } else if indexPath.row == 1 {
+            cell.backgroundColor = UIColor(cgColor: CGColor(srgbRed: 51/255, green: 175/255, blue: 218/255, alpha: 1))
             cell.itemName.imageEdgeInsets.left = 18
             cell.itemName.titleEdgeInsets.left = 30
             cell.itemName.setImage(UIImage(systemName: "doc.on.clipboard.fill"), for: .normal)
             cell.itemName.setTitle("Add Notebook", for: .normal)
         } else {
+            cell.backgroundColor = UIColor(cgColor: CGColor(srgbRed: 224/255, green: 80/255, blue: 51/255, alpha: 1))
             cell.itemName.setImage(UIImage(systemName: "rectangle.fill.on.rectangle.angled.fill"), for: .normal)
             cell.itemName.setTitle("Add Card Set", for: .normal)
-            cell.separatorView.alpha = 0.0
+            
         }
         return cell
     }
@@ -47,46 +50,84 @@ extension MyVaultsViewController: UICollectionViewDelegate{
 
 extension MyVaultsViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let cloudVaults = realm.objects(AlexandriaData.self)[0].vaults
-        let localVaults = realm.objects(AlexandriaData.self)[0].localVaults
+        let alexandria = realm.objects(AlexandriaData.self)[0]
         var count = 0
         vaultsToDisplay.removeAll()
         notesToDisplay.removeAll()
         setsToDisplay.removeAll()
-        for vault in cloudVaults {
-            if vault.parentFolderID == parentFolderTitle || (vault.parentFolderID == nil && parentFolderTitle == ""){
-                count += 1
-                vaultsToDisplay.append(vault)
-                for noteBook in vault.notes{
+        displayableObjects.removeAll()
+        
+        if currentVault != nil{
+            
+            if currentVault?.cloudVar.value ?? false {
+                
+                for vault in alexandria.cloudVaultMaps[Int(currentVault!.indexInArray.value!)].cloudChildVaults{
+                    count += 1
+                    vaultsToDisplay.append(alexandria.cloudVaults[Int(vault)])
+                }
+                
+                for vault in alexandria.cloudVaultMaps[Int(currentVault!.indexInArray.value!)].localChildVaults{
+                    count += 1
+                    vaultsToDisplay.append(alexandria.localVaults[Int(vault)])
+                }
+                
+                for noteBook in currentVault!.notes{
                     count += 1
                     notesToDisplay.append(noteBook)
                 }
                 
-                for set in vault.sets {
-                    count += 1
-                    setsToDisplay.append(set)
-                }
-            }
-        }
-        for vault in localVaults {
-            if vault.parentFolderID == parentFolderTitle || (vault.parentFolderID == nil && parentFolderTitle == ""){
-                count += 1
-                vaultsToDisplay.append(vault)
-                for noteBook in vault.notes{
+                for noteBook in currentVault!.localNotes{
                     count += 1
                     notesToDisplay.append(noteBook)
                 }
                 
-                for set in vault.sets {
+                for set in currentVault!.termSets{
                     count += 1
                     setsToDisplay.append(set)
                 }
+                
+                for set in currentVault!.localTermSets{
+                    count += 1
+                    setsToDisplay.append(set)
+                }
+                
+            } else {
+                
+                for vault in alexandria.localVaultMaps[Int(currentVault!.indexInArray.value!)].localChildVaults{
+                    count += 1
+                    vaultsToDisplay.append(alexandria.localVaults[Int(vault)])
+                }
+                
+                for noteBook in currentVault!.localNotes{
+                    count += 1
+                    notesToDisplay.append(noteBook)
+                }
+                
+                for set in currentVault!.localTermSets{
+                    count += 1
+                    setsToDisplay.append(set)
+                }
+                
+            }
+        } else {
+            if alexandria.cloudVaultDivisionPoints.count > 0 {
+                for index in 0...Int(alexandria.cloudVaultDivisionPoints[0]) {
+                    vaultsToDisplay.append(alexandria.cloudVaults[index])
+                    count += 1
+                }
+            }
+            if alexandria.localVaultDivisionPoints.count > 0 {
+                for index in 0...Int(alexandria.localVaultDivisionPoints[0]) {
+                    vaultsToDisplay.append(alexandria.localVaults[index])
+                    count += 1
+                }
             }
         }
+        
         displayableObjects.append(contentsOf: vaultsToDisplay)
         displayableObjects.append(contentsOf: notesToDisplay)
         displayableObjects.append(contentsOf: setsToDisplay)
-        displayableObjects = displayableObjects.sorted(by: {$0.name! > $1.name!})
+        displayableObjects = displayableObjects.sorted(by: {$0.name! < $1.name!})
         return count
     }
     
@@ -94,8 +135,11 @@ extension MyVaultsViewController: UICollectionViewDataSource{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyVaultsCollectionViewCell.identifier, for: indexPath) as! MyVaultsCollectionViewCell
         cell.controller = self
         cell.vaultTitle.text = displayableObjects[indexPath.row].name
+        cell.indexInVault = indexPath.row
         if let vault = displayableObjects[indexPath.row] as? Vault{
             cell.kind = "vault"
+            cell.iconShadow.alpha = 0
+            cell.currentVault = vault
             switch vault.color?.colorName {
             case "Blue":
                 cell.vaultIcon.image = UIImage(named: "vaultIconBlue")
@@ -122,30 +166,32 @@ extension MyVaultsViewController: UICollectionViewDataSource{
             }
         } else if let note = displayableObjects[indexPath.row] as? Note{
             cell.kind = "note"
-            cell.vaultIcon.image = UIImage(data: note.thumbnail!.data!)
+            cell.vaultIcon.image = UIImage(named: note.coverStyle!)
+            cell.iconShadow.alpha = 1
         } else if let set = displayableObjects[indexPath.row] as? TermSet{
             cell.kind = "set"
+            cell.iconShadow.alpha = 0
             switch set.color?.colorName {
             case "Blue":
-                cell.vaultIcon.image = UIImage(named: "vaultIconBlue")
+                cell.vaultIcon.image = UIImage(named: "cardBlue")
             case "Purple":
-                cell.vaultIcon.image = UIImage(named: "vaultIconPurple")
+                cell.vaultIcon.image = UIImage(named: "cardPurple")
             case "Pink":
-                cell.vaultIcon.image = UIImage(named: "vaultIconPink")
+                cell.vaultIcon.image = UIImage(named: "cardPink")
             case "Red":
-                cell.vaultIcon.image = UIImage(named: "vaultIconRed")
+                cell.vaultIcon.image = UIImage(named: "cardRed")
             case "Orange":
-                cell.vaultIcon.image = UIImage(named: "vaultIconOrange")
+                cell.vaultIcon.image = UIImage(named: "cardOrange")
             case "Yellow":
-                cell.vaultIcon.image = UIImage(named: "vaultIconYellow")
+                cell.vaultIcon.image = UIImage(named: "cardYellow")
             case "Green":
-                cell.vaultIcon.image = UIImage(named: "vaultIconGreen")
+                cell.vaultIcon.image = UIImage(named: "cardGreen")
             case "Turquoise":
-                cell.vaultIcon.image = UIImage(named: "vaultIconTurquoise")
+                cell.vaultIcon.image = UIImage(named: "cardTurquoise")
             case "Grey":
-                cell.vaultIcon.image = UIImage(named: "vaultIconGrey")
+                cell.vaultIcon.image = UIImage(named: "cardGrey")
             case "Black":
-                cell.vaultIcon.image = UIImage(named: "vaultIconBlack")
+                cell.vaultIcon.image = UIImage(named: "cardBlack")
             default:
                 print("There was an error displaying")
             }
@@ -160,62 +206,101 @@ extension MyVaultsViewController: UICollectionViewDataSource{
 
 extension MyVaultsViewController{
     
-    
-    func navigateToVault(_ vault: Vault, towards direction: String){
-        if direction == "right"{
-            if vault.cloudVar.value ?? false {
-                parentFolderTitle = vault.vaultFolderID ?? ""
-                if currentVault != nil {
-                    parentVaults?.append(currentVault!)
-                }
-                currentVault = vault
-            } else {
-                parentFolderTitle = vault.name ?? ""
-                if currentVault != nil {
-                    parentVaults?.append(currentVault!)
-                }
-                currentVault = vault
-            }
+    @IBAction func addButton(_ sender: Any) {
+        if addItemPresent{
             UIView.animate(withDuration: 0.3, animations: {
-                self.fileDisplayCollection.layer.frame.origin.x = 0 - self.view.layer.frame.width
+                self.opacityFilter.alpha = 0
+                self.AddItemView.alpha = 0
             }){ _ in
-                self.fileDisplayCollection.layer.frame.origin.x = self.view.layer.frame.width
+                self.addItemPresent = false
+            }
+        } else {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.opacityFilter.alpha = 1
+                self.AddItemView.alpha = 1
+            }){ _ in
+                self.addItemPresent = true
+            }
+
+        }
+    }
+    
+    @IBAction func moveBack(_ sender: Any) {
+        let alexandria = realm.objects(AlexandriaData.self)[0]
+        if currentVault!.cloudVar.value ?? false {
+            let parent = alexandria.cloudVaultMaps[Int(currentVault!.indexInArray.value!)].parentVault.value
+            if parent != nil{
+                navigateToVault(alexandria.cloudVaults[Int(parent!)], towards: "left")
+            } else {
+                navigateToVault(nil, towards: "left")
+            }
+        } else {
+            let parent = alexandria.localVaultMaps[Int(currentVault!.indexInArray.value!)].parentVault.value
+            if parent != nil{
+                navigateToVault(alexandria.localVaults[Int(parent!)], towards: "left")
+            } else {
+                navigateToVault(nil, towards: "left")
+            }
+        }
+        
+    }
+    
+    func navigateToVault(_ vault: Vault?, towards direction: String){
+        if direction == "right"{
+            currentVault = vault
+            UIView.animate(withDuration: 0.5, animations: {
+                self.fileDisplayCollection.layer.frame.origin.x = 0 - self.view.layer.frame.width
+                if self.isRoot {
+                    self.navigationItem.setLeftBarButtonItems(self.intoLeftNavBar, animated: true)
+                    self.navigationItem.setRightBarButtonItems(self.intoRightNavBar, animated: true)
+                    self.isRoot = false
+                }
+            }){ _ in
                 self.fileDisplayCollection.reloadData()
-                UIView.animate(withDuration: 0.3, animations: {
+                self.fileDisplayCollection.layer.frame.origin.x = self.view.layer.frame.width
+                UIView.animate(withDuration: 0.4, animations: {
                     self.fileDisplayCollection.layer.frame.origin.x = 0
-                    self.navigationItem.title = vault.name
-                    if self.isRoot {
-                        self.navigationItem.setLeftBarButtonItems(self.intoNavBar, animated: true)
-                        self.isRoot = false
-                    }
+                    self.navigationItem.title = vault?.name
                 })
             }
         } else {
-            if vault.cloudVar.value ?? false {
-                parentFolderTitle = vault.parentFolderID ?? ""
-            } else if vault.vaultPathComponents.count > 0{
-                parentFolderTitle = vault.vaultPathComponents[vault.vaultPathComponents.count - 1]
+            let alexandria = realm.objects(AlexandriaData.self)[0]
+            if vault != nil {
+                if currentVault?.cloudVar.value ?? false {
+                    let newCurrentVault = alexandria.cloudVaults[Int(alexandria.cloudVaultMaps[Int(currentVault!.indexInArray.value!)].parentVault.value!)]
+                    currentVault = newCurrentVault
+                }  else {
+                    if alexandria.localVaultMaps[Int(currentVault!.indexInArray.value!)].parentCloudVar.value ?? false {
+                        let newCurrentVault = alexandria.cloudVaults[Int(alexandria.localVaultMaps[Int(currentVault!.indexInArray.value!)].parentVault.value!)]
+                        currentVault = newCurrentVault
+                    } else {
+                        let newCurrentVault = alexandria.localVaults[Int(alexandria.localVaultMaps[Int(currentVault!.indexInArray.value!)].parentVault.value!)]
+                        currentVault = newCurrentVault
+                    }
+                }
             } else {
-                parentFolderTitle = ""
+                currentVault = nil
             }
-            currentVault = parentVaults?.last
-            parentVaults?.removeLast()
-            
-            UIView.animate(withDuration: 0.3, animations: {
+            var finalTitle = ""
+            UIView.animate(withDuration: 0.5, animations: {
                 self.fileDisplayCollection.layer.frame.origin.x = self.view.layer.frame.width
+                if self.currentVault == nil {
+                    finalTitle = "My Vaults"
+                    self.isRoot = true
+                } else {
+                    finalTitle = self.currentVault!.name!
+                }
+
+                if self.isRoot {
+                    self.navigationItem.setLeftBarButtonItems(self.rootLeftNavBar, animated: true)
+                    self.navigationItem.setRightBarButtonItems(self.rootRightNavBar, animated: true)
+                }
             }){ _ in
-                self.fileDisplayCollection.layer.frame.origin.x = 0 - self.view.layer.frame.width
                 self.fileDisplayCollection.reloadData()
-                UIView.animate(withDuration: 0.3, animations: {
+                self.fileDisplayCollection.layer.frame.origin.x = 0 - self.view.layer.frame.width
+                UIView.animate(withDuration: 0.4, animations: {
                     self.fileDisplayCollection.layer.frame.origin.x = 0
-                    self.navigationItem.title = vault.name
-                    if self.parentFolderTitle == "" || (vault.parentFolderID == nil && self.parentFolderTitle == "") {
-                        self.navigationItem.title = "My Vaults"
-                        self.isRoot = true
-                    }
-                    if self.isRoot {
-                        self.navigationItem.setLeftBarButtonItems(self.rootNavBar, animated: true)
-                    }
+                    self.navigationItem.title = finalTitle
                 })
             }
         }
@@ -236,36 +321,84 @@ extension MyVaultsViewController{
     
     func goToCreateVault(){
         itemKind = "vault"
+        UIView.animate(withDuration: 0.3, animations: {
+            self.AddItemView.alpha = 0
+            self.opacityFilter.alpha = 0
+        }){ _ in
+            self.addItemPresent = false
+        }
         performSegue(withIdentifier: "addNewVaultSet", sender: self)
     }
     
     func goToCreateNotebook(){
-        itemKind = "note"
+        if currentVault != nil{
+            itemKind = "note"
+            UIView.animate(withDuration: 0.3, animations: {
+                self.AddItemView.alpha = 0
+                self.opacityFilter.alpha = 0
+            }){ _ in
+                self.addItemPresent = false
+            }
+            performSegue(withIdentifier: "addNewNotebook", sender: self)
+        } else {
+            let alert = UIAlertController(title: "No Vault Selected", message: "You need to select a vault to add create a notebook.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
     }
     
     func goToCreateSet(){
-        itemKind = "set"
-        performSegue(withIdentifier: "addNewVaultSet", sender: self)
+        if currentVault != nil {
+            itemKind = "set"
+            UIView.animate(withDuration: 0.3, animations: {
+                self.AddItemView.alpha = 0
+                self.opacityFilter.alpha = 0
+            }){ _ in
+                self.addItemPresent = false
+            }
+            performSegue(withIdentifier: "addNewVaultSet", sender: self)
+        } else {
+            let alert = UIAlertController(title: "No Vault Selected", message: "You need to select a vault to add create a term-set.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if itemKind == "vault"{
-            let displayingView = segue.destination as! NewVaultSetViewController
-            displayingView.currentVault = Vault()
-            displayingView.loggedIn = loggedIn
-            displayingView.parentFolderID = parentFolderTitle
-            displayingView.parentVault =  currentVault
-            displayingView.kind = itemKind
-            displayingView.controller = self
-        } else if itemKind == "note"{
-            
-        } else {
-            let displayingView = segue.destination as! NewVaultSetViewController
-            displayingView.currentSet = TermSet()
-            displayingView.parentFolderID = parentFolderTitle
-            displayingView.loggedIn = loggedIn
-            displayingView.kind = itemKind
-            displayingView.controller = self
+        super.prepare(for: segue, sender: sender)
+        if segue.identifier != "toRegisterLogin" && segue.identifier != "toMyProfile"{
+            if segue.identifier == "toEditingView"{
+                let displayingView = segue.destination as! EditingViewController
+                if itemKind == "note"{
+                    displayingView.currentNotebook = notebookToOpen
+                    displayingView.controller = self
+                    displayingView.initialIndex = 1
+                } else {
+                    displayingView.currentSet = setToOpen
+                    displayingView.controller = self
+                    displayingView.initialIndex = 2
+                }
+            } else if itemKind == "vault"{
+                let displayingView = segue.destination as! NewVaultSetViewController
+                displayingView.currentVault = Vault()
+                displayingView.loggedIn = loggedIn
+                displayingView.parentVault = currentVault
+                displayingView.kind = itemKind
+                displayingView.controller = self
+            } else if itemKind == "note"{
+                let displayingView = segue.destination as! NewNotebookViewController
+                displayingView.currentNotbook = Note()
+                displayingView.loggedIn = loggedIn
+                displayingView.parentVault = currentVault
+                displayingView.controller = self
+            } else if itemKind == "set"{
+                let displayingView = segue.destination as! NewVaultSetViewController
+                displayingView.currentSet = TermSet()
+                displayingView.parentVault = currentVault
+                displayingView.loggedIn = loggedIn
+                displayingView.kind = itemKind
+                displayingView.controller = self
+            }
         }
     }
     

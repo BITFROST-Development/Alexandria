@@ -48,8 +48,8 @@ class ShelfCell: UITableViewCell {
             isSelectedShelf = false
             controller.updateArray(newShelfList)
         } else {
-            shelfSelectableCell.setTitleColor(UIColor(cgColor: CGColor(srgbRed: 234/255, green: 145/255, blue: 33/255, alpha: 1)), for: .normal)
-            shelfSelectableCell.tintColor = UIColor(cgColor: CGColor(srgbRed: 234/255, green: 145/255, blue: 33/255, alpha: 1))
+            shelfSelectableCell.setTitleColor(UIColor(cgColor: CGColor(srgbRed: 224/255, green: 80/255, blue: 51/255, alpha: 1)), for: .normal)
+            shelfSelectableCell.tintColor = UIColor(cgColor: CGColor(srgbRed: 224/255, green: 80/255, blue: 51/255, alpha: 1))
             shelfSelectableCell.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
             var newShelfList: [Shelf] = []
             var shouldContinueChecking = true

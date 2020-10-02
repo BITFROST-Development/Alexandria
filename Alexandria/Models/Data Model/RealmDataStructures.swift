@@ -12,30 +12,82 @@ import RealmSwift
 class AlexandriaData: Object, RealmOptionalType{
     @objc dynamic var rootFolderID: String?
     @objc dynamic var booksFolderID: String?
+    @objc dynamic var defaultPaperStyle: String?
+    @objc dynamic var defaultPaperOrientation: String?
+    @objc dynamic var defaultCoverStyle: String?
+    @objc dynamic var defaultPaperColor: String?
+    var defaultWritingToolThickness01 = RealmOptional<Double>()
+    var defaultWritingToolThickness02 = RealmOptional<Double>()
+    var defaultWritingToolThickness03 = RealmOptional<Double>()
+    @objc dynamic var defaultWritingToolColor01: IconColor?
+    @objc dynamic var defaultWritingToolColor02: IconColor?
+    @objc dynamic var defaultWritingToolColor03: IconColor?
+    var defaultEraserToolThickness01 = RealmOptional<Double>()
+    var defaultEraserToolThickness02 = RealmOptional<Double>()
+    var defaultEraserToolThickness03 = RealmOptional<Double>()
+    var defaultHighlighterToolThickness01 = RealmOptional<Double>()
+    var defaultHighlighterToolThickness02 = RealmOptional<Double>()
+    var defaultHighlighterToolThickness03 = RealmOptional<Double>()
+    @objc dynamic var defaultHighlighterToolColor01: IconColor?
+    @objc dynamic var defaultHighlighterToolColor02: IconColor?
+    @objc dynamic var defaultHighlighterToolColor03: IconColor?
+    var defaultTextToolFont = RealmOptional<Double>()
     var goals = RealmSwift.List<Goal>()
     var trophies = RealmSwift.List<Trophy>()
     var shelves = RealmSwift.List<Shelf>()
     var localShelves = RealmSwift.List<Shelf>()
-    var vaults = RealmSwift.List<Vault>()
+    var cloudVaultDivisionPoints = RealmSwift.List<Double>()
+    var localVaultDivisionPoints = RealmSwift.List<Double>()
+    var cloudVaultMaps = RealmSwift.List<VaultMap>()
+    var localVaultMaps = RealmSwift.List<VaultMap>()
+    var cloudVaults = RealmSwift.List<Vault>()
     var localVaults = RealmSwift.List<Vault>()
     var cloudBooks = RealmSwift.List<Book>()
     var localBooks = RealmSwift.List<Book>()
     
     static func == (lhs: AlexandriaData, rhs: AlexandriaData) -> Bool {
-        if lhs.rootFolderID == rhs.rootFolderID && lhs.booksFolderID == rhs.booksFolderID && lhs.goals == rhs.goals && lhs.trophies == rhs.trophies && lhs.shelves == rhs.shelves && lhs.localShelves == rhs.localShelves && lhs.vaults == rhs.vaults && lhs.cloudBooks == rhs.cloudBooks && lhs.localBooks == rhs.localBooks{
-            return true
+        if lhs.rootFolderID != rhs.rootFolderID || lhs.booksFolderID != rhs.booksFolderID || lhs.goals != rhs.goals || lhs.trophies != rhs.trophies || lhs.shelves != rhs.shelves || lhs.localShelves != rhs.localShelves || lhs.cloudVaultDivisionPoints != rhs.cloudVaultDivisionPoints || lhs.localVaultDivisionPoints != rhs.localVaultDivisionPoints || lhs.cloudVaultMaps != rhs.cloudVaultMaps || lhs.localVaultMaps != rhs.localVaultMaps || lhs.cloudVaults != rhs.cloudVaults || lhs.cloudBooks != rhs.cloudBooks || lhs.localBooks != rhs.localBooks || lhs.defaultPaperStyle != rhs.defaultPaperStyle || lhs.defaultCoverStyle != rhs.defaultCoverStyle || lhs.defaultPaperColor != rhs.defaultPaperColor || lhs.defaultPaperOrientation != rhs.defaultPaperOrientation || lhs.defaultWritingToolColor01! != rhs.defaultWritingToolColor01! || lhs.defaultWritingToolThickness01.value != rhs.defaultWritingToolThickness01.value || lhs.defaultWritingToolColor02! != rhs.defaultWritingToolColor02! || lhs.defaultWritingToolThickness02.value != rhs.defaultWritingToolThickness02.value || lhs.defaultWritingToolColor03! != rhs.defaultWritingToolColor03! || lhs.defaultWritingToolThickness03.value != rhs.defaultWritingToolThickness03.value || lhs.defaultEraserToolThickness01.value != rhs.defaultEraserToolThickness01.value || lhs.defaultEraserToolThickness02.value != rhs.defaultEraserToolThickness02.value || lhs.defaultEraserToolThickness03.value != rhs.defaultEraserToolThickness03.value || lhs.defaultHighlighterToolColor01! != rhs.defaultHighlighterToolColor01! || lhs.defaultHighlighterToolThickness01.value != rhs.defaultHighlighterToolThickness01.value || lhs.defaultHighlighterToolColor02! != rhs.defaultHighlighterToolColor02! || lhs.defaultHighlighterToolThickness02.value != rhs.defaultHighlighterToolThickness02.value || lhs.defaultHighlighterToolColor03! != rhs.defaultHighlighterToolColor03! || lhs.defaultHighlighterToolThickness03.value != rhs.defaultHighlighterToolThickness03.value || lhs.defaultTextToolFont.value != rhs.defaultTextToolFont.value {
+            return false
         }
         
-        return false
+        return true
     }
     
     static func ^ (lhs: AlexandriaData, rhs: AlexandriaDataDec){
         
         lhs.rootFolderID = rhs.rootFolderID
         lhs.booksFolderID = rhs.booksFolderID
-        
+        lhs.defaultPaperStyle = rhs.defaultPaperStyle
+        lhs.defaultCoverStyle = rhs.defaultCoverStyle
+        lhs.defaultPaperColor = rhs.defaultPaperColor
+        lhs.defaultPaperOrientation = rhs.defaultPaperOrientation
+        lhs.defaultWritingToolThickness01.value = rhs.defaultWritingToolThickness01
+        lhs.defaultWritingToolThickness02.value = rhs.defaultWritingToolThickness02
+        lhs.defaultWritingToolThickness03.value = rhs.defaultWritingToolThickness03
+        lhs.defaultWritingToolColor01! ^ rhs.defaultWritingToolColor01!
+        lhs.defaultWritingToolColor02! ^ rhs.defaultWritingToolColor02!
+        lhs.defaultWritingToolColor03! ^ rhs.defaultWritingToolColor03!
+        lhs.defaultEraserToolThickness01.value = rhs.defaultEraserToolThickness01
+        lhs.defaultEraserToolThickness02.value = rhs.defaultEraserToolThickness02
+        lhs.defaultEraserToolThickness03.value = rhs.defaultEraserToolThickness03
+        lhs.defaultHighlighterToolThickness01.value = rhs.defaultHighlighterToolThickness01
+        lhs.defaultHighlighterToolThickness02.value = rhs.defaultHighlighterToolThickness02
+        lhs.defaultHighlighterToolThickness03.value = rhs.defaultHighlighterToolThickness03
+        lhs.defaultHighlighterToolColor01! ^ rhs.defaultHighlighterToolColor01!
+        lhs.defaultHighlighterToolColor02! ^ rhs.defaultHighlighterToolColor02!
+        lhs.defaultHighlighterToolColor03! ^ rhs.defaultHighlighterToolColor03!
+        lhs.defaultTextToolFont.value = rhs.defaultTextToolFont
         if lhs.goals.count != 0 {
-            lhs.goals.removeAll()
+            do{
+                let goals = Array(lhs.goals)
+                try AppDelegate.realm.write({
+                    AppDelegate.realm.delete(goals)
+                })
+                lhs.goals.removeAll()
+            } catch let error {
+                print(error.localizedDescription)
+                return
+            }
         }
         
         for index in 0..<(rhs.goals?.count ?? 0){
@@ -48,7 +100,16 @@ class AlexandriaData: Object, RealmOptionalType{
         }
         
         if lhs.trophies.count != 0{
-            lhs.trophies.removeAll()
+            do{
+                let trophies = Array(lhs.trophies)
+                try AppDelegate.realm.write({
+                    AppDelegate.realm.delete(trophies)
+                })
+                lhs.trophies.removeAll()
+            } catch let error {
+                print(error.localizedDescription)
+                return
+            }
         }
         
         for index in 0..<(rhs.trophies?.count ?? 0){
@@ -60,7 +121,17 @@ class AlexandriaData: Object, RealmOptionalType{
         }
         
         if lhs.cloudBooks.count != 0 {
-            lhs.cloudBooks.removeAll()
+            
+            do{
+                let cloudBooks = Array(lhs.cloudBooks)
+                try AppDelegate.realm.write({
+                    AppDelegate.realm.delete(cloudBooks)
+                })
+                lhs.cloudBooks.removeAll()
+            } catch let error {
+                print(error.localizedDescription)
+                return
+            }
         }
         
         for index in 0..<(rhs.books?.count ?? 0){
@@ -70,7 +141,16 @@ class AlexandriaData: Object, RealmOptionalType{
 
         
         if lhs.shelves.count != 0 {
-            lhs.shelves.removeAll()
+            do{
+                let shelves = Array(lhs.shelves)
+                try AppDelegate.realm.write({
+                    AppDelegate.realm.delete(shelves)
+                })
+                lhs.shelves.removeAll()
+            } catch let error {
+                print(error.localizedDescription)
+                return
+            }
         }
         
         for index in 0..<(rhs.shelves?.count ?? 0){
@@ -87,38 +167,55 @@ class AlexandriaData: Object, RealmOptionalType{
             }
         }
         
-        if lhs.vaults.count != 0{
-            lhs.vaults.removeAll()
+        if lhs.cloudVaultDivisionPoints.count != 0{
+            lhs.cloudVaultDivisionPoints.removeAll()
+        }
+        
+        for index in 0..<(rhs.vaultDivisionPoints?.count ?? 0){
+            lhs.cloudVaultDivisionPoints.append(rhs.vaultDivisionPoints![index])
+        }
+        
+        if lhs.cloudVaultMaps.count != 0 {
+            do{
+                let cloudVaultMaps = Array(lhs.cloudVaultMaps)
+                try AppDelegate.realm.write({
+                    AppDelegate.realm.delete(cloudVaultMaps)
+                })
+                lhs.cloudVaultMaps.removeAll()
+            } catch let error {
+                print(error.localizedDescription)
+                return
+            }
+        }
+        
+        for index in 0..<(rhs.vaultMaps?.count ?? 0){
+            lhs.cloudVaultMaps.append(VaultMap(rhs.vaultMaps![index]))
+        }
+        
+        if lhs.cloudVaults.count != 0{
+            lhs.cloudVaults.removeAll()
         }
         
         for index in 0..<(rhs.vaults?.count ?? 0){
-            lhs.vaults.append(Vault())
-            lhs.vaults[index].birthName = rhs.vaults![index].birthName
-            lhs.vaults[index].name = rhs.vaults![index].name
+            lhs.cloudVaults.append(Vault())
+            lhs.cloudVaults[index].birthName = rhs.vaults![index].birthName
+            lhs.cloudVaults[index].name = rhs.vaults![index].name
             
-            if lhs.vaults[index].sets.count != 0 {
-                lhs.vaults[index].sets.removeAll()
+            if lhs.cloudVaults[index].termSets.count != 0 {
+                lhs.cloudVaults[index].termSets.removeAll()
             }
             
-            for kindex in 0..<(rhs.vaults![index].sets?.count ?? 0){
-                lhs.vaults[index].sets.append(TermSet())
-                lhs.vaults[index].sets[kindex] ^ rhs.vaults![index].sets![kindex]
+            for kindex in 0..<(rhs.vaults![index].termSets?.count ?? 0){
+                lhs.cloudVaults[index].termSets.append(TermSet())
+                lhs.cloudVaults[index].termSets[kindex] ^ rhs.vaults![index].termSets![kindex]
             }
         }
     }
     
     static func equals(_ localAlexandria: AlexandriaData, _ decodedAlexandria: AlexandriaDataDec) -> Bool {
-        if localAlexandria.rootFolderID != decodedAlexandria.rootFolderID || localAlexandria.booksFolderID != decodedAlexandria.booksFolderID{
+        if localAlexandria.rootFolderID != decodedAlexandria.rootFolderID || localAlexandria.booksFolderID != decodedAlexandria.booksFolderID || localAlexandria.defaultPaperStyle != decodedAlexandria.defaultPaperStyle || localAlexandria.defaultCoverStyle != decodedAlexandria.defaultCoverStyle || localAlexandria.defaultPaperColor != decodedAlexandria.defaultPaperColor || localAlexandria.goals.count != decodedAlexandria.goals?.count || localAlexandria.trophies.count != decodedAlexandria.trophies?.count || localAlexandria.shelves.count != decodedAlexandria.shelves?.count || localAlexandria.cloudVaultMaps.count != decodedAlexandria.vaultMaps?.count || localAlexandria.cloudVaultDivisionPoints.count != decodedAlexandria.vaultDivisionPoints?.count || localAlexandria.cloudBooks.count != decodedAlexandria.books?.count || localAlexandria.defaultPaperOrientation != decodedAlexandria.defaultPaperOrientation || localAlexandria.defaultWritingToolThickness01.value != decodedAlexandria.defaultWritingToolThickness01 || IconColor.equals(localAlexandria.defaultWritingToolColor01, decodedAlexandria.defaultWritingToolColor01) || localAlexandria.defaultWritingToolThickness02.value != decodedAlexandria.defaultWritingToolThickness02 || IconColor.equals(localAlexandria.defaultWritingToolColor02, decodedAlexandria.defaultWritingToolColor02) || localAlexandria.defaultWritingToolThickness03.value != decodedAlexandria.defaultWritingToolThickness03 || IconColor.equals(localAlexandria.defaultWritingToolColor03, decodedAlexandria.defaultWritingToolColor03) || localAlexandria.defaultEraserToolThickness01.value != decodedAlexandria.defaultEraserToolThickness01 || localAlexandria.defaultEraserToolThickness02.value != decodedAlexandria.defaultEraserToolThickness02 || localAlexandria.defaultEraserToolThickness03.value != decodedAlexandria.defaultEraserToolThickness03 || localAlexandria.defaultHighlighterToolThickness01.value != decodedAlexandria.defaultHighlighterToolThickness01 || IconColor.equals(localAlexandria.defaultHighlighterToolColor01, decodedAlexandria.defaultHighlighterToolColor01) || localAlexandria.defaultHighlighterToolThickness02.value != decodedAlexandria.defaultHighlighterToolThickness02 || IconColor.equals(localAlexandria.defaultHighlighterToolColor02, decodedAlexandria.defaultHighlighterToolColor02) || localAlexandria.defaultHighlighterToolThickness03.value != decodedAlexandria.defaultHighlighterToolThickness03 || IconColor.equals(localAlexandria.defaultHighlighterToolColor03, decodedAlexandria.defaultHighlighterToolColor03) || localAlexandria.defaultTextToolFont.value != decodedAlexandria.defaultTextToolFont{
             return false
-        } else if localAlexandria.goals.count != decodedAlexandria.goals?.count {
-            return false
-        } else if localAlexandria.trophies.count != decodedAlexandria.trophies?.count {
-            return false
-        } else if localAlexandria.shelves.count != decodedAlexandria.shelves?.count {
-            return false
-        } else if localAlexandria.cloudBooks.count != decodedAlexandria.books?.count {
-            return false
-        }else {
+        } else {
             for index in 0..<(decodedAlexandria.goals?.count ?? 0){
                 if localAlexandria.goals[index].birthName != decodedAlexandria.goals![index].birthName ||
                 localAlexandria.goals[index].name != decodedAlexandria.goals![index].name ||
@@ -157,12 +254,30 @@ class AlexandriaData: Object, RealmOptionalType{
                 }
             }
             
+            for index in 0..<(decodedAlexandria.vaultDivisionPoints?.count ?? 0){
+                if localAlexandria.cloudVaultDivisionPoints[index] != decodedAlexandria.vaultDivisionPoints![index]{
+                    return false
+                }
+            }
+            
+            for index in 0..<(decodedAlexandria.vaultMaps?.count ?? 0){
+                if VaultMap.equals(lhs: localAlexandria.cloudVaultMaps[index], rhs: decodedAlexandria.vaultMaps![index]){
+                    return false
+                }
+            }
+            
+            for index in 0..<(decodedAlexandria.vaults?.count ?? 0){
+                if Vault.equals(localAlexandria.cloudVaults[index], decodedAlexandria.vaults![index]){
+                    return false
+                }
+            }
+            
             return true
         }
     }
     
     func isEmpty() -> Bool{
-        if self.goals.count == 0 && self.trophies.count == 0 && self.shelves.count == 0 && self.vaults.count == 0 && self.cloudBooks.count == 0 && self.localShelves.count == 0 && self.localBooks.count == 0{
+        if self.goals.count == 0 && self.trophies.count == 0 && self.shelves.count == 0 && self.cloudVaultDivisionPoints.count == 0 && self.localVaultDivisionPoints.count == 0 && self.cloudVaultMaps.count == 0 && self.localVaultMaps.count == 0 && self.cloudVaults.count == 0 && self.localVaults.count == 0 && self.cloudBooks.count == 0 && self.localShelves.count == 0 && self.localBooks.count == 0{
             return true
         }
         
@@ -451,19 +566,66 @@ class Shelf: Object{
     }
 }
 
+class VaultMap: Object {
+    var vault = RealmOptional<Double>()
+    var parentVault = RealmOptional<Double>()
+    var parentCloudVar = RealmOptional<Bool>()
+    var indexInParent = RealmOptional<Double>()
+    var cloudChildVaults = RealmSwift.List<Double>()
+    var localChildVaults = RealmSwift.List<Double>()
+    
+    required init() {}
+    
+    required init(_ cloudVaultMap: VaultMapDec) {
+        self.vault.value = cloudVaultMap.vault
+        self.indexInParent.value = cloudVaultMap.indexInParent
+        self.parentVault.value = cloudVaultMap.parentVault
+        if cloudVaultMap.childVaults != nil{
+            for index in cloudVaultMap.childVaults!{
+                self.cloudChildVaults.append(index)
+            }
+        }
+    }
+    
+    static func equals (lhs: VaultMap?, rhs: VaultMapDec?) -> Bool{
+        if lhs?.vault.value != rhs?.vault || lhs?.parentVault.value != rhs?.parentVault || lhs?.indexInParent.value != rhs?.indexInParent || lhs?.cloudChildVaults.count != rhs?.childVaults?.count{
+            return false
+        } else {
+            
+            for index in rhs?.childVaults?.indices ?? (0..<0){
+                if lhs?.cloudChildVaults[index] != rhs?.childVaults![index]{
+                    return false
+                }
+            }
+            
+            return true
+        }
+    }
+    
+    static func ^ (lhs: VaultMap, rhs: VaultMapDec){
+        lhs.vault.value = rhs.vault
+        lhs.indexInParent.value = rhs.indexInParent
+        lhs.parentVault.value = rhs.parentVault
+        if lhs.cloudChildVaults.count > 0{
+            lhs.cloudChildVaults.removeAll()
+        }
+        for index in rhs.childVaults?.indices ?? (0..<0){
+            lhs.cloudChildVaults.append(rhs.childVaults![index])
+        }
+    }
+}
+
 class Vault: Object, VaultDisplayable{
     @objc dynamic var vaultFolderID: String?
-    @objc dynamic var parentFolderID: String?
-    var childrenFolderIDs = RealmSwift.List<String>()
-    var localChildrenFolderIDs = RealmSwift.List<String>()
-    var vaultPathComponents = RealmSwift.List<String>()
+    var indexInArray = RealmOptional<Double>()
     @objc dynamic var color: IconColor?
     @objc dynamic var birthName: String?
     @objc dynamic var name: String?
     @objc dynamic var localAddress: String?
     var cloudVar = RealmOptional<Bool>()
-    var sets = RealmSwift.List<TermSet>()
-    var localSets = RealmSwift.List<TermSet>()
+    var pathVaults = RealmSwift.List<String>()
+    var termSets = RealmSwift.List<TermSet>()
+    var localTermSets = RealmSwift.List<TermSet>()
     var notes = RealmSwift.List<Note>()
     var localNotes = RealmSwift.List<Note>()
     
@@ -472,24 +634,24 @@ class Vault: Object, VaultDisplayable{
     }
     
     static func equals(_ lhs: Vault, _ rhs: VaultDec) -> Bool{
-        if lhs.parentFolderID != rhs.parentFolderID || lhs.childrenFolderIDs.count != rhs.childrenFolderIDs?.count || lhs.vaultFolderID != rhs.vaultFolderID || lhs.birthName != rhs.birthName || lhs.name != rhs.name || lhs.sets.count != rhs.sets?.count || lhs.notes.count != rhs.notes?.count || IconColor.equals(lhs.color, rhs.color){
+        if lhs.vaultFolderID != rhs.vaultFolderID || lhs.indexInArray.value != rhs.indexInArray || lhs.birthName != rhs.birthName || lhs.name != rhs.name || lhs.pathVaults.count != rhs.pathVaults?.count || lhs.termSets.count != rhs.termSets?.count || lhs.notes.count != rhs.notes?.count || IconColor.equals(lhs.color, rhs.color){
             return false
         }
         
-        for index in 0..<(rhs.sets?.count ?? 0){
-            if !TermSet.equals(lhs.sets[index], rhs.sets![index]){
+        for index in 0..<(rhs.pathVaults?.count ?? 0){
+            if lhs.pathVaults[index] != rhs.pathVaults![index] {
+                return false
+            }
+        }
+        
+        for index in 0..<(rhs.termSets?.count ?? 0){
+            if !TermSet.equals(lhs.termSets[index], rhs.termSets![index]){
                 return false
             }
         }
         
         for index in 0..<(rhs.notes?.count ?? 0){
             if lhs.notes[index] != rhs.notes![index] {
-                return false
-            }
-        }
-        
-        for index in 0..<(rhs.childrenFolderIDs?.count ?? 0){
-            if lhs.childrenFolderIDs[index] != rhs.childrenFolderIDs![index]{
                 return false
             }
         }
@@ -503,14 +665,14 @@ class Vault: Object, VaultDisplayable{
             return false
         } else {
             for index in 0..<(rhs?.count ?? 0){
-                if lhs?[index].parentFolderID != rhs?[index].parentFolderID || lhs?[index].vaultFolderID != rhs?[index].vaultFolderID || lhs?[index].birthName != rhs?[index].birthName || lhs?[index].name != rhs?[index].name{
+                if lhs?[index].vaultFolderID != rhs?[index].vaultFolderID || lhs?[index].indexInArray.value != rhs?[index].indexInArray || lhs?[index].birthName != rhs?[index].birthName || lhs?[index].name != rhs?[index].name{
                     return false
                 } else {
-                    if lhs?[index].sets.count != rhs?[index].sets?.count || lhs?[index].childrenFolderIDs.count != rhs?[index].childrenFolderIDs?.count || lhs?[index].notes.count != rhs?[index].notes?.count || IconColor.equals(lhs?[index].color, rhs?[index].color){
+                    if lhs?[index].termSets.count != rhs?[index].termSets?.count || lhs?[index].pathVaults.count != rhs?[index].pathVaults?.count || lhs?[index].notes.count != rhs?[index].notes?.count || IconColor.equals(lhs?[index].color, rhs?[index].color){
                         return false
                     } else {
-                        for kindex in 0..<(rhs![index].sets?.count ?? 0){
-                            if !TermSet.equals(lhs![index].sets[kindex], rhs![index].sets![kindex]){
+                        for kindex in 0..<(rhs![index].termSets?.count ?? 0){
+                            if !TermSet.equals(lhs![index].termSets[kindex], rhs![index].termSets![kindex]){
                                 return false
                             }
                         }
@@ -521,8 +683,8 @@ class Vault: Object, VaultDisplayable{
                             }
                         }
                         
-                        for kindex in 0..<(rhs![index].childrenFolderIDs?.count ?? 0){
-                            if lhs![index].childrenFolderIDs[kindex] != rhs![index].childrenFolderIDs![kindex]{
+                        for kindex in 0..<(rhs![index].pathVaults?.count ?? 0){
+                            if lhs![kindex].pathVaults[kindex] != rhs![index].pathVaults![kindex]{
                                 return false
                             }
                         }
@@ -537,16 +699,16 @@ class Vault: Object, VaultDisplayable{
         lhs.birthName = rhs.birthName
         lhs.name = rhs.name
         lhs.vaultFolderID = rhs.vaultFolderID
+        lhs.indexInArray.value = rhs.indexInArray
         lhs.cloudVar.value = true
         lhs.color! ^ rhs.color!
-        lhs.sets.removeAll()
+        lhs.termSets.removeAll()
         lhs.notes.removeAll()
-        lhs.childrenFolderIDs.removeAll()
-        lhs.vaultPathComponents.removeAll()
+        lhs.pathVaults.removeAll()
         
-        for index in 0..<(rhs.sets?.count ?? 0){
-            lhs.sets.append(TermSet())
-            lhs.sets[index] ^ rhs.sets![index]
+        for index in 0..<(rhs.termSets?.count ?? 0){
+            lhs.termSets.append(TermSet())
+            lhs.termSets[index] ^ rhs.termSets![index]
         }
         
         for index in 0..<(rhs.notes?.count ?? 0){
@@ -554,30 +716,16 @@ class Vault: Object, VaultDisplayable{
             lhs.notes[index] ^ rhs.notes![index]
         }
         
-        for index in 0..<(rhs.childrenFolderIDs?.count ?? 0){
-            lhs.childrenFolderIDs.append(rhs.childrenFolderIDs![index])
-        }
-        
-        for index in 0..<(rhs.vaultPathComponents?.count ?? 0){
-            lhs.vaultPathComponents.append(rhs.vaultPathComponents![index])
+        for index in 0..<(rhs.pathVaults?.count ?? 0){
+            lhs.pathVaults.append(rhs.pathVaults![index])
         }
     }
     
     static func assign (_ lhs: RealmSwift.List<Vault>?, _ rhs: [VaultDec]?){
         for index in 0..<(lhs?.count ?? 0){
-            lhs![index].sets.removeAll()
-        }
-        
-        for index in 0..<(lhs?.count ?? 0){
+            lhs![index].termSets.removeAll()
             lhs![index].notes.removeAll()
-        }
-        
-        for index in 0..<(lhs?.count ?? 0){
-            lhs![index].childrenFolderIDs.removeAll()
-        }
-        
-        for index in 0..<(lhs?.count ?? 0){
-            lhs![index].vaultPathComponents.removeAll()
+            lhs![index].pathVaults.removeAll()
         }
         
         lhs?.removeAll()
@@ -586,12 +734,13 @@ class Vault: Object, VaultDisplayable{
             lhs?.append(Vault())
             lhs![index].birthName = rhs![index].birthName
             lhs![index].name = rhs![index].name
+            lhs![index].indexInArray.value = rhs![index].indexInArray
             lhs![index].vaultFolderID = rhs![index].vaultFolderID
             lhs![index].cloudVar.value = true
             lhs![index].color! ^ rhs![index].color!
-            for kindex in 0..<(rhs![index].sets?.count ?? 0){
-                lhs?[index].sets.append(TermSet())
-                lhs![index].sets[kindex] ^ rhs![index].sets![kindex]
+            for kindex in 0..<(rhs![index].termSets?.count ?? 0){
+                lhs?[index].termSets.append(TermSet())
+                lhs![index].termSets[kindex] ^ rhs![index].termSets![kindex]
             }
             
             for kindex in 0..<(rhs![index].notes?.count ?? 0){
@@ -599,14 +748,9 @@ class Vault: Object, VaultDisplayable{
                 lhs![index].notes[kindex] ^ rhs![index].notes![kindex]
             }
             
-            for kindex in 0..<(rhs![index].childrenFolderIDs?.count ?? 0){
-                lhs?[index].childrenFolderIDs.append(rhs![index].childrenFolderIDs![kindex])
+            for kindex in 0..<(rhs![index].pathVaults?.count ?? 0){
+                lhs![kindex].pathVaults.append(rhs![index].pathVaults![kindex])
             }
-            
-            for kindex in 0..<(rhs![index].vaultPathComponents?.count ?? 0){
-                lhs?[index].vaultPathComponents.append(rhs![index].vaultPathComponents![kindex])
-            }
-            
         }
     }
 }
@@ -617,20 +761,42 @@ class Note: Object, VaultDisplayable{
     @objc dynamic var lastUpdated: Date?
     @objc dynamic var localAddress: String? = nil
     var cloudVar = RealmOptional<Bool>()
-    @objc dynamic var thumbnail: StoredFile?
+    @objc dynamic var coverStyle: String?
+    var sheetStyleGroup = RealmSwift.List<String>()
+    var sheetIndexInGroup = RealmSwift.List<Double>()
     
     static func != (lhs: Note, rhs: NoteDec) -> Bool{
-        if lhs.id != rhs.id || lhs.name != rhs.title || lhs.lastUpdated != rhs.lastUpdated || !StoredFile.equals(lhs: lhs.thumbnail!, rhs: rhs.thumbnail!){
+        if lhs.id != rhs.id || lhs.name != rhs.title || lhs.lastUpdated != rhs.lastUpdated || lhs.coverStyle != rhs.coverStyle || lhs.sheetStyleGroup.count != rhs.sheetStyleGroup?.count{
             return true
+        } else {
+            for index in 0..<(rhs.sheetStyleGroup?.count ?? 0){
+                if lhs.sheetStyleGroup[index] != rhs.sheetStyleGroup![index]{
+                    return true
+                }
+            }
+            for index in 0..<(rhs.sheetIndexInGroup?.count ?? 0){
+                if lhs.sheetIndexInGroup[index] != rhs.sheetIndexInGroup![index]{
+                    return true
+                }
+            }
+            return false
         }
-        return false
     }
     
     static func ^ (lhs: Note, rhs: NoteDec){
         lhs.id = rhs.id
         lhs.name = rhs.title
         lhs.lastUpdated = rhs.lastUpdated
-        lhs.thumbnail = StoredFile(rhs.thumbnail)
+        lhs.coverStyle = rhs.coverStyle
+        lhs.sheetStyleGroup.removeAll()
+        lhs.sheetIndexInGroup.removeAll()
+        
+        for index in 0..<(rhs.sheetStyleGroup?.count ?? 0){
+            lhs.sheetStyleGroup.append(rhs.sheetStyleGroup![index])
+        }
+        for height in rhs.sheetIndexInGroup ?? []{
+            lhs.sheetIndexInGroup.append(height)
+        }
     }
 }
 
@@ -710,11 +876,25 @@ class IconColor: Object{
     
     required init(){}
     
+    required init(red: CGFloat, green: CGFloat, blue: CGFloat, name: String) {
+        self.red.value = Double(red)
+        self.green.value = Double(green)
+        self.blue.value = Double(blue)
+        self.colorName = name
+    }
+    
     required init(from cloud: IconColorDec) {
         self.red.value = cloud.red
         self.green.value = cloud.green
         self.blue.value = cloud.blue
         self.colorName = cloud.colorName
+    }
+    
+    static func != (_ lhs: IconColor, _ rhs: IconColor) -> Bool {
+        if lhs.red.value != rhs.red.value || lhs.green.value != rhs.green.value || lhs.blue.value != rhs.blue.value || lhs.colorName != rhs.colorName{
+            return false
+        }
+        return true
     }
     
     static func equals (_ lhs: IconColor?, _ rhs: IconColorDec?) -> Bool{

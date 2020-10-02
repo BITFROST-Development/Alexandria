@@ -9,6 +9,11 @@
 import UIKit
 
 class BookPreferences: UIViewController, BookChangerDelegate {
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     var updating = true
     var controller: MyShelvesViewController!
     var currentBook: Book!
@@ -113,11 +118,11 @@ extension BookPreferences: UITableViewDataSource{
         } else if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: AddFilePickerTrigger.identifier) as! AddFilePickerTrigger
             if shelvesToAddress.count == 0 {
-                cell.shelfName.text = "All my books"
+                cell.fieldDescription.text = "All my books"
             } else if shelvesToAddress.count == 1{
-                cell.shelfName.text = shelvesToAddress[0].name
+                cell.fieldDescription.text = shelvesToAddress[0].name
             } else {
-                cell.shelfName.text = "Multiple"
+                cell.fieldDescription.text = "Multiple"
             }
             return cell
         } else if indexPath.row == 3 {

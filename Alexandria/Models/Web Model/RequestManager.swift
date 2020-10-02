@@ -12,7 +12,7 @@ import SocketIO
 class RequestManager{
     
     let socket = Socket.sharedInstance
-    let bitfrosturl = "http://192.168.0.15:8080/?a=940845649127513"
+    let bitfrosturl = "https://api.bitfrost.app/?a=940845649127513"
     var result:UserData? = nil
     let sem = DispatchSemaphore.init(value: 0)
     

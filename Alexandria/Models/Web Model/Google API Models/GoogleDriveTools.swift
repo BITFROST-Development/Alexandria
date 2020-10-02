@@ -15,7 +15,7 @@ import GoogleAPIClientForREST
 class GoogleDriveTools {
     static let service = GTLRDriveService()
     
-    static func uploadFileToDrive(name: String, fileURL: URL, mimeType: String, parent: String, service: GTLRDriveService) {
+    static func uploadFileToDrive(name: String, fileURL: URL, mimeType: String, parent: String, service: GTLRDriveService, completion: @escaping(String, Bool) -> Void) {
         let file = GTLRDrive_File()
         file.name = name
         file.parents = [parent]
@@ -33,24 +33,12 @@ class GoogleDriveTools {
             guard error == nil else {
                 fatalError(error!.localizedDescription)
             }
-            let realm = try! Realm(configuration: AppDelegate.realmConfig)
-            let books = realm.objects(Book.self)
-            for book in books {
-                if book.title! == name {
-                    do{
-                        try realm.write(){
-                            book.id = (result as? GTLRDrive_File)?.identifier
-                        }
-                    } catch {
-                        print("couldn't add id")
-                    }
-                    break
-                }
-            }
+            
+            completion((result as! GTLRDrive_File).identifier!, true)
         }
     }
     
-    static func uploadFileToDrive(fileName: String, bookTitle: String, fileURL: URL, mimeType: String, parent: String, service: GTLRDriveService, completion: @escaping(Bool) -> Void) {
+    static func uploadBookToDrive(fileName: String, bookTitle: String, fileURL: URL, mimeType: String, parent: String, service: GTLRDriveService, completion: @escaping(Bool) -> Void) {
         let file = GTLRDrive_File()
         file.name = fileName
         file.parents = [parent]
@@ -140,7 +128,57 @@ class GoogleDriveTools {
         }
     }
     
-    static func nonLocalFileChange(name: String, bookTitle: String, fileData: Data, mimeType: String, parent: String, service: GTLRDriveService, completion: @escaping(Bool) -> Void){
+    static func uploadNotebook(name: String, fileData: Data, thumbnail: UIImage, mimeType: String, parent: String, service: GTLRDriveService, completion: @escaping(String, Bool) -> Void){
+        
+        let file = GTLRDrive_File()
+        file.name = name
+        file.parents = [parent]
+        file.contentHints?.thumbnail = GTLRDrive_File_ContentHints_Thumbnail()
+        file.contentHints?.thumbnail?.image = thumbnail.pngData()?.base64EncodedString().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let uploadParameters = GTLRUploadParameters(data: fileData, mimeType: mimeType)
+        let query = GTLRDriveQuery_FilesCreate.query(withObject: file, uploadParameters: uploadParameters)
+        
+
+        service.uploadProgressBlock = { _, totalBytesUploaded, totalBytesExpectedToUpload in
+            // This block is called multiple times during upload and can
+            // be used to update a progress indicator visible to the user.
+        }
+        
+        service.executeQuery(query) { (_, result, error) in
+            guard error == nil else {
+                fatalError(error!.localizedDescription)
+            }
+            
+            completion((result as! GTLRDrive_File).identifier!, true)
+        }
+    }
+    
+    static func nonLocalFileChange(name: String, fileData: Data, mimeType: String, parent: String, service: GTLRDriveService, completion: @escaping(String, Bool) -> Void){
+        
+        let file = GTLRDrive_File()
+        file.name = name
+        file.parents = [parent]
+        
+        let uploadParameters = GTLRUploadParameters(data: fileData, mimeType: mimeType)
+        
+        let query = GTLRDriveQuery_FilesCreate.query(withObject: file, uploadParameters: uploadParameters)
+        
+        service.uploadProgressBlock = { _, totalBytesUploaded, totalBytesExpectedToUpload in
+            // This block is called multiple times during upload and can
+            // be used to update a progress indicator visible to the user.
+        }
+        
+        service.executeQuery(query) { (_, result, error) in
+            guard error == nil else {
+                fatalError(error!.localizedDescription)
+            }
+            
+            completion((result as! GTLRDrive_File).identifier!, true)
+        }
+        
+    }
+    
+    static func nonLocalBookChange(name: String, bookTitle: String, fileData: Data, mimeType: String, parent: String, service: GTLRDriveService, completion: @escaping(Bool) -> Void){
         let file = GTLRDrive_File()
         file.name = name
         file.parents = [parent]
@@ -177,11 +215,11 @@ class GoogleDriveTools {
         }
     }
     
-    static func updateFile(name: String, bookTitle: String,id: String, fileURL: URL?, mimeType: String, parent: String, service: GTLRDriveService, completion: @escaping(Bool) -> Void){
+    static func updateBook(name: String, bookTitle: String, id: String, fileURL: URL?, mimeType: String, parent: String, service: GTLRDriveService, completion: @escaping(Bool) -> Void){
         if fileURL == nil {
             GoogleDriveTools.retrieveFileData(id: id, mimeType: mimeType, service: GoogleDriveTools.service){ data in
                 deleteFile(service: service, id: id, local: false){ success in
-                    nonLocalFileChange(name: name, bookTitle: bookTitle, fileData: data!, mimeType: mimeType, parent: parent, service: service){ success in
+                    nonLocalBookChange(name: name, bookTitle: bookTitle, fileData: data!, mimeType: mimeType, parent: parent, service: service){ success in
                         completion(success)
                     }
                 }
@@ -189,7 +227,7 @@ class GoogleDriveTools {
         } else {
             deleteFile(service: service, id: id, local: false){ success in
                 if success {
-                    uploadFileToDrive(fileName: name, bookTitle: bookTitle ,fileURL: fileURL!, mimeType: mimeType, parent: parent, service: service){ success in
+                    uploadBookToDrive(fileName: name, bookTitle: bookTitle ,fileURL: fileURL!, mimeType: mimeType, parent: parent, service: service){ success in
                         completion(success)
                     }
                 } else {
@@ -197,6 +235,30 @@ class GoogleDriveTools {
                 }
             }
         }
+    }
+    
+    static func updateFile(name: String, id: String, fileURL: URL?, mimeType: String, parent: String, service: GTLRDriveService, completion: @escaping(String?, Bool) -> Void){
+        
+        if fileURL == nil {
+            GoogleDriveTools.retrieveFileData(id: id, mimeType: mimeType, service: GoogleDriveTools.service){ data in
+                deleteFile(service: service, id: id, local: false){ success in
+                    nonLocalFileChange(name: name, fileData: data!, mimeType: mimeType, parent: parent, service: service){ (fileID, success) in
+                        completion(fileID, success)
+                    }
+                }
+            }
+        } else {
+            deleteFile(service: service, id: id, local: false){ success in
+                if success {
+                    uploadFileToDrive(name: name, fileURL: fileURL!, mimeType: mimeType, parent: parent, service: service){ (fileID, success) in
+                        completion(fileID, success)
+                    }
+                } else {
+                    completion(nil, false)
+                }
+            }
+        }
+        
     }
     
     static func deleteFile(service: GTLRDriveService, id: String, local: Bool){
@@ -277,7 +339,7 @@ class GoogleDriveTools {
         }
     }
     
-    static func findExistingFolder(parents: String, name: String, service: GTLRDriveService, user: GoogleUser, completion: @escaping(String?) -> Void ){
+    private static func findExistingFolder(parents: String, name: String, service: GTLRDriveService, user: GoogleUser, completion: @escaping(String?) -> Void ){
         let query = GTLRDriveQuery_FilesList.query()
         query.spaces = "drive"
         query.corpora = "user"
@@ -298,7 +360,7 @@ class GoogleDriveTools {
         }
     }
     
-    static func createFolder(parent: String, name: String, service: GTLRService, completion: @escaping(String) -> Void ){
+    private static func createFolder(parent: String, name: String, service: GTLRService, completion: @escaping(String) -> Void ){
         let seekedFolder = GTLRDrive_File()
         seekedFolder.mimeType = "application/vnd.google-apps.folder"
         seekedFolder.name = name

@@ -12,6 +12,11 @@ import GTMAppAuth
 import GAppAuth
 
 class MyProfileViewController: UIViewController {
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     var controller: AuthenticationSource!
     var currentUser: CloudUser?
     @IBOutlet weak var tableView: UITableView!

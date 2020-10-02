@@ -26,8 +26,30 @@ struct UserData: Codable{
 struct AlexandriaDataDec: Codable{
     var rootFolderID: String?
     var booksFolderID: String?
+    var defaultPaperStyle: String?
+    var defaultPaperOrientation: String?
+    var defaultCoverStyle: String?
+    var defaultPaperColor: String?
+    var defaultWritingToolThickness01: Double?
+    var defaultWritingToolThickness02: Double?
+    var defaultWritingToolThickness03: Double?
+    var defaultWritingToolColor01: IconColorDec?
+    var defaultWritingToolColor02: IconColorDec?
+    var defaultWritingToolColor03: IconColorDec?
+    var defaultEraserToolThickness01: Double?
+    var defaultEraserToolThickness02: Double?
+    var defaultEraserToolThickness03: Double?
+    var defaultHighlighterToolThickness01: Double?
+    var defaultHighlighterToolThickness02: Double?
+    var defaultHighlighterToolThickness03: Double?
+    var defaultHighlighterToolColor01: IconColorDec?
+    var defaultHighlighterToolColor02: IconColorDec?
+    var defaultHighlighterToolColor03: IconColorDec?
+    var defaultTextToolFont: Double?
     var goals: [GoalDec]?
     var trophies: [TrophyDec]?
+    var vaultDivisionPoints: [Double]?
+    var vaultMaps: [VaultMapDec]?
     var vaults: [VaultDec]?
     var shelves: [ShelfDec]?
     var books: [BookDec]?
@@ -40,8 +62,30 @@ struct AlexandriaDataDec: Codable{
         
         rootFolderID = user.alexandriaData?.rootFolderID
         booksFolderID = user.alexandriaData?.booksFolderID
+        defaultPaperStyle = user.alexandriaData?.defaultPaperStyle
+        defaultCoverStyle = user.alexandriaData?.defaultCoverStyle
+        defaultPaperColor = user.alexandriaData?.defaultPaperColor
+        defaultPaperOrientation = user.alexandriaData?.defaultPaperOrientation
+        defaultWritingToolThickness01 = user.alexandriaData!.defaultWritingToolThickness01.value
+        defaultWritingToolThickness02 = user.alexandriaData!.defaultWritingToolThickness02.value
+        defaultWritingToolThickness03 = user.alexandriaData!.defaultWritingToolThickness03.value
+        defaultWritingToolColor01 = IconColorDec(user.alexandriaData!.defaultWritingToolColor01!)
+        defaultWritingToolColor02 = IconColorDec(user.alexandriaData!.defaultWritingToolColor02!)
+        defaultWritingToolColor03 = IconColorDec(user.alexandriaData!.defaultWritingToolColor03!)
+        defaultEraserToolThickness01 = user.alexandriaData!.defaultEraserToolThickness01.value
+        defaultEraserToolThickness02 = user.alexandriaData!.defaultEraserToolThickness02.value
+        defaultEraserToolThickness03 = user.alexandriaData!.defaultEraserToolThickness03.value
+        defaultHighlighterToolThickness01 = user.alexandriaData!.defaultHighlighterToolThickness01.value
+        defaultHighlighterToolThickness02 = user.alexandriaData!.defaultHighlighterToolThickness02.value
+        defaultHighlighterToolThickness03 = user.alexandriaData!.defaultHighlighterToolThickness03.value
+        defaultHighlighterToolColor01 = IconColorDec(user.alexandriaData!.defaultHighlighterToolColor01!)
+        defaultHighlighterToolColor02 = IconColorDec(user.alexandriaData!.defaultHighlighterToolColor02!)
+        defaultHighlighterToolColor03 = IconColorDec(user.alexandriaData!.defaultHighlighterToolColor03!)
+        defaultTextToolFont = user.alexandriaData!.defaultTextToolFont.value
         goals = []
         trophies = []
+        vaultDivisionPoints = []
+        vaultMaps = []
         vaults = []
         shelves = []
         books = []
@@ -53,10 +97,16 @@ struct AlexandriaDataDec: Codable{
             trophies?.append(TrophyDec(storedTrophy: trophy))
         }
         
-        for vault in user.alexandriaData!.vaults{
-            if vault.cloudVar.value == true{
-                vaults?.append(VaultDec(storedVault: vault))
-            }
+        for vault in user.alexandriaData!.cloudVaults{
+            vaults?.append(VaultDec(storedVault: vault))
+        }
+        
+        for vaultMap in user.alexandriaData!.cloudVaultMaps{
+            vaultMaps?.append(VaultMapDec(vaultMap))
+        }
+        
+        for index in user.alexandriaData!.cloudVaultDivisionPoints{
+            vaultDivisionPoints?.append(index)
         }
         
         for shelf in user.alexandriaData!.shelves{
@@ -71,8 +121,30 @@ struct AlexandriaDataDec: Codable{
     init(from user: CloudUser) {
         rootFolderID = user.alexandriaData?.rootFolderID
         booksFolderID = user.alexandriaData?.booksFolderID
+        defaultPaperStyle = user.alexandriaData?.defaultPaperStyle
+        defaultCoverStyle = user.alexandriaData?.defaultCoverStyle
+        defaultPaperColor = user.alexandriaData?.defaultPaperColor
+        defaultPaperOrientation = user.alexandriaData?.defaultPaperOrientation
+        defaultWritingToolThickness01 = user.alexandriaData!.defaultWritingToolThickness01.value
+        defaultWritingToolThickness02 = user.alexandriaData!.defaultWritingToolThickness02.value
+        defaultWritingToolThickness03 = user.alexandriaData!.defaultWritingToolThickness03.value
+        defaultWritingToolColor01 = IconColorDec(user.alexandriaData!.defaultWritingToolColor01!)
+        defaultWritingToolColor02 = IconColorDec(user.alexandriaData!.defaultWritingToolColor02!)
+        defaultWritingToolColor03 = IconColorDec(user.alexandriaData!.defaultWritingToolColor03!)
+        defaultEraserToolThickness01 = user.alexandriaData!.defaultEraserToolThickness01.value
+        defaultEraserToolThickness02 = user.alexandriaData!.defaultEraserToolThickness02.value
+        defaultEraserToolThickness03 = user.alexandriaData!.defaultEraserToolThickness03.value
+        defaultHighlighterToolThickness01 = user.alexandriaData!.defaultHighlighterToolThickness01.value
+        defaultHighlighterToolThickness02 = user.alexandriaData!.defaultHighlighterToolThickness02.value
+        defaultHighlighterToolThickness03 = user.alexandriaData!.defaultHighlighterToolThickness03.value
+        defaultHighlighterToolColor01 = IconColorDec(user.alexandriaData!.defaultHighlighterToolColor01!)
+        defaultHighlighterToolColor02 = IconColorDec(user.alexandriaData!.defaultHighlighterToolColor02!)
+        defaultHighlighterToolColor03 = IconColorDec(user.alexandriaData!.defaultHighlighterToolColor03!)
+        defaultTextToolFont = user.alexandriaData!.defaultTextToolFont.value
         goals = []
         trophies = []
+        vaultDivisionPoints = []
+        vaultMaps = []
         vaults = []
         shelves = []
         books = []
@@ -84,7 +156,7 @@ struct AlexandriaDataDec: Codable{
             trophies?.append(TrophyDec(storedTrophy: trophy))
         }
         
-        for vault in user.alexandriaData!.vaults{
+        for vault in user.alexandriaData!.cloudVaults{
             if vault.cloudVar.value == true{
                 vaults?.append(VaultDec(storedVault: vault))
             }
@@ -104,7 +176,7 @@ struct AlexandriaDataDec: Codable{
     }
     
     static func == (lhs: AlexandriaDataDec, rhs: AlexandriaDataDec) -> Bool {
-        if lhs.rootFolderID == rhs.rootFolderID && lhs.goals == rhs.goals && lhs.trophies == rhs.trophies && lhs.vaults == rhs.vaults && lhs.shelves == rhs.shelves{
+        if lhs.rootFolderID == rhs.rootFolderID && lhs.booksFolderID == rhs.booksFolderID && lhs.defaultPaperStyle == rhs.defaultPaperStyle && lhs.defaultCoverStyle == rhs.defaultCoverStyle && lhs.defaultPaperColor == rhs.defaultPaperColor && lhs.defaultPaperOrientation == rhs.defaultPaperOrientation && lhs.vaultDivisionPoints == rhs.vaultDivisionPoints && lhs.vaultMaps == rhs.vaultMaps && lhs.goals == rhs.goals && lhs.trophies == rhs.trophies && lhs.vaults == rhs.vaults && lhs.shelves == rhs.shelves && lhs.books == rhs.books{
             return true
         }
         
@@ -163,15 +235,34 @@ struct ShelfDec: Codable, Equatable{
     }
 }
 
+struct VaultMapDec: Codable, Equatable{
+    var vault: Double?
+    var parentVault: Double?
+    var indexInParent: Double?
+    var childVaults: [Double]?
+    
+    init(){}
+    
+    init(_ storedMap: VaultMap){
+        self.vault = storedMap.vault.value
+        self.indexInParent = storedMap.indexInParent.value
+        self.parentVault = storedMap.parentVault.value
+        self.childVaults = []
+        for vault in storedMap.cloudChildVaults{
+            self.childVaults?.append(vault)
+        }
+    }
+    
+}
+
 struct VaultDec: Codable, Equatable{
     var vaultFolderID: String?
-    var parentFolderID: String?
-    var vaultPathComponents: [String]?
-    var childrenFolderIDs: [String]?
+    var indexInArray: Double?
     var color: IconColorDec?
     var birthName: String?
     var name: String?
-    var sets: [TermSetDec]?
+    var pathVaults: [String]?
+    var termSets: [TermSetDec]?
     var notes: [NoteDec]?
     
     init(){}
@@ -181,17 +272,17 @@ struct VaultDec: Codable, Equatable{
         birthName = storedVault.birthName
         name = storedVault.name
         color = IconColorDec(storedVault.color!)
-        sets = []
-        for set in storedVault.sets{
-            sets?.append(TermSetDec(storedSet: set))
+        termSets = []
+        for set in storedVault.termSets{
+            termSets?.append(TermSetDec(storedSet: set))
         }
         notes = []
         for note in storedVault.notes{
             notes?.append(NoteDec(storedNote: note))
         }
-        vaultPathComponents = []
-        for component in storedVault.vaultPathComponents{
-            vaultPathComponents?.append(component)
+        pathVaults = []
+        for component in storedVault.pathVaults{
+            pathVaults?.append(component)
         }
     }
 }
@@ -200,7 +291,9 @@ struct NoteDec: Codable, Equatable{
     var id: String?
     var title: String?
     var lastUpdated: Date?
-    var thumbnail: StoredFileDec?
+    var coverStyle: String?
+    var sheetStyleGroup: [String]?
+    var sheetIndexInGroup: [Double]?
     
     init(){}
     
@@ -208,7 +301,15 @@ struct NoteDec: Codable, Equatable{
         self.id = storedNote.id
         self.title = storedNote.name
         self.lastUpdated = storedNote.lastUpdated
-        self.thumbnail = StoredFileDec(storedNote.thumbnail!.name!, storedNote.thumbnail!.data!, storedNote.thumbnail!.contentType!)
+        self.coverStyle = storedNote.coverStyle
+        self.sheetStyleGroup = []
+        self.sheetIndexInGroup = []
+        for style in storedNote.sheetStyleGroup{
+            self.sheetStyleGroup?.append(style)
+        }
+        for index in storedNote.sheetIndexInGroup{
+            self.sheetIndexInGroup?.append(index)
+        }
     }
 }
 

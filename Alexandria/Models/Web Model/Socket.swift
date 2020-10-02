@@ -12,7 +12,7 @@ import RealmSwift
 
 class Socket {
     let realm = AppDelegate.realm
-    let manager = SocketManager(socketURL: URL(string: "http://192.168.0.15:8080")!, config: [.log(true), .compress])
+    let manager = SocketManager(socketURL: URL(string: "https://api.bitfrost.app")!, config: [.log(true), .compress])
     var socket:SocketIOClient!
     var delegate: SocketDelegate!
     static let sharedInstance = Socket()

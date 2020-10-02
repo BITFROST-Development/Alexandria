@@ -60,10 +60,8 @@ extension AddFileViewTitle: UITextFieldDelegate{
     func textFieldDidChangeSelection(_ textField: UITextField) {
         if textField.text != nil {
             AddFileViewTitle.controller.finalFileName = textField.text!
-            print(AddFileViewTitle.controller.finalFileName)
         } else {
             AddFileViewTitle.controller.finalFileName = ""
-            print(AddFileViewTitle.controller.finalFileName)
         }
     }
     

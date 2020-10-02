@@ -16,12 +16,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="180" height="260"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vault Icon" translatesAutoresizingMaskIntoConstraints="NO" id="Vjn-X8-AaS">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yui-Am-VWU">
+                        <rect key="frame" x="16.5" y="13.5" width="147" height="183"/>
+                        <color key="backgroundColor" cyan="0.0" magenta="0.0" yellow="0.0" black="1" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="147" id="4aP-KS-dwp"/>
+                            <constraint firstAttribute="height" constant="182.90000000000001" id="uc4-Lc-hmU"/>
+                        </constraints>
+                    </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vaultIconBlue" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vjn-X8-AaS" customClass="VaultIconView" customModule="Alexandria" customModuleProvider="target">
                         <rect key="frame" x="15" y="15" width="150" height="180"/>
                         <color key="tintColor" red="0.91764705879999997" green="0.56862745100000001" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="180" id="0QW-RT-xpH"/>
                             <constraint firstAttribute="width" constant="150" id="5IT-TX-tCD"/>
-                            <constraint firstAttribute="height" constant="180" id="HeP-M5-DpH"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="Muc-GV-MjF"/>
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Q5-Vd-Ygf">
@@ -30,8 +39,8 @@
                             <action selector="goTo:" destination="gTV-IL-0wX" eventType="touchUpInside" id="yM4-3X-7Zo"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vault Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzs-CL-RuR">
-                        <rect key="frame" x="52" y="215" width="76" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vault Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzs-CL-RuR">
+                        <rect key="frame" x="52.5" y="215" width="75.5" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -53,29 +62,34 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstItem="Vjn-X8-AaS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="5oA-9b-ciS"/>
+                <constraint firstItem="zzs-CL-RuR" firstAttribute="top" secondItem="5Q5-Vd-Ygf" secondAttribute="bottom" constant="20" id="7ir-ut-cqu"/>
                 <constraint firstItem="77o-df-lmm" firstAttribute="leading" secondItem="zzs-CL-RuR" secondAttribute="trailing" constant="4.5" id="9Lm-7A-FX4"/>
-                <constraint firstAttribute="height" constant="260" id="AD3-fS-bPv"/>
-                <constraint firstItem="5Q5-Vd-Ygf" firstAttribute="width" secondItem="Vjn-X8-AaS" secondAttribute="width" id="BKg-U0-Y9q"/>
-                <constraint firstItem="5Q5-Vd-Ygf" firstAttribute="height" secondItem="Vjn-X8-AaS" secondAttribute="height" id="GTm-8B-lY3"/>
+                <constraint firstItem="5Q5-Vd-Ygf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="A4q-cv-jrE"/>
                 <constraint firstItem="Vjn-X8-AaS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="OMT-bO-KmE"/>
                 <constraint firstAttribute="width" constant="180" id="Ovj-iS-YOW"/>
+                <constraint firstAttribute="trailing" secondItem="5Q5-Vd-Ygf" secondAttribute="trailing" constant="15" id="OyX-oE-VQ0"/>
                 <constraint firstItem="77o-df-lmm" firstAttribute="firstBaseline" secondItem="zzs-CL-RuR" secondAttribute="firstBaseline" constant="-2" id="QBy-10-gin"/>
+                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="180" id="SaN-gB-qmk"/>
+                <constraint firstItem="Yui-Am-VWU" firstAttribute="centerX" secondItem="Vjn-X8-AaS" secondAttribute="centerX" id="Uen-dM-x2W"/>
                 <constraint firstItem="5Q5-Vd-Ygf" firstAttribute="centerX" secondItem="Vjn-X8-AaS" secondAttribute="centerX" id="efF-ob-EgL"/>
+                <constraint firstItem="Yui-Am-VWU" firstAttribute="centerY" secondItem="Vjn-X8-AaS" secondAttribute="centerY" id="gz2-u7-W7r"/>
+                <constraint firstAttribute="height" secondItem="Vjn-X8-AaS" secondAttribute="height" multiplier="1.44444" priority="750" id="jgq-xw-zpO"/>
                 <constraint firstAttribute="trailing" secondItem="Vjn-X8-AaS" secondAttribute="trailing" constant="15" id="kZd-a5-Eoi"/>
+                <constraint firstItem="5Q5-Vd-Ygf" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="pWT-d8-vez"/>
                 <constraint firstItem="zzs-CL-RuR" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="sKn-s7-EDD"/>
                 <constraint firstItem="zzs-CL-RuR" firstAttribute="top" secondItem="Vjn-X8-AaS" secondAttribute="bottom" constant="20" id="sqP-JT-SrC"/>
-                <constraint firstItem="Vjn-X8-AaS" firstAttribute="bottom" secondItem="5Q5-Vd-Ygf" secondAttribute="bottom" id="xre-6e-XST"/>
             </constraints>
-            <size key="customSize" width="179" height="261"/>
+            <size key="customSize" width="179" height="245"/>
             <connections>
+                <outlet property="iconShadow" destination="Yui-Am-VWU" id="lf6-Jx-zWO"/>
                 <outlet property="vaultIcon" destination="Vjn-X8-AaS" id="cgT-c4-345"/>
                 <outlet property="vaultTitle" destination="zzs-CL-RuR" id="rb3-fM-9hw"/>
             </connections>
-            <point key="canvasLocation" x="136.23188405797103" y="128.57142857142856"/>
+            <point key="canvasLocation" x="136.23188405797103" y="122.54464285714285"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="Vault Icon" width="503.5" height="497"/>
         <image name="chevron.down.circle" catalog="system" width="128" height="121"/>
+        <image name="vaultIconBlue" width="1055" height="805"/>
     </resources>
 </document>

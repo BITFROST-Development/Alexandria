@@ -49,6 +49,8 @@
 		811E40C024CFD4F700E0753D /* ShelfBookPickerCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811E40BE24CFD4F700E0753D /* ShelfBookPickerCollectionCell.swift */; };
 		811E40C124CFD4F700E0753D /* ShelfBookPickerCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 811E40BF24CFD4F700E0753D /* ShelfBookPickerCollectionCell.xib */; };
 		811E40C324CFD5A900E0753D /* BookCollectionViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811E40C224CFD5A900E0753D /* BookCollectionViewControler.swift */; };
+		813002E0250B0B3A00BD028B /* NewNotebookThumbnail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 813002DE250B0B3A00BD028B /* NewNotebookThumbnail.xib */; };
+		813002E1250B0B3A00BD028B /* NewNotebookThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813002DF250B0B3A00BD028B /* NewNotebookThumbnail.swift */; };
 		8137DF6424C3D6C500615218 /* AddNewShelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8137DF6324C3D6C500615218 /* AddNewShelfViewController.swift */; };
 		8137DF6724C503F700615218 /* GoogleSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8137DF6624C503F700615218 /* GoogleSignIn.swift */; };
 		8137DF6924C5241D00615218 /* GoogleUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8137DF6824C5241D00615218 /* GoogleUser.swift */; };
@@ -70,8 +72,28 @@
 		8137DF9224C8A1D300615218 /* CreateNewShelf.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8137DF9024C8A1D300615218 /* CreateNewShelf.xib */; };
 		8137DF9524C8A28D00615218 /* ShelfCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8137DF9324C8A28D00615218 /* ShelfCell.swift */; };
 		8137DF9624C8A28D00615218 /* ShelfCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8137DF9424C8A28D00615218 /* ShelfCell.xib */; };
+		815C7DE92507FE140050D1B8 /* NewNotebokManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815C7DE82507FE140050D1B8 /* NewNotebokManager.swift */; };
+		815C7DED2507FE7B0050D1B8 /* ClassTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815C7DEB2507FE7B0050D1B8 /* ClassTitleTableViewCell.swift */; };
+		815C7DEE2507FE7B0050D1B8 /* ClassTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 815C7DEC2507FE7B0050D1B8 /* ClassTitleTableViewCell.xib */; };
+		815C7DF12508027C0050D1B8 /* ClassCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815C7DEF2508027C0050D1B8 /* ClassCollectionTableViewCell.swift */; };
+		815C7DF22508027C0050D1B8 /* ClassCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 815C7DF02508027C0050D1B8 /* ClassCollectionTableViewCell.xib */; };
+		815C7DF6250802C50050D1B8 /* ClassCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815C7DF4250802C50050D1B8 /* ClassCollectionViewCell.swift */; };
+		815C7DF7250802C50050D1B8 /* ClassCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 815C7DF5250802C50050D1B8 /* ClassCollectionViewCell.xib */; };
+		815C7DFB250855230050D1B8 /* NewNotebookDone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815C7DF9250855220050D1B8 /* NewNotebookDone.swift */; };
+		815C7DFD250855450050D1B8 /* NewNotebookDone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 815C7DFA250855230050D1B8 /* NewNotebookDone.xib */; };
+		81601649250FC7E600BD0508 /* ClassViewTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81601647250FC7E600BD0508 /* ClassViewTitleTableViewCell.swift */; };
+		8160164A250FC7E600BD0508 /* ClassViewTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81601648250FC7E600BD0508 /* ClassViewTitleTableViewCell.xib */; };
 		8162D23924D2095A00C2B9E0 /* BookPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8162D23824D2095900C2B9E0 /* BookPreferences.swift */; };
+		81747CA6251EA049002720F7 /* GeneralNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81747CA5251EA049002720F7 /* GeneralNavigationViewController.swift */; };
+		81747CAF251EADB8002720F7 /* EditingManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81747CAE251EADB8002720F7 /* EditingManger.swift */; };
+		81747CB6251EB111002720F7 /* EditingFilePickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81747CB4251EB111002720F7 /* EditingFilePickerCollectionViewCell.swift */; };
+		81747CB7251EB111002720F7 /* EditingFilePickerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81747CB5251EB111002720F7 /* EditingFilePickerCollectionViewCell.xib */; };
+		81747CBF251EC27C002720F7 /* EditingFilePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81747CBE251EC27C002720F7 /* EditingFilePickerManager.swift */; };
+		81747CC725224214002720F7 /* EditingToolsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81747CC625224213002720F7 /* EditingToolsManager.swift */; };
+		81747CCF25229D03002720F7 /* NotebookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81747CCE25229D03002720F7 /* NotebookView.swift */; };
+		81747CE0252502B0002720F7 /* UIBezierPathOptimiced.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81747CDF252502AE002720F7 /* UIBezierPathOptimiced.swift */; };
 		8175B4F024CCE9A8002C7BB7 /* SocketDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8175B4EF24CCE9A6002C7BB7 /* SocketDelegate.swift */; };
+		8183D3F4251DB759007DCF60 /* EditingFilePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8183D3F3251DB759007DCF60 /* EditingFilePickerViewController.swift */; };
 		8193316724EAF9E900E1A56E /* ShelfPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8193316624EAF9E800E1A56E /* ShelfPreferences.swift */; };
 		8193316B24EAFAEE00E1A56E /* ShelfPreferencesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8193316A24EAFAEE00E1A56E /* ShelfPreferencesManager.swift */; };
 		8193316D24EAFC1500E1A56E /* AddNewShelfManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8193316C24EAFC1500E1A56E /* AddNewShelfManager.swift */; };
@@ -81,6 +103,8 @@
 		8193317A24EEF8D500E1A56E /* ShelfPrePreferencesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8193317824EEF8D500E1A56E /* ShelfPrePreferencesCell.swift */; };
 		8193317B24EEF8D500E1A56E /* ShelfPrePreferencesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8193317924EEF8D500E1A56E /* ShelfPrePreferencesCell.xib */; };
 		8196A3B924DA39AD00321AC1 /* MyShelvesCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8196A3B824DA39AD00321AC1 /* MyShelvesCollectionViewManager.swift */; };
+		8198E70724F574A0003FC529 /* CoverPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8198E70624F574A0003FC529 /* CoverPickerViewController.swift */; };
+		8198E70924F574B2003FC529 /* PaperStylePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8198E70824F574B2003FC529 /* PaperStylePickerViewController.swift */; };
 		81A5DC5024D4F3CE001AFD54 /* BookPreferencesDoneDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A5DC4E24D4F3CE001AFD54 /* BookPreferencesDoneDelete.swift */; };
 		81A5DC5124D4F3CE001AFD54 /* BookPreferencesDoneDelete.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81A5DC4F24D4F3CE001AFD54 /* BookPreferencesDoneDelete.xib */; };
 		81A5DC5324D4FBDE001AFD54 /* BookChangerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A5DC5224D4FBDE001AFD54 /* BookChangerDelegate.swift */; };
@@ -126,6 +150,9 @@
 		81F750D9249BD9A60018DF71 /* CloudUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F750D8249BD9A60018DF71 /* CloudUser.swift */; };
 		81F750DB249BD9F20018DF71 /* UnloggedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F750DA249BD9F20018DF71 /* UnloggedUser.swift */; };
 		81F750DD249BDA680018DF71 /* RealmDataStructures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F750DC249BDA680018DF71 /* RealmDataStructures.swift */; };
+		81F99DAD250BCEEC00C47635 /* NewNotebookColorSwitcher.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81F99DAB250BCEEB00C47635 /* NewNotebookColorSwitcher.xib */; };
+		81F99DAE250BCEEC00C47635 /* NewNotebookColorSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F99DAC250BCEEC00C47635 /* NewNotebookColorSwitcher.swift */; };
+		81F99DB0250BE7C300C47635 /* NewNotebookPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F99DAF250BE7C200C47635 /* NewNotebookPickerDelegate.swift */; };
 		81F9EE8224A04F5400931575 /* NewUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F9EE8124A04F5400931575 /* NewUserManager.swift */; };
 		D320C22B554EA993AA2639AE /* Pods_AlexandriaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A82B6B06F589AB60609B841 /* Pods_AlexandriaTests.framework */; };
 		E9341CB11852CB2CC99D553E /* Pods_Alexandria.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEB06A4F4E99124CFE273C98 /* Pods_Alexandria.framework */; };
@@ -193,6 +220,8 @@
 		811E40BE24CFD4F700E0753D /* ShelfBookPickerCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfBookPickerCollectionCell.swift; sourceTree = "<group>"; };
 		811E40BF24CFD4F700E0753D /* ShelfBookPickerCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShelfBookPickerCollectionCell.xib; sourceTree = "<group>"; };
 		811E40C224CFD5A900E0753D /* BookCollectionViewControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCollectionViewControler.swift; sourceTree = "<group>"; };
+		813002DE250B0B3A00BD028B /* NewNotebookThumbnail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewNotebookThumbnail.xib; sourceTree = "<group>"; };
+		813002DF250B0B3A00BD028B /* NewNotebookThumbnail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewNotebookThumbnail.swift; sourceTree = "<group>"; };
 		8137DF6324C3D6C500615218 /* AddNewShelfViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewShelfViewController.swift; sourceTree = "<group>"; };
 		8137DF6624C503F700615218 /* GoogleSignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignIn.swift; sourceTree = "<group>"; };
 		8137DF6824C5241D00615218 /* GoogleUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleUser.swift; sourceTree = "<group>"; };
@@ -214,8 +243,28 @@
 		8137DF9024C8A1D300615218 /* CreateNewShelf.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateNewShelf.xib; sourceTree = "<group>"; };
 		8137DF9324C8A28D00615218 /* ShelfCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfCell.swift; sourceTree = "<group>"; };
 		8137DF9424C8A28D00615218 /* ShelfCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShelfCell.xib; sourceTree = "<group>"; };
+		815C7DE82507FE140050D1B8 /* NewNotebokManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNotebokManager.swift; sourceTree = "<group>"; };
+		815C7DEB2507FE7B0050D1B8 /* ClassTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassTitleTableViewCell.swift; sourceTree = "<group>"; };
+		815C7DEC2507FE7B0050D1B8 /* ClassTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassTitleTableViewCell.xib; sourceTree = "<group>"; };
+		815C7DEF2508027C0050D1B8 /* ClassCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCollectionTableViewCell.swift; sourceTree = "<group>"; };
+		815C7DF02508027C0050D1B8 /* ClassCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassCollectionTableViewCell.xib; sourceTree = "<group>"; };
+		815C7DF4250802C50050D1B8 /* ClassCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCollectionViewCell.swift; sourceTree = "<group>"; };
+		815C7DF5250802C50050D1B8 /* ClassCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassCollectionViewCell.xib; sourceTree = "<group>"; };
+		815C7DF9250855220050D1B8 /* NewNotebookDone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewNotebookDone.swift; sourceTree = "<group>"; };
+		815C7DFA250855230050D1B8 /* NewNotebookDone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewNotebookDone.xib; sourceTree = "<group>"; };
+		81601647250FC7E600BD0508 /* ClassViewTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassViewTitleTableViewCell.swift; sourceTree = "<group>"; };
+		81601648250FC7E600BD0508 /* ClassViewTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassViewTitleTableViewCell.xib; sourceTree = "<group>"; };
 		8162D23824D2095900C2B9E0 /* BookPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookPreferences.swift; sourceTree = "<group>"; };
+		81747CA5251EA049002720F7 /* GeneralNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralNavigationViewController.swift; sourceTree = "<group>"; };
+		81747CAE251EADB8002720F7 /* EditingManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingManger.swift; sourceTree = "<group>"; };
+		81747CB4251EB111002720F7 /* EditingFilePickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingFilePickerCollectionViewCell.swift; sourceTree = "<group>"; };
+		81747CB5251EB111002720F7 /* EditingFilePickerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditingFilePickerCollectionViewCell.xib; sourceTree = "<group>"; };
+		81747CBE251EC27C002720F7 /* EditingFilePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingFilePickerManager.swift; sourceTree = "<group>"; };
+		81747CC625224213002720F7 /* EditingToolsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingToolsManager.swift; sourceTree = "<group>"; };
+		81747CCE25229D03002720F7 /* NotebookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookView.swift; sourceTree = "<group>"; };
+		81747CDF252502AE002720F7 /* UIBezierPathOptimiced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBezierPathOptimiced.swift; sourceTree = "<group>"; };
 		8175B4EF24CCE9A6002C7BB7 /* SocketDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketDelegate.swift; sourceTree = "<group>"; };
+		8183D3F3251DB759007DCF60 /* EditingFilePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingFilePickerViewController.swift; sourceTree = "<group>"; };
 		8193316624EAF9E800E1A56E /* ShelfPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfPreferences.swift; sourceTree = "<group>"; };
 		8193316A24EAFAEE00E1A56E /* ShelfPreferencesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfPreferencesManager.swift; sourceTree = "<group>"; };
 		8193316C24EAFC1500E1A56E /* AddNewShelfManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewShelfManager.swift; sourceTree = "<group>"; };
@@ -225,6 +274,8 @@
 		8193317824EEF8D500E1A56E /* ShelfPrePreferencesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfPrePreferencesCell.swift; sourceTree = "<group>"; };
 		8193317924EEF8D500E1A56E /* ShelfPrePreferencesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShelfPrePreferencesCell.xib; sourceTree = "<group>"; };
 		8196A3B824DA39AD00321AC1 /* MyShelvesCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShelvesCollectionViewManager.swift; sourceTree = "<group>"; };
+		8198E70624F574A0003FC529 /* CoverPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverPickerViewController.swift; sourceTree = "<group>"; };
+		8198E70824F574B2003FC529 /* PaperStylePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperStylePickerViewController.swift; sourceTree = "<group>"; };
 		81A5DC4E24D4F3CE001AFD54 /* BookPreferencesDoneDelete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookPreferencesDoneDelete.swift; sourceTree = "<group>"; };
 		81A5DC4F24D4F3CE001AFD54 /* BookPreferencesDoneDelete.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookPreferencesDoneDelete.xib; sourceTree = "<group>"; };
 		81A5DC5224D4FBDE001AFD54 /* BookChangerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookChangerDelegate.swift; sourceTree = "<group>"; };
@@ -234,7 +285,7 @@
 		81C670D32497BB7100B32676 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		81C670D52497BB7100B32676 /* MyShelvesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShelvesViewController.swift; sourceTree = "<group>"; };
 		81C670D82497BB7100B32676 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		81C670DA2497BB7600B32676 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		81C670DA2497BB7600B32676 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "/Applications/Xcode-beta.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/../../../../../../../../../Users/waynarbocangel/Documents/bitfrost/Alexandria/Alexandria/Assets.xcassets"; sourceTree = "<absolute>"; };
 		81C670DD2497BB7600B32676 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		81C670DF2497BB7600B32676 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81C670E42497BB7600B32676 /* AlexandriaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlexandriaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -275,6 +326,9 @@
 		81F750D8249BD9A60018DF71 /* CloudUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudUser.swift; sourceTree = "<group>"; };
 		81F750DA249BD9F20018DF71 /* UnloggedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnloggedUser.swift; sourceTree = "<group>"; };
 		81F750DC249BDA680018DF71 /* RealmDataStructures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDataStructures.swift; sourceTree = "<group>"; };
+		81F99DAB250BCEEB00C47635 /* NewNotebookColorSwitcher.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewNotebookColorSwitcher.xib; sourceTree = "<group>"; };
+		81F99DAC250BCEEC00C47635 /* NewNotebookColorSwitcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewNotebookColorSwitcher.swift; sourceTree = "<group>"; };
+		81F99DAF250BE7C200C47635 /* NewNotebookPickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNotebookPickerDelegate.swift; sourceTree = "<group>"; };
 		81F9EE8124A04F5400931575 /* NewUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserManager.swift; sourceTree = "<group>"; };
 		820B1FFEF539BD498C602FEE /* Pods-Alexandria-AlexandriaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alexandria-AlexandriaUITests.release.xcconfig"; path = "Target Support Files/Pods-Alexandria-AlexandriaUITests/Pods-Alexandria-AlexandriaUITests.release.xcconfig"; sourceTree = "<group>"; };
 		ABE32B38628FBEC67C166EDE /* Pods-AlexandriaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlexandriaTests.release.xcconfig"; path = "Target Support Files/Pods-AlexandriaTests/Pods-AlexandriaTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -342,13 +396,6 @@
 			path = "Vaults Collection View";
 			sourceTree = "<group>";
 		};
-		81021C9D24F0DD8700075B54 /* Add Item Drop Down */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Add Item Drop Down";
-			sourceTree = "<group>";
-		};
 		81021CA424F0E20900075B54 /* Add New Vault or Set */ = {
 			isa = PBXGroup;
 			children = (
@@ -362,6 +409,7 @@
 			isa = PBXGroup;
 			children = (
 				81021CA824F173B700075B54 /* NewNotebookViewController.swift */,
+				8198E70524F57469003FC529 /* Pickers */,
 			);
 			path = "Add New Notebook";
 			sourceTree = "<group>";
@@ -571,6 +619,43 @@
 			path = AddFileShelfList;
 			sourceTree = "<group>";
 		};
+		815C7DEA2507FE230050D1B8 /* New Notebook Cells */ = {
+			isa = PBXGroup;
+			children = (
+				81F99DAC250BCEEC00C47635 /* NewNotebookColorSwitcher.swift */,
+				81F99DAB250BCEEB00C47635 /* NewNotebookColorSwitcher.xib */,
+				813002DF250B0B3A00BD028B /* NewNotebookThumbnail.swift */,
+				813002DE250B0B3A00BD028B /* NewNotebookThumbnail.xib */,
+				815C7DF9250855220050D1B8 /* NewNotebookDone.swift */,
+				815C7DFA250855230050D1B8 /* NewNotebookDone.xib */,
+				815C7DF8250802F00050D1B8 /* Cover and Paper Picker */,
+			);
+			path = "New Notebook Cells";
+			sourceTree = "<group>";
+		};
+		815C7DF32508028C0050D1B8 /* Class Collection Cells */ = {
+			isa = PBXGroup;
+			children = (
+				815C7DF4250802C50050D1B8 /* ClassCollectionViewCell.swift */,
+				815C7DF5250802C50050D1B8 /* ClassCollectionViewCell.xib */,
+			);
+			path = "Class Collection Cells";
+			sourceTree = "<group>";
+		};
+		815C7DF8250802F00050D1B8 /* Cover and Paper Picker */ = {
+			isa = PBXGroup;
+			children = (
+				81601647250FC7E600BD0508 /* ClassViewTitleTableViewCell.swift */,
+				81601648250FC7E600BD0508 /* ClassViewTitleTableViewCell.xib */,
+				815C7DEB2507FE7B0050D1B8 /* ClassTitleTableViewCell.swift */,
+				815C7DEC2507FE7B0050D1B8 /* ClassTitleTableViewCell.xib */,
+				815C7DEF2508027C0050D1B8 /* ClassCollectionTableViewCell.swift */,
+				815C7DF02508027C0050D1B8 /* ClassCollectionTableViewCell.xib */,
+				815C7DF32508028C0050D1B8 /* Class Collection Cells */,
+			);
+			path = "Cover and Paper Picker";
+			sourceTree = "<group>";
+		};
 		8162D23624D208AB00C2B9E0 /* Item Preferences */ = {
 			isa = PBXGroup;
 			children = (
@@ -588,6 +673,27 @@
 			path = "My Shelves Items";
 			sourceTree = "<group>";
 		};
+		81747CAD251EAD97002720F7 /* Editing Model */ = {
+			isa = PBXGroup;
+			children = (
+				81747CAE251EADB8002720F7 /* EditingManger.swift */,
+				81747CC625224213002720F7 /* EditingToolsManager.swift */,
+				81747CBE251EC27C002720F7 /* EditingFilePickerManager.swift */,
+				81747CCE25229D03002720F7 /* NotebookView.swift */,
+				81747CB3251EB0C1002720F7 /* Editing File Picker Cells */,
+			);
+			path = "Editing Model";
+			sourceTree = "<group>";
+		};
+		81747CB3251EB0C1002720F7 /* Editing File Picker Cells */ = {
+			isa = PBXGroup;
+			children = (
+				81747CB4251EB111002720F7 /* EditingFilePickerCollectionViewCell.swift */,
+				81747CB5251EB111002720F7 /* EditingFilePickerCollectionViewCell.xib */,
+			);
+			path = "Editing File Picker Cells";
+			sourceTree = "<group>";
+		};
 		8193316924EAFABA00E1A56E /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -601,6 +707,7 @@
 			isa = PBXGroup;
 			children = (
 				8193317324EB9C3900E1A56E /* EditingViewController.swift */,
+				8183D3F3251DB759007DCF60 /* EditingFilePickerViewController.swift */,
 			);
 			path = "Editing View";
 			sourceTree = "<group>";
@@ -612,6 +719,15 @@
 				8193317924EEF8D500E1A56E /* ShelfPrePreferencesCell.xib */,
 			);
 			path = "Shelf Pre-Preferences Cells";
+			sourceTree = "<group>";
+		};
+		8198E70524F57469003FC529 /* Pickers */ = {
+			isa = PBXGroup;
+			children = (
+				8198E70624F574A0003FC529 /* CoverPickerViewController.swift */,
+				8198E70824F574B2003FC529 /* PaperStylePickerViewController.swift */,
+			);
+			path = Pickers;
 			sourceTree = "<group>";
 		};
 		81A5DC4D24D4F396001AFD54 /* Book & Shelf Preferences */ = {
@@ -720,6 +836,7 @@
 				8193317024EB0DC600E1A56E /* ShelfChangerDelegate.swift */,
 				81021C9B24EF941100075B54 /* VaultDisplayable.swift */,
 				81021CAA24F17C3200075B54 /* ItemChangerDelegate.swift */,
+				81F99DAF250BE7C200C47635 /* NewNotebookPickerDelegate.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -752,11 +869,14 @@
 			isa = PBXGroup;
 			children = (
 				81F417D924A2C0DA005193F9 /* AuthenticationSource.swift */,
+				81747CA5251EA049002720F7 /* GeneralNavigationViewController.swift */,
+				81747CAD251EAD97002720F7 /* Editing Model */,
 				811A409B24B1AB980056A395 /* My Shelves Model */,
 				81021C9324EF2CE400075B54 /* My Vaults Model */,
 				81F417ED24A2F3A3005193F9 /* My Profile */,
 				81F628FA24ABCBBF00137473 /* Add Item */,
 				811A409224B1A8730056A395 /* Shelves List */,
+				81747CDF252502AE002720F7 /* UIBezierPathOptimiced.swift */,
 			);
 			path = "Local Model";
 			sourceTree = "<group>";
@@ -779,14 +899,15 @@
 		81F628FA24ABCBBF00137473 /* Add Item */ = {
 			isa = PBXGroup;
 			children = (
+				811A40AA24BD1C910056A395 /* Add Item Drop Down */,
 				811E40B724CCEF3100E0753D /* AddNewFileManager.swift */,
+				811A40AF24BD60850056A395 /* Add Item View */,
 				8193316C24EAFC1500E1A56E /* AddNewShelfManager.swift */,
+				8137DF7124C7C4D800615218 /* Add Shelf View */,
+				815C7DE82507FE140050D1B8 /* NewNotebokManager.swift */,
+				815C7DEA2507FE230050D1B8 /* New Notebook Cells */,
 				81021CAC24F180BD00075B54 /* NewVaultSetManager.swift */,
 				81021CAE24F1886E00075B54 /* New Vault Set custom cells */,
-				811A40AA24BD1C910056A395 /* Add Item Drop Down */,
-				81021C9D24F0DD8700075B54 /* Add Item Drop Down */,
-				811A40AF24BD60850056A395 /* Add Item View */,
-				8137DF7124C7C4D800615218 /* Add Shelf View */,
 			);
 			path = "Add Item";
 			sourceTree = "<group>";
@@ -961,6 +1082,8 @@
 				8137DF8124C7CF3700615218 /* ShelfBookCollection.xib in Resources */,
 				811A409A24B1A8C60056A395 /* ShelvesListTitleCell.xib in Resources */,
 				81021CB424F1899500075B54 /* NewVaultSetDone.xib in Resources */,
+				81F99DAD250BCEEC00C47635 /* NewNotebookColorSwitcher.xib in Resources */,
+				81747CB7251EB111002720F7 /* EditingFilePickerCollectionViewCell.xib in Resources */,
 				811A40AE24BD21500056A395 /* AddFileThumbnail.xib in Resources */,
 				81021C9824EF31FD00075B54 /* MyVaultsCollectionViewCell.xib in Resources */,
 				81021CA324F0DFC500075B54 /* AddItemVaultCell.xib in Resources */,
@@ -969,6 +1092,8 @@
 				81F417F124A2F947005193F9 /* MyProfileLogoutCell.xib in Resources */,
 				8137DF9624C8A28D00615218 /* ShelfCell.xib in Resources */,
 				81A5DC5124D4F3CE001AFD54 /* BookPreferencesDoneDelete.xib in Resources */,
+				815C7DF7250802C50050D1B8 /* ClassCollectionViewCell.xib in Resources */,
+				813002E0250B0B3A00BD028B /* NewNotebookThumbnail.xib in Resources */,
 				811A40A124B3AC850056A395 /* GoogleService-Info.plist in Resources */,
 				811E40C124CFD4F700E0753D /* ShelfBookPickerCollectionCell.xib in Resources */,
 				8137DF7524C7C56500615218 /* ShelfName.xib in Resources */,
@@ -977,12 +1102,16 @@
 				8137DF8624C7D04100615218 /* ShelfBookCollectionCell.xib in Resources */,
 				81C670DB2497BB7600B32676 /* Assets.xcassets in Resources */,
 				81F750C9249980020018DF71 /* Righteous-Regular.ttf in Resources */,
+				815C7DF22508027C0050D1B8 /* ClassCollectionTableViewCell.xib in Resources */,
 				81D1D5D024C00B8C00EEDBFC /* AddFileDone.xib in Resources */,
+				815C7DFD250855450050D1B8 /* NewNotebookDone.xib in Resources */,
 				81F417E224A2F32D005193F9 /* MyProfileLogoCell.xib in Resources */,
 				81F417EA24A2F370005193F9 /* MyProfileContentCell.xib in Resources */,
 				81021CB824F1CDCA00075B54 /* DefaultColorCell.xib in Resources */,
 				8137DF7924C7C58200615218 /* ShelfBookPicker.xib in Resources */,
+				815C7DEE2507FE7B0050D1B8 /* ClassTitleTableViewCell.xib in Resources */,
 				8137DF7024C6ADDA00615218 /* BookCell.xib in Resources */,
+				8160164A250FC7E600BD0508 /* ClassViewTitleTableViewCell.xib in Resources */,
 				8137DF9224C8A1D300615218 /* CreateNewShelf.xib in Resources */,
 				8193317B24EEF8D500E1A56E /* ShelfPrePreferencesCell.xib in Resources */,
 				811A40BB24BEC73E0056A395 /* AddFileCheckBoxes.xib in Resources */,
@@ -1114,10 +1243,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8198E70724F574A0003FC529 /* CoverPickerViewController.swift in Sources */,
 				8137DF6F24C6ADDA00615218 /* BookCell.swift in Sources */,
 				81F417DA24A2C0DA005193F9 /* AuthenticationSource.swift in Sources */,
 				81F9EE8224A04F5400931575 /* NewUserManager.swift in Sources */,
 				8137DF6B24C52BBD00615218 /* GoogleUserDelegate.swift in Sources */,
+				815C7DE92507FE140050D1B8 /* NewNotebokManager.swift in Sources */,
 				8162D23924D2095A00C2B9E0 /* BookPreferences.swift in Sources */,
 				811A409524B1A8AA0056A395 /* ShelfListCell.swift in Sources */,
 				8137DF8924C89C9100615218 /* ShelfListViewController.swift in Sources */,
@@ -1125,10 +1256,15 @@
 				8193317A24EEF8D500E1A56E /* ShelfPrePreferencesCell.swift in Sources */,
 				81021CA924F173B700075B54 /* NewNotebookViewController.swift in Sources */,
 				8137DF6924C5241D00615218 /* GoogleUser.swift in Sources */,
+				81747CB6251EB111002720F7 /* EditingFilePickerCollectionViewCell.swift in Sources */,
+				8198E70924F574B2003FC529 /* PaperStylePickerViewController.swift in Sources */,
 				81F750D9249BD9A60018DF71 /* CloudUser.swift in Sources */,
+				81747CE0252502B0002720F7 /* UIBezierPathOptimiced.swift in Sources */,
 				811A40B624BE6B440056A395 /* AddFilePickerTrigger.swift in Sources */,
+				81747CAF251EADB8002720F7 /* EditingManger.swift in Sources */,
 				81021CAD24F180BD00075B54 /* NewVaultSetManager.swift in Sources */,
 				811E40B824CCEF3100E0753D /* AddNewFileManager.swift in Sources */,
+				815C7DF12508027C0050D1B8 /* ClassCollectionTableViewCell.swift in Sources */,
 				81F750D3249B27EB0018DF71 /* UserData.swift in Sources */,
 				8175B4F024CCE9A8002C7BB7 /* SocketDelegate.swift in Sources */,
 				8193316724EAF9E900E1A56E /* ShelfPreferences.swift in Sources */,
@@ -1136,19 +1272,24 @@
 				81D1D5CF24C00B8C00EEDBFC /* AddFileDone.swift in Sources */,
 				81F750DB249BD9F20018DF71 /* UnloggedUser.swift in Sources */,
 				81F417E124A2F32D005193F9 /* MyProfileLogoCell.swift in Sources */,
+				81747CCF25229D03002720F7 /* NotebookView.swift in Sources */,
 				81C6711A249936FA00B32676 /* LoginViewController.swift in Sources */,
 				811E40C324CFD5A900E0753D /* BookCollectionViewControler.swift in Sources */,
+				81F99DAE250BCEEC00C47635 /* NewNotebookColorSwitcher.swift in Sources */,
 				81C671122499365000B32676 /* MetricsViewController.swift in Sources */,
 				811E36E624D7EC28004126F1 /* LaunchViewController.swift in Sources */,
 				8193316B24EAFAEE00E1A56E /* ShelfPreferencesManager.swift in Sources */,
 				81F750D7249BD8F00018DF71 /* Team.swift in Sources */,
 				81021CB324F1899100075B54 /* NewVaultSetDone.swift in Sources */,
+				815C7DFB250855230050D1B8 /* NewNotebookDone.swift in Sources */,
 				8196A3B924DA39AD00321AC1 /* MyShelvesCollectionViewManager.swift in Sources */,
 				811A40B224BD61730056A395 /* AddFileViewTitle.swift in Sources */,
 				8193317624EEF64000E1A56E /* MyShelvesPreferencesManager.swift in Sources */,
 				811A40A924BCFAD70056A395 /* AddNewFileViewController.swift in Sources */,
+				81747CA6251EA049002720F7 /* GeneralNavigationViewController.swift in Sources */,
 				811A409924B1A8C60056A395 /* ShelvesListTitleCell.swift in Sources */,
 				81A5DC5324D4FBDE001AFD54 /* BookChangerDelegate.swift in Sources */,
+				8183D3F4251DB759007DCF60 /* EditingFilePickerViewController.swift in Sources */,
 				811A40A624B588340056A395 /* GoogleDriveTools.swift in Sources */,
 				81021CAB24F17C3300075B54 /* ItemChangerDelegate.swift in Sources */,
 				81F750CB249AFE790018DF71 /* SettingsViewController.swift in Sources */,
@@ -1163,12 +1304,14 @@
 				8137DF9124C8A1D300615218 /* CreateNewShelf.swift in Sources */,
 				81F750D1249B27CA0018DF71 /* RequestManager.swift in Sources */,
 				8137DF8524C7D04100615218 /* ShelfBookCollectionCell.swift in Sources */,
+				81F99DB0250BE7C300C47635 /* NewNotebookPickerDelegate.swift in Sources */,
 				81C6711C2499373500B32676 /* MyProfileViewController.swift in Sources */,
 				8193316D24EAFC1500E1A56E /* AddNewShelfManager.swift in Sources */,
 				81C670D62497BB7100B32676 /* MyShelvesViewController.swift in Sources */,
 				81021CBF24F1CE5A00075B54 /* ColorPickerManager.swift in Sources */,
 				811A409F24B302F00056A395 /* MyShelvesTableView.swift in Sources */,
 				81C67116249936A300B32676 /* RegisterLoginViewController.swift in Sources */,
+				81601649250FC7E600BD0508 /* ClassViewTitleTableViewCell.swift in Sources */,
 				81021CB724F1CDCA00075B54 /* DefaultColorCell.swift in Sources */,
 				81021CA224F0DD8900075B54 /* AddItemVaultCell.swift in Sources */,
 				8137DF8D24C8A1B300615218 /* SectionTitle.swift in Sources */,
@@ -1180,11 +1323,15 @@
 				811A40A324B4E7A40056A395 /* RegisterUserManager.swift in Sources */,
 				8193317424EB9C3900E1A56E /* EditingViewController.swift in Sources */,
 				81021C9A24EF39C400075B54 /* MyVaultsManager.swift in Sources */,
+				813002E1250B0B3A00BD028B /* NewNotebookThumbnail.swift in Sources */,
 				811A409D24B1ABDE0056A395 /* MyShelvesManager.swift in Sources */,
 				8137DF6724C503F700615218 /* GoogleSignIn.swift in Sources */,
 				81C671102499361C00B32676 /* MyVaultsViewController.swift in Sources */,
+				815C7DED2507FE7B0050D1B8 /* ClassTitleTableViewCell.swift in Sources */,
 				81F417E524A2F34C005193F9 /* MyProfileNameCell.swift in Sources */,
+				815C7DF6250802C50050D1B8 /* ClassCollectionViewCell.swift in Sources */,
 				81C671142499367200B32676 /* MyTeamsViewController.swift in Sources */,
+				81747CC725224214002720F7 /* EditingToolsManager.swift in Sources */,
 				81021CBD24F1CE2D00075B54 /* ColorPickerViewController.swift in Sources */,
 				81021C9C24EF941100075B54 /* VaultDisplayable.swift in Sources */,
 				81021C9724EF31FD00075B54 /* MyVaultsCollectionViewCell.swift in Sources */,
@@ -1195,6 +1342,7 @@
 				81F417E924A2F370005193F9 /* MyProfileContentCell.swift in Sources */,
 				8193317124EB0DC600E1A56E /* ShelfChangerDelegate.swift in Sources */,
 				8137DF8024C7CF3700615218 /* ShelfBookCollection.swift in Sources */,
+				81747CBF251EC27C002720F7 /* EditingFilePickerManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

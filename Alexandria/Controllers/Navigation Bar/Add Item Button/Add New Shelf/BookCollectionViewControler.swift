@@ -11,6 +11,10 @@ import RealmSwift
 
 class BookCollectionViewControler: UIViewController {
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     let realm = try! Realm(configuration: AppDelegate.realmConfig)
     
     var controller: ShelfChangerDelegate!

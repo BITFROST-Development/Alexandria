@@ -10,6 +10,10 @@ import UIKit
 
 class LaunchViewController: UIViewController {
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     static var instance = LaunchViewController()
     
     var shouldPresent = true

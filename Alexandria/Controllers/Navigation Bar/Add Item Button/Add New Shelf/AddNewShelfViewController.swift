@@ -11,6 +11,10 @@ import RealmSwift
 
 class AddNewShelfViewController: UIViewController, ShelfChangerDelegate {
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     let realm = try! Realm(configuration: AppDelegate.realmConfig)
     var createController: MyShelvesViewController!
     var newFileController: ShelfListViewController!

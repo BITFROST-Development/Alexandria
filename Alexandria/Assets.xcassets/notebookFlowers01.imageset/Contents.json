@@ -1,0 +1,16 @@
+{
+  "images" : [
+    {
+      "filename" : "01 Flowers.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "auto-scaling" : "auto",
+    "preserves-vector-representation" : true
+  }
+}

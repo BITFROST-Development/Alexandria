@@ -15,6 +15,10 @@ class LoginViewController: UIViewController {
     
     static var sharedInstance: LoginViewController!
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     let realm = try! Realm(configuration: AppDelegate.realmConfig)
     var presenter: RegisterLoginViewController!
     var unloggedUser:Results<UnloggedUser>?

@@ -51,7 +51,7 @@ class ShelfBookPickerCollectionCell: UICollectionViewCell {
             let imageToSet = baseImage?.applyingSymbolConfiguration(UIImage.SymbolConfiguration(scale: .large))
             addDeleteButton.setImage(imageToSet, for: .normal)
             UIView.animate(withDuration: 0.3, animations: {
-                self.bookShadow.backgroundColor = UIColor(cgColor: CGColor(srgbRed: 234/255, green: 145/255, blue: 33/255, alpha: 0.6))
+                self.bookShadow.backgroundColor = UIColor(cgColor: CGColor(srgbRed: 224/255, green: 80/255, blue: 51/255, alpha: 0.6))
             })
             isSelectedBook = true
             var newBookList: [Double] = []

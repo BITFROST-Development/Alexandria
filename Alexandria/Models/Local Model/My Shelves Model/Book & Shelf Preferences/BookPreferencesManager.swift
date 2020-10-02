@@ -29,7 +29,7 @@ extension BookPreferences{
                                 if self.currentBook.title != self.finalFileName{
                                     if self.currentBook.cloudVar.value ?? false {
                                         if self.currentBook.localAddress != nil {
-                                            GoogleDriveTools.updateFile(name: self.finalFileName, bookTitle: self.currentBook.title!, id: self.currentBook.id!, fileURL: URL(fileURLWithPath: (self.currentBook.localAddress!)), mimeType: "application/pdf", parent: realm.objects(CloudUser.self)[0].alexandriaData!.booksFolderID!, service: GoogleDriveTools.service){ successeses in
+                                            GoogleDriveTools.updateBook(name: self.finalFileName, bookTitle: self.currentBook.title!, id: self.currentBook.id!, fileURL: URL(fileURLWithPath: (self.currentBook.localAddress!)), mimeType: "application/pdf", parent: realm.objects(CloudUser.self)[0].alexandriaData!.booksFolderID!, service: GoogleDriveTools.service){ successeses in
                                                 if successeses {
                                                     do {
                                                         try FileManager.default.moveItem(atPath: self.currentBook.localAddress!, toPath: FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].path + "/Books/\(self.finalFileName!).pdf")
@@ -52,7 +52,7 @@ extension BookPreferences{
                                                 }
                                             }
                                         } else {
-                                            GoogleDriveTools.updateFile(name: self.finalFileName, bookTitle: self.currentBook.title!, id: self.currentBook.id!, fileURL: nil, mimeType: "application/pdf", parent: realm.objects(CloudUser.self)[0].alexandriaData!.booksFolderID!, service: GoogleDriveTools.service){ successeses in
+                                            GoogleDriveTools.updateBook(name: self.finalFileName, bookTitle: self.currentBook.title!, id: self.currentBook.id!, fileURL: nil, mimeType: "application/pdf", parent: realm.objects(CloudUser.self)[0].alexandriaData!.booksFolderID!, service: GoogleDriveTools.service){ successeses in
                                                 if successes{
                                                     do {
                                                         try realm.write({
@@ -179,7 +179,7 @@ extension BookPreferences{
                     alert.message = "If you continue this file will be removed. Save it to drive, or keep a local copy to prevent this."
                     if !(currentBook.cloudVar.value ?? false){
                         alert.addAction(UIAlertAction(title: "Move to Drive", style: .cancel, handler: { _ in
-                            GoogleDriveTools.uploadFileToDrive(fileName: self.currentBook.title!, bookTitle: self.currentBook.title!,fileURL: URL(fileURLWithPath: self.currentBook.localAddress!), mimeType: "application/pdf", parent: realm.objects(AlexandriaData.self)[0].booksFolderID!, service: GoogleDriveTools.service){ success in
+                            GoogleDriveTools.uploadBookToDrive(fileName: self.currentBook.title!, bookTitle: self.currentBook.title!,fileURL: URL(fileURLWithPath: self.currentBook.localAddress!), mimeType: "application/pdf", parent: realm.objects(AlexandriaData.self)[0].booksFolderID!, service: GoogleDriveTools.service){ success in
                                 if (success){
                                     do {
                                         try FileManager.default.removeItem(atPath: self.currentBook.localAddress!)
@@ -263,7 +263,7 @@ extension BookPreferences{
                 if currentBook.cloudVar.value ?? false {
                     completion(true)
                 } else {
-                    GoogleDriveTools.uploadFileToDrive(fileName: "\(currentBook.title!)", bookTitle: "\(currentBook.title!)" ,fileURL: URL(fileURLWithPath: currentBook.localAddress!), mimeType: "application/pdf", parent: realm.objects(AlexandriaData.self)[0].booksFolderID!, service: GoogleDriveTools.service){ success in
+                    GoogleDriveTools.uploadBookToDrive(fileName: "\(currentBook.title!)", bookTitle: "\(currentBook.title!)" ,fileURL: URL(fileURLWithPath: currentBook.localAddress!), mimeType: "application/pdf", parent: realm.objects(AlexandriaData.self)[0].booksFolderID!, service: GoogleDriveTools.service){ success in
                         let hashTables = realm.objects(BookToListMap.self)
                         hashTables[1].append(key: hashTables[0].keys[self.currentBookIndex], in: realm.objects(AlexandriaData.self)[0].cloudBooks.count)
                         
