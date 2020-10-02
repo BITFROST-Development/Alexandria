@@ -130,7 +130,6 @@
 		81D1D5CB24BFE6A400EEDBFC /* AddFileMetadataComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D1D5C924BFE6A400EEDBFC /* AddFileMetadataComponent.swift */; };
 		81D1D5CC24BFE6A400EEDBFC /* AddFileMetadataComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81D1D5CA24BFE6A400EEDBFC /* AddFileMetadataComponent.xib */; };
 		81D1D5CF24C00B8C00EEDBFC /* AddFileDone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D1D5CD24C00B8C00EEDBFC /* AddFileDone.swift */; };
-		81D1D5D024C00B8C00EEDBFC /* AddFileDone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81D1D5CE24C00B8C00EEDBFC /* AddFileDone.xib */; };
 		81F417DA24A2C0DA005193F9 /* AuthenticationSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F417D924A2C0DA005193F9 /* AuthenticationSource.swift */; };
 		81F417E124A2F32D005193F9 /* MyProfileLogoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F417DF24A2F32D005193F9 /* MyProfileLogoCell.swift */; };
 		81F417E224A2F32D005193F9 /* MyProfileLogoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81F417E024A2F32D005193F9 /* MyProfileLogoCell.xib */; };
@@ -306,7 +305,6 @@
 		81D1D5C924BFE6A400EEDBFC /* AddFileMetadataComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFileMetadataComponent.swift; sourceTree = "<group>"; };
 		81D1D5CA24BFE6A400EEDBFC /* AddFileMetadataComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddFileMetadataComponent.xib; sourceTree = "<group>"; };
 		81D1D5CD24C00B8C00EEDBFC /* AddFileDone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFileDone.swift; sourceTree = "<group>"; };
-		81D1D5CE24C00B8C00EEDBFC /* AddFileDone.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddFileDone.xib; sourceTree = "<group>"; };
 		81F417D924A2C0DA005193F9 /* AuthenticationSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationSource.swift; sourceTree = "<group>"; };
 		81F417DF24A2F32D005193F9 /* MyProfileLogoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileLogoCell.swift; sourceTree = "<group>"; };
 		81F417E024A2F32D005193F9 /* MyProfileLogoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProfileLogoCell.xib; sourceTree = "<group>"; };
@@ -522,7 +520,6 @@
 				81D1D5C924BFE6A400EEDBFC /* AddFileMetadataComponent.swift */,
 				81D1D5CA24BFE6A400EEDBFC /* AddFileMetadataComponent.xib */,
 				81D1D5CD24C00B8C00EEDBFC /* AddFileDone.swift */,
-				81D1D5CE24C00B8C00EEDBFC /* AddFileDone.xib */,
 				8137DF8A24C89F9C00615218 /* AddFileShelfList */,
 			);
 			path = "Add Item View";
@@ -1103,7 +1100,6 @@
 				81C670DB2497BB7600B32676 /* Assets.xcassets in Resources */,
 				81F750C9249980020018DF71 /* Righteous-Regular.ttf in Resources */,
 				815C7DF22508027C0050D1B8 /* ClassCollectionTableViewCell.xib in Resources */,
-				81D1D5D024C00B8C00EEDBFC /* AddFileDone.xib in Resources */,
 				815C7DFD250855450050D1B8 /* NewNotebookDone.xib in Resources */,
 				81F417E224A2F32D005193F9 /* MyProfileLogoCell.xib in Resources */,
 				81F417EA24A2F370005193F9 /* MyProfileContentCell.xib in Resources */,
