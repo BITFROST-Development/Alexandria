@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PaperStylePickerViewController: UIViewController, NewNotebookPickerDelegate {
+class PaperStylePickerViewController: UIViewController, NewNotebookPickerDelegate, NotebookImageStyle {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -16,7 +16,7 @@ class PaperStylePickerViewController: UIViewController, NewNotebookPickerDelegat
     
     var controller: NewNotebookViewController!
     var selectedCellImage: Int!
-    var selectedCell: ClassCollectionViewCell!
+    var selectedCell: ClassCollectionViewCell?
     var selectedColor: String!
     var selectedOrientation: String!
     var selectedGroup: String!

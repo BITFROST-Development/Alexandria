@@ -75,7 +75,6 @@
 		815C7DE92507FE140050D1B8 /* NewNotebokManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815C7DE82507FE140050D1B8 /* NewNotebokManager.swift */; };
 		815C7DED2507FE7B0050D1B8 /* ClassTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815C7DEB2507FE7B0050D1B8 /* ClassTitleTableViewCell.swift */; };
 		815C7DEE2507FE7B0050D1B8 /* ClassTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 815C7DEC2507FE7B0050D1B8 /* ClassTitleTableViewCell.xib */; };
-		815C7DF12508027C0050D1B8 /* ClassCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815C7DEF2508027C0050D1B8 /* ClassCollectionTableViewCell.swift */; };
 		815C7DF22508027C0050D1B8 /* ClassCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 815C7DF02508027C0050D1B8 /* ClassCollectionTableViewCell.xib */; };
 		815C7DF6250802C50050D1B8 /* ClassCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815C7DF4250802C50050D1B8 /* ClassCollectionViewCell.swift */; };
 		815C7DF7250802C50050D1B8 /* ClassCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 815C7DF5250802C50050D1B8 /* ClassCollectionViewCell.xib */; };
@@ -126,6 +125,8 @@
 		81C67118249936CD00B32676 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C67117249936CD00B32676 /* RegisterViewController.swift */; };
 		81C6711A249936FA00B32676 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C67119249936FA00B32676 /* LoginViewController.swift */; };
 		81C6711C2499373500B32676 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C6711B2499373500B32676 /* MyProfileViewController.swift */; };
+		81CBB0C6252790C600E86A5D /* ClassCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81747D5125278DFA002720F7 /* ClassCollectionTableViewCell.swift */; };
+		81CBB0CB2527912600E86A5D /* NewNotebookPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CBB0CA2527912600E86A5D /* NewNotebookPickerDelegate.swift */; };
 		81D1D5CB24BFE6A400EEDBFC /* AddFileMetadataComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D1D5C924BFE6A400EEDBFC /* AddFileMetadataComponent.swift */; };
 		81D1D5CC24BFE6A400EEDBFC /* AddFileMetadataComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81D1D5CA24BFE6A400EEDBFC /* AddFileMetadataComponent.xib */; };
 		81D1D5CF24C00B8C00EEDBFC /* AddFileDone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D1D5CD24C00B8C00EEDBFC /* AddFileDone.swift */; };
@@ -152,7 +153,6 @@
 		81F750DD249BDA680018DF71 /* RealmDataStructures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F750DC249BDA680018DF71 /* RealmDataStructures.swift */; };
 		81F99DAD250BCEEC00C47635 /* NewNotebookColorSwitcher.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81F99DAB250BCEEB00C47635 /* NewNotebookColorSwitcher.xib */; };
 		81F99DAE250BCEEC00C47635 /* NewNotebookColorSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F99DAC250BCEEC00C47635 /* NewNotebookColorSwitcher.swift */; };
-		81F99DB0250BE7C300C47635 /* NewNotebookPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F99DAF250BE7C200C47635 /* NewNotebookPickerDelegate.swift */; };
 		81F9EE8224A04F5400931575 /* NewUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F9EE8124A04F5400931575 /* NewUserManager.swift */; };
 		D320C22B554EA993AA2639AE /* Pods_AlexandriaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A82B6B06F589AB60609B841 /* Pods_AlexandriaTests.framework */; };
 		E9341CB11852CB2CC99D553E /* Pods_Alexandria.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEB06A4F4E99124CFE273C98 /* Pods_Alexandria.framework */; };
@@ -246,7 +246,6 @@
 		815C7DE82507FE140050D1B8 /* NewNotebokManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNotebokManager.swift; sourceTree = "<group>"; };
 		815C7DEB2507FE7B0050D1B8 /* ClassTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassTitleTableViewCell.swift; sourceTree = "<group>"; };
 		815C7DEC2507FE7B0050D1B8 /* ClassTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassTitleTableViewCell.xib; sourceTree = "<group>"; };
-		815C7DEF2508027C0050D1B8 /* ClassCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		815C7DF02508027C0050D1B8 /* ClassCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassCollectionTableViewCell.xib; sourceTree = "<group>"; };
 		815C7DF4250802C50050D1B8 /* ClassCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCollectionViewCell.swift; sourceTree = "<group>"; };
 		815C7DF5250802C50050D1B8 /* ClassCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -263,6 +262,7 @@
 		81747CC625224213002720F7 /* EditingToolsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingToolsManager.swift; sourceTree = "<group>"; };
 		81747CCE25229D03002720F7 /* NotebookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookView.swift; sourceTree = "<group>"; };
 		81747CDF252502AE002720F7 /* UIBezierPathOptimiced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBezierPathOptimiced.swift; sourceTree = "<group>"; };
+		81747D5125278DFA002720F7 /* ClassCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		8175B4EF24CCE9A6002C7BB7 /* SocketDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketDelegate.swift; sourceTree = "<group>"; };
 		8183D3F3251DB759007DCF60 /* EditingFilePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingFilePickerViewController.swift; sourceTree = "<group>"; };
 		8193316624EAF9E800E1A56E /* ShelfPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfPreferences.swift; sourceTree = "<group>"; };
@@ -302,6 +302,7 @@
 		81C67117249936CD00B32676 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		81C67119249936FA00B32676 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		81C6711B2499373500B32676 /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
+		81CBB0CA2527912600E86A5D /* NewNotebookPickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNotebookPickerDelegate.swift; sourceTree = "<group>"; };
 		81D1D5C924BFE6A400EEDBFC /* AddFileMetadataComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFileMetadataComponent.swift; sourceTree = "<group>"; };
 		81D1D5CA24BFE6A400EEDBFC /* AddFileMetadataComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddFileMetadataComponent.xib; sourceTree = "<group>"; };
 		81D1D5CD24C00B8C00EEDBFC /* AddFileDone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFileDone.swift; sourceTree = "<group>"; };
@@ -328,7 +329,6 @@
 		81F750DC249BDA680018DF71 /* RealmDataStructures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDataStructures.swift; sourceTree = "<group>"; };
 		81F99DAB250BCEEB00C47635 /* NewNotebookColorSwitcher.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewNotebookColorSwitcher.xib; sourceTree = "<group>"; };
 		81F99DAC250BCEEC00C47635 /* NewNotebookColorSwitcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewNotebookColorSwitcher.swift; sourceTree = "<group>"; };
-		81F99DAF250BE7C200C47635 /* NewNotebookPickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNotebookPickerDelegate.swift; sourceTree = "<group>"; };
 		81F9EE8124A04F5400931575 /* NewUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserManager.swift; sourceTree = "<group>"; };
 		820B1FFEF539BD498C602FEE /* Pods-Alexandria-AlexandriaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alexandria-AlexandriaUITests.release.xcconfig"; path = "Target Support Files/Pods-Alexandria-AlexandriaUITests/Pods-Alexandria-AlexandriaUITests.release.xcconfig"; sourceTree = "<group>"; };
 		ABE32B38628FBEC67C166EDE /* Pods-AlexandriaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlexandriaTests.release.xcconfig"; path = "Target Support Files/Pods-AlexandriaTests/Pods-AlexandriaTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -649,7 +649,7 @@
 				81601648250FC7E600BD0508 /* ClassViewTitleTableViewCell.xib */,
 				815C7DEB2507FE7B0050D1B8 /* ClassTitleTableViewCell.swift */,
 				815C7DEC2507FE7B0050D1B8 /* ClassTitleTableViewCell.xib */,
-				815C7DEF2508027C0050D1B8 /* ClassCollectionTableViewCell.swift */,
+				81747D5125278DFA002720F7 /* ClassCollectionTableViewCell.swift */,
 				815C7DF02508027C0050D1B8 /* ClassCollectionTableViewCell.xib */,
 				815C7DF32508028C0050D1B8 /* Class Collection Cells */,
 			);
@@ -836,7 +836,7 @@
 				8193317024EB0DC600E1A56E /* ShelfChangerDelegate.swift */,
 				81021C9B24EF941100075B54 /* VaultDisplayable.swift */,
 				81021CAA24F17C3200075B54 /* ItemChangerDelegate.swift */,
-				81F99DAF250BE7C200C47635 /* NewNotebookPickerDelegate.swift */,
+				81CBB0CA2527912600E86A5D /* NewNotebookPickerDelegate.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -1264,8 +1264,8 @@
 				81747CAF251EADB8002720F7 /* EditingManger.swift in Sources */,
 				81021CAD24F180BD00075B54 /* NewVaultSetManager.swift in Sources */,
 				811E40B824CCEF3100E0753D /* AddNewFileManager.swift in Sources */,
-				815C7DF12508027C0050D1B8 /* ClassCollectionTableViewCell.swift in Sources */,
 				81F750D3249B27EB0018DF71 /* UserData.swift in Sources */,
+				81CBB0CB2527912600E86A5D /* NewNotebookPickerDelegate.swift in Sources */,
 				8175B4F024CCE9A8002C7BB7 /* SocketDelegate.swift in Sources */,
 				8193316724EAF9E900E1A56E /* ShelfPreferences.swift in Sources */,
 				81F417F024A2F947005193F9 /* MyProfileLogoutCell.swift in Sources */,
@@ -1304,7 +1304,6 @@
 				8137DF9124C8A1D300615218 /* CreateNewShelf.swift in Sources */,
 				81F750D1249B27CA0018DF71 /* RequestManager.swift in Sources */,
 				8137DF8524C7D04100615218 /* ShelfBookCollectionCell.swift in Sources */,
-				81F99DB0250BE7C300C47635 /* NewNotebookPickerDelegate.swift in Sources */,
 				81C6711C2499373500B32676 /* MyProfileViewController.swift in Sources */,
 				8193316D24EAFC1500E1A56E /* AddNewShelfManager.swift in Sources */,
 				81C670D62497BB7100B32676 /* MyShelvesViewController.swift in Sources */,
@@ -1330,6 +1329,7 @@
 				815C7DED2507FE7B0050D1B8 /* ClassTitleTableViewCell.swift in Sources */,
 				81F417E524A2F34C005193F9 /* MyProfileNameCell.swift in Sources */,
 				815C7DF6250802C50050D1B8 /* ClassCollectionViewCell.swift in Sources */,
+				81CBB0C6252790C600E86A5D /* ClassCollectionTableViewCell.swift in Sources */,
 				81C671142499367200B32676 /* MyTeamsViewController.swift in Sources */,
 				81747CC725224214002720F7 /* EditingToolsManager.swift in Sources */,
 				81021CBD24F1CE2D00075B54 /* ColorPickerViewController.swift in Sources */,
