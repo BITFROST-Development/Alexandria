@@ -19,12 +19,14 @@ class EditingViewController: UIViewController {
     let realm = AppDelegate.realm!
     var controller: AuthenticationSource!
     var initialIndex: Int!
+    var currentlyScrolling = false
     var currentBook: Book!
     var currentNotebook: Note!
     var currentSet: TermSet!
     let toolPanDelegate = ToolPanDelegate()
+    let scrollingDelegate = PDFScrollGestureDelegate()
     var lastSelectedBarIndex: Int!
-    var lastSelectedWrittingPreferences: [Int]!
+    var lastSelectedWritingPreferences: [Int]!
     var drawingPath: UIBezierPath!
     var annotationLayers: [PDFAnnotation] = []
     var annotation: DrawingAnnotation!
@@ -91,7 +93,7 @@ class EditingViewController: UIViewController {
         // Do any additional setup after loading the view.
         moveToolButton.isSelected = true
         lastSelectedTool = moveToolButton
-        lastSelectedWrittingPreferences = controller.writtingToolLastSelection
+        lastSelectedWritingPreferences = controller.writtingToolLastSelection
         (UIApplication.shared.delegate as! AppDelegate).restrictRotation = .all
         bookView.alpha = 0
         bookView.displayDirection = .horizontal
@@ -119,12 +121,21 @@ class EditingViewController: UIViewController {
         preferenceButton06CircleShadow.alpha = 0
         
         NotificationCenter.default.addObserver(self, selector: #selector(changePageDisplayed(_:)), name: .PDFViewPageChanged, object: nil)
-        
         setupToolDelegates()
+        
+        
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(shouldAddPage(_:)))
         panGesture.delegate = self
         notebookView.addGestureRecognizer(panGesture)
+        
+        
+        
+        let scrollGesture = ScrollingGestureRecognizer(target: self, action: #selector(scrollBegan(_:)))
+        scrollingDelegate.controller = self
+        scrollGesture.delegate = scrollingDelegate
+        notebookView.addGestureRecognizer(scrollGesture)
+        
         notebookView.interpolationQuality = .low
         pickerBar.selectedSegmentIndex = initialIndex
         pickerBar.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
@@ -143,13 +154,13 @@ class EditingViewController: UIViewController {
             termSetView.layer.frame.origin.x = view.layer.frame.size.width
             bookView.alpha = 1
         } else if initialIndex == 1 {
-            let data = try! Data(contentsOf: URL(fileURLWithPath: currentNotebook.localAddress!))
+//            let data = try! Data(contentsOf: URL(fileURLWithPath: currentNotebook.localAddress!))
             
-            if let document = PDFDocument(data: data){
+            if let document = PDFDocument(url: URL(fileURLWithPath: currentNotebook.localAddress!)){
                 notebookView.document = document
             }
             notebookView.maxScaleFactor = 7.5
-            notebookView.minScaleFactor = notebookView.scaleFactorForSizeToFit
+            notebookView.minScaleFactor = notebookView.scaleFactorForSizeToFit - 5
             bookView.layer.frame.origin.x = 0 - view.layer.frame.size.width
             notebookView.layer.frame.origin.x = 0
             termSetView.layer.frame.origin.x = view.layer.frame.size.width
@@ -162,6 +173,7 @@ class EditingViewController: UIViewController {
             termSetView.layer.frame.origin.x = 0
             termSetView.alpha = 1
         }
+        notebookView.scrollView!.delegate = self
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -249,6 +261,22 @@ extension EditingViewController: UIGestureRecognizerDelegate{
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
+    }
+}
+
+extension EditingViewController: UIScrollViewDelegate{
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        currentlyScrolling = true
+////    }
+//    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+//        currentlyScrolling = true
+//        scrollBegan(UIPanGestureRecognizer())
+//    }
+////    scrollview
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if currentlyScrolling == false{
+            scrollBegan(UIPanGestureRecognizer())
+        }
     }
 }
 

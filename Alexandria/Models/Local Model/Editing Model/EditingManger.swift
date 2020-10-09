@@ -151,3 +151,41 @@ extension EditingViewController{
         }
     }
 }
+
+class ScrollingGestureRecognizer: UIPanGestureRecognizer{
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
+        self.state = .began
+        let coalleced = event.coalescedTouches(for: touches.first!)
+        let scrollingDelegate = delegate as! PDFScrollGestureDelegate
+//        for _ in coalleced!{
+        scrollingDelegate.controller.currentlyScrolling = true
+        scrollingDelegate.controller.scrollBegan(self)
+        
+        
+//        }
+    }
+//
+//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent) {
+//        self.state = .changed
+//        let coalleced = event.coalescedTouches(for: touches.first!)
+//        let scrollingDelegate = delegate as! PDFScrollGestureDelegate
+//        for _ in coalleced!{
+//            scrollingDelegate.controller.scrollBegan(self)
+//        }
+//    }
+//
+//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent) {
+//        self.state = .ended
+//        let scrollingDelegate = delegate as! PDFScrollGestureDelegate
+//        scrollingDelegate.controller.scrollBegan(self)
+//    }
+//
+//    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent) {
+//        self.state = .cancelled
+//        let coalleced = event.coalescedTouches(for: touches.first!)
+//        let scrollingDelegate = delegate as! PDFScrollGestureDelegate
+//        for _ in coalleced!{
+//            scrollingDelegate.controller.scrollBegan(self)
+//        }
+//    }
+}

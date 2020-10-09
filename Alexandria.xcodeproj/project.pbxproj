@@ -127,6 +127,7 @@
 		81C6711C2499373500B32676 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C6711B2499373500B32676 /* MyProfileViewController.swift */; };
 		81CBB0C6252790C600E86A5D /* ClassCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81747D5125278DFA002720F7 /* ClassCollectionTableViewCell.swift */; };
 		81CBB0CB2527912600E86A5D /* NewNotebookPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CBB0CA2527912600E86A5D /* NewNotebookPickerDelegate.swift */; };
+		81CBB0D32527B49500E86A5D /* AddFileDone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81CBB0D22527B49400E86A5D /* AddFileDone.xib */; };
 		81D1D5CB24BFE6A400EEDBFC /* AddFileMetadataComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D1D5C924BFE6A400EEDBFC /* AddFileMetadataComponent.swift */; };
 		81D1D5CC24BFE6A400EEDBFC /* AddFileMetadataComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81D1D5CA24BFE6A400EEDBFC /* AddFileMetadataComponent.xib */; };
 		81D1D5CF24C00B8C00EEDBFC /* AddFileDone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D1D5CD24C00B8C00EEDBFC /* AddFileDone.swift */; };
@@ -302,6 +303,7 @@
 		81C67119249936FA00B32676 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		81C6711B2499373500B32676 /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		81CBB0CA2527912600E86A5D /* NewNotebookPickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNotebookPickerDelegate.swift; sourceTree = "<group>"; };
+		81CBB0D22527B49400E86A5D /* AddFileDone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddFileDone.xib; sourceTree = "<group>"; };
 		81D1D5C924BFE6A400EEDBFC /* AddFileMetadataComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFileMetadataComponent.swift; sourceTree = "<group>"; };
 		81D1D5CA24BFE6A400EEDBFC /* AddFileMetadataComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddFileMetadataComponent.xib; sourceTree = "<group>"; };
 		81D1D5CD24C00B8C00EEDBFC /* AddFileDone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFileDone.swift; sourceTree = "<group>"; };
@@ -520,6 +522,7 @@
 				81D1D5C924BFE6A400EEDBFC /* AddFileMetadataComponent.swift */,
 				81D1D5CA24BFE6A400EEDBFC /* AddFileMetadataComponent.xib */,
 				81D1D5CD24C00B8C00EEDBFC /* AddFileDone.swift */,
+				81CBB0D22527B49400E86A5D /* AddFileDone.xib */,
 				8137DF8A24C89F9C00615218 /* AddFileShelfList */,
 			);
 			path = "Add Item View";
@@ -1102,6 +1105,7 @@
 				815C7DF22508027C0050D1B8 /* ClassCollectionTableViewCell.xib in Resources */,
 				815C7DFD250855450050D1B8 /* NewNotebookDone.xib in Resources */,
 				81F417E224A2F32D005193F9 /* MyProfileLogoCell.xib in Resources */,
+				81CBB0D32527B49500E86A5D /* AddFileDone.xib in Resources */,
 				81F417EA24A2F370005193F9 /* MyProfileContentCell.xib in Resources */,
 				81021CB824F1CDCA00075B54 /* DefaultColorCell.xib in Resources */,
 				8137DF7924C7C58200615218 /* ShelfBookPicker.xib in Resources */,

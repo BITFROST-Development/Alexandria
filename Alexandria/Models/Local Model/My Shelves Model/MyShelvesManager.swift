@@ -11,6 +11,7 @@ import RealmSwift
 import SocketIO
 import MobileCoreServices
 import PDFKit
+import ZIPFoundation
 
 class MyShelvesManager: UIActivity {
     let realm = try! Realm(configuration: AppDelegate.realmConfig)

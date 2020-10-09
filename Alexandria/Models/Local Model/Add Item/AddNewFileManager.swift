@@ -8,6 +8,8 @@
 
 import UIKit
 import RealmSwift
+import ZIPFoundation
+import PDFKit
 
 extension AddNewFileViewController: SocketDelegate {
     func refreshView(){
