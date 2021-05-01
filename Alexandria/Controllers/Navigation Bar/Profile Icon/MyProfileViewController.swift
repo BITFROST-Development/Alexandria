@@ -40,11 +40,12 @@ class MyProfileViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        if let myShelves = controller as? MyShelvesViewController{
-            myShelves.refreshView()
-        } else if let myVaults = controller as? MyVaultsViewController{
-            myVaults.refreshView()
-        } else if let metrics = controller as? MetricsViewController{
+//        if let myShelves = controller as? MyShelvesViewController{
+//            myShelves.refreshView()
+//        } else if let myVaults = controller as? MyVaultsViewController{
+//            myVaults.refreshView()
+//        } else
+        if let metrics = controller as? MetricsViewController{
             metrics.refreshView()
         } else if let myTeams = controller as? MyTeamsViewController{
             myTeams.refreshView()
@@ -60,32 +61,32 @@ class MyProfileViewController: UIViewController {
         overalAlert.addAction(UIAlertAction(title: "Keep Data", style: .cancel, handler: {_ in
             do{
                 try realm.write(){
-                    let hashMap = realm.objects(BookToListMap.self)
-                    for book in 0..<cloudUser.alexandriaData!.cloudBooks.count{
-                        cloudUser.alexandriaData!.cloudBooks[book].cloudVar.value = false
-                        let shelves = hashMap[1].keys[book].values
-                        for shelf in shelves {
-                            shelf.value?.books[shelf.indexInShelf.value!] = Double(cloudUser.alexandriaData!.localBooks.count)
-                            shelf.value?.oppositeBooks.removeAll()
-                            hashMap[0].append(key: Double(cloudUser.alexandriaData!.localBooks.count), value: shelf.value!, isCloud: true)
-                        }
-                        cloudUser.alexandriaData!.localBooks.append(cloudUser.alexandriaData!.cloudBooks[book])
-                    }
-                    cloudUser.alexandriaData!.cloudBooks.removeAll()
-                    for shelf in cloudUser.alexandriaData!.shelves{
-                        shelf.cloudVar.value = false
-                        cloudUser.alexandriaData!.localShelves.append(shelf)
-                    }
-                    cloudUser.alexandriaData!.shelves.removeAll()
-                    unloggedUser.alexandriaData = cloudUser.alexandriaData
-                    realm.add(unloggedUser)
-                    realm.delete(hashMap[1])
-                    realm.delete(cloudUser)
-                    logoutRequest.logOut()
-                    GoogleSignIn.sharedInstance().signOut()
-                    RegisterLoginViewController.loggedIn = false
-                    self.controller.loggedIn = false
-                    self.dismiss(animated: true, completion: nil)
+//                    let hashMap = realm.objects(BookToListMap.self)
+//                    for book in 0..<cloudUser.alexandria!.cloudBooks.count{
+//                        cloudUser.alexandria!.cloudBooks[book].cloudVar.value = false
+//                        let shelves = hashMap[1].keys[book].values
+//                        for shelf in shelves {
+//                            shelf.value?.books[shelf.indexInShelf.value!] = Double(cloudUser.alexandria!.localBooks.count)
+//                            shelf.value?.oppositeBooks.removeAll()
+//                            hashMap[0].append(key: Double(cloudUser.alexandria!.localBooks.count), value: shelf.value!, isCloud: true)
+//                        }
+//                        cloudUser.alexandria!.localBooks.append(cloudUser.alexandria!.cloudBooks[book])
+//                    }
+//                    cloudUser.alexandria!.cloudBooks.removeAll()
+//                    for shelf in cloudUser.alexandria!.shelves{
+//                        shelf.cloudVar.value = false
+//                        cloudUser.alexandria!.localShelves.append(shelf)
+//                    }
+//                    cloudUser.alexandria!.shelves.removeAll()
+//                    unloggedUser.alexandria = cloudUser.alexandria
+//                    realm.add(unloggedUser)
+//                    realm.delete(hashMap[1])
+//                    realm.delete(cloudUser)
+//                    logoutRequest.logOut()
+//                    GoogleSignIn.sharedInstance().signOut()
+//                    RegisterLoginViewController.loggedIn = false
+//                    self.controller.loggedIn = false
+//                    self.dismiss(animated: true, completion: nil)
                 }
             } catch {
                 let alert = UIAlertController(title: "Error Loging Out", message: "We weren't able to log you out. Close the application and try again!", preferredStyle: .alert)
@@ -96,29 +97,29 @@ class MyProfileViewController: UIViewController {
         overalAlert.addAction(UIAlertAction(title: "Delete Data", style: .destructive, handler: {_ in
             do{
                 try realm.write(){
-                    let hashMap = realm.objects(BookToListMap.self)
-                    for shelf in cloudUser.alexandriaData!.localShelves{
-                        shelf.oppositeBooks.removeAll()
-                    }
-                    for book in cloudUser.alexandriaData!.cloudBooks{
-                        book.deleteInformation()
-                        realm.delete(book.thumbnail!)
-                        realm.delete(book)
-                    }
-                    cloudUser.alexandriaData?.cloudBooks.removeAll()
-                    for shelf in cloudUser.alexandriaData!.shelves{
-                        realm.delete(shelf)
-                    }
-                    cloudUser.alexandriaData?.shelves.removeAll()
-                    unloggedUser.alexandriaData = cloudUser.alexandriaData
-                    realm.add(unloggedUser)
-                    realm.delete(hashMap[1])
-                    realm.delete(cloudUser)
-                    logoutRequest.logOut()
-                    GoogleSignIn.sharedInstance().signOut()
-                    RegisterLoginViewController.loggedIn = false
-                    self.controller.loggedIn = false
-                    self.dismiss(animated: true, completion: nil)
+//                    let hashMap = realm.objects(BookToListMap.self)
+//                    for shelf in cloudUser.alexandria!.localShelves{
+//                        shelf.oppositeBooks.removeAll()
+//                    }
+//                    for book in cloudUser.alexandria!.cloudBooks{
+//                        book.deleteInformation()
+//                        realm.delete(book.thumbnail!)
+//                        realm.delete(book)
+//                    }
+//                    cloudUser.alexandria?.cloudBooks.removeAll()
+//                    for shelf in cloudUser.alexandria!.shelves{
+//                        realm.delete(shelf)
+//                    }
+//                    cloudUser.alexandria?.shelves.removeAll()
+//                    unloggedUser.alexandria = cloudUser.alexandria
+//                    realm.add(unloggedUser)
+//                    realm.delete(hashMap[1])
+//                    realm.delete(cloudUser)
+//                    logoutRequest.logOut()
+//                    GoogleSignIn.sharedInstance().signOut()
+//                    RegisterLoginViewController.loggedIn = false
+//                    self.controller.loggedIn = false
+//                    self.dismiss(animated: true, completion: nil)
                 }
             } catch {
                 let alert = UIAlertController(title: "Error Loging Out", message: "We weren't able to log you out. Close the application and try again!", preferredStyle: .alert)
@@ -156,12 +157,15 @@ extension MyProfileViewController: UITableViewDataSource{
                 case 2:
                     cell.field.text = "Username:"
                     cell.content.text = currentUser!.username
+					break
                 case 3:
                     cell.field.text = "Drive Account:"
                     cell.content.text = currentUser!.googleAccountEmail
+					break
                 case 4:
                     cell.field.text = "Subscription:"
                     cell.content.text = currentUser!.subscription
+					break
                 case 5:
                     cell.field.text = "Subscription Status:"
                     if currentUser!.subscriptionStatus == "1"{
@@ -169,6 +173,7 @@ extension MyProfileViewController: UITableViewDataSource{
                     } else {
                         cell.content.text = "Not Active"
                     }
+					break
                 case 6:
                     cell.field.text = "Days Left:"
                     if currentUser!.daysLeftOnSubscription.value == nil{
@@ -176,6 +181,7 @@ extension MyProfileViewController: UITableViewDataSource{
                     } else {
                         cell.content.text = "\(currentUser!.daysLeftOnSubscription) days"
                     }
+					break
                 default:
                     print("there was an error rendering")
 
@@ -193,11 +199,13 @@ extension MyProfileViewController: UITableViewDataSource{
 extension MyProfileViewController: SocketDelegate{
     func refreshView() {
         tableView.reloadData()
-        if let myShelves = controller as? MyShelvesViewController{
-            myShelves.refreshView()
-        } else if let myVaults = controller as? MyVaultsViewController{
-            myVaults.refreshView()
-        } else if let metrics = controller as? MetricsViewController{
+//        if let myShelves = controller as? MyShelvesViewController{
+//            myShelves.refreshView()
+//        } else
+//        if let myVaults = controller as? MyVaultsViewController{
+//            myVaults.refreshView()
+//        } else
+        if let metrics = controller as? MetricsViewController{
             metrics.refreshView()
         } else if let myTeams = controller as? MyTeamsViewController{
             myTeams.refreshView()

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="teamIconCollectionViewCell" id="gTV-IL-0wX" customClass="TeamIconCollectionViewCell" customModule="Alexandria" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="82" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="82" height="100"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ONy-Mx-u4y">
+                        <rect key="frame" x="12" y="15" width="58" height="58"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="58" id="Tq7-59-1ZC"/>
+                            <constraint firstAttribute="height" constant="58" id="Zvw-cC-vq4"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DJZ-RK-Ujc">
+                        <rect key="frame" x="21" y="24" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="Tzn-HN-BJc"/>
+                            <constraint firstAttribute="width" constant="40" id="uE0-2L-te2"/>
+                        </constraints>
+                        <connections>
+                            <action selector="selectTeam:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Ke9-95-dq7"/>
+                        </connections>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SHj-ct-fRQ">
+                        <rect key="frame" x="59.5" y="5.5" width="20" height="20"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbr-gw-xTC">
+                                <rect key="frame" x="2" y="2" width="16" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" cyan="0.64500000000000002" magenta="0.0" yellow="0.0" black="0.0" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="rbr-gw-xTC" firstAttribute="leading" secondItem="SHj-ct-fRQ" secondAttribute="leading" constant="2" id="EiU-bd-oHh"/>
+                            <constraint firstAttribute="width" constant="20" id="K4c-qC-23P"/>
+                            <constraint firstAttribute="trailing" secondItem="rbr-gw-xTC" secondAttribute="trailing" constant="2" id="PGr-3d-5EY"/>
+                            <constraint firstAttribute="bottom" secondItem="rbr-gw-xTC" secondAttribute="bottom" constant="2" id="Tzo-Ok-J0J"/>
+                            <constraint firstItem="rbr-gw-xTC" firstAttribute="top" secondItem="SHj-ct-fRQ" secondAttribute="top" constant="2" id="dvl-vt-bPQ"/>
+                            <constraint firstAttribute="height" constant="20" id="yRl-E7-Mp3"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6l5-Dt-JEc">
+                        <rect key="frame" x="12" y="78" width="58" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="12" id="n19-4c-p8c"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="ONy-Mx-u4y" firstAttribute="top" secondItem="SHj-ct-fRQ" secondAttribute="bottom" constant="-10.5" id="0XE-YB-HUd"/>
+                <constraint firstItem="DJZ-RK-Ujc" firstAttribute="centerX" secondItem="ONy-Mx-u4y" secondAttribute="centerX" id="2Sn-kL-zVB"/>
+                <constraint firstAttribute="trailing" secondItem="ONy-Mx-u4y" secondAttribute="trailing" constant="12" id="9vD-lu-Bst"/>
+                <constraint firstItem="ONy-Mx-u4y" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="JOR-O4-5TB"/>
+                <constraint firstItem="SHj-ct-fRQ" firstAttribute="leading" secondItem="ONy-Mx-u4y" secondAttribute="trailing" constant="-10.5" id="L7Q-X8-Hly"/>
+                <constraint firstItem="DJZ-RK-Ujc" firstAttribute="centerY" secondItem="ONy-Mx-u4y" secondAttribute="centerY" id="LPx-3Q-mEe"/>
+                <constraint firstItem="6l5-Dt-JEc" firstAttribute="centerX" secondItem="ONy-Mx-u4y" secondAttribute="centerX" id="Pt2-jY-TQc"/>
+                <constraint firstItem="6l5-Dt-JEc" firstAttribute="width" secondItem="ONy-Mx-u4y" secondAttribute="width" id="RHg-zM-0EI"/>
+                <constraint firstAttribute="bottom" secondItem="6l5-Dt-JEc" secondAttribute="bottom" constant="10" id="T4P-K7-iMK"/>
+                <constraint firstItem="ONy-Mx-u4y" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="12" id="jM2-q6-RAV"/>
+                <constraint firstItem="6l5-Dt-JEc" firstAttribute="top" secondItem="ONy-Mx-u4y" secondAttribute="bottom" constant="5" id="jU0-om-MvY"/>
+            </constraints>
+            <size key="customSize" width="132" height="93"/>
+            <connections>
+                <outlet property="notificationLabel" destination="rbr-gw-xTC" id="1jL-Q2-XqB"/>
+                <outlet property="notificationView" destination="SHj-ct-fRQ" id="WtJ-Hj-rle"/>
+                <outlet property="teamPicture" destination="ONy-Mx-u4y" id="L2y-E3-D85"/>
+            </connections>
+            <point key="canvasLocation" x="163.768115942029" y="141.29464285714286"/>
+        </collectionViewCell>
+    </objects>
+</document>

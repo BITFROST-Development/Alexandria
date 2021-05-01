@@ -100,8 +100,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                             booksFolderID = booksFolder
                             do{
                                 try self.realm.write(){
-                                    newCloudUser.alexandriaData?.rootFolderID = rootFolderID
-                                    newCloudUser.alexandriaData?.booksFolderID = booksFolderID
+                                    newCloudUser.alexandria?.rootFolderID = rootFolderID
+                                    newCloudUser.alexandria?.filesFolderID = booksFolderID
                                     Socket.sharedInstance.updateAlexandriaCloud(username: newCloudUser.username, alexandriaInfo: AlexandriaDataDec(from: newCloudUser))
                                 }
                                 

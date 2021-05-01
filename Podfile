@@ -5,7 +5,6 @@ target 'Alexandria' do
   use_frameworks!
 
   # Pods for Alexandria
-pod 'Socket.IO-Client-Swift', '~> 15.2.0'
 pod 'GAppAuth'
 pod 'GoogleAPIClientForREST/Drive', '~> 1.3.7'
 pod 'ZIPFoundation', '~> 0.9'

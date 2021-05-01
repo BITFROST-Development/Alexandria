@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MetricsViewController: AuthenticationSource {
+class MetricsViewController: AuthenticationSource, SocketDelegate{
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -23,11 +23,9 @@ class MetricsViewController: AuthenticationSource {
         super.viewWillAppear(animated)
         Socket.sharedInstance.delegate = self
     }
-}
-
-extension MetricsViewController: SocketDelegate{
-    func refreshView(){
-        
-    }
+	
+	override func refreshView(){
+		
+	}
 }
 

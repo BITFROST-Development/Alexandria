@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="addItemPickerHeaderCollectionReusableView" id="U6b-Vx-4bR" customClass="AddItemPickerHeaderCollectionReusableView" customModule="Alexandria" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="500" height="116"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Section Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="25j-FN-xKG">
+                    <rect key="frame" x="182.5" y="15" width="135.5" height="46"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                    <color key="textColor" red="0.75294117650000003" green="0.20876580480000001" blue="0.16233775019999999" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="moB-i3-rX3">
+                    <rect key="frame" x="15" y="71" width="470" height="30"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="Search for Item" minimumFontSize="18" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="9jp-iF-bKB">
+                            <rect key="frame" x="5" y="5" width="435" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="jmX-pg-ntM"/>
+                            </constraints>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="csx-eW-Wqp">
+                            <rect key="frame" x="445" y="6" width="20" height="18"/>
+                            <color key="tintColor" red="0.32123100760000001" green="0.76385760309999995" blue="0.89848518369999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="csx-eW-Wqp" secondAttribute="height" multiplier="1:1" id="PW8-Tt-qOw"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hBU-WZ-45W">
+                            <rect key="frame" x="445" y="5" width="20" height="20"/>
+                            <connections>
+                                <action selector="searchButtonPressed:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="RJr-nX-Bi8"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.02191162109375" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="hBU-WZ-45W" firstAttribute="width" secondItem="csx-eW-Wqp" secondAttribute="width" id="4rF-oT-2T7"/>
+                        <constraint firstAttribute="height" constant="30" id="LTC-D5-hbc"/>
+                        <constraint firstItem="hBU-WZ-45W" firstAttribute="height" secondItem="csx-eW-Wqp" secondAttribute="height" id="WNX-QE-jj4"/>
+                        <constraint firstItem="9jp-iF-bKB" firstAttribute="centerY" secondItem="moB-i3-rX3" secondAttribute="centerY" id="dDQ-o1-gCo"/>
+                        <constraint firstItem="csx-eW-Wqp" firstAttribute="leading" secondItem="9jp-iF-bKB" secondAttribute="trailing" constant="5" id="kjS-Mm-vWl"/>
+                        <constraint firstItem="9jp-iF-bKB" firstAttribute="leading" secondItem="moB-i3-rX3" secondAttribute="leading" constant="5" id="lVr-Ta-yMZ"/>
+                        <constraint firstItem="csx-eW-Wqp" firstAttribute="centerY" secondItem="moB-i3-rX3" secondAttribute="centerY" id="mTN-tU-8eY"/>
+                        <constraint firstAttribute="trailing" secondItem="csx-eW-Wqp" secondAttribute="trailing" constant="5" id="mza-VZ-q1g"/>
+                        <constraint firstItem="csx-eW-Wqp" firstAttribute="height" secondItem="9jp-iF-bKB" secondAttribute="height" id="oL7-LH-5P2"/>
+                        <constraint firstItem="hBU-WZ-45W" firstAttribute="centerY" secondItem="csx-eW-Wqp" secondAttribute="centerY" id="qmu-BZ-lbf"/>
+                        <constraint firstItem="hBU-WZ-45W" firstAttribute="centerX" secondItem="csx-eW-Wqp" secondAttribute="centerX" id="wDV-iF-F3G"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v38-RO-9vd">
+                    <rect key="frame" x="386" y="15" width="94" height="46"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                    <color key="tintColor" red="0.32123100760000001" green="0.76385760309999995" blue="0.89848518369999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="Pick Folder"/>
+                    <connections>
+                        <action selector="changeFolderState:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="Qhw-of-wpe"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="moB-i3-rX3" firstAttribute="top" secondItem="25j-FN-xKG" secondAttribute="bottom" constant="10" id="CzQ-jg-2ch"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="25j-FN-xKG" secondAttribute="trailing" constant="15" id="FQx-Pi-6QY"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="moB-i3-rX3" secondAttribute="trailing" constant="15" id="J7T-mO-P0m"/>
+                <constraint firstItem="v38-RO-9vd" firstAttribute="bottom" secondItem="25j-FN-xKG" secondAttribute="bottom" id="Jb1-w0-YyX"/>
+                <constraint firstItem="moB-i3-rX3" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="15" id="Lcd-O4-jnb"/>
+                <constraint firstItem="25j-FN-xKG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="15" id="ROp-Ne-aFU"/>
+                <constraint firstItem="25j-FN-xKG" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="15" id="ULI-tt-lgA"/>
+                <constraint firstItem="v38-RO-9vd" firstAttribute="trailing" secondItem="csx-eW-Wqp" secondAttribute="trailing" id="Y2b-ie-q49"/>
+                <constraint firstItem="25j-FN-xKG" firstAttribute="centerX" secondItem="U6b-Vx-4bR" secondAttribute="centerX" id="Ygi-XR-RIg"/>
+                <constraint firstAttribute="bottom" secondItem="moB-i3-rX3" secondAttribute="bottom" constant="15" id="aOI-WO-mo9"/>
+                <constraint firstItem="v38-RO-9vd" firstAttribute="height" secondItem="25j-FN-xKG" secondAttribute="height" id="jIo-Fd-S0y"/>
+            </constraints>
+            <connections>
+                <outlet property="folderPickerButton" destination="v38-RO-9vd" id="eb3-qo-YSj"/>
+                <outlet property="searchBarContainerView" destination="moB-i3-rX3" id="3Xt-Pv-fGe"/>
+                <outlet property="searchField" destination="9jp-iF-bKB" id="Ocu-Wo-RUo"/>
+                <outlet property="searchIcon" destination="csx-eW-Wqp" id="1iB-RL-03c"/>
+                <outlet property="sectionTitle" destination="25j-FN-xKG" id="8uj-S0-fdA"/>
+            </connections>
+            <point key="canvasLocation" x="268.1159420289855" y="131.91964285714286"/>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+    </resources>
+</document>

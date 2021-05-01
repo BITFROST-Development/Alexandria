@@ -7,6 +7,10 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>alexandriaFileImageSmall.png</string>
+			</array>
 			<key>CFBundleTypeName</key>
 			<string>Alexandria Extension</string>
 			<key>CFBundleTypeRole</key>
@@ -15,7 +19,7 @@
 			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.bitfrost.alexandria</string>
+				<string>public.bitfrost.alexandria</string>
 			</array>
 		</dict>
 	</array>
@@ -67,6 +71,8 @@
 	<true/>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<true/>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>We use bluetooth to detect whether you are using an apple pencil to improve your experience.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -100,8 +106,6 @@
 	<true/>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>We use bluetooth to detect whether you are using an apple pencil to improve your experience.</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -116,6 +120,10 @@
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>alexandriaFileImageSmall.png</string>
+			</array>
 			<key>UTTypeConformsTo</key>
 			<array>
 				<string>public.content</string>
@@ -123,11 +131,50 @@
 			<key>UTTypeDescription</key>
 			<string>Alexandria File</string>
 			<key>UTTypeIconFiles</key>
-			<array/>
+			<array>
+				<string>alexandriaFileImageSmall.png</string>
+			</array>
 			<key>UTTypeIdentifier</key>
 			<string>com.bitfrost.alexandria</string>
 			<key>UTTypeTagSpecification</key>
-			<dict/>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>alexandria</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>application/alexandria</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Alexandria File</string>
+			<key>UTTypeIconFiles</key>
+			<array>
+				<string>alexandriaFileImageSmall</string>
+			</array>
+			<key>UTTypeIdentifier</key>
+			<string>public.bitfrost.alexandria</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>alexandria</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>application/alexandria</string>
+				</array>
+			</dict>
 		</dict>
 	</array>
 </dict>

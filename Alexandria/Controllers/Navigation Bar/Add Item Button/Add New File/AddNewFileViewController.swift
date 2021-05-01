@@ -74,10 +74,14 @@ class AddNewFileViewController: UIViewController, BookChangerDelegate {
     var toDrive = false
     var tableOriginalLoad = true
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var loadingShadeView: UIView!
+    @IBOutlet weak var importBar: UIProgressView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.importBar.progress = 0
+        loadingShadeView.alpha = 0
         AddFileViewTitle.controller = self
         AddFileDone.controller = self
         thumbnailData = StoredFile()

@@ -10,6 +10,7 @@ import UIKit
 import PDFKit
 import RealmSwift
 import CoreBluetooth
+import ZIPFoundation
 
 class EditingViewController: UIViewController {
     
@@ -18,162 +19,76 @@ class EditingViewController: UIViewController {
     }
     let realm = AppDelegate.realm!
     var controller: AuthenticationSource!
-    var initialIndex: Int!
+	var initialIndex: Int!
     var currentlyScrolling = false
-    var currentBook: Book!
-    var currentNotebook: Note!
-    var currentSet: TermSet!
-    let toolPanDelegate = ToolPanDelegate()
-    let scrollingDelegate = PDFScrollGestureDelegate()
-    var lastSelectedBarIndex: Int!
-    var lastSelectedWritingPreferences: [Int]!
-    var drawingPath: UIBezierPath!
-    var annotationLayers: [PDFAnnotation] = []
-    var annotation: DrawingAnnotation!
-    @IBOutlet weak var bookView: PDFView!
-    @IBOutlet weak var notebookView: NotebookView!
+	var currentlyOpen: EditingFile!
+	var openElements: [EditingFile]{
+		get{
+			return controller.lastOpenElements
+		} set (newElements){
+			controller.lastOpenElements = newElements
+		}
+	}
+	
+	//Navigation
+	@IBOutlet weak var editorFileNavigationViewLarge: EditorFileNavigationBarLarge!
+	@IBOutlet weak var editorFileNavigationViewLargeHeight: NSLayoutConstraint!
+	@IBOutlet weak var editorFileNavigationViewShort: EditorFileNavigationShort!
+	@IBOutlet weak var editorSetNavigationViewLarge: EditorSetNavigationBarLarge!
+	@IBOutlet weak var editorSetNavigationViewLargeHeight: NSLayoutConstraint!
+	@IBOutlet weak var editorSetNavigationViewShort: EditorSetNavigationShort!
+	
+	// File View
+	@IBOutlet weak var tabSwitcher: EditorTabSwitcher!
+	@IBOutlet weak var tabSwitcherHeight: NSLayoutConstraint!
+	@IBOutlet weak var tabSwitcherDistanceToTop: NSLayoutConstraint!
     @IBOutlet weak var termSetView: UITableView!
+	var fileView: EditorView!
     
-    //Upper button row
-    @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var outlineButton: UIButton!
-    @IBOutlet weak var searchButton: UIButton!
-    @IBOutlet weak var bookmarkButton: UIButton!
-    @IBOutlet weak var addPageButton: UIButton!
-    @IBOutlet weak var viewTitle: UILabel!
-    @IBOutlet weak var undoButton: UIButton!
-    @IBOutlet weak var redoButton: UIButton!
-    @IBOutlet weak var shareButton: UIButton!
-    @IBOutlet weak var optionButton: UIButton!
-    @IBOutlet weak var pickerBar: UISegmentedControl!
-    
-    //Preferences buttons
-    @IBOutlet weak var preferenceButton01BackgroundImage: UIImageView!
-    @IBOutlet weak var preferenceButton01: UIButton!
-    @IBOutlet weak var preferenceButton02BackgroundImage: UIImageView!
-    @IBOutlet weak var preferenceButton02: UIButton!
-    @IBOutlet weak var preferenceButton03BackgroundImage: UIImageView!
-    @IBOutlet weak var preferenceButton03: UIButton!
-    @IBOutlet weak var preferenceButton04: UIButton!
-    @IBOutlet weak var preferenceButton04CircleShadow: UIImageView!
-    @IBOutlet weak var preferenceButton05: UIButton!
-    @IBOutlet weak var preferenceButton05CircleShadow: UIImageView!
-    @IBOutlet weak var preferenceButton06: UIButton!
-    @IBOutlet weak var preferenceButton06CircleShadow: UIImageView!
-    
-    
-    //Bottom button row
-    var lastSelectedTool: UIButton!
-    @IBOutlet weak var writingToolButton: UIButton!
+    /// Toolbar row
+	
+	// Toolbar Setup
+	@IBOutlet weak var toolBox: EditorFileToolBox!
+	@IBOutlet weak var toolBoxDistanceToTop: NSLayoutConstraint!
+	var currentTool: Int{
+		get{
+			controller.lastSelectedTool
+		} set (newtool){
+			controller.lastSelectedTool = newtool
+		}
+	}
+	var latestPreferences: [PreferencesTracker]{
+		get{
+			controller.latestPreferences
+		} set (newPreferences){
+			controller.latestPreferences = newPreferences
+		}
+	}
+	var currentColor: UIColor!
+	
+	// Gesture Recognizers
+	var inkToolPan: ToolPanGestureRecognizer!
+	var linkToolPan: ToolPanGestureRecognizer!
+	var lassoToolPan: ToolPanGestureRecognizer!
+	var textToolPan: ToolPanGestureRecognizer!
+	
+	// Tool helpers
     var currentWrittingTool = "fountain"
     var touchesComingFromPencil = false
-    var writingToolPan: ToolPanGestureRecognizer!
-    @IBOutlet weak var eraserToolButton: UIButton!
-    var eraserToolPan:
-        ToolPanGestureRecognizer!
-    @IBOutlet weak var highlighterToolButton: UIButton!
-    var highlighterToolPan: ToolPanGestureRecognizer!
-    @IBOutlet weak var linkToolButton: UIButton!
-    var linkToolPan: ToolPanGestureRecognizer!
-    @IBOutlet weak var lassoToolButton: UIButton!
-    var lassoToolPan: ToolPanGestureRecognizer!
-    @IBOutlet weak var textboxToolButton: UIButton!
-    @IBOutlet weak var storeToolButton: UIButton!
-    var storeToolPan: ToolPanGestureRecognizer!
-    @IBOutlet weak var moveToolButton: UIButton!
-    
+	let toolPanDelegate = ToolPanDelegate()
+	let scrollingDelegate = PDFScrollGestureDelegate()
+	var drawingPath: UIBezierPath!
+	var currentLayer: CAShapeLayer!
+	var currentGroup: InkGroup!
+	var removableDrawings: [CALayer]! = []
+	
     //Page Symbols
-    @IBOutlet weak var addPageSymbol: UIImageView!
     @IBOutlet weak var pageNumber: UILabel!
     var shouldAddPage = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        moveToolButton.isSelected = true
-        lastSelectedTool = moveToolButton
-        lastSelectedWritingPreferences = controller.writtingToolLastSelection
-        (UIApplication.shared.delegate as! AppDelegate).restrictRotation = .all
-        bookView.alpha = 0
-        bookView.displayDirection = .horizontal
-        bookView.displayMode = .singlePage
-        bookView.usePageViewController(true, withViewOptions: nil)
-        bookView.autoScales = true
-        notebookView.alpha = 0
-        notebookView.displayDirection = .horizontal
-        notebookView.displayMode = .singlePage
-        notebookView.usePageViewController(true, withViewOptions: nil)
-        notebookView.autoScales = true
-        termSetView.alpha = 0
-        
-        preferenceButton01.alpha = 0
-        preferenceButton01BackgroundImage.alpha = 0
-        preferenceButton02.alpha = 0
-        preferenceButton02BackgroundImage.alpha = 0
-        preferenceButton03.alpha = 0
-        preferenceButton03BackgroundImage.alpha = 0
-        preferenceButton04.alpha = 0
-        preferenceButton04CircleShadow.alpha = 0
-        preferenceButton05.alpha = 0
-        preferenceButton05CircleShadow.alpha = 0
-        preferenceButton06.alpha = 0
-        preferenceButton06CircleShadow.alpha = 0
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(changePageDisplayed(_:)), name: .PDFViewPageChanged, object: nil)
-        setupToolDelegates()
-        
-        
-        
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(shouldAddPage(_:)))
-        panGesture.delegate = self
-        notebookView.addGestureRecognizer(panGesture)
-        
-        
-        
-        let scrollGesture = ScrollingGestureRecognizer(target: self, action: #selector(scrollBegan(_:)))
-        scrollingDelegate.controller = self
-        scrollGesture.delegate = scrollingDelegate
-        notebookView.addGestureRecognizer(scrollGesture)
-        
-        notebookView.interpolationQuality = .low
-        pickerBar.selectedSegmentIndex = initialIndex
-        pickerBar.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
-        pickerBar.addTarget(self, action: #selector(pickerChanged(_:)), for: .allEvents)
-        lastSelectedBarIndex = initialIndex
-        bookView.document = nil
-        notebookView.document = nil
-        if initialIndex == 0{
-            let path = URL(fileURLWithPath: currentBook.localAddress!)
-            if let document = PDFDocument(url: path) {
-                bookView.document = document
-            }
-            viewTitle.text = currentBook.title
-            bookView.layer.frame.origin.x = 0
-            notebookView.layer.frame.origin.x = view.layer.frame.size.width
-            termSetView.layer.frame.origin.x = view.layer.frame.size.width
-            bookView.alpha = 1
-        } else if initialIndex == 1 {
-//            let data = try! Data(contentsOf: URL(fileURLWithPath: currentNotebook.localAddress!))
-            
-            if let document = PDFDocument(url: URL(fileURLWithPath: currentNotebook.localAddress!)){
-                notebookView.document = document
-            }
-            notebookView.maxScaleFactor = 7.5
-            notebookView.minScaleFactor = notebookView.scaleFactorForSizeToFit - 5
-            bookView.layer.frame.origin.x = 0 - view.layer.frame.size.width
-            notebookView.layer.frame.origin.x = 0
-            termSetView.layer.frame.origin.x = view.layer.frame.size.width
-            viewTitle.text = currentNotebook.name
-            notebookView.alpha = 1
-        } else {
-            viewTitle.text = currentSet.name
-            bookView.layer.frame.origin.x = 0 - view.layer.frame.size.width
-            notebookView.layer.frame.origin.x = 0 - view.layer.frame.size.width
-            termSetView.layer.frame.origin.x = 0
-            termSetView.alpha = 1
-        }
-        notebookView.scrollView!.delegate = self
+		self.setup()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -186,76 +101,75 @@ class EditingViewController: UIViewController {
         }
     }
     
-    @IBAction func exitEditingMode(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @objc func changePageDisplayed(_ notification: NSNotification){
-        pageNumber.text = "Page \((notebookView.document?.index(for: notebookView.currentPage!) ?? 0) + 1) of \(notebookView.document?.pageCount ?? 0)"
-        
-    }
+	private func setup(){
+		(UIApplication.shared.delegate as! AppDelegate).restrictRotation = .all
+		fileView = EditorView(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+		self.addChild(fileView)
+		self.view.addSubview(fileView.view)
+		fileView.didMove(toParent: self)
+		addFileViewConstraints()
+		fileView.view.alpha = 0
+		fileView.controller = self
+		fileView.delegate = self
+		fileView.dataSource = self
+		termSetView.alpha = 0
+		editorSetNavigationViewShort.alpha = 0
+		editorSetNavigationViewLarge.alpha = 0
+		editorFileNavigationViewShort.alpha = 0
+		editorFileNavigationViewLarge.alpha = 0
+		pageNumber.layer.cornerRadius = 10
+		setupToolDelegates()
+		if controller.selectedFileItem as? TermSet == nil{
+			if openElements.contains(where: {$0.item.personalID == controller.selectedFileItem.personalID}){
+				currentlyOpen = openElements.first(where: {$0.item.personalID == controller.selectedFileItem.personalID})
+				fileView.setDocument(currentlyOpen! as! EditorFileInfo, 0, 0)
+			} else {
+				let newFile = EditorFileInfo(fileView, controller.selectedFileItem)
+				currentlyOpen = newFile
+				openElements.append(newFile)
+				fileView.setDocument(newFile, openElements.count - 1, openElements.count - 1)
+			}
+			editorFileNavigationViewLarge.alpha = 1
+			toolBox.alpha = 1
+			fileView.view.alpha = 1
+		}
+		toolBox.controller = self
+		tabSwitcher.controller = self
+		if openElements.count > 1{
+			tabSwitcherHeight.constant = 30
+			toolBoxDistanceToTop.constant = 145
+			self.view.layoutIfNeeded()
+			tabSwitcher.reloadView()
+		} else {
+			tabSwitcher.backgroundColor = .black
+			tabSwitcherHeight.constant = 0
+			toolBoxDistanceToTop.constant = 115
+			self.view.layoutIfNeeded()
+		}
+		editorSetNavigationViewShort.controller = self
+		editorSetNavigationViewLarge.controller = self
+		editorFileNavigationViewShort.controller = self
+		editorFileNavigationViewLarge.controller = self
+		
+	}
+	
+	private func addFileViewConstraints(){
+		fileView.view.translatesAutoresizingMaskIntoConstraints = false
+		fileView.view.topAnchor.constraint(equalTo: toolBox.bottomAnchor, constant: 0).isActive = true
+		fileView.view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0).isActive = true
+		fileView.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true
+		fileView.view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
+	}
+	
+	
 }
 
 extension EditingViewController: UIGestureRecognizerDelegate{
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        if lastSelectedTool != moveToolButton{
-//            let peripherals = CBCentralManager().retrieveConnectedPeripherals(withServices: [CBUUID(string: "180A")])
-//            if touches.count > 1{
-//                super.touchesBegan(touches, with: event)
-//            } else {
-//                let touch = touches.first!
-//                if peripherals.contains(where: isApplePencil){
-//                    if touch.type != .stylus{
-//                        super.touchesBegan(touches, with: event)
-//                    }
-//                }
-//            }
-//        } else {
-//            super.touchesBegan(touches, with: event)
-//        }
-//    }
-//
-//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        if lastSelectedTool != moveToolButton{
-//            let peripherals = CBCentralManager().retrieveConnectedPeripherals(withServices: [CBUUID(string: "180A")])
-//            if touches.count > 1{
-//                super.touchesMoved(touches, with: event)
-//            } else {
-//                let touch = touches.first!
-//                if peripherals.contains(where: isApplePencil){
-//                    if touch.type != .stylus{
-//                        super.touchesMoved(touches, with: event)
-//                    }
-//                }
-//            }
-//        } else {
-//            super.touchesMoved(touches, with: event)
-//        }
-//    }
-//
-//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        if lastSelectedTool != moveToolButton{
-//            let peripherals = CBCentralManager().retrieveConnectedPeripherals(withServices: [CBUUID(string: "180A")])
-//            if touches.count > 1{
-//                super.touchesEnded(touches, with: event)
-//            } else {
-//                let touch = touches.first!
-//                if peripherals.contains(where: isApplePencil){
-//                    if touch.type != .stylus{
-//                        super.touchesEnded(touches, with: event)
-//                    }
-//                }
-//            }
-//        } else {
-//            super.touchesEnded(touches, with: event)
-//        }
-//    }
-    
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        if notebookView.currentPage == notebookView.document?.page(at: notebookView.document!.pageCount - 1) && lastSelectedTool == moveToolButton{
-            return true
-        }
+//        if notebookView.currentPage == notebookView.document?.page(at: notebookView.document!.pageCount - 1) && lastSelectedTool == moveToolButton{
+//            return true
+//        }
         return false
     }
     
@@ -265,21 +179,10 @@ extension EditingViewController: UIGestureRecognizerDelegate{
 }
 
 extension EditingViewController: UIScrollViewDelegate{
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        currentlyScrolling = true
-////    }
-//    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-//        currentlyScrolling = true
-//        scrollBegan(UIPanGestureRecognizer())
-//    }
-////    scrollview
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if currentlyScrolling == false{
-            scrollBegan(UIPanGestureRecognizer())
+//            scrollBegan(UIPanGestureRecognizer())
         }
     }
 }
 
-extension EditingViewController: PDFViewDelegate{
-    
-}

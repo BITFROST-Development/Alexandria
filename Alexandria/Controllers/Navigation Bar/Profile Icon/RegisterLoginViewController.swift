@@ -48,10 +48,10 @@ class RegisterLoginViewController: UIViewController {
     func updateUser(){
         RegisterLoginViewController.loggedIn = true
         controller.loggedIn = true
-        if let myShelves = controller as? MyShelvesViewController {
-            myShelves.shelfCollectionView.reloadData()
-            myShelves.shelvesList.reloadData()
-        }
+//        if let myShelves = controller as? MyShelvesViewController {
+//            myShelves.shelfCollectionView.reloadData()
+//            myShelves.shelvesList.reloadData()
+//        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

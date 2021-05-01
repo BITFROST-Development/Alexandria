@@ -54,14 +54,14 @@ extension ShelfBookCollection: UICollectionViewDataSource{
             cell.isCloud = true
             cell.controller = self
             cell.bookImage.setImage(UIImage(data: realm!.objects(AlexandriaData.self)[0].cloudBooks[Int(cloudBooksInCollection[indexPath.row])].thumbnail!.data!), for: .normal)
-            cell.bookTitle.text = realm!.objects(AlexandriaData.self)[0].cloudBooks[Int(cloudBooksInCollection[indexPath.row])].title
+            cell.bookTitle.text = realm!.objects(AlexandriaData.self)[0].cloudBooks[Int(cloudBooksInCollection[indexPath.row])].name
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ShelfBookCollectionCell.identifier, for: indexPath) as! ShelfBookCollectionCell
             cell.bookIndex = indexPath.row - cloudBooksInCollection.count
             cell.controller = self
             cell.bookImage.setImage(UIImage(data: realm!.objects(AlexandriaData.self)[0].localBooks[Int(localBooksInCollection[indexPath.row - cloudBooksInCollection.count])].thumbnail!.data!), for: .normal)
-            cell.bookTitle.text = realm!.objects(AlexandriaData.self)[0].localBooks[Int(localBooksInCollection[indexPath.row - cloudBooksInCollection.count])].title
+            cell.bookTitle.text = realm!.objects(AlexandriaData.self)[0].localBooks[Int(localBooksInCollection[indexPath.row - cloudBooksInCollection.count])].name
             return cell
         }
     }

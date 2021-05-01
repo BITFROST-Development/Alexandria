@@ -143,54 +143,79 @@ class RequestManager{
             switch letter {
             case "$":
                 msg = msg + "%24"
+				break
             case "&":
                 msg = msg + "%26"
+				break
             case "+":
                 msg = msg + "%2B"
+				break
             case ",":
                 msg = msg + "%2C"
+				break
             case "/":
                 msg = msg + "%2F"
+				break
             case ":":
                 msg = msg + "%3A"
+				break
             case ";":
                 msg = msg + "%3B"
+				break
             case "=":
                 msg = msg + "%3D"
+				break
             case "?":
                 msg = msg + "%3F"
+				break
             case "@":
                 msg = msg + "%40"
+				break
             case " ":
                 msg = msg + "%20"
+				break
             case "\"":
                 msg = msg + "%22"
+				break
             case "<":
                 msg = msg + "%3C"
+				break
             case ">":
                 msg = msg + "%3E"
+				break
             case "#":
                 msg = msg + "%23"
+				break
             case "%":
                 msg = msg + "%25"
+				break
             case "{":
                 msg = msg + "%7B"
+				break
             case "}":
                 msg = msg + "%7D"
+				break
             case "|":
                 msg = msg + "%5C"
+				break
             case "\\":
                 msg = msg + "%5C"
+				break
             case "^":
                 msg = msg + "%5E"
+				break
             case "~":
                 msg = msg + "%7E"
+				break
             case "[":
                 msg = msg + "%5B"
+				break
             case "]":
                 msg = msg + "%5D"
+				break
             case "`":
                 msg = msg + "%60"
+				break
             default:
                 msg = msg + String(letter)
             }

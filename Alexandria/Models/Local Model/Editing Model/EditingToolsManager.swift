@@ -9,454 +9,183 @@
 import UIKit
 import PencilKit
 import RealmSwift
+import CoreImage
 import CoreBluetooth
 import PDFKit
 
 extension EditingViewController{
-    @IBAction func writingToolSelected(_ sender: Any){
-        if lastSelectedTool != writingToolButton {
-            lastSelectedTool.isSelected = false
-            switch lastSelectedTool {
-            case eraserToolButton:
-                notebookView.removeGestureRecognizer(eraserToolPan)
-            case highlighterToolButton:
-                notebookView.removeGestureRecognizer(highlighterToolPan)
-            case linkToolButton:
-                notebookView.removeGestureRecognizer(linkToolPan)
-            case lassoToolButton:
-                notebookView.removeGestureRecognizer(lassoToolPan)
-            case storeToolButton:
-                notebookView.removeGestureRecognizer(storeToolPan)
-            default:
-                print("no previous pan")
-            }
-            if currentWrittingTool == "fountain"{
-                writingToolButton.setImage(UIImage(named: "fountain.pen.fill"), for: .selected)
-            } else if currentWrittingTool == "pen"{
-                writingToolButton.setImage(UIImage(named: "pen.fill"), for: .selected)
-            } else {
-                writingToolButton.setImage(UIImage(named: "pencil.fill"), for: .selected)
-            }
-            let alexandria = realm.objects(AlexandriaData.self)[0]
-            preferenceButton01.alpha = 1
-            preferenceButton01BackgroundImage.alpha = 1
-            preferenceButton01BackgroundImage.image = UIImage(systemName: "circle.fill")
-            preferenceButton01BackgroundImage.layer.frame.size.height = CGFloat(alexandria.defaultWritingToolThickness01.value!) * 2.835 * 3.527
-            let toolBar = preferenceButton01BackgroundImage.superview
-            preferenceButton01BackgroundImage.layer.frame.origin.y = (toolBar!.layer.frame.size.height - CGFloat(alexandria.defaultWritingToolThickness01.value!) * 2.835 * 4.232) / 2
-            if lastSelectedWritingPreferences[0] == 1{
-                preferenceButton01BackgroundImage.tintColor = .black
-            } else {
-                preferenceButton01BackgroundImage.tintColor = .gray
-            }
-            preferenceButton02.alpha = 1
-            preferenceButton02BackgroundImage.alpha = 1
-            preferenceButton02BackgroundImage.image = UIImage(systemName: "circle.fill")
-            preferenceButton02BackgroundImage.layer.frame.size.height = CGFloat(alexandria.defaultWritingToolThickness02.value!) * 2.835 * 3.527
-            preferenceButton02BackgroundImage.layer.frame.origin.y = (toolBar!.layer.frame.size.height - CGFloat(alexandria.defaultWritingToolThickness02.value!) * 2.835 * 4.232) / 2
-            if lastSelectedWritingPreferences[0] == 2{
-                preferenceButton02BackgroundImage.tintColor = .black
-            } else {
-                preferenceButton02BackgroundImage.tintColor = .gray
-            }
-            preferenceButton03.alpha = 1
-            preferenceButton03BackgroundImage.alpha = 1
-            preferenceButton03BackgroundImage.image = UIImage(systemName: "circle.fill")
-            preferenceButton03BackgroundImage.layer.frame.size.height = CGFloat(alexandria.defaultWritingToolThickness03.value!) * 2.835 * 3.537
-            preferenceButton03BackgroundImage.layer.frame.origin.y = (toolBar!.layer.frame.size.height - CGFloat(alexandria.defaultWritingToolThickness03.value!) * 2.835 * 4.232) / 2
-            view.layoutIfNeeded()
-            if lastSelectedWritingPreferences[0] == 3{
-                preferenceButton03BackgroundImage.tintColor = .black
-            } else {
-                preferenceButton03BackgroundImage.tintColor = .gray
-            }
-            preferenceButton04.alpha = 1
-            preferenceButton04.setImage(UIImage(systemName: "circle.fill"), for: .normal)
-            preferenceButton04.tintColor = UIColor(red: CGFloat(alexandria.defaultWritingToolColor01!.red.value!), green: CGFloat(alexandria.defaultWritingToolColor01!.green.value!), blue: CGFloat(alexandria.defaultWritingToolColor01!.blue.value!), alpha: 1)
-            if lastSelectedWritingPreferences[1] == 4{
-                preferenceButton04CircleShadow.alpha = 1
-            } else {
-                preferenceButton04CircleShadow.alpha = 0
-            }
-            preferenceButton05.alpha = 1
-            preferenceButton05.tintColor = UIColor(red: CGFloat(alexandria.defaultWritingToolColor02!.red.value!), green: CGFloat(alexandria.defaultWritingToolColor02!.green.value!), blue: CGFloat(alexandria.defaultWritingToolColor02!.blue.value!), alpha: 1)
-            if lastSelectedWritingPreferences[1] == 5{
-                preferenceButton05CircleShadow.alpha = 1
-            } else {
-                preferenceButton05CircleShadow.alpha = 0
-            }
-            preferenceButton06.alpha = 1
-            preferenceButton06.tintColor = UIColor(red: CGFloat(alexandria.defaultWritingToolColor01!.red.value!), green: CGFloat(alexandria.defaultWritingToolColor03!.green.value!), blue: CGFloat(alexandria.defaultWritingToolColor03!.blue.value!), alpha: 1)
-            if lastSelectedWritingPreferences[1] == 6{
-                preferenceButton06CircleShadow.alpha = 1
-            } else {
-                preferenceButton06CircleShadow.alpha = 0
-            }
-            notebookView.addGestureRecognizer(writingToolPan)
-            writingToolButton.isSelected = true
-            lastSelectedTool = writingToolButton
-        }
-    }
-    
-    @IBAction func draggingToolSelected(_ sender: Any){
-        switch lastSelectedTool {
-        case writingToolButton:
-            notebookView.removeGestureRecognizer(writingToolPan)
-        case eraserToolButton:
-            notebookView.removeGestureRecognizer(eraserToolPan)
-        case highlighterToolButton:
-            notebookView.removeGestureRecognizer(highlighterToolPan)
-        case linkToolButton:
-            notebookView.removeGestureRecognizer(linkToolPan)
-        case lassoToolButton:
-            notebookView.removeGestureRecognizer(lassoToolPan)
-        case storeToolButton:
-            notebookView.removeGestureRecognizer(storeToolPan)
-        default:
-            print("no previous pan")
-        }
-        preferenceButton01.alpha = 0
-        preferenceButton01BackgroundImage.alpha = 0
-        preferenceButton02.alpha = 0
-        preferenceButton02BackgroundImage.alpha = 0
-        preferenceButton03.alpha = 0
-        preferenceButton03BackgroundImage.alpha = 0
-        preferenceButton04.alpha = 0
-        preferenceButton05.alpha = 0
-        preferenceButton06.alpha = 0
-        preferenceButton04CircleShadow.alpha = 0
-        preferenceButton05CircleShadow.alpha = 0
-        preferenceButton06CircleShadow.alpha = 0
-        lastSelectedTool.isSelected = false
-        moveToolButton.isSelected = true
-        lastSelectedTool = moveToolButton
-    }
     
     @objc func drawingGesture(_ gesture: ToolPanGestureRecognizer){
-        if gesture.touchPencil{
-            drawForUser(gesture, from: "Writing Tool")
-        } else {
-            if UIDevice.current.userInterfaceIdiom != .pad{
-                drawForUser(gesture, from: "Writing Tool")
-            } else if !CBCentralManager().retrieveConnectedPeripherals(withServices: [CBUUID(string: "180A")]).contains(where: isApplePencil){
-                drawForUser(gesture, from: "Writing Tool")
-            }
-        }
+		if toolBox.toolManager.tools[currentTool] as? InkTool != nil{
+			if gesture.touchPencil{
+				drawInkForUser(gesture)
+			} else {
+				if UIDevice.current.userInterfaceIdiom != .pad{
+					drawInkForUser(gesture)
+				} else if !CBCentralManager().retrieveConnectedPeripherals(withServices: [CBUUID(string: "180A")]).contains(where: isApplePencil){
+					drawInkForUser(gesture)
+				}
+			}
+		}
     }
     
-    @objc func drawForUser(_ gesture: ToolPanGestureRecognizer, from source: String){
-        let alexandria = realm.objects(AlexandriaData.self)[0]
+    @objc func drawInkForUser(_ gesture: ToolPanGestureRecognizer){
         if gesture.state == .began{
-            let currentPage = notebookView.currentPage!
-            let convertedPoint = notebookView.convert(gesture.currentPoint, to: currentPage)
+			let currentPage: PDFPage = fileView.pageViewControllers[fileView.currentPageViewController]!.contentView.currentPage!
+			let convertedPoint: CGPoint = fileView.pageViewControllers[fileView.currentPageViewController]!.contentView.convert(gesture.currentPoint, to: currentPage)
             drawingPath = UIBezierPath()
             drawingPath.move(to: convertedPoint)
+			currentGroup = InkGroup(fileView.pageViewControllers[fileView.currentPageViewController]!.pdfPageInfo!.inkData)
+			currentGroup.children = []
+			fileView.pageViewControllers[fileView.currentPageViewController]?.pdfPageInfo?.layerData.layers.append(LayerObject("ink", fileView.pageViewControllers[fileView.currentPageViewController]!.pdfPageInfo!.inkData.groups.count, fileView.pageViewControllers[fileView.currentPageViewController]!.pdfPageInfo!.layerData))
+			fileView.pageViewControllers[fileView.currentPageViewController]?.pdfPageInfo?.inkData.groups.append(currentGroup)
+			if currentWrittingTool == "pen"{
+				let firstPreference = latestPreferences[currentTool].lastPicked[0]
+				let tool = toolBox.toolManager.tools[currentTool] as! InkTool
+				drawingPath.lineWidth = (CGFloat(tool.thicknesses[firstPreference].value.value! * 2.835))
+			} else if currentWrittingTool == "eraser"{
+				let firstPreference = latestPreferences[currentTool].lastPicked[0]
+				let tool = toolBox.toolManager.tools[currentTool] as! InkTool
+				drawingPath.lineWidth = (CGFloat(tool.thicknesses[firstPreference].value.value! * 2.835))
+			}
         } else if gesture.state == .changed{
-            let currentPage = notebookView.currentPage!
-            let convertedPoint = notebookView.convert(gesture.currentPoint, to: currentPage)
+			let currentPage: PDFPage = fileView.pageViewControllers[fileView.currentPageViewController]!.contentView.currentPage!
+			let convertedPoint: CGPoint = fileView.pageViewControllers[fileView.currentPageViewController]!.contentView.convert(gesture.currentPoint, to: currentPage)
             let tempPoint = drawingPath.currentPoint
-            drawingPath = UIBezierPath()
-            drawingPath.move(to: tempPoint)
-            drawingPath.addLine(to: convertedPoint)
-            drawingPath.move(to: convertedPoint)
-            let pressure = gesture.currentForce - 0.333
-            let firstPreference = lastSelectedWritingPreferences[0]
-            switch firstPreference {
-            case 1:
-                if currentWrittingTool != "pencil"{
-                    drawingPath.lineWidth = (CGFloat(alexandria.defaultWritingToolThickness01.value!) * 2.835) + pressure
-                } else {
-                    drawingPath.lineWidth = (CGFloat(alexandria.defaultWritingToolThickness01.value!) * 2.835) + 0
-                }
-            case 2:
-                if currentWrittingTool != "pencil"{
-                    drawingPath.lineWidth = (CGFloat(alexandria.defaultWritingToolThickness02.value!) * 2.835) + pressure
-                } else {
-                    drawingPath.lineWidth = (CGFloat(alexandria.defaultWritingToolThickness02.value!) * 2.835) + 0
-                }
-            case 3:
-                if currentWrittingTool != "pencil"{
-                    drawingPath.lineWidth = (CGFloat(alexandria.defaultWritingToolThickness03.value!) * 2.835) + pressure
-                } else {
-                    drawingPath.lineWidth = (CGFloat(alexandria.defaultWritingToolThickness03.value!) * 2.835) + 0
-                }
-            default:
-                print("error")
-            }
-            drawAnnotation(gesture, from: source, adding: false, pressure: pressure, asimuth: 0)
+            let pressure = (gesture.currentForce ?? 0) - 0.333
+			let firstPreference = latestPreferences[currentTool].lastPicked[0]
+            let secondPreference = latestPreferences[currentTool].lastPicked[1]
+            var color: UIColor!
+			let tool = toolBox.toolManager.tools[currentTool] as! InkTool
+			if currentWrittingTool == "pencil"{
+				drawingPath = UIBezierPath()
+				drawingPath.lineWidth = (CGFloat(tool.thicknesses[firstPreference].value.value! * 2.835)) + 0
+				color = UIColor(patternImage: UIImage(named: "pencilTexture")!.withTintColor(UIColor(red: CGFloat(tool.colors[secondPreference - 3].red.value!), green: CGFloat(tool.colors[secondPreference - 3].green.value!), blue: CGFloat(tool.colors[secondPreference - 3].blue.value!), alpha: 0.7 + pressure)))
+			} else if currentWrittingTool == "highlighter"{
+				drawingPath = UIBezierPath()
+				color = UIColor(red: CGFloat(tool.colors[secondPreference - 3].red.value!), green: CGFloat(tool.colors[secondPreference - 3].green.value!), blue: CGFloat(tool.colors[secondPreference - 3].blue.value!), alpha: 0.6)
+				drawingPath.lineWidth = (CGFloat(tool.thicknesses[firstPreference].value.value! * 2.835)) + gesture.currentAsimuth
+			} else {
+				drawingPath = UIBezierPath()
+				color = UIColor(red: CGFloat(tool.colors[secondPreference - 3].red.value!), green: CGFloat(tool.colors[secondPreference - 3].green.value!), blue: CGFloat(tool.colors[secondPreference - 3].blue.value!), alpha: 1)
+				drawingPath.lineWidth = (CGFloat(tool.thicknesses[firstPreference].value.value! * 2.835)) + pressure
+			}
+			drawingPath.move(to: tempPoint)
+			drawingPath.addQuadCurve(to: convertedPoint, controlPoint: drawingPath.currentPoint)
+			if currentWrittingTool != "eraser"{
+				currentGroup.children.append(InkObject(tempPoint, convertedPoint, drawingPath.lineWidth, currentGroup, color))
+			}
+			
+			let caLayer: CAShapeLayer!
+			if currentWrittingTool != "eraser" || currentWrittingTool != "pen"{
+				caLayer = CAShapeLayer()
+			} else {
+				caLayer = currentLayer
+				caLayer.removeFromSuperlayer()
+				if currentWrittingTool == "eraser"{
+					caLayer.compositingFilter = "sourceOutCompositing"
+				}
+			}
+            caLayer.frame = fileView.pageViewControllers[fileView.currentPageViewController]!.contentView.currentPage!.bounds(for: .mediaBox)
+            caLayer.masksToBounds = true
+            caLayer.path = drawingPath.cgPath
+            caLayer.strokeColor = color.cgColor
+            caLayer.lineWidth = drawingPath.lineWidth
+            caLayer.lineCap = .round
+            caLayer.lineJoin = .round
+            caLayer.miterLimit = -10
+            let mirror = CGAffineTransform(scaleX: 1, y: -1)
+            caLayer.setAffineTransform(mirror)
+			fileView.pageViewControllers[fileView.currentPageViewController]!.contentView.subviews[0].subviews[0].subviews[1].layer.addSublayer(caLayer)
+			removableDrawings.append(caLayer)
         } else if gesture.state == .ended {
-            let currentPage = notebookView.currentPage!
-            let convertedPoint = notebookView.convert(gesture.currentPoint, to: currentPage)
-//            drawingPath.addQuadCurve(to: convertedPoint, controlPoint: drawingPath.currentPoint)
-            let tempPoint = drawingPath.currentPoint
-            drawingPath = UIBezierPath()
-            drawingPath.move(to: tempPoint)
-            drawingPath.addLine(to: convertedPoint)
-            drawingPath.move(to: convertedPoint)
-//            drawingPath.
-            let pressure = gesture.currentForce - 0.333
-            print(pressure)
-            let firstPreference = lastSelectedWritingPreferences[0]
-            switch firstPreference {
-            case 1:
-                if currentWrittingTool != "pencil"{
-                    drawingPath.lineWidth = (CGFloat(alexandria.defaultWritingToolThickness01.value!) * 2.835) + pressure
-                } else {
-                    drawingPath.lineWidth = (CGFloat(alexandria.defaultWritingToolThickness01.value!) * 2.835) + 0
-                }
-            case 2:
-                if currentWrittingTool != "pencil"{
-                    drawingPath.lineWidth = (CGFloat(alexandria.defaultWritingToolThickness02.value!) * 2.835) + pressure
-                } else {
-                    drawingPath.lineWidth = (CGFloat(alexandria.defaultWritingToolThickness02.value!) * 2.835) + 0
-                }
-            case 3:
-                if currentWrittingTool != "pencil"{
-                    drawingPath.lineWidth = (CGFloat(alexandria.defaultWritingToolThickness03.value!) * 2.835) + pressure
-                } else {
-                    drawingPath.lineWidth = (CGFloat(alexandria.defaultWritingToolThickness03.value!) * 2.835) + 0
-                }
-            default:
-                print("error")
-            }
-            drawAnnotation(gesture, from: source, adding: true, pressure: pressure, asimuth: 0)
+			let currentPage: PDFPage = fileView.pageViewControllers[fileView.currentPageViewController]!.contentView.currentPage!
+			let convertedPoint: CGPoint = fileView.pageViewControllers[fileView.currentPageViewController]!.contentView.convert(gesture.currentPoint, to: currentPage)
+			let tempPoint = drawingPath.currentPoint
+			let pressure = (gesture.currentForce ?? 0) - 0.333
+			let firstPreference = latestPreferences[currentTool].lastPicked[0]
+			let secondPreference = latestPreferences[currentTool].lastPicked[1]
+			var color: UIColor!
+			let tool = toolBox.toolManager.tools[currentTool] as! InkTool
+			if currentWrittingTool == "pencil"{
+				drawingPath = UIBezierPath()
+				drawingPath.lineWidth = (CGFloat(tool.thicknesses[firstPreference].value.value! * 2.835)) + 0
+				color = UIColor(patternImage: UIImage(named: "pencilTexture")!.withTintColor(UIColor(red: CGFloat(tool.colors[secondPreference - 3].red.value!), green: CGFloat(tool.colors[secondPreference - 3].green.value!), blue: CGFloat(tool.colors[secondPreference - 3].blue.value!), alpha: 0.7 + pressure)))
+			} else if currentWrittingTool == "highlighter"{
+				drawingPath = UIBezierPath()
+				color = UIColor(red: CGFloat(tool.colors[secondPreference - 3].red.value!), green: CGFloat(tool.colors[secondPreference - 3].green.value!), blue: CGFloat(tool.colors[secondPreference - 3].blue.value!), alpha: 0.6)
+				drawingPath.lineWidth = (CGFloat(tool.thicknesses[firstPreference].value.value! * 2.835)) + gesture.currentAsimuth
+			} else {
+				drawingPath = UIBezierPath()
+				color = UIColor(red: CGFloat(tool.colors[secondPreference - 3].red.value!), green: CGFloat(tool.colors[secondPreference - 3].green.value!), blue: CGFloat(tool.colors[secondPreference - 3].blue.value!), alpha: 1)
+				drawingPath.lineWidth = (CGFloat(tool.thicknesses[firstPreference].value.value! * 2.835)) + pressure
+			}
+			drawingPath.move(to: tempPoint)
+			drawingPath.addQuadCurve(to: convertedPoint, controlPoint: drawingPath.currentPoint)
+			if currentWrittingTool != "eraser"{
+				currentGroup.children.append(InkObject(tempPoint, convertedPoint, drawingPath.lineWidth, currentGroup, color))
+			}
+			
+			let caLayer: CAShapeLayer!
+			if currentWrittingTool != "eraser" || currentWrittingTool != "pen"{
+				caLayer = CAShapeLayer()
+			} else {
+				caLayer = currentLayer
+				caLayer.removeFromSuperlayer()
+				if currentWrittingTool == "eraser"{
+					let drawings = fileView.pageViewControllers[fileView.currentPageViewController]?.pdfPageInfo?.inkData.groups
+					caLayer.compositingFilter = "sourceOutCompositing"
+					DispatchQueue.global(qos: .background).async {
+						for group in drawings ?? []{
+							for child in group.children {
+								if child.path.bounds.contains(self.drawingPath.bounds){
+									group.children.append(InkObject(tempPoint, convertedPoint, self.drawingPath.lineWidth, group, .clear))
+								}
+							}
+						}
+						DispatchQueue.main.sync {
+							self.fileView.pageViewControllers[self.fileView.currentPageViewController]?.writeChages()
+						}
+					}
+				}
+			}
+			caLayer.frame = fileView.pageViewControllers[fileView.currentPageViewController]!.contentView.currentPage!.bounds(for: .mediaBox)
+			caLayer.masksToBounds = true
+			caLayer.path = drawingPath.cgPath
+			caLayer.strokeColor = color.cgColor
+			caLayer.lineWidth = drawingPath.lineWidth
+			caLayer.lineCap = .round
+			caLayer.lineJoin = .round
+			caLayer.miterLimit = -10
+			let mirror = CGAffineTransform(scaleX: 1, y: -1)
+			caLayer.setAffineTransform(mirror)
+			fileView.pageViewControllers[fileView.currentPageViewController]!.contentView.subviews[0].subviews[0].subviews[1].layer.addSublayer(caLayer)
+			removableDrawings.append(caLayer)
+			if currentWrittingTool != "eraser"{
+				fileView.pageViewControllers[fileView.currentPageViewController]?.pdfPageInfo?.layerData.layers.append(LayerObject("ink", fileView.pageViewControllers[fileView.currentPageViewController]!.pdfPageInfo!.inkData.groups.count, 				fileView.pageViewControllers[fileView.currentPageViewController]!.pdfPageInfo!.layerData))
+				fileView.pageViewControllers[fileView.currentPageViewController]?.pdfPageInfo?.inkData.groups.append(currentGroup)
+				self.fileView.pageViewControllers[fileView.currentPageViewController]?.writeChages()
+			}
         } else if gesture.state == .cancelled{
-            
+			
         }
-    }
-    
-    @objc private func drawAnnotation(_ gesture: ToolPanGestureRecognizer, from source: String, adding shouldAdd: Bool, pressure: CGFloat, asimuth: CGFloat){
-        let border = PDFBorder()
-        let alexandria = realm.objects(AlexandriaData.self)[0]
-        if source == "Writing Tool"{
-            let firstPreference = lastSelectedWritingPreferences[0]
-            let secondPreference = lastSelectedWritingPreferences[1]
-            
-            switch firstPreference {
-            case 1:
-                if currentWrittingTool != "pencil"{
-                    border.lineWidth = (CGFloat(alexandria.defaultWritingToolThickness01.value!) * 2.835) + pressure
-                } else {
-                    border.lineWidth = (CGFloat(alexandria.defaultWritingToolThickness01.value!) * 2.835) + asimuth
-                }
-            case 2:
-                if currentWrittingTool != "pencil"{
-                    border.lineWidth = (CGFloat(alexandria.defaultWritingToolThickness02.value!) * 2.835) + pressure
-                } else {
-                    border.lineWidth = (CGFloat(alexandria.defaultWritingToolThickness02.value!) * 2.835) + asimuth
-                }
-            case 3:
-                if currentWrittingTool != "pencil"{
-                    border.lineWidth = (CGFloat(alexandria.defaultWritingToolThickness03.value!) * 2.835) + pressure
-                } else {
-                    border.lineWidth = (CGFloat(alexandria.defaultWritingToolThickness03.value!) * 2.835) + asimuth
-                }
-            default:
-                print("error")
-            }
-            if annotation == nil {
-                annotation = DrawingAnnotation(bounds: notebookView.currentPage!.bounds(for: notebookView.displayBox), forType: .line, withProperties: nil)
-                annotation.controller = self
-            }
-            
-            switch secondPreference {
-            case 4:
-                if currentWrittingTool != "pencil"{
-                    annotation.color = UIColor(red: CGFloat(alexandria.defaultWritingToolColor01!.red.value!), green: CGFloat(alexandria.defaultWritingToolColor01!.green.value!), blue: CGFloat(alexandria.defaultWritingToolColor01!.blue.value!), alpha: 1)
-                } else {
-                    annotation.color = UIColor(patternImage: UIImage(named: "pencilTexture")!.withTintColor(UIColor(red: CGFloat(alexandria.defaultWritingToolColor01!.red.value!), green: CGFloat(alexandria.defaultWritingToolColor01!.green.value!), blue: CGFloat(alexandria.defaultWritingToolColor01!.blue.value!), alpha: 0.7 + pressure)))
-                }
-            case 5:
-                if currentWrittingTool != "pencil"{
-                    annotation.color = UIColor(red: CGFloat(alexandria.defaultWritingToolColor02!.red.value!), green: CGFloat(alexandria.defaultWritingToolColor02!.green.value!), blue: CGFloat(alexandria.defaultWritingToolColor02!.blue.value!), alpha: 1)
-                } else {
-                    annotation.color = UIColor(patternImage: UIImage(named: "pencilTexture")!.withTintColor(UIColor(red: CGFloat(alexandria.defaultWritingToolColor02!.red.value!), green: CGFloat(alexandria.defaultWritingToolColor02!.green.value!), blue: CGFloat(alexandria.defaultWritingToolColor02!.blue.value!), alpha: 0.7 + pressure)))
-                }
-            case 6:
-                if currentWrittingTool != "pencil"{
-                    annotation.color = UIColor(red: CGFloat(alexandria.defaultWritingToolColor03!.red.value!), green: CGFloat(alexandria.defaultWritingToolColor03!.green.value!), blue: CGFloat(alexandria.defaultWritingToolColor03!.blue.value!), alpha: 1)
-                } else {
-                    annotation.color = UIColor(patternImage: UIImage(named: "pencilTexture")!.withTintColor(UIColor(red: CGFloat(alexandria.defaultWritingToolColor03!.red.value!), green: CGFloat(alexandria.defaultWritingToolColor03!.green.value!), blue: CGFloat(alexandria.defaultWritingToolColor03!.blue.value!), alpha: 0.7 + pressure)))
-                }
-            default:
-                print("error")
-            }
-//            annotation.borders.append(border)
-            annotation.pathsToDraw.append(drawingPath)
-            if shouldAdd{
-                notebookView.currentPage!.removeAnnotation(annotation)
-                let finalAnnotation = createFinalAnnotation(paths: annotation.pathsToDraw, page: notebookView.currentPage!, width: annotation.border!.lineWidth, color: annotation.color)
-                annotationLayers.append(finalAnnotation)
-                annotation = nil
-            } else {
-                forceRedraw(annotation: annotation!, onPage: notebookView.currentPage!)
-            }
-        }
-    }
-    
-    private func forceRedraw(annotation: PDFAnnotation, onPage: PDFPage) {
-        onPage.removeAnnotation(annotation)
-        onPage.addAnnotation(annotation)
-    }
-    
-    private func createFinalAnnotation(paths: [UIBezierPath], page: PDFPage, width: CGFloat, color: UIColor) -> PDFAnnotation {
-        var originX: CGFloat = paths.first!.bounds.origin.x - 5
-        var originY: CGFloat = paths.first!.bounds.origin.y - 5
-        var pathWidth: CGFloat! = 0
-        var pathHeight: CGFloat! = 0
-        for path in paths{
-            if path.bounds.origin.x - 5 >= (notebookView.currentPage?.bounds(for: .mediaBox).origin.x)! && path.bounds.origin.y - 5 >= (notebookView.currentPage?.bounds(for: .mediaBox).origin.y)!{
-                if path.bounds.origin.x - 5 < originX {
-                    originX = path.bounds.origin.x - 5
-                } else if path.bounds.origin.x - originX + 5 > pathWidth{
-                    pathWidth = path.bounds.origin.x - originX + 5
-                }
-                
-                if path.bounds.origin.y - 5 < originY {
-                    originY = path.bounds.origin.y - 5
-                } else if path.bounds.origin.y - originY + 5 > pathHeight{
-                    pathHeight = path.bounds.origin.y - originY + 5
-                }
-            }
-        }
-        
-        let bounds = CGRect(x: originX, y: originY, width: pathWidth, height: pathHeight)
-//        CGRect(x: path.bounds.origin.x - 5,
-//                            y: path.bounds.origin.y - 5,
-//                            width: path.bounds.size.width + 10,
-//                            height: path.bounds.size.height + 10)
-        var signingPathsCentered: [UIBezierPath] = []
-        for path in paths{
-            let signingPathCentered = UIBezierPath()
-            signingPathCentered.cgPath = path.cgPath
-            signingPathCentered.moveCenter(to: bounds.center)
-            signingPathsCentered.append(signingPathCentered)
-        }
-        
-        let finalAnnotation = DrawingAnnotation(bounds: bounds, forType: .ink, withProperties: nil)
-        finalAnnotation.color = color
-        finalAnnotation.pathsToDraw = signingPathsCentered
-        page.addAnnotation(annotation)
-        notebookView.document?.write(to: URL(fileURLWithPath: currentNotebook.localAddress!))
-        return annotation
     }
     
     func setupToolDelegates(){
         toolPanDelegate.controller = self
-        writingToolPan = ToolPanGestureRecognizer()
-        toolPanDelegate.pdfView = notebookView
-        writingToolPan.delegate = toolPanDelegate
-        
+        inkToolPan = ToolPanGestureRecognizer()
+		linkToolPan = ToolPanGestureRecognizer()
+		textToolPan = ToolPanGestureRecognizer()
+		lassoToolPan = ToolPanGestureRecognizer()
+        toolPanDelegate.pdfView = fileView
+        inkToolPan.delegate = toolPanDelegate
+		linkToolPan.delegate = toolPanDelegate
+		textToolPan.delegate = toolPanDelegate
+		lassoToolPan.delegate = toolPanDelegate
     }
     
     func isApplePencil(peripheral: CBPeripheral) -> Bool{
         return peripheral.name == "Apple Pencil"
-    }
-    
-    @IBAction func preferencesButton01Pressed(_ sender: Any){
-        if lastSelectedTool == writingToolButton{
-            switch lastSelectedWritingPreferences[0] {
-            case 2:
-                preferenceButton02BackgroundImage.tintColor = .gray
-            case 3:
-                preferenceButton03BackgroundImage.tintColor = .gray
-            default:
-                print("same selected")
-            }
-            preferenceButton01BackgroundImage.tintColor = .black
-            lastSelectedWritingPreferences[0] = 1
-        }
-    }
-    
-    @IBAction func preferencesButton02Pressed(_ sender: Any){
-        if lastSelectedTool == writingToolButton{
-            switch lastSelectedWritingPreferences[0] {
-            case 1:
-                preferenceButton01BackgroundImage.tintColor = .gray
-            case 3:
-                preferenceButton03BackgroundImage.tintColor = .gray
-            default:
-                print("same selected")
-            }
-            preferenceButton02BackgroundImage.tintColor = .black
-            lastSelectedWritingPreferences[0] = 2
-        }
-    }
-    
-    @IBAction func preferencesButton03Pressed(_ sender: Any){
-        if lastSelectedTool == writingToolButton{
-            switch lastSelectedWritingPreferences[0] {
-            case 1:
-                preferenceButton01BackgroundImage.tintColor = .gray
-            case 2:
-                preferenceButton02BackgroundImage.tintColor = .gray
-            default:
-                print("same selected")
-            }
-            preferenceButton03BackgroundImage.tintColor = .black
-            lastSelectedWritingPreferences[0] = 3
-        }
-    }
-    
-    @IBAction func preferencesButton04Pressed(_ sender: Any){
-        if lastSelectedTool == writingToolButton{
-            switch lastSelectedWritingPreferences[1] {
-            case 5:
-                preferenceButton05CircleShadow.alpha = 0
-            case 6:
-                preferenceButton06CircleShadow.alpha = 0
-            default:
-                print("same selected")
-            }
-            preferenceButton04CircleShadow.alpha = 1
-            lastSelectedWritingPreferences[1] = 4
-        }
-    }
-    
-    @IBAction func preferencesButton05Pressed(_ sender: Any){
-        if lastSelectedTool == writingToolButton{
-            switch lastSelectedWritingPreferences[1] {
-            case 4:
-                preferenceButton04CircleShadow.alpha = 0
-            case 6:
-                preferenceButton06CircleShadow.alpha = 0
-            default:
-                print("same selected")
-            }
-            preferenceButton05CircleShadow.alpha = 1
-            lastSelectedWritingPreferences[1] = 5
-        }
-    }
-    
-    @IBAction func preferencesButton06Pressed(_ sender: Any){
-        if lastSelectedTool == writingToolButton{
-            switch lastSelectedWritingPreferences[1] {
-            case 4:
-                preferenceButton04CircleShadow.alpha = 0
-            case 5:
-                preferenceButton05CircleShadow.alpha = 0
-            default:
-                print("same selected")
-            }
-            preferenceButton06CircleShadow.alpha = 1
-            lastSelectedWritingPreferences[1] = 6
-        }
-    }
-    
-    @objc func scrollBegan(_ gesture: UIPanGestureRecognizer){
-//        var previousScrollPossition = notebookView.scrollView!.contentOffset
-//        var newPosition: CGPoint?
-//        while previousScrollPossition != newPosition{
-//            previousScrollPossition = notebookView.scrollView!.contentOffset
-//            for annotation in notebookView.currentPage!.annotations{
-//                if let drawing = annotation as? DrawingAnnotation{
-//                    notebookView.currentPage?.removeAnnotation(drawing)
-//                    notebookView.currentPage?.addAnnotation(drawing)
-//                }
-//            }
-//            newPosition = notebookView.scrollView!.contentOffset
-//        }
-//        currentlyScrolling = false
     }
     
 }
@@ -475,7 +204,7 @@ class PDFScrollGestureDelegate: NSObject, UIGestureRecognizerDelegate{
 class ToolPanDelegate: NSObject, UIGestureRecognizerDelegate{
     
     var controller: EditingViewController!
-    weak var pdfView: NotebookView!
+    weak var pdfView: EditorView!
     private var path: UIBezierPath?
     private var currentPage: PDFPage?
     let centralManager = CBCentralManager()
@@ -579,45 +308,45 @@ class ToolPanGestureRecognizer: UIPanGestureRecognizer{
     }
 }
 
-class DrawingAnnotation: PDFAnnotation {
-    var pathsToDraw = [UIBezierPath]()
-    var controller: EditingViewController!
-    var visibleRect: CGRect{
-        get{
-            var origin = controller.notebookView.convert(CGPoint(x: controller.notebookView.frame.origin.x - 5, y: controller.notebookView.frame.height + 5), to: controller.notebookView.currentPage!)
-            var size = CGSize(width: controller.notebookView.scrollView!.bounds.size.width + 10, height: controller.notebookView.scrollView!.bounds.size.height + 10)
-            origin.x = origin.x / controller.notebookView.scaleFactor + 10
-            origin.y = origin.y / controller.notebookView.scaleFactor + 10
-            size.width = size.width / controller.notebookView.scrollView!.zoomScale
-            size.height = size.height / controller.notebookView.scrollView!.zoomScale
-            return CGRect(origin: origin, size: size)
-        }
-    }
-//    var borders = [PDFBorder]()
-    override func draw(with box: PDFDisplayBox, in context: CGContext) {
-        if !controller.notebookView.scrollView!.isZooming{
-            UIGraphicsPushContext(context)
-    //        context.saveGState()
-            context.setShouldAntialias(false)
-            print("\n\n\n\n View Bounds \n \(controller.notebookView.bounds)")
-            print("\n\n\n\n Document Bounds \n \(controller.notebookView.documentView?.bounds)")
-            print("\n\n\n\n View frame \n \(controller.notebookView.frame)")
-            print("\n\n\n\n Visible Rect \n \(visibleRect)")
-            
-                for index in 0..<pathsToDraw.count{
-//                    if visibleRect.contains(pathsToDraw[index].bounds){
-                        let pathCopy = pathsToDraw[index]
-                        color.set()
-                        pathCopy.lineJoinStyle = .round
-                        pathCopy.lineCapStyle = .round
-                        pathCopy.stroke()
-//                    }
-                }
-            
-    //        context.restoreGState()
-                
-            UIGraphicsPopContext()
-        }
-    }
-}
+//class DrawingAnnotation: PDFAnnotation {
+//    var pathsToDraw = [UIBezierPath]()
+//    var controller: EditingViewController!
+//    var visibleRect: CGRect{
+//        get{
+//            var origin = controller.notebookView.convert(CGPoint(x: controller.notebookView.frame.origin.x - 5, y: controller.notebookView.frame.height + 5), to: controller.notebookView.currentPage!)
+//            var size = CGSize(width: controller.notebookView.scrollView!.bounds.size.width + 10, height: controller.notebookView.scrollView!.bounds.size.height + 10)
+//            origin.x = origin.x / controller.notebookView.scaleFactor + 10
+//            origin.y = origin.y / controller.notebookView.scaleFactor + 10
+//            size.width = size.width / controller.notebookView.scrollView!.zoomScale
+//            size.height = size.height / controller.notebookView.scrollView!.zoomScale
+//            return CGRect(origin: origin, size: size)
+//        }
+//    }
+////    var borders = [PDFBorder]()
+//    override func draw(with box: PDFDisplayBox, in context: CGContext) {
+//        if !controller.notebookView.scrollView!.isZooming{
+//            UIGraphicsPushContext(context)
+//    //        context.saveGState()
+//            context.setShouldAntialias(false)
+//            print("\n\n\n\n View Bounds \n \(controller.notebookView.bounds)")
+//            print("\n\n\n\n Document Bounds \n \(controller.notebookView.documentView?.bounds)")
+//            print("\n\n\n\n View frame \n \(controller.notebookView.frame)")
+//            print("\n\n\n\n Visible Rect \n \(visibleRect)")
+//
+//                for index in 0..<pathsToDraw.count{
+////                    if visibleRect.contains(pathsToDraw[index].bounds){
+//                        let pathCopy = pathsToDraw[index]
+//                        color.set()
+//                        pathCopy.lineJoinStyle = .round
+//                        pathCopy.lineCapStyle = .round
+//                        pathCopy.stroke()
+////                    }
+//                }
+//
+//    //        context.restoreGState()
+//
+//            UIGraphicsPopContext()
+//        }
+//    }
+//}
 

@@ -87,7 +87,7 @@ extension BookCollectionViewControler: UICollectionViewDataSource {
                 }
             }
             cell.bookImage.setImage(UIImage(data: realm.objects(AlexandriaData.self)[0].cloudBooks[indexPath.row].thumbnail!.data!), for: .normal)
-            cell.bookTitle.text = realm.objects(AlexandriaData.self)[0].cloudBooks[indexPath.row].title
+            cell.bookTitle.text = realm.objects(AlexandriaData.self)[0].cloudBooks[indexPath.row].name
             cell.bookIndexInContext = Double(indexPath.row)
             return cell
         } else {
@@ -116,7 +116,7 @@ extension BookCollectionViewControler: UICollectionViewDataSource {
                 }
             }
             cell.bookImage.setImage(UIImage(data: realm.objects(AlexandriaData.self)[0].localBooks[indexPath.row - realm.objects(AlexandriaData.self)[0].cloudBooks.count].thumbnail!.data!), for: .normal)
-            cell.bookTitle.text = realm.objects(AlexandriaData.self)[0].localBooks[indexPath.row - realm.objects(AlexandriaData.self)[0].cloudBooks.count].title
+            cell.bookTitle.text = realm.objects(AlexandriaData.self)[0].localBooks[indexPath.row - realm.objects(AlexandriaData.self)[0].cloudBooks.count].name
             cell.bookIndexInContext = Double(indexPath.row - realm.objects(AlexandriaData.self)[0].cloudBooks.count)
             return cell
         }

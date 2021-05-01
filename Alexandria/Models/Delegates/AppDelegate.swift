@@ -11,6 +11,8 @@ import RealmSwift
 import GTMAppAuth
 import GAppAuth
 import GoogleAPIClientForREST
+import MobileCoreServices
+import CoreBluetooth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -32,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.statusBarStyle = .lightContent
         var config = Realm.Configuration()
         config.fileURL = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).first?.appendingPathComponent("bundle.realm")
-        config.schemaVersion = 3
+        config.schemaVersion = 5
         Realm.Configuration.defaultConfiguration = config
         AppDelegate.realmConfig = config
         print(Realm.Configuration.defaultConfiguration.fileURL)
@@ -44,6 +46,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }catch{
             print("Error initialising new realm, \(error)")
         }
+		
+		let centralManager = CBCentralManager()
+		
+		if UIDevice.current.userInterfaceIdiom == .pad{
+			let _ = centralManager.retrieveConnectedPeripherals(withServices: [CBUUID(string: "180A")])
+		}
         
         return true
     }

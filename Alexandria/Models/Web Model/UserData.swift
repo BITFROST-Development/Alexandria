@@ -6,7 +6,7 @@
 //  Copyright © 2020 BitFrost. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import RealmSwift
 
 struct UserData: Codable{
@@ -15,44 +15,36 @@ struct UserData: Codable{
     let username: String?
     let email: String?
     let subscription: String?
-    let daysLeftOnSubscription: Int?
     let subscriptionStatus: String?
+    let daysLeftOnSubscription: Int?
     let googleAccountEmail: String?
-    let teamIDs: [Double]?
+	var friendList: [FriendDec]?
+    let teamIDs: [String]?
     let alexandria: AlexandriaDataDec?
     let gigantic: GiganticDataDec?
 }
 
 struct AlexandriaDataDec: Codable{
     var rootFolderID: String?
-    var booksFolderID: String?
+    var filesFolderID: String?
     var defaultPaperStyle: String?
-    var defaultPaperOrientation: String?
     var defaultCoverStyle: String?
     var defaultPaperColor: String?
-    var defaultWritingToolThickness01: Double?
-    var defaultWritingToolThickness02: Double?
-    var defaultWritingToolThickness03: Double?
-    var defaultWritingToolColor01: IconColorDec?
-    var defaultWritingToolColor02: IconColorDec?
-    var defaultWritingToolColor03: IconColorDec?
-    var defaultEraserToolThickness01: Double?
-    var defaultEraserToolThickness02: Double?
-    var defaultEraserToolThickness03: Double?
-    var defaultHighlighterToolThickness01: Double?
-    var defaultHighlighterToolThickness02: Double?
-    var defaultHighlighterToolThickness03: Double?
-    var defaultHighlighterToolColor01: IconColorDec?
-    var defaultHighlighterToolColor02: IconColorDec?
-    var defaultHighlighterToolColor03: IconColorDec?
-    var defaultTextToolFont: Double?
+    var defaultPaperOrientation: String?
+	var editorTools: [String]?
+	var inkTools: [InkToolDec]?
+	var textTools: [TextToolDec]?
+	var imageTools: [ImageToolDec]?
+	var staticTools: [StaticToolDec]?
+    var home: [HomeItemDec]?
+    var collections: [FileCollectionDec]?
+    var folders: [FolderDec]?
+    var books: [BookDec]?
+    var notebooks: [NotebookDec]?
+    var termSets: [TermSetDec]?
     var goals: [GoalDec]?
     var trophies: [TrophyDec]?
-    var vaultDivisionPoints: [Double]?
-    var vaultMaps: [VaultMapDec]?
-    var vaults: [VaultDec]?
-    var shelves: [ShelfDec]?
-    var books: [BookDec]?
+    
     
     init(){}
     
@@ -60,289 +52,531 @@ struct AlexandriaDataDec: Codable{
         let realm = try! Realm(configuration: AppDelegate.realmConfig)
         let user = realm.objects(CloudUser.self)[0]
         
-        rootFolderID = user.alexandriaData?.rootFolderID
-        booksFolderID = user.alexandriaData?.booksFolderID
-        defaultPaperStyle = user.alexandriaData?.defaultPaperStyle
-        defaultCoverStyle = user.alexandriaData?.defaultCoverStyle
-        defaultPaperColor = user.alexandriaData?.defaultPaperColor
-        defaultPaperOrientation = user.alexandriaData?.defaultPaperOrientation
-        defaultWritingToolThickness01 = user.alexandriaData!.defaultWritingToolThickness01.value
-        defaultWritingToolThickness02 = user.alexandriaData!.defaultWritingToolThickness02.value
-        defaultWritingToolThickness03 = user.alexandriaData!.defaultWritingToolThickness03.value
-        defaultWritingToolColor01 = IconColorDec(user.alexandriaData!.defaultWritingToolColor01!)
-        defaultWritingToolColor02 = IconColorDec(user.alexandriaData!.defaultWritingToolColor02!)
-        defaultWritingToolColor03 = IconColorDec(user.alexandriaData!.defaultWritingToolColor03!)
-        defaultEraserToolThickness01 = user.alexandriaData!.defaultEraserToolThickness01.value
-        defaultEraserToolThickness02 = user.alexandriaData!.defaultEraserToolThickness02.value
-        defaultEraserToolThickness03 = user.alexandriaData!.defaultEraserToolThickness03.value
-        defaultHighlighterToolThickness01 = user.alexandriaData!.defaultHighlighterToolThickness01.value
-        defaultHighlighterToolThickness02 = user.alexandriaData!.defaultHighlighterToolThickness02.value
-        defaultHighlighterToolThickness03 = user.alexandriaData!.defaultHighlighterToolThickness03.value
-        defaultHighlighterToolColor01 = IconColorDec(user.alexandriaData!.defaultHighlighterToolColor01!)
-        defaultHighlighterToolColor02 = IconColorDec(user.alexandriaData!.defaultHighlighterToolColor02!)
-        defaultHighlighterToolColor03 = IconColorDec(user.alexandriaData!.defaultHighlighterToolColor03!)
-        defaultTextToolFont = user.alexandriaData!.defaultTextToolFont.value
+        rootFolderID = user.alexandria?.rootFolderID
+        filesFolderID = user.alexandria?.filesFolderID
+        defaultPaperStyle = user.alexandria?.defaultPaperStyle
+        defaultCoverStyle = user.alexandria?.defaultCoverStyle
+        defaultPaperColor = user.alexandria?.defaultPaperColor
+        defaultPaperOrientation = user.alexandria?.defaultPaperOrientation
+		editorTools = []
+		inkTools = []
+		textTools = []
+		imageTools = []
+		staticTools = []
+        collections = []
+        folders = []
+        books = []
+        notebooks = []
+        termSets = []
         goals = []
         trophies = []
-        vaultDivisionPoints = []
-        vaultMaps = []
-        vaults = []
-        shelves = []
-        books = []
-        for goal in user.alexandriaData!.goals{
+        
+		for tool in user.alexandria!.editorTools{
+			editorTools!.append(tool.value ?? "")
+		}
+		
+		for tool in user.alexandria!.inkTools{
+			inkTools!.append(InkToolDec(tool))
+		}
+		
+		for tool in user.alexandria!.textTools{
+			textTools!.append(TextToolDec(tool))
+		}
+		
+		for tool in user.alexandria!.imageTools{
+			imageTools!.append(ImageToolDec(tool))
+		}
+		
+		for tool in user.alexandria!.staticTools{
+			staticTools!.append(StaticToolDec(tool))
+		}
+		
+        for item in user.alexandria!.home{
+            home?.append(HomeItemDec(item))
+        }
+        
+        for collection in user.alexandria!.cloudCollections{
+            collections?.append(FileCollectionDec(collection))
+        }
+        
+        for folder in user.alexandria!.cloudFolders{
+            folders?.append(FolderDec(folder))
+        }
+        
+        for book in user.alexandria!.cloudBooks{
+            books?.append(BookDec(book))
+        }
+        
+        for notebook in user.alexandria!.cloudNotebooks{
+            notebooks?.append(NotebookDec(notebook))
+        }
+        
+        for set in user.alexandria!.cloudTermSets{
+            termSets?.append(TermSetDec(set))
+        }
+        
+        for goal in user.alexandria!.cloudGoals{
             goals?.append(GoalDec(storedGoal: goal))
         }
         
-        for trophy in user.alexandriaData!.trophies{
+        for trophy in user.alexandria!.trophies{
             trophies?.append(TrophyDec(storedTrophy: trophy))
-        }
-        
-        for vault in user.alexandriaData!.cloudVaults{
-            vaults?.append(VaultDec(storedVault: vault))
-        }
-        
-        for vaultMap in user.alexandriaData!.cloudVaultMaps{
-            vaultMaps?.append(VaultMapDec(vaultMap))
-        }
-        
-        for index in user.alexandriaData!.cloudVaultDivisionPoints{
-            vaultDivisionPoints?.append(index)
-        }
-        
-        for shelf in user.alexandriaData!.shelves{
-            shelves?.append(ShelfDec(shelf))
-        }
-        
-        for book in user.alexandriaData!.cloudBooks{
-            books?.append(BookDec(storedBook: book))
         }
     }
     
     init(from user: CloudUser) {
-        rootFolderID = user.alexandriaData?.rootFolderID
-        booksFolderID = user.alexandriaData?.booksFolderID
-        defaultPaperStyle = user.alexandriaData?.defaultPaperStyle
-        defaultCoverStyle = user.alexandriaData?.defaultCoverStyle
-        defaultPaperColor = user.alexandriaData?.defaultPaperColor
-        defaultPaperOrientation = user.alexandriaData?.defaultPaperOrientation
-        defaultWritingToolThickness01 = user.alexandriaData!.defaultWritingToolThickness01.value
-        defaultWritingToolThickness02 = user.alexandriaData!.defaultWritingToolThickness02.value
-        defaultWritingToolThickness03 = user.alexandriaData!.defaultWritingToolThickness03.value
-        defaultWritingToolColor01 = IconColorDec(user.alexandriaData!.defaultWritingToolColor01!)
-        defaultWritingToolColor02 = IconColorDec(user.alexandriaData!.defaultWritingToolColor02!)
-        defaultWritingToolColor03 = IconColorDec(user.alexandriaData!.defaultWritingToolColor03!)
-        defaultEraserToolThickness01 = user.alexandriaData!.defaultEraserToolThickness01.value
-        defaultEraserToolThickness02 = user.alexandriaData!.defaultEraserToolThickness02.value
-        defaultEraserToolThickness03 = user.alexandriaData!.defaultEraserToolThickness03.value
-        defaultHighlighterToolThickness01 = user.alexandriaData!.defaultHighlighterToolThickness01.value
-        defaultHighlighterToolThickness02 = user.alexandriaData!.defaultHighlighterToolThickness02.value
-        defaultHighlighterToolThickness03 = user.alexandriaData!.defaultHighlighterToolThickness03.value
-        defaultHighlighterToolColor01 = IconColorDec(user.alexandriaData!.defaultHighlighterToolColor01!)
-        defaultHighlighterToolColor02 = IconColorDec(user.alexandriaData!.defaultHighlighterToolColor02!)
-        defaultHighlighterToolColor03 = IconColorDec(user.alexandriaData!.defaultHighlighterToolColor03!)
-        defaultTextToolFont = user.alexandriaData!.defaultTextToolFont.value
+        rootFolderID = user.alexandria?.rootFolderID
+        filesFolderID = user.alexandria?.filesFolderID
+        defaultPaperStyle = user.alexandria?.defaultPaperStyle
+        defaultCoverStyle = user.alexandria?.defaultCoverStyle
+        defaultPaperColor = user.alexandria?.defaultPaperColor
+        defaultPaperOrientation = user.alexandria?.defaultPaperOrientation
+		editorTools = []
+		inkTools = []
+		textTools = []
+		imageTools = []
+		staticTools = []
+        home = []
+        collections = []
+        folders = []
+        notebooks = []
+        termSets = []
         goals = []
         trophies = []
-        vaultDivisionPoints = []
-        vaultMaps = []
-        vaults = []
-        shelves = []
         books = []
-        for goal in user.alexandriaData!.goals{
+		
+		for tool in user.alexandria!.editorTools{
+			editorTools!.append(tool.value ?? "")
+		}
+		
+		for tool in user.alexandria!.inkTools{
+			inkTools!.append(InkToolDec(tool))
+		}
+		
+		for tool in user.alexandria!.textTools{
+			textTools!.append(TextToolDec(tool))
+		}
+		
+		for tool in user.alexandria!.imageTools{
+			imageTools!.append(ImageToolDec(tool))
+		}
+		
+		for tool in user.alexandria!.staticTools{
+			staticTools!.append(StaticToolDec(tool))
+		}
+		
+        for item in user.alexandria!.home{
+            home?.append(HomeItemDec(item))
+        }
+        
+        for collection in user.alexandria!.cloudCollections{
+            collections?.append(FileCollectionDec(collection))
+        }
+        
+        for folder in user.alexandria!.cloudFolders{
+            folders?.append(FolderDec(folder))
+        }
+        
+        for book in user.alexandria!.cloudBooks{
+            books?.append(BookDec(book))
+        }
+        
+        for notebook in user.alexandria!.cloudNotebooks{
+            notebooks?.append(NotebookDec(notebook))
+        }
+        
+        for set in user.alexandria!.cloudTermSets{
+            termSets?.append(TermSetDec(set))
+        }
+        
+        for goal in user.alexandria!.cloudGoals{
             goals?.append(GoalDec(storedGoal: goal))
         }
         
-        for trophy in user.alexandriaData!.trophies{
+        for trophy in user.alexandria!.trophies{
             trophies?.append(TrophyDec(storedTrophy: trophy))
         }
         
-        for vault in user.alexandriaData!.cloudVaults{
-            if vault.cloudVar.value == true{
-                vaults?.append(VaultDec(storedVault: vault))
-            }
-        }
-        
-        for shelf in user.alexandriaData!.shelves{
-            if shelf.cloudVar.value == true {
-                shelves?.append(ShelfDec(shelf))
-            }
-        }
-        
-        for book in user.alexandriaData!.cloudBooks{
-            if book.cloudVar.value == true{
-                books?.append(BookDec(storedBook: book))
-            }
-        }
     }
     
     static func == (lhs: AlexandriaDataDec, rhs: AlexandriaDataDec) -> Bool {
-        if lhs.rootFolderID == rhs.rootFolderID && lhs.booksFolderID == rhs.booksFolderID && lhs.defaultPaperStyle == rhs.defaultPaperStyle && lhs.defaultCoverStyle == rhs.defaultCoverStyle && lhs.defaultPaperColor == rhs.defaultPaperColor && lhs.defaultPaperOrientation == rhs.defaultPaperOrientation && lhs.vaultDivisionPoints == rhs.vaultDivisionPoints && lhs.vaultMaps == rhs.vaultMaps && lhs.goals == rhs.goals && lhs.trophies == rhs.trophies && lhs.vaults == rhs.vaults && lhs.shelves == rhs.shelves && lhs.books == rhs.books{
-            return true
+		if lhs.rootFolderID != rhs.rootFolderID || lhs.filesFolderID != rhs.filesFolderID || lhs.defaultPaperStyle != rhs.defaultPaperStyle || lhs.defaultCoverStyle != rhs.defaultCoverStyle || lhs.defaultPaperColor != rhs.defaultPaperColor || lhs.defaultPaperOrientation == rhs.defaultPaperOrientation || lhs.editorTools != rhs.editorTools || lhs.home != rhs.home || lhs.collections != rhs.collections || lhs.goals != rhs.goals || lhs.trophies != rhs.trophies || lhs.folders != rhs.folders || lhs.books != rhs.books || lhs.inkTools != rhs.inkTools || lhs.textTools != rhs.textTools || lhs.imageTools != rhs.imageTools || lhs.staticTools != rhs.staticTools{
+            return false
         }
         
-        return false
+        return true
     }
     
 }
 
-struct GoalDec: Codable, Equatable{
-    var birthName: String?
+struct InkToolDec: Codable, Equatable{
+	var toolID: String?
+	var kind: String?
+	var colors: [IconColorDec]?
+	var thicknesses: [Double]?
+	
+	init(){}
+	
+	init(_ storedInkTool: InkTool){
+		self.toolID = storedInkTool.toolID
+		self.kind = storedInkTool.kind
+		self.colors = []
+		for color in storedInkTool.colors{
+			self.colors?.append(IconColorDec(color))
+		}
+		self.thicknesses = []
+		for value in storedInkTool.thicknesses{
+			self.thicknesses!.append(value.value.value ?? 0)
+		}
+	}
+}
+
+struct TextToolDec: Codable, Equatable{
+	var toolID: String?
+	var kind: String?
+	var fontName: String?
+	var fontSize: Double?
+	var fontStyle: String?
+	var textAlignment: Double?
+	var spacing: Double?
+	var color: IconColorDec?
+	
+	init(){}
+	
+	init(_ storedTextTool: TextTool){
+		self.toolID = storedTextTool.toolID
+		self.kind = storedTextTool.kind
+		self.fontSize = storedTextTool.fontSize.value
+		self.fontStyle = storedTextTool.fontStyle
+		self.textAlignment = storedTextTool.textAlignment.value
+		self.spacing = storedTextTool.spacing.value
+		self.color = IconColorDec(storedTextTool.color!)
+	}
+}
+
+struct ImageToolDec: Codable, Equatable{
+	var toolID: String?
+	var wrapping: String?
+	var colorParameters: [Double]?
+	
+	init(){}
+	
+	init(_ storedImageTool: ImageTool){
+		self.toolID = storedImageTool.toolID
+		self.wrapping = storedImageTool.wrapping
+		for value in storedImageTool.colorParameters{
+			self.colorParameters?.append(value.value.value ?? 0)
+		}
+	}
+}
+
+struct StaticToolDec: Codable, Equatable{
+	var toolID: String?
+	var kind: String?
+	
+	init(){}
+	
+	init(_ storedStaticTool: StaticTool){
+		self.toolID = storedStaticTool.toolID
+		self.kind = storedStaticTool.kind
+	}
+}
+
+struct HomeItemDec: Codable, Equatable {
+    var type: String?
     var name: String?
-    var achieved: String?
-    var progress: Double?
-    var theme: String?
+    var sorting: String?
     
     init(){}
     
-    init(storedGoal: Goal){
-        birthName = storedGoal.birthName
-        name = storedGoal.name
-        achieved = storedGoal.achieved
-        progress = storedGoal.progress.value
-        theme = storedGoal.theme
+    init(_ storedHomeItem: HomeItem){
+        self.type = storedHomeItem.type
+        self.name = storedHomeItem.name
+        self.sorting = storedHomeItem.sorting
     }
 }
 
-struct TrophyDec: Codable, Equatable{
+struct FileCollectionDec: Codable, Equatable {
+    var personalID: String?
+    var childrenIDs: [String]?
     var name: String?
-    var earned: String?
-    var progress:Double?
-    var theme: String?
+    var color: IconColorDec?
+    
+    init(){}
+    
+    init(_ storedCollection: FileCollection){
+        self.personalID = storedCollection.personalID
+        self.childrenIDs = []
+        self.name = storedCollection.name
+        self.color = IconColorDec(storedCollection.color!)
+        for id in storedCollection.childrenIDs{
+            self.childrenIDs?.append(id.value ?? "")
+        }
+    }
+}
+
+struct FolderDec: Codable, Equatable{
+    var personalID: String?
+    var parentID: String?
+    var childrenIDs: [String]?
+    var name: String?
+    var color: IconColorDec?
+    var lastModified: Date?
+    var isFavorite: String?
+    var sharingIDs: [String]?
     
     init() {}
     
-    init(storedTrophy: Trophy){
-        name = storedTrophy.name
-        earned = storedTrophy.earned
-        progress = storedTrophy.progress.value
-        theme = storedTrophy.theme
+    init(_ storedFolder: Folder){
+        self.personalID = storedFolder.personalID
+        self.parentID = storedFolder.parentID
+        self.childrenIDs = []
+        self.name = storedFolder.name
+        self.color = IconColorDec(storedFolder.color!)
+        self.lastModified = storedFolder.lastModified
+        self.isFavorite = storedFolder.isFavorite
+        self.sharingIDs = []
+        for id in storedFolder.childrenIDs{
+            self.childrenIDs?.append(id.value ?? "")
+        }
+        
+        for id in storedFolder.sharingIDs{
+            self.sharingIDs?.append(id.value ?? "")
+        }
     }
 }
 
-struct ShelfDec: Codable, Equatable{
-    var birthName: String?
+struct BookDec: Codable, Equatable{
+    var personalID: String?
+    var collectionIDs: [String]?
+    var parentID: String?
+    var driveID: String?
+    var lastModified: Date?
     var name: String?
-    var books: [Double]?
+    var author: String?
+    var year: String?
+    var lastOpened: Date?
+    var thumbnail: StoredFileDec?
+    var trackerIDs: [String]?
+    var sharingIDs: [String]?
+    var personalCollectionID: String?
+    var currentPage: Double?
+    var isFavorite: String?
+	var bookmarkedPages: [Double]?
+	
+    init (){}
     
-    init(){}
-    init(_ storedShelf: Shelf){
-        birthName = storedShelf.birthName
-        name = storedShelf.name
-        books = []
-        for index in 0..<storedShelf.books.count {
-            books?.append(Double(index))
+    init (_ storedBook: Book){
+        self.personalID = storedBook.personalID
+        self.collectionIDs = []
+        for id in storedBook.collectionIDs{
+            collectionIDs?.append(id.value ?? "")
         }
+        self.parentID = storedBook.parentID
+        self.driveID = storedBook.driveID
+        self.lastModified = storedBook.lastModified
+        self.name = storedBook.name
+        self.author = storedBook.author
+        self.year = storedBook.year
+        self.lastOpened = storedBook.lastOpened
+        self.thumbnail = StoredFileDec(storedBook.thumbnail!.name!, storedBook.thumbnail!.data!, storedBook.thumbnail!.contentType!)
+        self.trackerIDs = []
+        for id in storedBook.trackerIDs{
+            trackerIDs?.append(id.value ?? "")
+        }
+        self.sharingIDs = []
+        for id in storedBook.sharingIDs{
+            sharingIDs?.append(id.value ?? "")
+        }
+        self.personalCollectionID = storedBook.personalCollectionID
+        self.currentPage = storedBook.currentPage.value
+        self.isFavorite = storedBook.isFavorite
     }
 }
 
-struct VaultMapDec: Codable, Equatable{
-    var vault: Double?
-    var parentVault: Double?
-    var indexInParent: Double?
-    var childVaults: [Double]?
-    
-    init(){}
-    
-    init(_ storedMap: VaultMap){
-        self.vault = storedMap.vault.value
-        self.indexInParent = storedMap.indexInParent.value
-        self.parentVault = storedMap.parentVault.value
-        self.childVaults = []
-        for vault in storedMap.cloudChildVaults{
-            self.childVaults?.append(vault)
-        }
-    }
-    
-}
-
-struct VaultDec: Codable, Equatable{
-    var vaultFolderID: String?
-    var indexInArray: Double?
-    var color: IconColorDec?
-    var birthName: String?
+struct NotebookDec: Codable, Equatable{
+    var personalID: String?
+    var collectionIDs: [String]?
+    var parentID: String?
+    var driveID: String?
+    var lastModified: Date?
     var name: String?
-    var pathVaults: [String]?
-    var termSets: [TermSetDec]?
-    var notes: [NoteDec]?
-    
-    init(){}
-    
-    init(storedVault: Vault){
-        vaultFolderID = storedVault.vaultFolderID
-        birthName = storedVault.birthName
-        name = storedVault.name
-        color = IconColorDec(storedVault.color!)
-        termSets = []
-        for set in storedVault.termSets{
-            termSets?.append(TermSetDec(storedSet: set))
-        }
-        notes = []
-        for note in storedVault.notes{
-            notes?.append(NoteDec(storedNote: note))
-        }
-        pathVaults = []
-        for component in storedVault.pathVaults{
-            pathVaults?.append(component)
-        }
-    }
-}
-
-struct NoteDec: Codable, Equatable{
-    var id: String?
-    var title: String?
-    var lastUpdated: Date?
+    var author: String?
+    var year: String?
+    var lastOpened: Date?
     var coverStyle: String?
+    var sheetDefaultStyle: String?
+    var sheetDefaultColor: String?
+    var sheetDefaultOrientation: String?
     var sheetStyleGroup: [String]?
-    var sheetIndexInGroup: [Double]?
+    var sheetIndexInStyleGroup: [Double]?
+    var trackerIDs: [String]?
+    var sharingIDs: [String]?
+    var personalCollectionID: String?
+    var currentPage: Double?
+    var isFavorite: String?
+	var bookmarkedPages: [Double]?
     
     init(){}
     
-    init(storedNote: Note){
-        self.id = storedNote.id
-        self.title = storedNote.name
-        self.lastUpdated = storedNote.lastUpdated
+    init(_ storedNote: Notebook){
+        self.personalID = storedNote.personalID
+        self.collectionIDs = []
+        for id in storedNote.collectionIDs{
+            collectionIDs?.append(id.value ?? "")
+        }
+        self.parentID = storedNote.parentID
+        self.driveID = storedNote.driveID
+        self.lastModified = storedNote.lastModified
+        self.name = storedNote.name
+        self.author = storedNote.author
+        self.year = storedNote.year
+        self.lastOpened = storedNote.lastOpened
         self.coverStyle = storedNote.coverStyle
+        self.sheetDefaultStyle = storedNote.sheetDefaultStyle
+        self.sheetDefaultColor = storedNote.sheetDefaultColor
+        self.sheetDefaultOrientation = storedNote.sheetDefaultOrientation
         self.sheetStyleGroup = []
-        self.sheetIndexInGroup = []
         for style in storedNote.sheetStyleGroup{
-            self.sheetStyleGroup?.append(style)
+            self.sheetStyleGroup?.append(style.value ?? "")
         }
-        for index in storedNote.sheetIndexInGroup{
-            self.sheetIndexInGroup?.append(index)
+        self.sheetIndexInStyleGroup = []
+        for index in storedNote.sheetIndexInStyleGroup{
+            self.sheetIndexInStyleGroup?.append(index.value.value ?? 0.0)
         }
+        self.trackerIDs = []
+        for id in storedNote.trackerIDs{
+            trackerIDs?.append(id.value ?? "")
+        }
+        self.sharingIDs = []
+        for id in storedNote.sharingIDs{
+            sharingIDs?.append(id.value ?? "")
+        }
+        self.personalCollectionID = storedNote.personalCollectionID
+        self.currentPage = storedNote.currentPage.value
+        self.isFavorite = storedNote.isFavorite
     }
 }
 
 struct TermSetDec: Codable, Equatable{
-    var birthName: String?
+    var personalID: String?
+    var collectionIDs: [String]?
+    var parentID: String?
+    var lastModified: Date?
     var name: String?
+    var author: String?
+    var year: String?
+    var lastOpened: Date?
     var color: IconColorDec?
     var terms: [TermDec]?
+    var trackerIDs: [String]?
+    var sharingIDs: [String]?
+    var personalCollectionID: String?
+    var isFavorite: String?
     
     init() {}
     
-    init(storedSet: TermSet){
-        birthName = storedSet.birthName
+    init(_ storedSet: TermSet){
+        personalID = storedSet.personalID
+        collectionIDs = []
+        for id in storedSet.collectionIDs{
+            collectionIDs?.append(id.value ?? "")
+        }
+        parentID = storedSet.parentID
+        lastModified = storedSet.lastModified
         name = storedSet.name
-        terms = []
+        author = storedSet.author
+        year = storedSet.year
+        lastOpened = storedSet.lastOpened
         color = IconColorDec(storedSet.color!)
+        terms = []
         for term in storedSet.terms{
             terms?.append(TermDec(storedTerm: term))
         }
+        trackerIDs = []
+        for id in storedSet.trackerIDs{
+            trackerIDs?.append(id.value ?? "")
+        }
+        sharingIDs = []
+        for id in storedSet.sharingIDs{
+            sharingIDs?.append(id.value ?? "")
+        }
+        personalCollectionID = storedSet.personalCollectionID
+        self.isFavorite = storedSet.isFavorite
     }
 }
 
 struct TermDec: Codable, Equatable{
-    var type: String?
-    var content: String?
-    var location: String?
+    var value: String?
+    var definition: String?
     
     init() {}
     
     init(storedTerm: Term){
-        type = storedTerm.type
-        content = storedTerm.content
-        location = storedTerm.location
+        value = storedTerm.value
+        definition = storedTerm.definition
+    }
+}
+
+struct GoalDec: Codable, Equatable{
+    var personalID: String?
+    var name: String?
+    var achieved: String?
+    var valueToHit: Double?
+    var progressList: [GoalContributorDec]?
+    var trophyIDs: [String]?
+    var type: String?
+    var endDate: Date?
+	var period: String?
+    
+    init(){}
+    
+    init(storedGoal: Goal){
+        personalID = storedGoal.personalID
+        name = storedGoal.name
+        achieved = storedGoal.achieved
+        valueToHit = storedGoal.valueToHit.value
+        endDate = storedGoal.endDate
+		period = storedGoal.period
+        progressList = []
+        for contribution in storedGoal.progressList {
+            progressList?.append(GoalContributorDec(storedGoalContributor: contribution))
+        }
+        trophyIDs = []
+        for id in storedGoal.trophyIDs{
+            trophyIDs?.append(id.value ?? "")
+        }
+        type = storedGoal.type
+    }
+}
+
+struct GoalContributorDec: Codable, Equatable{
+    var contributor: String?
+    var progress: Double?
+    
+    init(){}
+    
+    init(storedGoalContributor: GoalContributor){
+        contributor = storedGoalContributor.contributor
+        progress = storedGoalContributor.progress.value
+    }
+}
+
+struct TrophyDec: Codable, Equatable{
+    var personalID: String?
+    var name: String?
+    var earned: String?
+    var progress:Double?
+    var type: String?
+    
+    init() {}
+    
+    init(storedTrophy: Trophy){
+        personalID = storedTrophy.personalID
+        name = storedTrophy.name
+        earned = storedTrophy.earned
+        progress = storedTrophy.progress.value
+        type = storedTrophy.type
     }
 }
 
@@ -352,7 +586,19 @@ struct IconColorDec: Codable, Equatable{
     var blue: Double?
     var colorName: String?
     
-    init(){}
+    init(){
+        var cgRed: CGFloat = 0
+        var cgGreen: CGFloat = 0
+        var cgBlue: CGFloat = 0
+        var cgAlpha :CGFloat = 0
+        
+        UIColor.lightGray.getRed(&cgRed, green: &cgGreen, blue: &cgBlue, alpha: &cgAlpha)
+        
+        red = Double(cgRed)
+        green = Double(cgGreen)
+        blue = Double(cgBlue)
+        colorName = "light gray"
+    }
     
     init(_ storedIcon: IconColor){
         red = storedIcon.red.value
@@ -394,22 +640,21 @@ struct BufferDec: Codable, Equatable{
     var data: [UInt8]?
 }
 
-struct BookDec: Codable, Equatable{
-    var driveID: String?
-    var title: String?
-    var author: String?
-    var year: String?
-    var thumbnail: StoredFileDec?
-    
-    init (){}
-    
-    init (storedBook: Book){
-        author = storedBook.author
-        driveID = storedBook.id
-        title = storedBook.title
-        year = storedBook.year
-        thumbnail = StoredFileDec(storedBook.thumbnail!.name!, storedBook.thumbnail!.data!, storedBook.thumbnail!.contentType!)
-    }
+struct FriendDec: Codable, Equatable{
+	var personalID: String?
+	var name: String?
+	
+	init(_ storedFriend: Friend){
+		self.personalID = storedFriend.personalID
+		self.name = storedFriend.name
+	}
+	
+	static func == (lhs: FriendDec, rhs: FriendDec) -> Bool{
+		if lhs.personalID == rhs.personalID {
+			return true
+		}
+		return false
+	}
 }
 
 struct GiganticDataDec: Codable{

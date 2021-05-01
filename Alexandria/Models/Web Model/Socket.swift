@@ -54,12 +54,39 @@ class Socket {
             }
         })
     }
+	
+	func requestUsersWithUsername(_ username: String, completion: @escaping([Friend]) -> Void) {
+		socket.emit("requestUsersWith", ["username": username])
+		
+		socket.on("requestedUsers", callback: {data,_ in
+			SocketDecoder.parseUsers(data: data, completion: {userList in
+				completion(userList)
+			})
+		})
+	}
     
     func updateAlexandriaCloud(username: String, alexandriaInfo: AlexandriaDataDec){
         socket.emit("alexandriaUpdate", ["kind": "update", "username": username, "field": String(data: try! JSONEncoder().encode(alexandriaInfo), encoding: .utf8)])
     }
     
-    func uploadShelf(username: String, shelfInfo: ShelfDec, path: String){
-        socket.emit("alexandriaUpdate", ["kind": "addition", "username": username, "path": path, "field": String(data: try! JSONEncoder().encode(shelfInfo), encoding: .utf8)])
-    }
+//    func uploadShelf(username: String, shelfInfo: ShelfDec, path: String){
+//        socket.emit("alexandriaUpdate", ["kind": "addition", "username": username, "path": path, "field": String(data: try! JSONEncoder().encode(shelfInfo), encoding: .utf8)])
+//    }
+}
+
+private class SocketDecoder {
+	static func parseUsers(data: [Any], completion: @escaping([Friend]) -> Void){
+		let parsedData = try! data.map { (dict) -> FriendDec in
+			let jsonData = try JSONSerialization.data(withJSONObject: dict)
+			let decoder = JSONDecoder()
+			return try decoder.decode(FriendDec.self, from: jsonData)
+		}
+		var finalData: [Friend] = []
+		
+		for friend in parsedData{
+			finalData.append(Friend(friend))
+		}
+		
+		completion(finalData)
+	}
 }

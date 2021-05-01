@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyTeamsViewController: AuthenticationSource {
+class MyTeamsViewController: AuthenticationSource, SocketDelegate {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -23,10 +23,8 @@ class MyTeamsViewController: AuthenticationSource {
         super.viewWillAppear(animated)
         Socket.sharedInstance.delegate = self
     }
-}
-
-extension MyTeamsViewController: SocketDelegate{
-    func refreshView(){
+	
+    override func refreshView(){
         
     }
 }

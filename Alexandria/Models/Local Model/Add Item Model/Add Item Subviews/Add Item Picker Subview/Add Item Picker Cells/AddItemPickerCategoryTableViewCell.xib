@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addItemPickerCategoryTableViewCell" id="KGk-i7-Jjw" customClass="AddItemPickerCategoryTableViewCell" customModule="Alexandria" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KuR-GG-LJM">
+                        <rect key="frame" x="15" y="15" width="44" height="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1no-gf-L0k">
+                        <rect key="frame" x="291" y="16" width="14" height="11.5"/>
+                        <color key="tintColor" red="0.32123100760000001" green="0.76385760309999995" blue="0.89848518369999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="1no-gf-L0k" secondAttribute="height" multiplier="1:1" id="5sL-Gs-L4D"/>
+                        </constraints>
+                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="bold"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tw5-28-JQt">
+                        <rect key="frame" x="15" y="43" width="290" height="1"/>
+                        <color key="backgroundColor" red="0.32123100760000001" green="0.76385760309999995" blue="0.89848518369999997" alpha="0.36634048150510207" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="d1y-NP-nl9"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="1no-gf-L0k" firstAttribute="centerY" secondItem="KuR-GG-LJM" secondAttribute="centerY" id="5eX-UV-R6Z"/>
+                    <constraint firstAttribute="bottom" secondItem="KuR-GG-LJM" secondAttribute="bottom" constant="15" id="78Z-Sg-Z2W"/>
+                    <constraint firstAttribute="trailing" secondItem="1no-gf-L0k" secondAttribute="trailing" constant="15" id="8VU-NB-IJf"/>
+                    <constraint firstItem="1no-gf-L0k" firstAttribute="height" secondItem="KuR-GG-LJM" secondAttribute="height" id="Gqw-GT-d8R"/>
+                    <constraint firstItem="Tw5-28-JQt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="LPR-1q-lfw"/>
+                    <constraint firstItem="KuR-GG-LJM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="MUU-v2-xY5"/>
+                    <constraint firstAttribute="bottom" secondItem="Tw5-28-JQt" secondAttribute="bottom" id="UOg-w5-HEt"/>
+                    <constraint firstItem="KuR-GG-LJM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="kfv-ra-Ri8"/>
+                    <constraint firstAttribute="trailing" secondItem="Tw5-28-JQt" secondAttribute="trailing" constant="15" id="ods-XE-cun"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="categoryTitle" destination="KuR-GG-LJM" id="EN7-mm-9nb"/>
+                <outlet property="separator" destination="Tw5-28-JQt" id="Czk-O9-J56"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="88.392857142857139"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="chevron.right" catalog="system" width="96" height="128"/>
+    </resources>
+</document>

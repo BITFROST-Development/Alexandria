@@ -21,7 +21,7 @@ class NewNotebookViewController: UIViewController, ItemChangerDelegate {
     var finalFileName: String!
     var loggedIn: Bool!
     var parentVault: Vault!
-    var currentNotbook: Note!
+    var currentNotebook: Notebook!
     var alexandria = AppDelegate.realm.objects(AlexandriaData.self)[0]
     var displayedCoverStyle: String! {
         get{

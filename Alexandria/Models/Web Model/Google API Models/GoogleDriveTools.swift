@@ -15,10 +15,15 @@ import GoogleAPIClientForREST
 class GoogleDriveTools {
     static let service = GTLRDriveService()
     
-    static func uploadFileToDrive(name: String, fileURL: URL, mimeType: String, parent: String, service: GTLRDriveService, completion: @escaping(String, Bool) -> Void) {
+    static func uploadFileToDrive(name: String, fileURL: URL, thumbnail: UIImage?, mimeType: String, parent: String, service: GTLRDriveService, completion: @escaping(String, Bool) -> Void) {
         let file = GTLRDrive_File()
         file.name = name
         file.parents = [parent]
+        
+        if thumbnail != nil {
+            file.contentHints?.thumbnail = GTLRDrive_File_ContentHints_Thumbnail()
+            file.contentHints?.thumbnail?.image = thumbnail!.pngData()?.base64EncodedString().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        }
         
         let uploadParameters = GTLRUploadParameters(fileURL: fileURL, mimeType: mimeType)
         
@@ -59,10 +64,10 @@ class GoogleDriveTools {
             let realm = try! Realm(configuration: AppDelegate.realmConfig)
             let books = realm.objects(Book.self)
             for book in books {
-                if book.title! == bookTitle {
+                if book.name! == bookTitle {
                     do{
                         try realm.write(){
-                            book.id = (result as? GTLRDrive_File)?.identifier
+                            book.driveID = (result as? GTLRDrive_File)?.identifier
                         }
                         completion(true)
                     } catch {
@@ -128,14 +133,14 @@ class GoogleDriveTools {
         }
     }
     
-    static func uploadNotebook(name: String, fileData: Data, thumbnail: UIImage, mimeType: String, parent: String, service: GTLRDriveService, completion: @escaping(String, Bool) -> Void){
+    static func uploadNotebook(name: String, fileData: URL, thumbnail: UIImage, mimeType: String, parent: String, service: GTLRDriveService, completion: @escaping(String, Bool) -> Void){
         
         let file = GTLRDrive_File()
         file.name = name
         file.parents = [parent]
         file.contentHints?.thumbnail = GTLRDrive_File_ContentHints_Thumbnail()
         file.contentHints?.thumbnail?.image = thumbnail.pngData()?.base64EncodedString().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        let uploadParameters = GTLRUploadParameters(data: fileData, mimeType: mimeType)
+        let uploadParameters = GTLRUploadParameters(fileURL: fileData, mimeType: mimeType)
         let query = GTLRDriveQuery_FilesCreate.query(withObject: file, uploadParameters: uploadParameters)
         
 
@@ -199,10 +204,10 @@ class GoogleDriveTools {
             let realm = try! Realm(configuration: AppDelegate.realmConfig)
             let books = realm.objects(Book.self)
             for book in books {
-                if book.title! == bookTitle {
+                if book.name! == bookTitle {
                     do{
                         try realm.write(){
-                            book.id = (result as? GTLRDrive_File)?.identifier
+                            book.driveID = (result as? GTLRDrive_File)?.identifier
                         }
                         completion(true)
                     } catch {
@@ -250,7 +255,7 @@ class GoogleDriveTools {
         } else {
             deleteFile(service: service, id: id, local: false){ success in
                 if success {
-                    uploadFileToDrive(name: name, fileURL: fileURL!, mimeType: mimeType, parent: parent, service: service){ (fileID, success) in
+                    uploadFileToDrive(name: name, fileURL: fileURL!, thumbnail: nil, mimeType: mimeType, parent: parent, service: service){ (fileID, success) in
                         completion(fileID, success)
                     }
                 } else {
@@ -274,11 +279,11 @@ class GoogleDriveTools {
             let realm = try! Realm(configuration: AppDelegate.realmConfig)
             let books = realm.objects(Book.self)
             for book in books {
-                if book.id == id {
+                if book.driveID == id {
                     if !local {
                         do{
                             try realm.write(){
-                                book.id = nil
+                                book.driveID = nil
                             }
                         } catch {
                             print("couldn't remove id")
@@ -312,11 +317,11 @@ class GoogleDriveTools {
             let realm = try! Realm(configuration: AppDelegate.realmConfig)
             let books = realm.objects(Book.self)
             for book in books {
-                if book.id == id {
+                if book.driveID == id {
                     if !local {
                         do{
                             try realm.write(){
-                                book.id = nil
+                                book.driveID = nil
                             }
                             completion(true)
                         } catch {
